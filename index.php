@@ -8,25 +8,25 @@
   *
   */
 
-/** ---------------------------------------------------------
+/** --------------------------------------------------------------------------- *
   * Define page specific presets.
   */
 // define('SOME_CONSTANT', true);
 
-/** ---------------------------------------------------------
-  * Define page specific paths.
+/** --------------------------------------------------------------------------- *
+  * Define page specific variables.
   */
-// define('SOME_CONSTANT', true);
+  // $some_var = 'x';
 
-/** ---------------------------------------------------------
+/** --------------------------------------------------------------------------- *
   *Load the Minor Key processing environment.
   */
-require_once( __DIR__ . '/m_core/init.php' );
+  require_once( __DIR__ . '/m_core/init.php' );
 
-$loader = new Twig_Loader_Array(array(
-  'index' => '<p>Hello {{ name }}!</p>',
-));
-$twig = new Twig_Environment($loader);
+  $loader = new Twig_Loader_Array(array(
+    'index' => '<p>Hello, {{ name }}!</p>',
+  ));
+  $twig = new Twig_Environment($loader);
 
-echo $twig->render('index', array('name' => 'Fabien'));
+  echo $twig->render('index', array('name' => 'Test Case'));
 ?>
