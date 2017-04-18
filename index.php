@@ -11,7 +11,7 @@
 /** --------------------------------------------------------------------------- *
   * Define page specific presets.
   */
-// define('SOME_CONSTANT', true);
+  // define('SOME_CONSTANT', true);
 
 /** --------------------------------------------------------------------------- *
   * Define page specific variables.
