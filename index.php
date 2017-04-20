@@ -11,7 +11,8 @@
 /** --------------------------------------------------------------------------- *
   * Define page specific presets.
   */
-  // define('SOME_CONSTANT', true);
+  // define('DEF_PREFIX', 'xmpl');
+  // define('DEF_TEMPLATE', '/templates/example');
 
 /** --------------------------------------------------------------------------- *
   * Define page specific variables.
