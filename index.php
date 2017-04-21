@@ -11,6 +11,7 @@
 /** --------------------------------------------------------------------------- *
   * Define page specific presets.
   */
+  define('MK_CLASSLIB', '/m_core/class_lib/');
   // define('DEF_PREFIX', 'xmpl');
   // define('DEF_TEMPLATE', '/templates/example');
 

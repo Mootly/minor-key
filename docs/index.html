@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+  dl.inline-terms dt {
+    float: left;
+    clear: left;
+    width: 6em;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 0.5em;
+  }
+  dl.inline-terms dt::after {
+   content: " : ";
+  }
+  dl.inline-terms dd {
+    margin-left: 3.0em;
+  }
+  </style>
+</head>
+<body>
+
+<h1>Minor-Key docs</h3>
+
+<h2>Component separation and processing order</h2>
+
+<p>All core code has been written with the unidirectional flow described below. You can iterate, but not move backwards.</p>
+
+<p>Direction of flow is enforced by encapsulation and an expection that a particular type of object will be passed each step of the way. Core files will include the following strings to indicate what part of the process they are involved with.</p>
+
+<p>Request evaluation and computation:</p>
+<dl class="inline-terms">
+  <dt id="dfn-process-init">init</dt><dd>Initialize core.</li></dd>
+  <dt id="dfn-process-grab">grab</dt><dd>Retrieve requests and accompanying data.</dd>
+  <dt id="dfn-process-proc">proc</dt><dd>Process request data and gather response data.</dd>
+</dl>
+
+<p>Response assembly and presentation:</p>
+<dl class="inline-terms">
+  <dt id="dfn-process-prep">prep</dt><dd>Use the template to prepare response for presentation</dd>
+  <dt id="dfn-process-send">send</dt><dd>Send response</dd>
+</dl>
+
+<h2>Naming conventions</h2>
+
+<p>Minor-Key uses prefixes to designate a namespace reserved for use by core. These prefexes are broken out by what they label.</p>
+
+<p>Reserved prefixes:</p>
+<dl class="inline-terms">
+  <dt id="dfn-prefix-m">m_</dt><dd>General use for directory names.</dd>
+  <dt id="dfn-prefix-mk">mk_</dt><dd>General use to clarify that files are part of the code code base.</dd>
+  <dt id="dfn-prefix-mkk">MK_</dt><dd>Constants.</dd>
+  <dt id="dfn-prefix-mkc">mkc_</dt><dd>Class definitions. There may be a fourth letter to specify specific the nature of the class definition.</dd>
+  <dt id="dfn-prefix-mkf">mkf_</dt><dd>Functions. All public core functions are prefixed with <b>mkf_</b></dd>
+  <dt id="dfn-prefix-mko">mko_</dt><dd>Object instances. All instantiated core objects should be prefixed with <b>mko_</b>.</dd>
+  <dt id="dfn-prefix-mkv">mkv_</dt><dd>Variables. All public core variables are prefixed with <b>mkv_</b>.</dd>
+  <dt id="dfn-prefix-mkpre">mkpre_</dt><dd>User defined functions to run before a core function of the same name. Not all function support this.<dd>
+  <dt id="dfn-prefix-mkpost">mkpost_</dt><dd>User defined functions to run after a core function of the same name. Not all functions support this.</dd>
+  <dt id="dfn-prefix-mkpost">DEF_</dt><dd>Constants. Declares a default value where we want to prevent fallthrough, for example. These should only be set in the <b>init.php</b> and <b>master.php</b> files.</dd>
+</dl>
+</body>
+</html>
