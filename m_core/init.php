@@ -29,7 +29,7 @@
     $mko_paths->template    = MK__DIR__ . '/templates/minorkey/' ;
     $mko_paths->tp_classlib = MK__DIR__ . '/templates/minorkey/class_lib';
   }
-  /** --------------------------------------------------------------------------- *
+  /** ------------------------------------------------------------------------- *
   * Tell PHP where the template class library is.
   */
   // function __autoload($classname) {
@@ -63,4 +63,4 @@
   } else {
    require_once( $mko_paths->core . '/prep.php' );
   }
-?>
+/** ?> end include ------------------------------------------------------------ */
