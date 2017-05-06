@@ -11,7 +11,7 @@
 /** --------------------------------------------------------------------------- *
   * Define page specific presets.
   */
-  define('MK_CLASSLIB', '/m_core/class_lib/');
+  define('MK_CLASSLIB', '/mk_core/class_lib/');
   // define('DEF_PREFIX', 'xmpl');
   // define('DEF_TEMPLATE', '/templates/example');
 
@@ -23,7 +23,7 @@
 /** --------------------------------------------------------------------------- *
   *Load the Minor Key processing environment.
   */
-  require_once( __DIR__ . '/m_core/init.php' );
+  require_once( __DIR__ . '/mk_core/init.php' );
 
   $loader = new Twig_Loader_Array(array(
     'index' => '<p>Hello, {{ name }}!</p>',

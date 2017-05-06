@@ -16,7 +16,7 @@
 
   if (!isset($mko_paths)) { $mko_paths = new mkc_paths(true); }
   $mko_paths->mk_classlib   = MK__CLASSLIB__;
-  $mko_paths->core          = MK__DIR__ . '/m_core';
+  $mko_paths->core          = MK__DIR__ . '/mk_core';
   $mko_paths->vendor        = MK__DIR__ . '/vendor';
   if(defined('DEF_TEMPLATE')) {
     $mko_paths->template    = MK__DIR__ . DEF_TEMPLATE .'/' ;
@@ -32,9 +32,6 @@
   /** ------------------------------------------------------------------------- *
   * Tell PHP where the template class library is.
   */
-  // function __autoload($classname) {
-  //   include $mko_paths->mk_classlib . MK_PSEP . strtolower($classname) . '.php';
-  // }
   spl_autoload_register(function ($classname) {
     if(preg_match('/^mkc_/', $classname)) {
       global $mko_paths;

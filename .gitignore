@@ -5,7 +5,10 @@ sites/*/*settings*.php
 files/
 sites/*/files
 sites/*/private
+templates/*
+
+# Add minor-key specific paths back in.
+!templates/mk_*
 
 # Ignore default text files
 *.txt
-
