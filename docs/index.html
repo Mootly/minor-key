@@ -4,19 +4,44 @@
 <head>
   <title></title>
   <style type="text/css">
+  body {
+    margin: 2.0em auto;
+    max-width: 50em;
+    background-color: rgb(246,243,244) ;
+    color: rgb(16,24,32);
+    font-size: 1.0em;
+    font-family: 'Helvetica Neue', Verdana, Arial, sans-serif;
+  }
+  @media ( max-width: 54em ) {
+    body {margin: 2.0em 2.0em;}
+  }
+  p, dl { line-height: 1.1875em; }
+
+  dl.inline-terms {
+    border-bottom: 1px solid rgba(16,24,32,0.125);
+    border-top: 1px solid rgba(16,24,32,0.125);
+  }
   dl.inline-terms dt {
     float: left;
     clear: left;
-    width: 6em;
+    width: 6.0em;
     text-align: right;
     font-weight: bold;
     padding-right: 0.5em;
+    padding-top: 0.325em;
+    padding-bottom: 0.375em;
   }
   dl.inline-terms dt::after {
-   content: " : ";
+    content: " : ";
   }
   dl.inline-terms dd {
-    margin-left: 3.0em;
+    margin-left: 6.5em;
+    padding-top: 0.375em;
+    padding-bottom: 0.375em;
+    border-top: 1px solid rgba(16,24,32,0.125);
+  }
+  dl.inline-terms dd:first-of-type {
+    border-top: none;
   }
   </style>
 </head>
@@ -55,9 +80,10 @@
   <dt id="dfn-prefix-mkf">mkf_</dt><dd>Functions. All public core functions are prefixed with <b>mkf_</b></dd>
   <dt id="dfn-prefix-mko">mko_</dt><dd>Object instances. All instantiated core objects should be prefixed with <b>mko_</b>.</dd>
   <dt id="dfn-prefix-mkv">mkv_</dt><dd>Variables. All public core variables are prefixed with <b>mkv_</b>.</dd>
-  <dt id="dfn-prefix-mkpre">mkpre_</dt><dd>User defined functions to run before a core function of the same name. Not all function support this.<dd>
+  <dt id="dfn-prefix-mkpre">mkpre_</dt><dd>User defined functions to run before a core function of the same name. Not all function support this.</dd>
   <dt id="dfn-prefix-mkpost">mkpost_</dt><dd>User defined functions to run after a core function of the same name. Not all functions support this.</dd>
   <dt id="dfn-prefix-mkpost">DEF_</dt><dd>Constants. Declares a default value where we want to prevent fallthrough, for example. These should only be set in the <b>init.php</b> and <b>master.php</b> files.</dd>
+  <dt id="dfn-prefix-mkpost">temp_</dt><dd>Temporary variables. All temoprary variables take the form of temp_<var>type</var>. This consistently names interim values. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
 </dl>
 </body>
 </html>

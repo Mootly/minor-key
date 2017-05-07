@@ -12,8 +12,8 @@
   * Define page specific presets.
   */
   define('MK_CLASSLIB', '/mk_core/class_lib/');
-  // define('DEF_PREFIX', 'xmpl');
-  // define('DEF_TEMPLATE', '/templates/example');
+  define('DEF_PREFIX', 'mk');
+  define('DEF_TEMPLATE', 'basic');
 
 /** --------------------------------------------------------------------------- *
   * Define page specific variables.

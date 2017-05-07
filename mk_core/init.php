@@ -9,26 +9,27 @@
 /** --------------------------------------------------------------------------- *
   * Application presets.
   */
-  define('MK_PSEP', '/');
-  define('MK__DIR__', dirname(__FILE__,2));
-  define('MK__CLASSLIB__', MK__DIR__ . MK_CLASSLIB );
+  define( 'MK_PSEP', '/' );
+  define( 'MK__DIR__', dirname(__FILE__,2) );
+  define( 'MK__CLASSLIB__', MK__DIR__ . MK_CLASSLIB );
   require_once( MK__CLASSLIB__ . '/mkc_paths.php');
 
   if (!isset($mko_paths)) { $mko_paths = new mkc_paths(true); }
-  $mko_paths->mk_classlib   = MK__CLASSLIB__;
-  $mko_paths->core          = MK__DIR__ . '/mk_core';
-  $mko_paths->vendor        = MK__DIR__ . '/vendor';
+  $mko_paths->mk_classlib     = MK__CLASSLIB__;
+  $mko_paths->core            = MK__DIR__ . '/mk_core';
+  $mko_paths->vendor          = MK__DIR__ . '/vendor';
   if(defined('DEF_TEMPLATE')) {
-    $mko_paths->template    = MK__DIR__ . DEF_TEMPLATE .'/' ;
-    $mko_paths->tp_classlib = MK__DIR__ . DEF_TEMPLATE .'/classlib';
-  } elseif (defined('DEF_PREFIX')) {
-    $mko_paths->template    = MK__DIR__ . '/templates/'. DEF_PREFIX .'/' ;
-    $mko_paths->tp_classlib = MK__DIR__ . '/templates/'. DEF_PREFIX .'/classlib';
-
+    if (defined('DEF_PREFIX')) {
+      $temp_string  = DEF_PREFIX . '_' . DEF_TEMPLATE;
+    } else {
+      $temp_string  = DEF_TEMPLATE;
+    }
   } else {
-    $mko_paths->template    = MK__DIR__ . '/templates/minorkey/' ;
-    $mko_paths->tp_classlib = MK__DIR__ . '/templates/minorkey/class_lib';
+    $temp_string    = 'mk_basic';
   }
+  $mko_paths->template    = MK__DIR__ . '/templates/'. $temp_string . '/' ;
+  $mko_paths->tp_classlib = MK__DIR__ . '/templates/'. $temp_string .'/classlib';
+
   /** ------------------------------------------------------------------------- *
   * Tell PHP where the template class library is.
   */
