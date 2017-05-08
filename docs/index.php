@@ -47,7 +47,11 @@
 </head>
 <body>
 
-<h1>Minor-Key docs</h3>
+<h1>Minor-Key docs</h1>
+
+<div id="contents">
+
+<h2 id="toc-links">Contents</h2>
 
 <h2>Component separation and processing order</h2>
 
@@ -70,20 +74,26 @@
 
 <h2>Naming conventions</h2>
 
-<p>Minor-Key uses prefixes to designate a namespace reserved for use by core. These prefexes are broken out by what they label.</p>
+<p>Minor-Key uses prefixes to designate namespaces reserved for use by core and to designate certain categories of variables. These prefexes are broken out by what they label.</p>
 
 <p>Reserved prefixes:</p>
 <dl class="inline-terms">
   <dt id="dfn-prefix-mk">mk_</dt><dd>General use to clarify files and directories as part of the minor-key code base.</dd>
-  <dt id="dfn-prefix-mkk">MK_</dt><dd>Constants.</dd>
+  <dt id="dfn-prefix-mkk">MK_</dt><dd>Constants defined by core.</dd>
   <dt id="dfn-prefix-mkc">mkc_</dt><dd>Class definitions. There may be a fourth letter to specify specific the nature of the class definition.</dd>
   <dt id="dfn-prefix-mkf">mkf_</dt><dd>Functions. All public core functions are prefixed with <b>mkf_</b></dd>
   <dt id="dfn-prefix-mko">mko_</dt><dd>Object instances. All instantiated core objects should be prefixed with <b>mko_</b>.</dd>
   <dt id="dfn-prefix-mkv">mkv_</dt><dd>Variables. All public core variables are prefixed with <b>mkv_</b>.</dd>
-  <dt id="dfn-prefix-mkpre">mkpre_</dt><dd>User defined functions to run before a core function of the same name. Not all function support this.</dd>
+  <dt id="dfn-prefix-mkpre">mkpre_</dt><dd>User defined functions to run before a core function of the same name. Not all functions support this.</dd>
   <dt id="dfn-prefix-mkpost">mkpost_</dt><dd>User defined functions to run after a core function of the same name. Not all functions support this.</dd>
-  <dt id="dfn-prefix-mkpost">DEF_</dt><dd>Constants. Declares a default value where we want to prevent fallthrough, for example. These should only be set in the <b>init.php</b> and <b>master.php</b> files.</dd>
-  <dt id="dfn-prefix-mkpost">temp_</dt><dd>Temporary variables. All temoprary variables take the form of temp_<var>type</var>. This consistently names interim values. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
+  <dt id="dfn-prefix-mkpost">DEF_</dt><dd>Site specific default constants. These should only be set in the <b>init.php</b>, <b>master.php</b>, or their template-specific equivalent.</dd>
+  <dt id="dfn-prefix-mkpost">temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
+  <dt id="dfn-prefix-mkpost">t_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
 </dl>
+</div>
+<script type="text/javascript" src="../vendors/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../_assets/js/toc-generator.js"></script>
+
+
 </body>
 </html>
