@@ -1,19 +1,18 @@
 <?php
-/** --------------------------------------------------------------------------- *
+/** 
   * This is the init script for the Minor Key application.
   *
   * @copyright 2017 Mootly Obviate
   * @package   minor_key
   * --------------------------------------------------------------------------- */
 
-/** --------------------------------------------------------------------------- *
-  * Application presets.
-  */
+                    # Application presets ------------------------------------- ***
+                    # Set path constants -------------------------------------- ***
   define( 'MK_PSEP', '/' );
   define( 'MK__DIR__', dirname(__FILE__,2) );
   define( 'MK__CLASSLIB__', MK__DIR__ . MK_CLASSLIB );
   require_once( MK__CLASSLIB__ . '/mkc_paths.php');
-
+                    # Set default paths for assets ---------------------------- ***
   if (!isset($mko_paths)) { $mko_paths = new mkc_paths(true); }
   $mko_paths->mk_classlib     = MK__CLASSLIB__;
   $mko_paths->core            = MK__DIR__ . '/mk_core';
@@ -29,10 +28,7 @@
   }
   $mko_paths->template    = MK__DIR__ . '/templates/'. $temp_string ;
   $mko_paths->tp_classlib = MK__DIR__ . '/templates/'. $temp_string .'/classlib';
-
-  /** ------------------------------------------------------------------------- *
-  * Tell PHP where the template class library is.
-  */
+                    # Tell PHP where the template class library is ------------ ***
   spl_autoload_register(function ($classname) {
     if(preg_match('/^mkc_/', $classname)) {
       global $mko_paths;
@@ -41,9 +37,6 @@
       require_once $mko_paths->tp_classlib . MK_PSEP . strtolower($classname) . '.php';
     }
   });
-  if (!isset($mko_demo)) { $mko_demo = new mkc_demo(true); }
-/** --------------------------------------------------------------------------- *
-  *Load any components needed by third party modules.
-  */
+                    # Load registered components needed by third party modules  ***
   require_once( $mko_paths->vendor . '/autoload.php' );
-/** ?> end include file ------------------------------------------------------- */
+/** end include file ---------------------------------------------------------- */
