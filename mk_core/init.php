@@ -1,11 +1,17 @@
 <?php
-/** 
+/**
   * This is the init script for the Minor Key application.
   *
   * @copyright 2017 Mootly Obviate
   * @package   minor_key
   * --------------------------------------------------------------------------- */
 
+                    # Define default page specific presets -------------------- ***
+  if (!defined('MK_CLASSLIB'))  define('MK_CLASSLIB',   '/mk_core/class_lib/');
+  if (!defined('DEF_PREFIX'))   define('DEF_PREFIX',    'mk');
+  if (!defined('DEF_TEMPLATE')) define('DEF_TEMPLATE',  'basic');
+                    # Define page specific variables -------------------------- ***
+  // $some_var = 'x';
                     # Application presets ------------------------------------- ***
                     # Set path constants -------------------------------------- ***
   define( 'MK_PSEP', '/' );
@@ -39,4 +45,15 @@
   });
                     # Load registered components needed by third party modules  ***
   require_once( $mko_paths->vendor . '/autoload.php' );
+                    # Load the Minor Key processing environment --------------- ***
+  require_once( $mko_paths->core   . '/grab.php' );
+  require_once( $mko_paths->core   . '/proc.php' );
+
+                    # Load the master templating module.----------------------- ***
+  if ( (isset($_REQUEST['async'])) AND ($_REQUEST['async'] == true) ) {
+    require_once( $mko_paths->core . '/async_prep.php' );
+  } else {
+    require_once( $mko_paths->core . '/prep.php' );
+  }
+
 /** end include file ---------------------------------------------------------- */
