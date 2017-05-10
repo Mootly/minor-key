@@ -30,7 +30,7 @@
       $temp_string  = DEF_TEMPLATE;
     }
   } else {
-    $temp_string    = 'mk_basic';
+    $temp_string    = "mk_basic";
   }
   $mko_paths->template    = MK__DIR__ . '/templates/'. $temp_string ;
   $mko_paths->tp_classlib = MK__DIR__ . '/templates/'. $temp_string .'/classlib';

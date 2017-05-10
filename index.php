@@ -10,12 +10,10 @@
                     # Load core ----------------------------------------------- ***
   require_once( __DIR__.'\mk_core\init.php' );
                     # Load the current template ------------------------------- ***
-  require_once( $mko_paths->template  . '/index.php' );
-                    # Some test code ------------------------------------------ ***
-  $loader = new Twig_Loader_Array(array(
-    'index' => '<p>Hello, {{ name }}!</p>',
-  ));
-  $twig = new Twig_Environment($loader);
-
-  echo $twig->render('index', array('name' => 'Test Case'));
+//  require_once( $mko_paths->template  . '/index.php' );
+                    # Set HTTP Headers ---------------------------------------- ***
+                    # Begin content ------------------------------------------- ***
+$loader = new Twig_Loader_Filesystem($mko_paths->template);
+$twig = new Twig_Environment($loader, array());
+echo ($twig->render('index.php', array('name' => 'Dobby', 'title' => 'Dobby')));
 ?>
