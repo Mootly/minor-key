@@ -1,6 +1,6 @@
 <?php
-/** --------------------------------------------------------------------------- *
-  * Set our core paths
+/**
+  * Set our content elements
   *
   * We use an array masquerading as properties because cleaner code.
   *
@@ -17,17 +17,20 @@
   * @copyright 2017 Mootly Obviate
   * @package   minor_key
   * --------------------------------------------------------------------------- */
-  class mkc_demo {
+  class mkc_parts {
     protected $is_locked;
-    protected $path = array();
+    protected $component    = array();
+    public $title_structure = ['page_name','section_name','site_name'];
+    public $separator = ' | ';
     /**
       * If we lock the instance, values can be added but not changed.
       * To lock a path set, instantiate with true.
       * @param  bool $prot Are items locked from updating.
       * @return bool
       */
-    public function __construct($prot=false) {
+    public function __construct($prot=false,$site_name='') {
       $this->is_locked = $prot;
+      $this->site_name = $site_name;
       return true;
     }
     /**
@@ -35,9 +38,9 @@
       * @param  string $property The pseudoproperty name.
       * @return string
       */
-    // Return the value of a set path.
+    // Return the value of a set component.
     public function __get($property) {
-      return $this->path[$property];
+      return $this->component[$property];
     }
     /**
       * Set a pseudo property to a value.
@@ -49,12 +52,11 @@
       */
     public function __set($property, $value) {
       if ($this->is_locked) {
-        $this->path[$property] = $this->path[$property] ?? $value;
+        $this->menu[$property] = $this->menu[$property] ?? $value;
       }else {
-        $this->path[$property] = $value;
+        $this->menu[$property] = $value;
       }
       return true;
     }
   }
-// ***** End cd_paths                                                           *
-?>
+// End mkc_parts -------------------------------------------------------------- ***

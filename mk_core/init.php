@@ -7,7 +7,6 @@
   * --------------------------------------------------------------------------- */
 
                     # Define default page specific presets -------------------- ***
-  if (!defined('MK_CLASSLIB'))  define('MK_CLASSLIB',   '/mk_core/class_lib/');
   if (!defined('DEF_PREFIX'))   define('DEF_PREFIX',    'mk');
   if (!defined('DEF_TEMPLATE')) define('DEF_TEMPLATE',  'basic');
                     # Define page specific variables -------------------------- ***
@@ -15,14 +14,12 @@
                     # Application presets ------------------------------------- ***
                     # Set path constants -------------------------------------- ***
   define( 'MK_PSEP', '/' );
-  define( 'MK__DIR__', dirname(__FILE__,2) );
-  define( 'MK__CLASSLIB__', MK__DIR__ . MK_CLASSLIB );
-  require_once( MK__CLASSLIB__ . '/mkc_paths.php');
                     # Set default paths for assets ---------------------------- ***
+  require_once( MK_CLASSLIB . '/mkc_paths.php' );
   if (!isset($mko_paths)) { $mko_paths = new mkc_paths(true); }
-  $mko_paths->mk_classlib     = MK__CLASSLIB__;
-  $mko_paths->core            = MK__DIR__ . '/mk_core';
-  $mko_paths->vendor          = MK__DIR__ . '/vendors';
+  $mko_paths->mk_classlib     = MK_CLASSLIB;
+  $mko_paths->core            = MK_ROOT . '/mk_core';
+  $mko_paths->vendor          = MK_ROOT . '/vendors';
   if(defined('DEF_TEMPLATE')) {
     if (defined('DEF_PREFIX')) {
       $temp_string  = DEF_PREFIX . '_' . DEF_TEMPLATE;
@@ -32,8 +29,8 @@
   } else {
     $temp_string    = "mk_basic";
   }
-  $mko_paths->template    = MK__DIR__ . '/templates/'. $temp_string ;
-  $mko_paths->tp_classlib = MK__DIR__ . '/templates/'. $temp_string .'/classlib';
+  $mko_paths->template    = MK_ROOT . '/templates/'. $temp_string ;
+  $mko_paths->tp_classlib = MK_ROOT . '/templates/'. $temp_string .'/classlib';
                     # Tell PHP where the template class library is ------------ ***
   spl_autoload_register(function ($classname) {
     if(preg_match('/^mkc_/', $classname)) {

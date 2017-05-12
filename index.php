@@ -1,19 +1,19 @@
 <?php
 /**
-  * This is the root page for the Minor Key application.
-  * Currently it lives as a sample page for other static pages.
+  * Demo homepage.
   *
   * @copyright 2017 Mootly Obviate
   * @package   minor_key
   * --------------------------------------------------------------------------- */
 
-                    # Load core ----------------------------------------------- ***
-  require_once( __DIR__.'\mk_core\init.php' );
+                    # These two lines init the application -------------------- ***
+  require_once( $_SERVER['DOCUMENT_ROOT'].'\config.php' );
+  require_once( MK_ROOT.'\mk_core\init.php' );
                     # Load the current template ------------------------------- ***
-//  require_once( $mko_paths->template  . '/index.php' );
-                    # Set HTTP Headers ---------------------------------------- ***
-                    # Begin content ------------------------------------------- ***
-$loader = new Twig_Loader_Filesystem($mko_paths->template);
-$twig = new Twig_Environment($loader, array());
-echo ($twig->render('index.php', array('name' => 'Dobby', 'title' => 'Dobby')));
+  $mko_parts->title = 'Hello!';
+  $mko_parts->name  = 'Ken Doll';
+//  $mko_parts->title = $mko_parts->page_name.$mko_parts->title_separator.$mkp_parts->site_name;
+  $loader = new Twig_Loader_Filesystem($mko_paths->template);
+  $twig = new Twig_Environment($loader, array());
+  echo ($twig->render($mkt_base_template, array('title'=>'a','name'=>'b')));
 ?>
