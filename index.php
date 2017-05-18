@@ -6,10 +6,9 @@
   * @package   minor_key
   * --------------------------------------------------------------------------- */
 
-                    # These two lines init the application -------------------- ***
+                    # These two lines init the application -------------------- *
   require_once( $_SERVER['DOCUMENT_ROOT'].'\config.php' );
-  require_once( MK_ROOT.'\mk_core\init.php' );
-                    # Load the current template ------------------------------- ***
+                    # Load the current template ------------------------------- *
   $mko_parts->title = 'Hello!';
   $mko_parts->name  = 'Ken Doll';
 //  $mko_parts->title = $mko_parts->page_name.$mko_parts->title_separator.$mkp_parts->site_name;

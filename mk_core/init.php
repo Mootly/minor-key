@@ -6,32 +6,49 @@
   * @package   minor_key
   * --------------------------------------------------------------------------- */
 
-                    # Define default page specific presets -------------------- ***
-  if (!defined('DEF_PREFIX'))   define('DEF_PREFIX',    'mk');
-  if (!defined('DEF_TEMPLATE')) define('DEF_TEMPLATE',  'basic');
-                    # Define page specific variables -------------------------- ***
-  // $some_var = 'x';
-                    # Application presets ------------------------------------- ***
-                    # Set path constants -------------------------------------- ***
-  define( 'MK_PSEP', '/' );
-                    # Set default paths for assets ---------------------------- ***
+# Constants ------------------------------------------------------------------- *
+# Values are repeated in case there was no config file.
+                 # Core file paths
+  if (!defined('MK_ROOT'))      define( 'MK_ROOT', $_SERVER['DOCUMENT_ROOT'] );
+  if (!defined('MK_CLASSLIB'))  define( 'MK_CLASSLIB', MK_ROOT.'/mk_core/class_lib/' );
+                 # Fail to default mk_basic template if none specified
+  if (!defined('DEF_PREFIX'))   define( 'DEF_PREFIX',    'mk' );
+  if (!defined('DEF_TEMPLATE')) define( 'DEF_TEMPLATE',  'basic' );
+  if (!defined('DEF_ROOT'))     define( 'DEF_ROOT', $_SERVER['DOCUMENT_ROOT'] );
+  if (!defined('DEF_CLASSLIB')) define( 'DEF_CLASSLIB', MK_ROOT.'/mk_core/class_lib/' );
+
+# Call our core objects ------------------------------------------------------- *
+                    # Page components
+  require_once( MK_CLASSLIB . '/mkc_parts.php' );
+  if (!isset($mko_parts)) $mko_parts = new mkc_parts(true);
+  if (!isset($mko_menus)) $mko_menus = new mkc_parts(true);
+                    # Set default paths for assets
   require_once( MK_CLASSLIB . '/mkc_paths.php' );
-  if (!isset($mko_paths)) { $mko_paths = new mkc_paths(true); }
-  $mko_paths->mk_classlib     = MK_CLASSLIB;
-  $mko_paths->core            = MK_ROOT . '/mk_core';
-  $mko_paths->vendor          = MK_ROOT . '/vendors';
+  if (!isset($mko_paths)) $mko_paths = new mkc_paths(true);
+  $mko_paths->mk_classlib   = MK_CLASSLIB;
+  $mko_paths->core          = MK_ROOT . '/mk_core';
+  $mko_paths->vendor        = MK_ROOT . '/vendors';
+                    # Define our template name
   if(defined('DEF_TEMPLATE')) {
     if (defined('DEF_PREFIX')) {
-      $temp_string  = DEF_PREFIX . '_' . DEF_TEMPLATE;
+      $temp_string          = DEF_PREFIX . '_' . DEF_TEMPLATE;
     } else {
-      $temp_string  = DEF_TEMPLATE;
+      $temp_string          = DEF_TEMPLATE;
     }
   } else {
-    $temp_string    = "mk_basic";
+    $temp_string            = "mk_basic";
   }
-  $mko_paths->template    = MK_ROOT . '/templates/'. $temp_string ;
-  $mko_paths->tp_classlib = MK_ROOT . '/templates/'. $temp_string .'/classlib';
-                    # Tell PHP where the template class library is ------------ ***
+# Locate our templates and class library -------------------------------------- *
+                    # If the template contains a classlib, declear in config.php
+                    # Otherwise it will assume:
+                    # /templates/template_name/classlib
+  define( 'MK_PSEP', '/' );
+  $mko_paths->template      = MK_ROOT . '/templates/' . $temp_string ;
+  if (defined('DEF_CLASSLIB')) {
+    $mko_paths->tp_classlib = MK_ROOT . DEF_CLASSLIB;
+  } else {
+    $mko_paths->tp_classlib = MK_ROOT . '/templates/' . $temp_string .'/classlib';
+  }
   spl_autoload_register(function ($classname) {
     if(preg_match('/^mkc_/', $classname)) {
       global $mko_paths;
@@ -40,17 +57,17 @@
       require_once $mko_paths->tp_classlib . MK_PSEP . strtolower($classname) . '.php';
     }
   });
-                    # Load registered components needed by third party modules  ***
+                    # Load registered components needed by third party modules
   require_once( $mko_paths->vendor . '/autoload.php' );
-                    # Load the Minor Key processing environment --------------- ***
+                    # Load the Minor Key processing environment
   require_once( $mko_paths->core   . '/grab.php' );
   require_once( $mko_paths->core   . '/proc.php' );
 
-                    # Load the master templating module.----------------------- ***
+                    # Load the master templating module
   if ( (isset($_REQUEST['async'])) AND ($_REQUEST['async'] == true) ) {
     require_once( $mko_paths->core . '/async_prep.php' );
   } else {
     require_once( $mko_paths->core . '/prep.php' );
   }
 
-/** end include file ---------------------------------------------------------- */
+// end include file ----------------------------------------------------------- *

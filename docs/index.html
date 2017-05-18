@@ -24,7 +24,7 @@
   dl.inline-terms dt {
     float: left;
     clear: left;
-    width: 6.0em;
+    width: 8.0em;
     text-align: right;
     font-weight: bold;
     padding-right: 0.5em;
@@ -35,7 +35,7 @@
     content: " : ";
   }
   dl.inline-terms dd {
-    margin-left: 6.5em;
+    margin-left: 8.5em;
     padding-top: 0.375em;
     padding-bottom: 0.375em;
     border-top: 1px solid rgba(16,24,32,0.125);
@@ -91,10 +91,38 @@
   <dt id="dfn-prefix-mkpost">temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
   <dt id="dfn-prefix-mkpost">t_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
 </dl>
+
+<h2>Commenting the code</h2>
+
+<p>Minor-Key uses multiple types of commments, depending on function:</p>
+<dl class="inline-terms">
+  <dt id="dfn-comments-block">block</dt>
+  <dd>
+    A basic block or multiline comment uses slashterisk notation.
+    <pre>/*<br /> * Some long decription<br /> */</pre>
+  </dd>
+  <dt id="dfn-comments-block">PHPDoc</dt>
+  <dd>
+    A comment block that documents how functions or objects work, or catalogs the contents of the current file, uses the modified slashterisk format to conform to PHPDoc standard. This allows PHPDoc-aware editors to color code keywords in the comments, as well as allowing a PHPDoc parser to generate documentation from the comments.
+    <pre>/**<br />  * Some long decription<br />  */</pre>
+  </dd>
+  <dt id="dfn-comments-block">inline</dt>
+  <dd>
+    Inline comments beign with a hash mark: <code>#</code>. This is to differentiate it from commented-out code.
+    <pre># inline comment</pre>
+    For section breaks, or to call out a comment, a dashed line is used with an asterisk in the 81st column to make it easier to scan for comments.
+    <pre># Do some new stuff -------------------------------------------------- *</pre>
+  </dd>
+  <dt id="dfn-comments-block">code</dt>
+  <dd>
+    Code is commented out with a double slash <code>//</code>. This is the default in PHP, so if you use hot keys to comment out blocks of code, it is what you will get.
+    <pre>// echo testvar;</pre>
+  </dd>
+</dl>
+
 </div>
+
 <script type="text/javascript" src="../vendors/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../_assets/js/toc-generator.js"></script>
-
-
 </body>
 </html>
