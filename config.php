@@ -25,7 +25,7 @@
   //     'DEF_CLASSLIB',
   //     '/mk_core/class_lib/'
   //   ); }
-                    # Specify our tempalte names
+                    # Specify our template names
   if (!defined('DEF_PREFIX'))  {
     define(
       'DEF_PREFIX',
@@ -37,12 +37,12 @@
       'basic'
     ); }
 # Initialize the Site --------------------------------------------------------- *
-  require_once( MK_ROOT.'\mk_core\init.php' );
+  require_once( MK_ROOT.'/mk_core/init.php' );
 
 # Site specific variables ----------------------------------------------------- *
                     # Values expected by the site or sub-site ----------------- *
-  $mkv_parts->site_name = 'Minor Key';
-  $mkv_parts->site_abbr = '[mk]';
+  $mko_parts->site_name = 'Minor Key';
+  $mko_parts->site_abbr = '[mk]';
                     # Template formatting rules ------------------------------- *
   $mkt_base_template        = 'index.php';
   $mko_parts->title_struct  = ['page_name','section_name','site_name'];

@@ -11,9 +11,9 @@
   *   On instantiation, can be passed boolean to determine whether
   *   to protect existing values.
   * @method string  __get(string)
-  *   Return valeus from an array of pseudoproperties.
+  *   Return values from an array of pseudoproperties.
   * @method bool    __set(string, string)
-  *   Add pseudoproperties to array with assigned values.
+  *   Add pseudo-properties to array with assigned values.
   * @copyright 2017 Mootly Obviate
   * @package   minor_key
   * --------------------------------------------------------------------------- */
@@ -21,6 +21,7 @@
     protected $is_locked;
     protected $path = array();
                     /**
+                      * Constructor
                       * If we lock the instance, values can be added but not changed.
                       * To lock a path set, instantiate with true.
                       * @param  bool $prot Are items locked from updating.
@@ -31,7 +32,7 @@
       return true;
     }
                     /**
-                      * Return the value of aset path.
+                      * Return the value of asset path.
                       * @param  string $property The pseudoproperty name.
                       * @return string
                       */
@@ -40,8 +41,7 @@
     }
                     /**
                       * Set a pseudo property to a value.
-                      * If instance is locked, only allow new properties,
-                      * not updates.
+                      * If instance is locked, only allow new properties.
                       * @param  string $property  The pseudoproperty name.
                       * @param  string $value     The value to be assigned.
                       * @return bool
@@ -55,4 +55,4 @@
       return true;
     }
   }
-// End mkc_paths -------------------------------------------------------------- ****
+// End mkc_paths -------------------------------------------------------------- *
