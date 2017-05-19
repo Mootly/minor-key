@@ -8,7 +8,7 @@
  *   <h2 id="toc-links">Contents</h2>                                           *
  * The menu includes all H2 elements in the document.                           *
  * If an H2 element does not have an ID, it assigns one.                        *
- * Checks for the class 'freq-link" to include H3 and DT elements.              *
+ * Checks for the class 'add-toc" to include H3 and DT elements.              *
  * Assumes H3 and DL tags are siblings of the H2 tags.                          *
  * ---------------------------------------------------------------------------- */
 $(window).on( 'load', function () {
@@ -34,14 +34,14 @@ $(window).on( 'load', function () {
         for (var j=0; j<flLength; j++) {
                     // this will only catch H3s                                 ***
           var flThis = flList.eq(j);
-          if (flThis.hasClass('freq-link')) {
+          if (flThis.hasClass('add-toc')) {
             if (!(flThis.is('[id]'))) {
               flThis.attr('id', 'h3-'+flThis.text().replace(/ /g,'-'));
             }
             subMenuList += '<li><a href="#'+flThis.attr('id')+'">'+flThis.text()+'</a></li>';
           }
                     // this will catch DTs                                      ***
-          var fl2List = flThis.children('.freq-link');
+          var fl2List = flThis.children('.add-toc');
           var fl2Length = fl2List.length;
           for (var k=0; k<fl2Length; k++) {
             var fl2This = fl2List.eq(k);

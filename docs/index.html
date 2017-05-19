@@ -17,6 +17,7 @@
   }
   p, dl { line-height: 1.1875em; }
 
+  dd { padding-bottom: 1.0em; }
   dl.inline-terms {
     border-bottom: 1px solid rgba(16,24,32,0.125);
     border-top: 1px solid rgba(16,24,32,0.125);
@@ -24,9 +25,8 @@
   dl.inline-terms dt {
     float: left;
     clear: left;
-    width: 8.0em;
+    width: 8.5em;
     text-align: right;
-    font-weight: bold;
     padding-right: 0.5em;
     padding-top: 0.325em;
     padding-bottom: 0.375em;
@@ -35,7 +35,7 @@
     content: " : ";
   }
   dl.inline-terms dd {
-    margin-left: 8.5em;
+    margin-left: 9.0em;
     padding-top: 0.375em;
     padding-bottom: 0.375em;
     border-top: 1px solid rgba(16,24,32,0.125);
@@ -43,6 +43,31 @@
   dl.inline-terms dd:first-of-type {
     border-top: none;
   }
+  ul#jumpto { margin-left: 0em; padding-left: 0em;  }
+  ul#jumpto ul { margin-left: 0.75em; padding-left: 0.75em;  }
+  ul#jumpto li {
+    font-weight: bold;
+    margin-bottom: 0.75em;
+    color: #000099;
+    list-style-type: none;
+
+  }
+  ul#jumpto li a {
+    text-decoration: none;
+    color: #000099;
+  }
+  ul#jumpto li li {
+    font-weight: normal;
+    margin-bottom: 0.25em;
+    list-style-type: circle;
+  }
+  code { font-size: 1.25em; }
+  pre {
+    font-size: 1.0625em;
+    border-left: 0.25em solid rgba(16,24,32,0.25);
+    padding: 0.75em;
+    background-color: rgba(16,24,32,0.0625)
+   }
   </style>
 </head>
 <body>
@@ -53,7 +78,13 @@
 
 <h2 id="toc-links">Contents</h2>
 
-<h2>Component separation and processing order</h2>
+<h2>Code organization</h2>
+
+<p>These are the basic rules set out for writing code for this application.</p>
+
+<p>The standards are kept pretty loose, but should be adhered to.</p>
+
+<h3 class="add-toc">Component separation and processing order</h3>
 
 <p>All core code has been written with the unidirectional flow described below. You can iterate, but not move backwards.</p>
 
@@ -72,7 +103,7 @@
   <dt id="dfn-process-send">send</dt><dd>Send response</dd>
 </dl>
 
-<h2>Naming conventions</h2>
+<h3 class="add-toc">Naming conventions</h3>
 
 <p>Minor-Key uses prefixes to designate namespaces reserved for use by core and to designate certain categories of variables. These prefexes are broken out by what they label.</p>
 
@@ -92,11 +123,11 @@
   <dt id="dfn-prefix-mkpost">t_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
 </dl>
 
-<h2>Commenting the code</h2>
+<h3 class="add-toc">Commenting the code</h3>
 
 <p>Minor-Key uses multiple types of commments, depending on function:</p>
 <dl class="inline-terms">
-  <dt id="dfn-comments-block">block</dt>
+  <dt id="dfn-comments-block">simple block</dt>
   <dd>
     A basic block or multiline comment uses slashterisk notation.
     <pre>/*<br /> * Some long decription<br /> */</pre>
@@ -110,17 +141,86 @@
   <dd>
     Inline comments beign with a hash mark: <code>#</code>. This is to differentiate it from commented-out code.
     <pre># inline comment</pre>
-    For section breaks, or to call out a comment, a dashed line is used with an asterisk in the 81st column to make it easier to scan for comments.
+    For section breaks, or to call out a comment, a dashed line is used with an asterisk in the last column to make it easier to scan for comments.
     <pre># Do some new stuff -------------------------------------------------- *</pre>
   </dd>
-  <dt id="dfn-comments-block">code</dt>
+  <dt id="dfn-comments-block">inactive code</dt>
   <dd>
     Code is commented out with a double slash <code>//</code>. This is the default in PHP, so if you use hot keys to comment out blocks of code, it is what you will get.
     <pre>// echo testvar;</pre>
   </dd>
 </dl>
 
-</div>
+<h2>Objects</h2>
+
+<p>Minor Key uses objects for tracking various page components and some of the site settings. This is to make the code easier to use and to allow for automated validation of various elements.</p>
+
+<h3 class="add-toc">mkc_menus</h3>
+
+<p>The <cite>menu</cite> object stores the menu sets for a page.</p>
+
+<p>Except for instantiation, method calls to the menus object always return arrays. The return array will have the following stucture:</p>
+
+<dl>
+  <dt><code>results['success'] bool</code></dt>
+  <dd>Returns true on success, false on an error.</dd>
+  <dt><code>results['content'] string | array</code></dt>
+  <dd>If there was an error, this will contain the error message. Otherwise it will return the string or array containing the returned values.</dd>
+</dl>
+<p>At present, there is no functionality to remove menus or links from the menus object. Rather, return values are filtered by permission settings.</p>
+
+<h4>Constructor</h4>
+
+<pre>mkc_menus( [bool $is_locked=true] );</pre>
+
+<p>Use <code>$is_locked</code> to specify existing values as immutable. This allows later scripts to add new menus and add new links to menus, but not change the attributes of existing links or menus.</p>
+
+<p>It is set to <code>true</code> by default.</p>
+
+<h4>Create a new menu</h4>
+
+<pre>mko_menus->setmenu( str $name  [, array $settings] );</pre>
+
+<h4>Create or edit a link</h4>
+
+<pre>mko_menus->setlink( str $menu, string $text, str $url [, array $settings] );</pre>
+
+<h4>Change a menu property</h4>
+
+<pre>mko_menus->setmenuprop( str $menu, str $property, str $value );</pre>
+
+<h4>Change a link property</h4>
+
+<pre>mko_menus->setlinkprop( str $menu, str $text, str $property, str $value );</pre>
+
+<h4>Return a menu as an HTML list</h4>
+
+<pre>mko_menus->getmenu( str $name [, array $settings ] );</pre>
+
+<h4>Return a menu as an array</h4>
+
+<pre>mko_menus->getlist( str $name [, array $settings ] );</pre>
+
+<h4>Return the properties of a menu</h4>
+
+<pre>mko_menus->getmenuprop( str $menu, str $property );</pre>
+
+<h4>Return the properties of a link</h4>
+
+<pre>mko_menus->getlink( str $menu, str $text [, array $settings] );</pre>
+
+<h3 class="add-toc">mkc_parts</h3>
+
+<p>The <cite>parts</cite> object contains information fields for a page as well as a content blob.</p>
+
+<p>It can also be used recursively for page components.</p>
+
+<h3 class="add-toc">mkc_paths</h3>
+
+<p>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies</p>
+
+<p>If a path is hard-coded in the process code instead of being defined in the config or init files, you did something wrong.</p>
+</div> <!-- *** end contents *********** -->
 
 <script type="text/javascript" src="../vendors/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../_assets/js/toc-generator.js"></script>
