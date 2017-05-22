@@ -17,7 +17,8 @@
   }
   p, dl { line-height: 1.1875em; }
 
-  dd { padding-bottom: 1.0em; }
+  dd { margin-bottom: 1.0em; }
+  dd p { margin-top: 0; }
   dl.inline-terms {
     border-bottom: 1px solid rgba(16,24,32,0.125);
     border-top: 1px solid rgba(16,24,32,0.125);
@@ -72,6 +73,7 @@
 </head>
 <body>
 
+<!-- *** BEGIN CONTENT *** *************************************** -->
 <h1>Minor-Key docs</h1>
 
 <div id="contents">
@@ -103,6 +105,7 @@
   <dt id="dfn-process-send">send</dt><dd>Send response</dd>
 </dl>
 
+<!-- *** NAMING CONVENTIONS *** ********************************** -->
 <h3 class="add-toc">Naming conventions</h3>
 
 <p>Minor-Key uses prefixes to designate namespaces reserved for use by core and to designate certain categories of variables. These prefexes are broken out by what they label.</p>
@@ -122,6 +125,8 @@
   <dt id="dfn-prefix-mkpost">temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
   <dt id="dfn-prefix-mkpost">t_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
 </dl>
+
+<!-- *** COMMENT STLYES *** ************************************** -->
 
 <h3 class="add-toc">Commenting the code</h3>
 
@@ -151,10 +156,12 @@
   </dd>
 </dl>
 
+<!-- *** OBJECTS *** ********************************************* -->
 <h2>Objects</h2>
 
 <p>Minor Key uses objects for tracking various page components and some of the site settings. This is to make the code easier to use and to allow for automated validation of various elements.</p>
 
+<!-- *** menu object *** *************************************** -->
 <h3 class="add-toc">mkc_menus</h3>
 
 <p>The <cite>menu</cite> object stores the menu sets for a page.</p>
@@ -163,10 +170,15 @@
 
 <dl>
   <dt><code>results['success'] bool</code></dt>
-  <dd>Returns true on success, false on an error.</dd>
+  <dd>
+    <p>Returns true on success, false on an error.</p>
+  </dd>
   <dt><code>results['content'] string | array</code></dt>
-  <dd>If there was an error, this will contain the error message. Otherwise it will return the string or array containing the returned values.</dd>
+  <dd>
+    <p>If there was an error, this will contain the error message associated with the reference code above. Otherwise it will return the string or array containing the returned values.</p>
+  </dd>
 </dl>
+
 <p>At present, there is no functionality to remove menus or links from the menus object. Rather, return values are filtered by permission settings.</p>
 
 <h4>Constructor</h4>
@@ -179,7 +191,31 @@
 
 <h4>Create a new menu</h4>
 
+<p>If a menu and its menu set is not locked, this method can be used to reset a menu.</p>
+
 <pre>mko_menus->setmenu( str $name  [, array $settings] );</pre>
+
+<p>Properties:</p>
+
+<dl>
+<dt><code>params['is_locked'] bool = false</code></dt>
+  <dd><p>A menu can be locked spearately from the menu set. Setting this to false will not override a parent setting of true.</p></dd>
+<dt><code>params['permissions'] string = 'public'</code></dt>
+  <dd>
+    <p>A space separated string of permission levels for this menu. These are restrictive values. The string must be provided when generating the menu or the menu is blocked. The value of 'public' is a placeholder and is ignored by the code. Current permission levels are:</p>
+    <ul>
+      <li>public</li>
+      <li>internal</li>
+      <li>editor</li>
+      <li>pio</li>
+      <li>admin</li>
+    </ul>
+  </dd>
+<dt><code>params['type'] string = 'left-sidebar'</code></dt>
+  <dd>A template specific description of the function this menu serves. Most commonly, its location on the page.</dd>
+<dt><code>param['classes'] string = ''</code></dt>
+  <dd>A space separated list of classes to be added to the container element when generating the menu.</dd>
+</dl>
 
 <h4>Create or edit a link</h4>
 
@@ -209,18 +245,21 @@
 
 <pre>mko_menus->getlink( str $menu, str $text [, array $settings] );</pre>
 
+<!-- *** parts object *** **************************************** -->
 <h3 class="add-toc">mkc_parts</h3>
 
 <p>The <cite>parts</cite> object contains information fields for a page as well as a content blob.</p>
 
 <p>It can also be used recursively for page components.</p>
 
+<!-- *** paths object *** **************************************** -->
 <h3 class="add-toc">mkc_paths</h3>
 
 <p>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies</p>
 
 <p>If a path is hard-coded in the process code instead of being defined in the config or init files, you did something wrong.</p>
-</div> <!-- *** end contents *********** -->
+</div>
+<!-- *** end contents *** **************************************** -->
 
 <script type="text/javascript" src="../vendors/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../_assets/js/toc-generator.js"></script>

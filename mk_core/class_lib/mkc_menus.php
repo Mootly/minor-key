@@ -22,56 +22,71 @@
   * @package   minor_key
   * --------------------------------------------------------------------------- */
   class mkc_menus {
+    public $menu = array();
     protected $is_locked;
     protected $response = array();
-    public $menu = array();
-    /**
-      * Constructor
-      * If we lock the instance, values can be added but not changed.
-      * To lock a path set, instantiate with true.
-      * @param  bool $prot Are items locked from updating.
-      * @return bool
-      */
+    protected $error   = array();
+    $error['current']   = 'none';
+    $error['none']      = 'Success.';
+    $error['data01']    = 'Invalid menu name.';
+    $error['data02']    = 'Invalid link name.';
+    $error['data03']    = 'Invalid URL.';
+    $error['data04']    = 'Invalid parameter.';
+    $error['lock01']    = 'Menu is locked.';
+    $error['lock02']    = 'Link is locked.';
+/**
+  * Constructor
+  * If we lock the instance, values can be added but not changed.
+  * To lock a path set, instantiate with true.
+  * @param  bool $prot Are items locked from updating.
+  * @return bool
+  */
     public function __construct($prot=true) {
       $this->is_locked = $prot;
+      $error['current'] = 'lock01';
       $this->response['success'] = true;
-      $this->response['content'] = '';
+      $this->response['errorcode'] = $error['current'];
+      $this->response['content'] = $error[$error['current']];
       return true;
     }
-    /**
-    * Create a or reset a menu
-    * If instance is locked, only allow new menus.
-    * @param  string  $name   The name of the menu to be created.
-    * @param  array   $params A hash of properties to be set.
-    *         permissions     string  - view rights categories used by page.
-    *         type            string  - menu category.
-    *         is_locked       bool    - whether to lock this menu.
-    * @return bool
-    */
+/**
+  * Create or reset a menu
+  * If instance is locked, only allow new menus.
+  * @param  string  $name   The name of the menu to be created.
+  * @param  array   $params A hash of properties to be set.
+  *         permissions     string  - view rights categories used by page.
+  *         type            string  - menu category.
+  *         classes         string  - space separated litt of classes names
+  *         is_locked       bool    - whether to lock this menu.
+  * @return array
+  *         success         bool    - was the call successful.
+  *         errorcode       string  - error code, 'none' on success.
+  *         content         string  - results or error message.
+  */
     public function setmenu($name, $params) {
-                    # if locked, block the update
       if ( (array_key_exists($name, $this->menu)) {
         $temp_action = 'update';
-        if ( ($this->is_locked) ) {
-          $this->response['success'] = false;
-          $this->response['content'] = 'This menu set is locked. You can add new menus, but not update them.';
-          return $this->response;
-        } elseif  ($this->menu[$name]['is_locked'] ) {
-          $this->response['success'] = false;
-          $this->response['content'] = 'This menu set is locked. You can add links to it, but not modify the menu or the links it contains.';
+                    # if locked, block the update
+        if ( ($this->is_locked) or ($this->menu[$name]['is_locked']) ) {
+          $this->response['success']    = false;
+          $this->response['content']    = $error[$error['lock01']];
           return $this->response;
         }
       } else {
         $temp_action = 'create';
       }
                     # make sure we have values to work with
-      $temp_perms = $params['permissions'] ? : 'public';
-      $temp_type  = $params['type'] ? : 'left sidebar';
-      $temp_lock  = $params['is_locked'] ? : 'left sidebar';
+                    # is_locked - set default: true, but menu default: false
+                    # because children should default to parent setting
+      $temp_perms   = $params['permissions']  ? : 'public';
+      $temp_type    = $params['type']         ? : 'left sidebar';
+      $temp_classes = $params['classes']      ? : '';
+      $temp_lock    = $params['is_locked']    ? : false;
                     # create / reset menu
       $this->menu[$name]              = array();
       $this->menu[$name]['perms']     = $temp_perms;
       $this->menu[$name]['type']      = $temp_type;
+      $this->menu[$name]['classes']   = $temp_classes;
       $this->menu[$name]['is_locked'] = $temp_lock;
       $this->menu[$name]['links']     = array();
                     # return success
@@ -79,30 +94,29 @@
       $this->response['content'] = 'The menu '.$name.' hase been '.$temp_action.'d.';
       return $this->response;
     }
-    /**
-      * Return an array of menu items.
-      * @param  string  $name   The pseudoproperty name.
-      * @param  array   $params A hash of the output properties.
-      *         permissions     string - view rights categories used by page.
-      *         sort            string - sort order of the results.
-      * @return array
-      */
-    // Return the value of a set component.
+/**
+  * Return an array of menu items.
+  * @param  string  $name   The pseudoproperty name.
+  * @param  array   $params A hash of the output properties.
+  *         permissions     string - view rights categories used by page.
+  *         sort            string - sort order of the results.
+  * @return array
+  */
     public function getmenu($name, $params) {
       if ( array_key_exists($name, $this->menu) ) {
         return $this->menu[$name]['links'];
       }
     }
-    /**
-    * Create a or edit a link
-    * If a menu or link is locked, only allow new links.
-    * @param  string  $name   The name of the menu to be created.
-    * @param  array   $params A hash of properties to be set.
-    *         permissions     string - view rights categories used by page.
-    *         type            string - menu category.
-    *         is_locked       bool    - whether to lock this menu.
-    * @return bool
-    */
+/**
+* Create a or edit a link
+* If a menu or link is locked, only allow new links.
+* @param  string  $name   The name of the menu to be created.
+* @param  array   $params A hash of properties to be set.
+*         permissions     string - view rights categories used by page.
+*         type            string - menu category.
+*         is_locked       bool    - whether to lock this menu.
+* @return bool
+*/
     public function setmenu($name, $params) {
       $temp_perms   = $params['permissions'] ? : 'public';
       $temp_type    = $params['type'] ? : 'left sidebar';
@@ -116,15 +130,14 @@
       }
       return true;
     }
-    /**
-      * Return an array of menu items.
-      * @param  string  $name   The pseudoproperty name.
-      * @param  array   $params A hash of the output properties.
-      *         permissions     string - view rights categories used by page.
-      *         sort            string - sort order of the results.
-      * @return array
-      */
-    // Return the value of a set component.
+/**
+  * Return an array of menu items.
+  * @param  string  $name   The pseudoproperty name.
+  * @param  array   $params A hash of the output properties.
+  *         permissions     string - view rights categories used by page.
+  *         sort            string - sort order of the results.
+  * @return array
+  */
     public function getmenu($name, $params) {
       return $this->menu[$name]['links'];
     }
