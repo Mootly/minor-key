@@ -19,7 +19,7 @@
 
 # Call our core objects ------------------------------------------------------- *
                     # Page components
-  require_once( MK_CLASSLIB . '/mkc_parts.php' );
+  require_once( MK_CLASSLIB . '/mkc_parts.php');
   if (!isset($mko_parts)) $mko_parts = new mkc_parts(true);
   if (!isset($mko_menus)) $mko_menus = new mkc_parts(true);
                     # Set default paths for assets
