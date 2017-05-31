@@ -15,13 +15,27 @@
   @media ( max-width: 54em ) {
     body {margin: 2.0em 2.0em;}
   }
+  a, a:active, a:visited, a:hover, a:link {
+    color: rgb(82,49,120);
+  }
   p, dl { line-height: 1.1875em; }
 
+  dt { font-weight: bold; }
   dd { margin-bottom: 1.0em; }
   dd p { margin-top: 0; }
   dl.inline-terms {
     border-bottom: 1px solid rgba(16,24,32,0.125);
     border-top: 1px solid rgba(16,24,32,0.125);
+  }
+  dl.clamshell > dt { clear: right;
+    font-weight: bold;
+    border-top: 1px solid rgba(16,24,32,0.5);
+    padding: 0.5em 0.25em;
+  }
+  .clamshell dt.list-header {
+    background-color: inherit;
+    border: 0;
+    height: 1.25em;
   }
   dl.inline-terms dt {
     float: left;
@@ -55,7 +69,6 @@
   }
   ul#jumpto li a {
     text-decoration: none;
-    color: #000099;
   }
   ul#jumpto li li {
     font-weight: normal;
@@ -67,9 +80,19 @@
     font-size: 1.0625em;
     border-left: 0.25em solid rgba(16,24,32,0.25);
     padding: 0.75em;
-    background-color: rgba(16,24,32,0.0625)
+    background-color: rgba(16,24,32,0.0625);
    }
+   .right-link {
+     float: right;
+   }
+   .right-link a {
+     color: rgba(0,0,9,0.5);
+     text-decoration: none;
+     font-weight: normal;
+   }
+   i.fa span { display: none; }
   </style>
+  <link rel="stylesheet" type="text/css" href="/vendors/fa/css/font-awesome.min.css" />
 </head>
 <body>
 
@@ -179,71 +202,74 @@
   </dd>
 </dl>
 
-<p>At present, there is no functionality to remove menus or links from the menus object. Rather, return values are filtered by permission settings.</p>
+<p>At present, there is no functionality to:</p>
+<ul>
+  <li>remove menus or links from the menus object</li>
+  <li>edit individual menu or link properties</li>
+</ul>
 
-<h4>Constructor</h4>
+<p>These are beyond the scope of the minimum viable product.</p>
 
-<pre>mkc_menus( [bool $is_locked=true] );</pre>
+<dl class="clamshell">
 
-<p>Use <code>$is_locked</code> to specify existing values as immutable. This allows later scripts to add new menus and add new links to menus, but not change the attributes of existing links or menus.</p>
-
-<p>It is set to <code>true</code> by default.</p>
-
-<h4>Create a new menu</h4>
-
-<p>If a menu and its menu set is not locked, this method can be used to reset a menu.</p>
-
-<pre>mko_menus->setmenu( str $name  [, array $settings] );</pre>
-
-<p>Properties:</p>
-
-<dl>
-<dt><code>params['is_locked'] bool = false</code></dt>
-  <dd><p>A menu can be locked spearately from the menu set. Setting this to false will not override a parent setting of true.</p></dd>
-<dt><code>params['permissions'] string = 'public'</code></dt>
+<dt>Constructor</dt>
   <dd>
-    <p>A space separated string of permission levels for this menu. These are restrictive values. The string must be provided when generating the menu or the menu is blocked. The value of 'public' is a placeholder and is ignored by the code. Current permission levels are:</p>
-    <ul>
-      <li>public</li>
-      <li>internal</li>
-      <li>editor</li>
-      <li>pio</li>
-      <li>admin</li>
-    </ul>
+    <pre>mkc_menus( [bool $is_locked=true] );</pre>
+
+    <p>Use <code>$is_locked</code> to specify existing values as immutable. This allows later scripts to add new menus and add new links to menus, but not change the attributes of existing links or menus.</p>
+
+    <p>It is set to <code>true</code> by default.</p>
   </dd>
-<dt><code>params['type'] string = 'left-sidebar'</code></dt>
-  <dd>A template specific description of the function this menu serves. Most commonly, its location on the page.</dd>
-<dt><code>param['classes'] string = ''</code></dt>
-  <dd>A space separated list of classes to be added to the container element when generating the menu.</dd>
+<dt>Create or edit menu</dt>
+  <dd>
+    <p>If a menu and its menu set is not locked, this method can be used to reset a menu.</p>
+
+    <pre>mko_menus->setmenu( str $name  [, array $settings] );</pre>
+
+    <p>Properties:</p>
+
+    <dl>
+    <dt><code>params['is_locked'] bool = false</code></dt>
+      <dd><p>A menu can be locked spearately from the menu set. Setting this to false will not override a parent setting of true.</p></dd>
+    <dt><code>params['permissions'] string = 'public'</code></dt>
+      <dd>
+        <p>A space separated string of permission levels for this menu. These are restrictive values. The string must be provided when generating the menu or the menu is blocked. The value of 'public' is a placeholder and is ignored by the code. Current permission levels are:</p>
+        <ul>
+          <li>public</li>
+          <li>internal</li>
+          <li>editor</li>
+          <li>pio</li>
+          <li>admin</li>
+        </ul>
+      </dd>
+    <dt><code>params['type'] string = 'left-sidebar'</code></dt>
+      <dd>A template specific description of the function this menu serves. Most commonly, its location on the page.</dd>
+    <dt><code>param['classes'] string = ''</code></dt>
+      <dd>A space separated list of classes to be added to the container element when generating the menu.</dd>
+    </dl>
+  </dd>
+<dt>Create or edit a link</dt>
+  <dd>
+    <pre>mko_menus->setlink( str $menu, string $text, str $url [, array $settings] );</pre>
+  </dd>
+<dt>Return a menu as an HTML list</dt>
+  <dd>
+    <pre>mko_menus->getmenu( str $name [, array $settings ] );</pre>
+  </dd>
+<dt>Return a menu as an array</dt>
+  <dd>
+    <pre>mko_menus->getlist( str $name [, array $settings ] );</pre>
+  </dd>
+<dt>Return the properties of a menu</dt>
+  <dd>
+    <pre>mko_menus->getmenuprop( str $menu, str $property );</pre>
+  </dd>
+<dt>Return the properties of a link</dt>
+  <dd>
+    <pre>mko_menus->getlink( str $menu, str $text [, array $settings] );</pre>
+  </dd>
 </dl>
 
-<h4>Create or edit a link</h4>
-
-<pre>mko_menus->setlink( str $menu, string $text, str $url [, array $settings] );</pre>
-
-<h4>Change a menu property</h4>
-
-<pre>mko_menus->setmenuprop( str $menu, str $property, str $value );</pre>
-
-<h4>Change a link property</h4>
-
-<pre>mko_menus->setlinkprop( str $menu, str $text, str $property, str $value );</pre>
-
-<h4>Return a menu as an HTML list</h4>
-
-<pre>mko_menus->getmenu( str $name [, array $settings ] );</pre>
-
-<h4>Return a menu as an array</h4>
-
-<pre>mko_menus->getlist( str $name [, array $settings ] );</pre>
-
-<h4>Return the properties of a menu</h4>
-
-<pre>mko_menus->getmenuprop( str $menu, str $property );</pre>
-
-<h4>Return the properties of a link</h4>
-
-<pre>mko_menus->getlink( str $menu, str $text [, array $settings] );</pre>
 
 <!-- *** parts object *** **************************************** -->
 <h3 class="add-toc">mkc_parts</h3>
@@ -263,5 +289,6 @@
 
 <script type="text/javascript" src="../vendors/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../_assets/js/toc-generator.js"></script>
+<script type="text/javascript" src="../_assets/js/clamshell.js"></script>
 </body>
 </html>
