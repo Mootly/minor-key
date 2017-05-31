@@ -1,0 +1,49 @@
+// BEGIN CORE CSS FILE ======================================================== ***
+// NOTE: This file should contain nothing but import statements.                ***
+// GENERAL USE NOTES                                                            ***
+// ============================================================================ ***
+// These general rules are to keep the overall CSS and SCSS clean. They are     ***
+// ony included in the top level style sheet for thie site.                     ***
+// ---------------------------------------------------------------------------- ***
+// The purpose of each file:                                                    ***
+// A file should be either an aggregator or a collection of rules, not both.    ***
+// If a partial includes rules from another partial,                            ***
+// make sure the source appears first in the parent aggregator.                 ***
+//                                                                              ***
+// Order of operations:                                                         ***
+// - extend (shouldn't use, but it comes first if you do)                       ***
+// - include                                                                    ***
+// - simple selectors                                                           ***
+// - & selectors                                                                ***
+// - nested selectors                                                           ***
+//                                                                              ***
+// Comment usage:                                                               ***
+// - /*!  - Always included in compile.                                         ***
+// - /**  - Include in any system generated docs and verbose CSS compiles.      ***
+//          We don't generate CSS docs, this is just here from completeness.    ***
+// - /*   - Included in verbose CSS compiles.                                   ***
+// - //   - Exclude from everything but source.                                 ***
+// For example, this block uses the double slash single line comment because    ***
+// there is no reason for it to appear anywhere but in this file.               ***
+// ============================================================================ ***
+
+// 01 Functions *************************************************************** ***
+// @import "01_funcs/01_sizing";
+// 02 Variables *************************************************************** ***
+// @import "02_vars/01_colors";
+// @import "02_vars/02_fonts";
+// @import "02_vars/03_sizes";
+// @import "02_vars/11_mediaQueries";
+// 03 Mixins ****************************************************************** ***
+// @import "03_mixins/01_colorCombos";
+// @import "03_mixins/02_elementSizing";
+// @import "03_mixins/03_positioning";
+// @import "03_mixins/11_bannerTypos";
+// 04 Resets ****************************************************************** ***
+// @import "04_reset/01_core";
+// @import "04_reset/02_semantics";
+// @import "04_reset/03_linkContent";
+// @import "04_reset/04_forms";
+// @import "04_reset/11_print";
+// 06 Parts ******************************************************************* ***
+// @import "06_parts/00_skip";

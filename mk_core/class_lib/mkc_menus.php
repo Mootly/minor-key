@@ -22,18 +22,20 @@
   * @package   minor_key
   * --------------------------------------------------------------------------- */
   class mkc_menus {
-    public $menu = array();
     protected $is_locked;
+    public $menu        = array();
     protected $response = array();
-    protected $error   = array();
-    $error['current']   = 'none';
-    $error['none']      = 'Success.';
-    $error['data01']    = 'Invalid menu name.';
-    $error['data02']    = 'Invalid link name.';
-    $error['data03']    = 'Invalid URL.';
-    $error['data04']    = 'Invalid parameter.';
-    $error['lock01']    = 'Menu is locked.';
-    $error['lock02']    = 'Link is locked.';
+    protected $temp     = array();
+    protected $error    = array(
+      'current' => 'none',
+      'none'    => 'Success.',
+      'data01'  => 'Invalid menu name.',
+      'data02'  => 'Invalid link name.',
+      'data03'  => 'Invalid URL.',
+      'data04'  => 'Invalid parameter.',
+      'lock01'  => 'Menu is locked.',
+      'lock02'  => 'Link is locked.',
+    );
 /**
   * Constructor
   * If we lock the instance, values can be added but not changed.
@@ -64,8 +66,8 @@
   *         content         string  - results or error message.
   */
     public function setmenu($name, $params) {
-      if ( (array_key_exists($name, $this->menu)) {
-        $temp_action = 'update';
+      if ( (array_key_exists($name, $this->menu)) ) {
+        $this->temp['action'] = 'update';
                     # if locked, block the update
         if ( ($this->is_locked) or ($this->menu[$name]['is_locked']) ) {
           $this->response['success']    = false;
@@ -73,25 +75,26 @@
           return $this->response;
         }
       } else {
-        $temp_action = 'create';
+        $this->temp['action'] = 'create';
       }
                     # make sure we have values to work with
                     # is_locked - set default: true, but menu default: false
                     # because children should default to parent setting
-      $temp_perms   = $params['permissions']  ? : 'public';
-      $temp_type    = $params['type']         ? : 'left sidebar';
-      $temp_classes = $params['classes']      ? : '';
-      $temp_lock    = $params['is_locked']    ? : false;
+      $this->temp['perms']    = $params['permissions']  ? : 'public';
+      $this->temp['type']     = $params['type']         ? : 'left sidebar';
+      $this->temp['classes']  = $params['classes']      ? : '';
+      $this->temp['lock']     = $params['is_locked']    ? : false;
                     # create / reset menu
       $this->menu[$name]              = array();
-      $this->menu[$name]['perms']     = $temp_perms;
-      $this->menu[$name]['type']      = $temp_type;
-      $this->menu[$name]['classes']   = $temp_classes;
-      $this->menu[$name]['is_locked'] = $temp_lock;
+      $this->menu[$name]['perms']     = $this->temp['perms'];
+      $this->menu[$name]['type']      = $this->temp['type'];
+      $this->menu[$name]['classes']   = $this->temp['classes'];
+      $this->menu[$name]['is_locked'] = $this->temp['lock'];
       $this->menu[$name]['links']     = array();
                     # return success
       $this->response['success'] = true;
       $this->response['content'] = 'The menu '.$name.' hase been '.$temp_action.'d.';
+      $this->temp = array();            # clean up after yourself
       return $this->response;
     }
 /**
@@ -117,11 +120,11 @@
 *         is_locked       bool    - whether to lock this menu.
 * @return bool
 */
-    public function setmenu($name, $params) {
+    public function setlink($name, $params) {
       $temp_perms   = $params['permissions'] ? : 'public';
       $temp_type    = $params['type'] ? : 'left sidebar';
       if (($this->is_locked) and (array_key_exists($name, $this->menu))) {
-        $return false;
+        return false;
       }else {
         $this->menu[$name]           = array();
         $this->menu[$name]['perms']  = $temp_perms;
@@ -138,7 +141,7 @@
   *         sort            string - sort order of the results.
   * @return array
   */
-    public function getmenu($name, $params) {
+    public function getlink($name, $params) {
       return $this->menu[$name]['links'];
     }
   }

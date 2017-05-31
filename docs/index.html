@@ -226,12 +226,12 @@
 
     <pre>mko_menus->setmenu( str $name  [, array $settings] );</pre>
 
-    <p>Properties:</p>
+    <p>Settings:</p>
 
     <dl>
-    <dt><code>params['is_locked'] bool = false</code></dt>
+    <dt><code>settings['is_locked'] bool = false</code></dt>
       <dd><p>A menu can be locked spearately from the menu set. Setting this to false will not override a parent setting of true.</p></dd>
-    <dt><code>params['permissions'] string = 'public'</code></dt>
+    <dt><code>settings['permissions'] string = 'public'</code></dt>
       <dd>
         <p>A space separated string of permission levels for this menu. These are restrictive values. The string must be provided when generating the menu or the menu is blocked. The value of 'public' is a placeholder and is ignored by the code. Current permission levels are:</p>
         <ul>
@@ -242,10 +242,14 @@
           <li>admin</li>
         </ul>
       </dd>
-    <dt><code>params['type'] string = 'left-sidebar'</code></dt>
-      <dd>A template specific description of the function this menu serves. Most commonly, its location on the page.</dd>
-    <dt><code>param['classes'] string = ''</code></dt>
-      <dd>A space separated list of classes to be added to the container element when generating the menu.</dd>
+    <dt><code>settings['type'] string = 'left-sidebar'</code></dt>
+      <dd>
+        <p>A template specific description of the function this menu serves. Most commonly, its location on the page.</p>
+      </dd>
+    <dt><code>settings['classes'] string = ''</code></dt>
+      <dd>
+        <p>A space separated list of classes to be added to the container element when generating the menu.</p>
+      </dd>
     </dl>
   </dd>
 <dt>Create or edit a link</dt>
