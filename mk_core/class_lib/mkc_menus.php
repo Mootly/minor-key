@@ -27,14 +27,14 @@
     protected $response = array();
     protected $temp     = array();
     protected $error    = array(
-      'current' => 'none',
-      'none'    => 'Success.',
-      'data01'  => 'Invalid menu name.',
-      'data02'  => 'Invalid link name.',
-      'data03'  => 'Invalid URL.',
-      'data04'  => 'Invalid parameter.',
-      'lock01'  => 'Menu is locked.',
-      'lock02'  => 'Link is locked.',
+      'current'   => 'none',
+      'none'      => 'Success.',
+      'data01'    => 'Invalid menu name.',
+      'data02'    => 'Invalid link name.',
+      'data03'    => 'Invalid URL.',
+      'data04'    => 'Invalid parameter.',
+      'lock01'    => 'Menu is locked.',
+      'lock02'    => 'Link is locked.',
     );
 /**
   * Constructor

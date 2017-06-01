@@ -22,7 +22,7 @@ SOFTWARE.
 
 ## Third party licenses
 
-All third-party resources in the **minor-key** repo live in the `/vendors` folder. All third party resources are subject to the copyrights and licenses for those resources as specified by the developers or owners of those resources. Respective third-party licenses will take precedence over the **minor-key** license for all resources that exist in the /vendors directory. If third-party resource has no license, locally or remotely, no assumption is made that the **minor-key** license and copyright are in effect for that resource.
+All third-party resources except templates in the **minor-key** repo live in the `/vendors` folder. All third party resources are subject to the copyrights and licenses for those resources as specified by the developers or owners of those resources. Respective third-party licenses will take precedence over the **minor-key** license for all resources that exist in the /vendors directory. If third-party resource has no license, locally or remotely, no assumption is made that the **minor-key** license and copyright are in effect for that resource.
 
 ## Template licenses
 
