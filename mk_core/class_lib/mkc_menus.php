@@ -62,7 +62,6 @@
   *         is_locked       bool    - whether to lock this menu.
   * @return array
   *         success         bool    - was the call successful.
-  *         errorcode       string  - error code, 'none' on success.
   *         content         string  - results or error message.
   */
     public function setmenu($name, $params) {
@@ -104,6 +103,8 @@
   *         permissions     string - view rights categories used by page.
   *         sort            string - sort order of the results.
   * @return array
+  *         success         bool    - was the call successful.
+  *         content         string  - results or error message.
   */
     public function getmenu($name, $params) {
       if ( array_key_exists($name, $this->menu) ) {
@@ -118,7 +119,9 @@
 *         permissions     string - view rights categories used by page.
 *         type            string - menu category.
 *         is_locked       bool    - whether to lock this menu.
-* @return bool
+* @return array
+*         success         bool    - was the call successful.
+*         content         string  - results or error message.
 */
     public function setlink($name, $params) {
       $temp_perms   = $params['permissions'] ? : 'public';
@@ -140,6 +143,8 @@
   *         permissions     string - view rights categories used by page.
   *         sort            string - sort order of the results.
   * @return array
+  *         success         bool    - was the call successful.
+  *         content         string  - results or error message.
   */
     public function getlink($name, $params) {
       return $this->menu[$name]['links'];
