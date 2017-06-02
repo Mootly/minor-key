@@ -10,7 +10,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Third party licenses
 
-All third-party resources except templates in the **minor-key** repo live in the `/vendors` folder. All third party resources are subject to the copyrights and licenses for those resources as specified by the developers or owners of those resources. Respective third-party licenses will take precedence over the **minor-key** license for all resources that exist in the /vendors directory. If third-party resource has no license, locally or remotely, no assumption is made that the **minor-key** license and copyright are in effect for that resource.
+Third-party resources except templates in the **minor-key** repo live in the `/vendors` folder. Some handlers and configuration files for third-party resources may live in the root directory for the site.
+
+All third party resources are subject to the copyrights and licenses for those resources as specified by the developers or owners of those resources. Respective third-party licenses will take precedence over the **minor-key** license for all resources that exist in the /vendors directory. If a third-party resource has no license, locally or remotely, no assumption is made that the **minor-key** license or copyright is in effect for that resource.
 
 ### Third party resources used by minor-key
 
@@ -18,11 +20,13 @@ All third-party resources except templates in the **minor-key** repo live in the
 - [Font Awesome](http://fontawesome.io/license/)
 - [jQuery](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
 - [Symfony](https://symfony.com/license)
-- [twig](https://twig.sensiolabs.org/license)
+- [Twig](https://twig.sensiolabs.org/license)
 
 ## Template licenses
 
-All templates in  the **minor-key** repo live in the `/templates` folder. Templates are licensed as per the license provided with that template. Template licenses will take precedence over the **minor-key** license for all resources that exist in a given template. If a template has no license, locally or remotely, no assumption is made that the **minor-key** license or copyright is in effect for that template.
+All templates in  the **minor-key** repo live in the `/templates` folder.
+
+Templates are licensed as per the license provided with that template. Template licenses will take precedence over the **minor-key** license for all resources that exist in a given template. If a template has no license, locally or remotely, no assumption is made that the **minor-key** license or copyright is in effect for that template.
 
 ## Site content
 

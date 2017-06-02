@@ -6,17 +6,25 @@
   * @package   minor_key
   * --------------------------------------------------------------------------- */
                     # Call config to inti the application --------------------- *
-  require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-                    # Load the current template ------------------------------- *
-  $mko_parts->page_name = 'Hello!';
-  $mko_parts->name  = 'Ken Doll';
-
-//  $mko_parts->title = $mko_parts->page_name.$mko_parts->separator.$mko_parts->site_name;
-  $loader = new Twig_Loader_Filesystem($mko_paths->template);
-  $twig = new Twig_Environment($loader, array());
- echo ($twig->render($mkt_base_template, array(
-   'title'=>$mko_parts->build_title()['content'],
-   'name'=>'b'
- )));
-
+require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
+                    # Build the page ------------------------------------------ *
+                    # Content developers shouldn't touch anything above here.
+                    # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+                    # page_name should equal your H1 title.
+$mko_parts->page_name = 'Hello!';
+                    # The main content body of the page is developed here.
+                    # It can be built from pieces or written as a block,
+                    # depending on the site.
+$mko_parts->main_content  = <<<BLOCKOFCONTENT
+  <h2>Example of the page as a single block</h2>
+  <p>Furious green ideas.</p>
+  <p>Fortean spleen ideals.</p>
+BLOCKOFCONTENT;
+                    # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+                    # Content developers shouldn't touch anything below here.
+                    # Invoke the template ------------------------------------- *
+$page_elements = $mko_parts->build_page();
+$loader = new Twig_Loader_Filesystem($mko_paths->template);
+$twig   = new Twig_Environment($loader, array());
+echo ($twig->render($mkt_full_template, array('page'=>$page_elements['content'])));
 ?>

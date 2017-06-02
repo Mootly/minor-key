@@ -44,7 +44,9 @@
   $mko_parts->site_name = 'Minor Key';
   $mko_parts->site_abbr = '[mk]';
                     # Template formatting rules ------------------------------- *
-  $mkt_base_template        = 'index.php';
+  $mkt_full_template        = 'index.php';                  # for generating complete pages
+  $mkt_header_template      = 'index.php';                  # header for flat file content
+  $mkt_footer_template      = 'index.php';                  # footer for flat file content
   $mko_parts->title_struct  = ['page_name','section_name','site_name'];
   $mko_parts->separator     = ' | ';
 // end config ----------------------------------------------------------------- *

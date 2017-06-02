@@ -21,12 +21,14 @@
   * --------------------------------------------------------------------------- */
   class mkc_parts {
     protected $is_locked;
+    protected $temp_status;
     protected $component  = array();
     protected $response   = array();
     protected $error      = array(
       'current' => 'none',
       'none'    => 'Success.',
       'title01'  => 'No title provided for page.',
+      'build01'  => 'Error constructing page.',
     );
     public $title_struct = ['page_name','section_name','site_name'];
     public $separator = ' | ';
@@ -76,7 +78,9 @@
   * - $mko_parts->site_name     = ''
   * If page, section, site name and page title are all blank, an error will be thrown.
   * If a page title has already been specified, ti will not overwrite it.
-  * @return string
+  * @return array
+  *         success         bool    - was the call successful.
+  *         content         string  - results or error message.
   */
     public function build_title() {
       $this->component['page_title']    = $this->component['page_title']  ??  '';
@@ -101,6 +105,27 @@
       } else {
         $this->response['success'] = true;
         $this->response['content'] = $this->component['page_title'];
+      }
+      return $this->response;
+    }
+/**
+  * Returns an array of parge parts.
+  * Builds the apge title if it is not already done.
+  * Beyond that, this is a no frills data dump of all page comonents stured in
+  * the object, including potential interim values. See docs for a list of the
+  * core components.
+  * @return array
+  *         success         bool    - was the call successful.
+  *         content         string  - results or error message.
+  */
+    public function build_page() {
+      $temp_status = self::build_title();
+      if ($this->component['page_title'] == '') {
+        $this->response['success'] = false;
+        $this->response['content'] = $this->error['build01'];
+      } else {
+        $this->response['success'] = true;
+        $this->response['content'] = $this->component;
       }
       return $this->response;
     }
