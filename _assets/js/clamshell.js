@@ -16,7 +16,7 @@
                     // The double loop is intentional.
                     // We are tracking the index of both loops to create
                     // reasonably unique IDs.
-var clamshellList = $('dl.clamshell, dl.example-box');
+var clamshellList = $('dl.clamshell, dl.example-box'); 
 clamshellList.each(function (index1) {
   $(this).children('dt').each(function (index2) {
     if (!($(this).is('[id]'))) {
