@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "core.min.css",
+	"sources": [
+		"lib/core.scss",
+		"lib/02_vars/_01_colors.scss"
+	],
+	"mappings": "",
+	"names": []
+}
