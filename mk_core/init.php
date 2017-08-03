@@ -8,13 +8,13 @@
 
 # Constants ------------------------------------------------------------------- *
 # Values are repeated in case there was no config file.
-                 # Core file paths
+                    # Core file paths
   if (!defined('MK_ROOT'))      define( 'MK_ROOT', $_SERVER['DOCUMENT_ROOT'] );
   if (!defined('MK_CLASSLIB'))  define( 'MK_CLASSLIB', MK_ROOT.'/mk_core/class_lib/' );
-                 # Fail to default mk_basic template if none specified
+                    # Fail to default mk_basic template if none specified
   if (!defined('DEF_PREFIX'))   define( 'DEF_PREFIX',    'mk' );
   if (!defined('DEF_TEMPLATE')) define( 'DEF_TEMPLATE',  'basic' );
-  if (!defined('DEF_ROOT'))     define( 'DEF_ROOT', $_SERVER['DOCUMENT_ROOT'] );
+  if (!defined('DEF_ROOT'))     define( 'DEF_ROOT', '' );
   if (!defined('DEF_CLASSLIB')) define( 'DEF_CLASSLIB', MK_ROOT.'/mk_core/class_lib/' );
 
 # Call our core objects ------------------------------------------------------- *
@@ -69,5 +69,7 @@
   } else {
     require_once( $mko_paths->core . '/prep.php' );
   }
+                    # Clean our output buffers to be safe
+  if (ob_get_level()) ob_end_clean();
 
 // end include file ----------------------------------------------------------- *

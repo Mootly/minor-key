@@ -15,16 +15,22 @@ $mko_parts->page_name = 'Hello!';
                     # The main content body of the page is developed here.
                     # It can be built from pieces or written as a block,
                     # depending on the site.
-$mko_parts->main_content  = <<<BLOCKOFCONTENT
-  <h2>Example of the page as a single block</h2>
-  <p>Furious green ideas.</p>
-  <p>Fortean spleen ideals.</p>
-BLOCKOFCONTENT;
+ob_start();
+?>
+<h2>Example of the page as a double bock</h2>
+<p>Fortean spleen ideals.</p>
+<p>Furious green ideas.</p>
+<?php
+$mko_parts->main_content = '<p>Hallooo!!!</p>'."\n".ob_get_clean();
+ob_end_clean();
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
                     # Content developers shouldn't touch anything below here.
                     # Invoke the template ------------------------------------- *
 $page_elements = $mko_parts->build_page();
 $loader = new Twig_Loader_Filesystem($mko_paths->template);
-$twig   = new Twig_Environment($loader, array());
+$twig   = new Twig_Environment($loader, array(
+  // 'debug' => true
+));
+// $twig->addExtension(new Twig_Extension_Debug());
 echo ($twig->render($mkt_full_template, array('page'=>$page_elements['content'])));
 ?>

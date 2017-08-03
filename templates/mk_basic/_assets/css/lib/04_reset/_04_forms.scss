@@ -1,0 +1,101 @@
+// 04 Reset Rules - 04 Form resets ============================================ ***
+// Reset rules adapted from normalize.css v4.1.1 | MIT License                  ***
+// github.com/necolas/normalize.css                                             ***
+                    // Set default font properties to inherit.                  ***
+                    // Remove the margin in Firefox and Safari.                 ***
+button,
+input,
+optgroup,
+select,
+textarea { color: inherit; font: inherit; margin: 0; }
+                    // Restore the font weight unset by the previous rule.      ***
+optgroup { font-weight: bold; }
+                    // Show overflow in IE / Edge.                              ***
+button,
+input { overflow: visible; line-height: normal; }
+                    // Remove the inheritance of text transform in              ***
+                    // Edge, Firefox, and IE.                                   ***
+button,
+select { text-transform: none; }
+                    // Prevent a WebKit bug that destroys native audio and      ***
+                    // video controls in Android 4.                             ***
+                    // Correct the inability to style clickable types           ***
+                    // in iOS and Safari.                                       ***
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] { -webkit-appearance: button; cursor: pointer; }
+                    // Re-set default cursor for disabled elements.             ***
+button[disabled],
+html input[disabled] { cursor: default; }
+                    // Remove the inner border and padding in Firefox.          ***
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner { border-style: none; padding: 0; }
+                    // Address Firefox 4+ setting line-height on input using    ***
+                    // !important in the UA stylesheet.                         ***
+input { line-height: normal; }
+                    // Restore the focus styles unset by the previous rule.     ***
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring { outline: 1px dotted ButtonText; }
+                    // Change the border, margin, and padding in all browsers.  ***
+fieldset {
+  border:  1px solid $default-box;
+  margin:  0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+                    // Correct the text wrapping in Edge and IE.                ***
+                    // Correct the color inheritance from fieldset in IE.       ***
+                    // Remove the padding so developers are not caught out      ***
+                    // when zeroing out fieldset elements in all browsers.      ***
+legend {
+  box-sizing:  border-box;
+  color:       inherit;
+  display:     table;
+  max-width:   100%;
+  padding:     0;
+  border:      0;
+  white-space: normal;
+}
+                    // Remove the default vertical scrollbar in IE.             ***
+textarea { overflow: auto; vertical-align: top; }
+                    // Add the correct box sizing in IE 10-.                    ***
+                    // Remove the padding in IE 10-.                            ***
+[type="checkbox"],
+[type="radio"] { box-sizing: border-box; padding: 0; }
+                    // Correct the cursor style of increment and decrement      ***
+                    // buttons in Chrome.                                       ***
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button { height: auto; }
+                    // Correct the odd appearance in Chrome and Safari.         ***
+                    // Correct the outline style in Safari.                     ***
+[type="search"] {
+  -moz-box-sizing:    content-box;
+  box-sizing:         content-box;
+  -webkit-appearance: textfield;
+  outline-offset:     -2px;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+                    // Remove the inner padding and cancel buttons in           ***
+                    // Chrome and Safari on OS X.                               ***
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+                    // Correct the text style of placeholders in                ***
+                    // Chrome, Edge, and Safari.                                ***
+::-webkit-input-placeholder { color: inherit; opacity: 0.54; }
+                    // Fix inability to style clickables in iOS and Safari.     ***
+                    // Change font properties to inherit in Safari.             ***
+::-webkit-file-upload-button { -webkit-appearance: button; font: inherit; }
+                    // Consistent pointer usage                                 ***
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] { cursor: pointer; }

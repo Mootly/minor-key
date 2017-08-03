@@ -1,0 +1,49 @@
+// 04 Reset Rules - 01 Base resets ============================================ ***
+// Reset rules adapted from normalize.css v4.1.1 | MIT License                  ***
+// github.com/necolas/normalize.css                                             ***
+                    // Change the default font settings in all browsers.        ***
+                    // Prevent adjustments of font size after orientation       ***
+                    // changes in IE and iOS.                                   ***
+html {
+//  font-family: sans-serif;            // we set this elsewhere                ***
+  font-size:                100%;
+  -ms-text-size-adjust:     100%;
+  -webkit-text-size-adjust: 100%;
+  height:                   100%;
+}
+                    // Remove the body margin in all browsers                   ***
+body { margin: 0; height: 100%; }
+// HTML5 DISPLAY DEFINITIONS ************************************************** ***
+                    // Block and format fixes for various browsers              ***
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary { display: block; }
+audio,
+canvas,
+progress,
+video { display: inline-block; }
+                    // Old browser tweaks for new media components              ***
+.lt-ie8 {
+  audio,
+  canvas,
+  video { display: inline; zoom: 1; }
+}
+audio:not([controls]) { display: none; height: 0; }
+progress { vertical-align: baseline; }
+template,
+[hidden] { display: none; }
+// Tables ********************************************************************* ***
+                    // Remove most spacing between table cells.                 ***
+table { border-collapse: collapse; border-spacing: 0; }
+td,
+th { padding: 0; }

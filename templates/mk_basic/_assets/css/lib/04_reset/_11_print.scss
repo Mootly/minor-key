@@ -1,0 +1,35 @@
+// 04 Reset Rules - 11 Print media resets ===================================== ***
+// Source: //github.com/h5bp/html5-boilerplate/blob/master/css/main.css         ***
+@media print {
+  *,
+  *:before,
+  *:after {
+    text-shadow: none        !important;
+    color:       $black      !important;
+    background:  transparent !important;
+    box-shadow:  none        !important;
+  }
+  a,
+  a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+                    // Don't show links for images, or js/internal links        ***
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after { content: ""; }
+  pre,
+  blockquote {
+    border: 1px solid $nys-med-gray-core-1;
+    page-break-inside: avoid;
+  }
+  thead { display: table-header-group; }
+  tr,
+  img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.25in; }
+  p,
+  h2,
+  h3 { orphans: 3; widows: 3; }
+  h2,
+  h3 { page-break-after: avoid; }
+}

@@ -1,0 +1,9 @@
+// 04 Reset Rules - Aggregator ================================================ ***
+// This just lets us do an all-in-one include for the parts.                    ***
+// Core partial should always be first.                                         ***
+// Print partial should always be last.                                         ***
+@import "./01_core";
+@import "./02_semantics";
+@import "./03_linkContent";
+@import "./04_forms";
+@import "./11_print";
