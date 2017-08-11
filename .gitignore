@@ -13,3 +13,6 @@ templates/*
 
 # Ignore default text files
 *.txt
+
+# Ignore system files
+.DS_Store
