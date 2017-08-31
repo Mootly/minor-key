@@ -10,9 +10,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Third party licenses
 
-Third-party resources except templates in the **minor-key** repo live in the `/vendors` folder. Some handlers and configuration files for third-party resources may live in the root directory for the site.
+Third-party resources except templates in the **minor-key** repo live in the `` folder. Some handlers and configuration files for third-party resources may live in the root directory for the site.
 
-All third party resources are subject to the copyrights and licenses for those resources as specified by the developers or owners of those resources. Respective third-party licenses will take precedence over the **minor-key** license for all resources that exist in the /vendors directory. If a third-party resource has no license, locally or remotely, no assumption is made that the **minor-key** license or copyright is in effect for that resource.
+All third party resources are subject to the copyrights and licenses for those resources as specified by the developers or owners of those resources. Respective third-party licenses will take precedence over the **minor-key** license for all resources that exist in the  directory. If a third-party resource has no license, locally or remotely, no assumption is made that the **minor-key** license or copyright is in effect for that resource.
 
 ### Third party resources used by minor-key
 

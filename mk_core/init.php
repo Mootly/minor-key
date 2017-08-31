@@ -27,7 +27,7 @@
   if (!isset($mko_paths)) $mko_paths = new mkc_paths(true);
   $mko_paths->mk_classlib   = MK_CLASSLIB;
   $mko_paths->core          = MK_ROOT . '/mk_core';
-  $mko_paths->vendor        = MK_ROOT . '/vendors';
+  $mko_paths->vendor        = MK_ROOT . '';
                     # Define our template name
   if(defined('DEF_TEMPLATE')) {
     if (defined('DEF_PREFIX')) {
