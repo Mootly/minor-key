@@ -8,6 +8,9 @@ sites/*/files
 sites/*/private
 templates/*
 
+# Ignore licensed content in vendors.
+_vendors/fonts/
+
 # Add minor-key specific paths back in.
 !templates/mk_*
 
