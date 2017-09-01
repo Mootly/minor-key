@@ -1,98 +1,16 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Index | minor.key Documentation</title>
-  <style type="text/css">
-  body {
-    margin: 2.0em auto;
-    max-width: 50em;
-    background-color: rgb(246,243,244) ;
-    color: rgb(16,24,32);
-    font-size: 1.0em;
-    font-family: 'Helvetica Neue', Verdana, Arial, sans-serif;
-  }
-  @media ( max-width: 54em ) {
-    body {margin: 2.0em 2.0em;}
-  }
-  a, a:active, a:visited, a:hover, a:link {
-    color: rgb(82,49,120);
-  }
-  p, dl { line-height: 1.1875em; }
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  dt { font-weight: bold; }
-  dd { margin-bottom: 1.0em; }
-  dd p { margin-top: 0; }
-  dl.inline-terms {
-    border-bottom: 1px solid rgba(16,24,32,0.125);
-    border-top: 1px solid rgba(16,24,32,0.125);
-  }
-  dl.clamshell > dt { clear: right;
-    font-weight: bold;
-    border-top: 1px solid rgba(16,24,32,0.5);
-    padding: 0.5em 0.25em;
-  }
-  .clamshell dt.list-header {
-    background-color: inherit;
-    border: 0;
-    height: 1.25em;
-  }
-  dl.inline-terms dt {
-    float: left;
-    clear: left;
-    width: 8.5em;
-    text-align: right;
-    padding-right: 0.5em;
-    padding-top: 0.325em;
-    padding-bottom: 0.375em;
-  }
-  dl.inline-terms dt::after {
-    content: " : ";
-  }
-  dl.inline-terms dd {
-    margin-left: 9.0em;
-    padding-top: 0.375em;
-    padding-bottom: 0.375em;
-    border-top: 1px solid rgba(16,24,32,0.125);
-  }
-  dl.inline-terms dd:first-of-type {
-    border-top: none;
-  }
-  ul#jumpto { margin-left: 0em; padding-left: 0em;  }
-  ul#jumpto ul { margin-left: 0.75em; padding-left: 0.75em;  }
-  ul#jumpto li {
-    font-weight: bold;
-    margin-bottom: 0.75em;
-    color: #000099;
-    list-style-type: none;
+  <link rel="stylesheet" type="text/css" href="./css/docs.min.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all" />
 
-  }
-  ul#jumpto li a {
-    text-decoration: none;
-  }
-  ul#jumpto li li {
-    font-weight: normal;
-    margin-bottom: 0.25em;
-    list-style-type: circle;
-  }
-  code { font-size: 1.25em; }
-  pre {
-    font-size: 1.0625em;
-    border-left: 0.25em solid rgba(16,24,32,0.25);
-    padding: 0.75em;
-    background-color: rgba(16,24,32,0.0625);
-   }
-   .right-link {
-     float: right;
-   }
-   .right-link a {
-     color: rgba(0,0,9,0.5);
-     text-decoration: none;
-     font-weight: normal;
-   }
-   i.fa span { display: none; }
-  </style>
-  <link rel="stylesheet" type="text/css" href="/fa/css/font-awesome.min.css" />
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 </head>
 <body>
 
@@ -135,6 +53,7 @@
 
 <p>Reserved prefixes:</p>
 <dl class="inline-terms">
+  <dt id="dfn-prefix-usc">_ <small>(underscore)</small></dt><dd>System folders in root begin with an underscore to float them to the top. These are <b>_assets</b>, <b>_core</b>, and <b>_vendors</b>.</dd>
   <dt id="dfn-prefix-mk">mk_</dt><dd>General use to clarify files and directories as part of the minor-key code base.</dd>
   <dt id="dfn-prefix-mkk">MK_</dt><dd>Constants defined by core.</dd>
   <dt id="dfn-prefix-mkc">mkc_</dt><dd>Class definitions. There may be a fourth letter to specify specific the nature of the class definition.</dd>
@@ -291,8 +210,8 @@
 </div>
 <!-- *** end contents *** **************************************** -->
 
-<script type="text/javascript" src="../jquery/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="../_assets/js/toc-generator.js"></script>
-<script type="text/javascript" src="../_assets/js/clamshell.js"></script>
+<script type="text/javascript" src="/_vendors/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
+<script type="text/javascript" src="/_assets/js/clamshell.js"></script>
 </body>
 </html>

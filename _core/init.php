@@ -10,12 +10,12 @@
 # Values are repeated in case there was no config file.
                     # Core file paths
   if (!defined('MK_ROOT'))      define( 'MK_ROOT', $_SERVER['DOCUMENT_ROOT'] );
-  if (!defined('MK_CLASSLIB'))  define( 'MK_CLASSLIB', MK_ROOT.'/mk_core/class_lib/' );
+  if (!defined('MK_CLASSLIB'))  define( 'MK_CLASSLIB', MK_ROOT.'/_core/class_lib/' );
                     # Fail to default mk_basic template if none specified
   if (!defined('DEF_PREFIX'))   define( 'DEF_PREFIX',    'mk' );
   if (!defined('DEF_TEMPLATE')) define( 'DEF_TEMPLATE',  'basic' );
   if (!defined('DEF_ROOT'))     define( 'DEF_ROOT', '' );
-  if (!defined('DEF_CLASSLIB')) define( 'DEF_CLASSLIB', MK_ROOT.'/mk_core/class_lib/' );
+  if (!defined('DEF_CLASSLIB')) define( 'DEF_CLASSLIB', MK_ROOT.'/_core/class_lib/' );
 
 # Call our core objects ------------------------------------------------------- *
                     # Page components
@@ -26,8 +26,8 @@
   require_once( MK_CLASSLIB . '/mkc_paths.php' );
   if (!isset($mko_paths)) $mko_paths = new mkc_paths(true);
   $mko_paths->mk_classlib   = MK_CLASSLIB;
-  $mko_paths->core          = MK_ROOT . '/mk_core';
-  $mko_paths->vendor        = MK_ROOT . '';
+  $mko_paths->core          = MK_ROOT . '/_core';
+  $mko_paths->vendor        = MK_ROOT . '/_vendors';
                     # Define our template name
   if(defined('DEF_TEMPLATE')) {
     if (defined('DEF_PREFIX')) {

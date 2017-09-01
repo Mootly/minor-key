@@ -43,7 +43,7 @@
       'master'
     ); }
 # Initialize the Site --------------------------------------------------------- *
-  require_once( MK_ROOT.'/mk_core/init.php' );
+  require_once( MK_ROOT.'/_core/init.php' );
 
 # Site specific variables ----------------------------------------------------- *
                     # Values expected by the site or sub-site ----------------- *
