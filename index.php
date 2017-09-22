@@ -17,10 +17,11 @@ $mko_parts->page_name = 'Hello!';
                     # depending on the site.
 ob_start();
 ?>
-<h2>Example of the page as a double bock</h2>
+<h2>Example of the page as a delayed block</h2>
 <p>Fortean spleen ideals.</p>
 <p>Furious green ideas.</p>
 <?php
+ $mko_parts->accessibility = 'standard';
 $mko_parts->main_content = '<p>Hallooo!!!</p>'."\n".ob_get_clean();
 ob_end_clean();
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
