@@ -17,12 +17,13 @@ $mko_parts->page_name = 'Hello!';
                     # depending on the site.
 ob_start();
 ?>
-<h2>Example of the page as a delayed block</h2>
-<p>Fortean spleen ideals.</p>
-<p>Furious green ideas.</p>
+<h2>Example of a page as a write-deferred block.</h2>
+<p>The most common use of the <code>ob_</code> (output buffer) control functions is to defer buffer output until a specific time. In this case, this allows the write proces to be delayed until the content is passed to the template, allowing the page to be fully generated before writing anything to output.</p>
+
+<p>This means we can create static content for an HTML page in a file then invoke the template to wrap that content. The content file is an easy to read PHP file that only requires the content creator to assign values to a few variables and fill in the content between the proverbial lines.</p>
 <?php
  $mko_parts->accessibility = 'standard';
-$mko_parts->main_content = '<p>Hallooo!!!</p>'."\n".ob_get_clean();
+$mko_parts->main_content = ob_get_clean();
 ob_end_clean();
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
                     # Content developers shouldn't touch anything below here.
