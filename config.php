@@ -24,6 +24,7 @@
                     # For subfolders that are their own subdomains, adjust
                     # accordingly
   if (!defined('DEF_ROOT')) define( 'DEF_ROOT', '');
+  if (!defined('CURR_PATH')) define( 'CURR_PATH', dirname($_SERVER['REQUEST_URI']));
                     # If the templates being used have a class library,
                     # specify it here.
   // if (!defined('DEF_CLASSLIB')) {
@@ -47,8 +48,8 @@
 
 # Site specific variables ----------------------------------------------------- *
                     # Values expected by the site or sub-site ----------------- *
-  $mko_parts->site_name = 'OCFS Redesign';
-  $mko_parts->site_abbr = '[ocfs]';
+  $mko_parts->site_name = 'Minor Key';
+  $mko_parts->site_abbr = '[mk]';
                     # Template formatting rules ------------------------------- *
   $mkt_full_template        = 'page_master.php';           # for generating complete pages
   $mkt_header_template      = 'page_header.php';           # header include for flat file content
