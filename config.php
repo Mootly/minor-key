@@ -36,12 +36,12 @@
   if (!defined('DEF_PREFIX'))  {
     define(
       'DEF_PREFIX',
-      'ocfs'
+      'mk'
     ); }
   if (!defined('DEF_TEMPLATE')) {
     define(
       'DEF_TEMPLATE',
-      'master'
+      'basic'
     ); }
 # Initialize the Site --------------------------------------------------------- *
   require_once( MK_ROOT.'/_core/init.php' );
@@ -51,9 +51,9 @@
   $mko_parts->site_name = 'Minor Key';
   $mko_parts->site_abbr = '[mk]';
                     # Template formatting rules ------------------------------- *
-  $mkt_full_template        = 'page_master.php';           # for generating complete pages
-  $mkt_header_template      = 'page_header.php';           # header include for flat file content
-  $mkt_footer_template      = 'page_footer.php';           # footer include for flat file content
+  $mkt_full_template        = 'page_master.html.twig';      # for generating complete pages
+  $mkt_header_template      = 'page_header.html.twig';      # header include for flat file content
+  $mkt_footer_template      = 'page_footer.html.twig';      # footer include for flat file content
   $mko_parts->title_struct  = ['page_name','section_name','site_name'];
   $mko_parts->separator     = ' | ';
 // end config ----------------------------------------------------------------- *

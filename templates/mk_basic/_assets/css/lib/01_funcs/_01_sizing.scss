@@ -1,0 +1,13 @@
+// 02 Functions - 01 Sizing functions ========================================= ***
+// Functions to scale and size:                                                 ***
+                    // calculate column widths on the page                      ***
+                    // The default assumes a 12 column layout                   ***
+                    // 3% is subtracted from all columns to avoid bumps         ***
+@function calc-column-width($fx_num, $fx_count: 12) {
+  @return $fx_num * (100% / $fx_count) - 3;
+}
+                    // pixels to ems                                            ***
+                    // The default assumes a 16px font size                     ***
+@function px2ems($fx_num, $fx_count: 16) {
+  @return ($fx_num / $fx_count) * 1.0em ;
+}

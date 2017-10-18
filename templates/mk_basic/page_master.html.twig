@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% if constant('DEF_ROOT') is defined %}
+  {% set root_path = constant('DEF_ROOT') %}
+{% else %}
+  {% set root_path = '' %}
+{% endif %}
+{% if constant('CURR_PATH') is defined %}
+  {% set curr_path = constant('CURR_PATH') %}
+{% else %}
+  {% set curr_path = '' %}
+{% endif %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{page.page_title}}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/_vendors/html5shiv/src/html5shiv.js"></script>
+<link rel="stylesheet" type="text/css" href="/templates/mk_basic/_assets/css/core.min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all">
+</head>
+<body>
+{% if (not page['accessibility'] is defined) or page.accessibility == 'standard' %}
+{% include root_path ~ '/_assets/includes/page-access-nav.html.twig' %}
+{% else %}
+  {{ page.accessibility | raw }}
+{% endif %}
+<header id="page-header">
+{% include root_path ~ '/_assets/includes/page-banner.html.twig' %}
+</header>
+<div id="title-box">
+<div class="title" role="presentation">{{ page.h1_title | raw }}</div>
+</div>
+<div id="page-menu">
+{% if (not page['pagemenu'] is defined) or page.pagemenu == 'standard' %}
+<p>Side menu goes here.</p>
+{% else %}
+{% include "/_assets/includes/menus/#{page.pagemenu}.html.twig" %}
+{% endif %}
+<div id="sidebar-left">
+{% if (not page['notices'] is defined) or page.leftsidebar == 'standard' %}
+  <p>Notices go here. These will get priority page order in mobile view and should be used sparingly.</p>
+{% else %}
+{% include "/_assets/includes/widgets/#{page.announce}.html.twig" %}
+{% endif %}
+</div>
+</div>
+
+<div id="content-main">
+<div id="breadcrumb-box">
+<a href="#">Bread</a>
+<i class="fa fa-angle-double-right"></i>
+<a href="#">Crumb</a>
+<i class="fa fa-angle-double-right"></i>
+<a href="#">Trail</a>
+<i class="fa fa-angle-double-right"></i>
+<span class="position">Accessing Content</span>
+</div>
+<div id="content-box">
+{{ page.main_content | raw }}
+</div>
+</div>
+<footer id="page-footer">
+{% include root_path ~ '/_assets/includes/page-footer.html.twig' %}
+</footer>
+<script type="text/javascript" src="/_vendors/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/templates/mk_basic/_assets/js/library.js"></script>
+<script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
+</body>
+</html>

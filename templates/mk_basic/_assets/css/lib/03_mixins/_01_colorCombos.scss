@@ -1,0 +1,80 @@
+// 03 Mixins - 01 Color Combinations ========================================== ***
+// For consistency, all internal variables are prefixed with "mx"               ***
+// ----------------                                                             ***
+// This file should contain only mixin calls.                                   ***
+// Any CSS here may be overriden in the resets.                                 ***
+                    // These are frequently used color combintations,           ***
+                    // to allow speedier rebranding                             ***
+                    // The default color set for content pages                  ***
+@mixin set-default-colors {
+  color             : $c-base-text;
+  background-color  : $c-base-bg;
+}
+                    // Banner colors - so we can match things to them           ***
+@mixin set-banner-colors {
+  color             :$c-inverse-text;
+  background-color  : $c-banner-bg ;
+}
+@mixin set-footer-colors {
+  color             : $c-base-text;
+  background-color  : $c-purple-web-2;
+}
+                    // The inverted color set for the admin bar                 ***
+@mixin set-inverted-colors {
+  color             : $c-inverse-text;
+  background-color  : $c-inverse-bg;
+}
+// Blended color rules ******************************************************** ***
+// Each returns two color rules in this order:                                  ***
+// 1) a flat blended color rule for browsers that do not understand rgba()      ***
+// 2) an rgba() for browsers that understand rgba()                             ***
+// The two color rules will not be a perfect match but will be close.           ***
+// Each defaults to doing nothing but repeating the provided color.             ***
+
+                    // Blended color rules for text                             ***
+                    // Variable sequence based on things most likely defaulted  ***
+                    // $mxcolor:        border color, only required value       ***
+                    // $mxalpha:        0.0 - 1.0                               ***
+                    // $mxbgcolor:      background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+@mixin set-blended-text($mxcolor, $mxalpha: 1.0, $mxbg-color: $mxcolor) {
+  $mxweight         : 100*$mxalpha;
+  color             : mix($mxcolor, $mxbg-color, $mxweight);
+  color             : rgba($mxcolor, $mxalpha);
+}
+                    // Blended color rules for backgrounds                      ***
+                    // Variable sequence based on things most likely defaulted  ***
+                    // $mxcolor:        border color, only required value       ***
+                    // $mxalpha:        0.0 - 1.0                               ***
+                    // $mxbgcolor:      background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+@mixin set-blended-background($mxcolor, $mxalpha: 1.0, $mxbg-color: $mxcolor) {
+  $mxweight         : 100*$mxalpha;
+  background-color  : mix($mxcolor, $mxbg-color, $mxweight);
+  background-color  : rgba($mxcolor, $mxalpha);
+}
+                    // Same as above without RBGA, useful to overcome nesting   ***
+@mixin set-blended-background-simple($mxcolor, $mxalpha: 1.0, $mxbg-color: $mxcolor) {
+  $mxweight         : 100*$mxalpha;
+  background-color  : mix($mxcolor, $mxbg-color, $mxweight);
+}
+                    // Blended color rule for borders                           ***
+                    // Default is       border: 1px solid color                 ***
+                    // Variable sequence based on things most likely defaulted  ***
+                    // $mxcolor:        border color, only required value       ***
+                    // $mxside:         all, left, right, top, bottom           ***
+                    // $mxalpha:        0.0 - 1.0                               ***
+                    // $mxsize:         any valid width unit                    ***
+                    // $mxtype:         as per CSS                              ***
+                    // $mxbgcolor:      background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+@mixin set-blended-border($mxcolor, $mxside: all, $mxalpha: 1.0, $mxsize: 1px, $mxtype: solid, $mxbg-color: $mxcolor) {
+  $mxweight         : 100*$mxalpha;
+  @if $mxside == all {
+    border: $mxsize $mxtype mix($mxcolor, $mxbg-color, $mxweight);
+    @if $mxalpha != 1.0 { border: $mxsize $mxtype rgba($mxcolor, $mxalpha); }
+  } @else {
+    border-#{$mxside}: $mxsize $mxtype mix($mxcolor, $mxbg-color, $mxweight);
+    @if $mxalpha != 1.0 { border-#{$mxside}: $mxsize $mxtype rgba($mxcolor, $mxalpha); }
+  }
+}

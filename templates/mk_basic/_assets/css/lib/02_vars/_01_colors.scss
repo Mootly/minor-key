@@ -7,13 +7,34 @@
 // Any CSS here may be overriden in the resets.                                 ***
 // **************************************************************************** ***
 
-$c-true-black:      rgb(0,0,0);         // #000000
-$c-true-white:      rgb(255,255,255);   // #ffffff
+// BASIC COLORS *************************************************************** ***
+// Just some basic colors so they are predefined                                ***
+// **************************************************************************** ***
+// Primaries ****************************************************************** ***
+$c-white:                               rgb(255,255,255);   // #ffffff
+$c-black:                               rgb(0,0,0);         // #000000
+$c-red:                                 rgb(255,0,0);       // #ff0000
+$c-green:                               rgb(0,255,0);       // #00ff00
+$c-blue:                                rgb(0,0,255);       // #0000ff
+$c-yellow:                              rgb(255,255,0);     // #ffff00
+$c-cyan:                                rgb(0,255,255);     // #00ffff
+$c-magenta:                             rgb(255,0,255);     // #ff00ff
+// Grays ********************************************************************** ***
+$c-gray-charcoal:                       rgb(32,36,37);      // #202425
+$c-gray-dark:                           rgb(70,74,75);      // #464a4b
+$c-gray-medium:                         rgb(140,145,147);   // #8c9193
+$c-offwhite:                            rgb(246,243,244);   // #f9f2f3
+// Common Colors ************************************************************** ***
+$c-default-red:     darken($c-red, 10%);                    // #cc0000
+$c-default-green:   darken($c-green, 20%);                  // #009900
+// END BASIC COLORS *********************************************************** ***
 
+// TEMPLATE COLORS ************************************************************ ***
+// **************************************************************************** ***
 $c-base-black:      rgb(17,15,16);      // #110f10
 $c-base-dkgray:     rgb(43,40,43);      // #2b282b
 $c-base-medgray:    rgb(76,64,76);      // #4c404c
-$c-base-medgray:    rgb(162,148,162);   // #a294a2
+$c-base-ltgray:    rgb(162,148,162);   // #a294a2
 $c-base-graywash:   rgb(221,215,221);   // #ddd7dd
 $c-base-purplewash: rgb(234,227,238);   // #eae3ef
 $c-base-graywash:   rgb(240,240,238);   // #f0f0ee
@@ -35,159 +56,33 @@ $c-base-flatpurple: rgb(170,136,176);   // #aa88b0
 $c-base-purple:     rgb(168,48,184);    // #a830b8
 
 
-// NYS BRANDING COLORS ******************************************************** ***
-// Put these first so we can base other colors off them.                        ***
-// NYS branding colors should NOT be used directly, but as renamed by function  ***
-// or generic color name at the bottom of this file.                            ***
-// NYS Core Colors -Blues- **************************************************** ***
-$c-core-blue:                           rgb(0,119,200);     // #0077c8 (dup 1)
-$c-core-blue-2:                         rgb(0,71,187);      // #0047bb
-$c-core-slate-2:                        rgb(103,135,183);   // #6787b7
-// NYS Core Colors -Indigos- ************************************************** ***
-$c-core-indigo:                         rgb(0,45,114);      // #002d72
-$c-core-indigo-1:                       rgb(36,56,126);     // #24387e
-$c-core-indigo-2:                       rgb(29,66,138);     // #1d428a
-$c-core-indigo-accent:                  rgb(27,42,94);      // #1b2a5e
-// NYS Core Colors -Cyans- **************************************************** ***
-$c-core-cyan-1:                         rgb(18,142,195);    // #128ec3
-$c-core-cyan-2:                         rgb(0,156,222);     // #009cde (dup 2)
-$c-core-cyan-accent:                    rgb(146,219,228);   // #92dbe4
-$c-core-cyan-accent-2:                  rgb(3,134,190);     // #0386be
-// NYS Core Colors -Golds- **************************************************** ***
-$c-core-gold:                           rgb(242,169,0);     // #f2a900
-$c-core-yellow-2:                       rgb(243,221,109);   // #f3dd6d
-$c-core-amber-2:                        rgb(255,209,0);     // #ffd100
-$c-core-gold-1:                         rgb(213,130,13);    // #d5820d
-$c-core-gold-accent:                    rgb(220,151,25);    // #dc9719
-// NYS Core Colors -Grays- **************************************************** ***
-$c-core-black:                          rgb(16,24,32);      // #101820
-$c-core-dark-gray:                      rgb(99,102,106);    // #63666a
-$c-core-med-gray-1:                     rgb(136,139,141);   // #888B8d
-$c-core-med-gray-2:                     rgb(187,188,188);   // #bbbcbc
-$c-core-lt-gray-1:                      rgb(208,208,206);   // #d0d0ce
-$c-core-lt-gray-2:                      rgb(217,225,226);   // #d9e1e2
-// NYS Core Colors -Things- *************************************************** ***
-$c-core-grad-dark:                      rgb(35,62,144);     // #233e90
-$c-core-grad-light:                     rgb(30,169,225);    // #1ea9e1
-$c-core-links:                          rgb(15,115,157);    // #0f739d
-$c-core-card-stroke-outline:            rgb(246,248,248);   // #f6f8f8
-$c-core-card-cta-area:                  rgb(246,248,248);   // #f6f8f8
-$c-core-logo-background:                rgb(252,252,252);   // #fcfcfc
-$c-core-alerts:                         rgb(181,44,44);     // #b52c2c
-$c-core-alerts-rollover:                rgb(140,28,28);     // #8c1c1c
-// NYS Transportation and Utilities -BlueGray- ******************************** ***
-$c-infra-bluegray-web-1:                rgb(11,85,132);     // #0b5584
-$c-infra-bluegray-web-2:                rgb(214,229,235);   // #d6e5eb
-$c-infra-bluegray-brand-1:              rgb(0,107,166);     // #006ba6
-$c-infra-bluegray-brand-2:              rgb(0,133,173);     // #0085ad
-$c-infra-bluegray-brand-3:              rgb(141,185,202);   // #8db9ca
-// NYS Local and Regional Authorities -Brown- ********************************* ***
-$c-lra-brown-web-1:                     rgb(64,34,23);      // #402217
-$c-lra-brown-web-2:                     rgb(222,216,211);   // #ded8d3
-$c-lra-brown-brand-1:                   rgb(79,44,29);      // #4f2c1d
-$c-lra-brown-brand-2:                   rgb(116,79,40);     // #744f28
-$c-lra-brown-brand-3:                   rgb(163,147,130);   // #a39382
-// NYS Business -Teal- ******************************************************** ***
-$c-busn-teal-web-1:                     rgb(9,70,76);       // #09464c
-$c-busn-teal-web-2:                     rgb(229,238,238);   // #e5eeee
-$c-busn-teal-brand-1:                   rgb(0,118,129);     // #007681
-$c-busn-teal-brand-2:                   rgb(127,169,174);   // #7fa9ae
-$c-busn-teal-brand-3:                   rgb(182,207,208);   // #b6cfd0
-// NYS Administration -Orange- ************************************************ ***
-$c-admin-orange-web-1:                  rgb(183,66,21);     // #b74215
-$c-admin-orange-web-2:                  rgb(244,211,193);   // #f4d3c1
-$c-admin-orange-brand-1:                rgb(227,82,5);      // #e35205
-$c-admin-orange-brand-2:                rgb(220,107,47);    // #dc6b2f
-$c-admin-orange-brand-3:                rgb(219,134,75);    // #db864b
-// NYS Statewide Elected Officials -Blue- ************************************* ***
-$c-elect-blue-web-1:                    rgb(14,94,158);     // #0e5e9e
-$c-elect-blue-web-2:                    rgb(214,229,235);   // #d6e5eb
-$c-elect-blue-brand-1:                  rgb(0,119,200);     // #0077c8 (dup 1)
-$c-elect-blue-brand-2:                  rgb(0,156,222);     // #009cde (dup 2)
-$c-elect-blue-brand-3:                  rgb(141,200,232);   // #8dc8e8
-// NYS Recreation and Environment -Pine- ************************************** ***
-$c-env-pine-web-1:                      rgb(35,62,42);      // #233e2a
-$c-env-pine-web-2:                      rgb(217,225,221);   // #d9e1dd
-$c-env-pine-brand-1:                    rgb(44,82,52);      // #2c5234
-$c-env-pine-brand-2:                    rgb(80,127,112);    // #507f70
-$c-env-pine-brand-3:                    rgb(146,172,160);   // #92aca0
-// NYS Health and Human Services -Purple- ************************************* ***
-// These are our official colors                                                ***
-$c-hhs-purple-web-1:                    rgb(67,40,93);      // #43285d
-$c-hhs-purple-web-2:                    rgb(212,213,227);   // #d4d5e3
-$c-hhs-purple-brand-1:                  rgb(82,49,120);     // #523178
-$c-hhs-purple-brand-2:                  rgb(111,80,145);    // #6f5091
-$c-hhs-purple-brand-3:                  rgb(135,140,180);   // #878cb4
-// NYS Education -Gold- ******************************************************* ***
-$c-edu-gold-web-1:                      rgb(157,142,29);    // #9d8e1d
-$c-edu-gold-web-2:                      rgb(233,230,212);   // #e9e6d4
-$c-edu-gold-brand-2:                    rgb(171,173,35);    // #abad23
-$c-edu-gold-brand-1:                    rgb(196,178,0);     // #c4b200
-$c-edu-gold-brand-3:                    rgb(192,187,135);   // #c0bb87
-// NYS Public Safety -Slate- ************************************************** ***
-$c-psafe-slate-web-1:                   rgb(75,101,118);    // #4b6576
-$c-psafe-slate-web-2:                   rgb(229,235,238);   // #e5ebee
-$c-psafe-slate-brand-1:                 rgb(91,127,149);    // #5b7f95
-$c-psafe-slate-brand-2:                 rgb(122,153,172);   // #7a99ac
-$c-psafe-slate-brand-3:                 rgb(183,201,211);   // #b7c9d3
-// END NYS BRANDING COLORS **************************************************** ***
-
-// BASIC COLORS *************************************************************** ***
-// Just some basic colors so they are predefined                                ***
-// **************************************************************************** ***
-// Primaries - Which are just here for reference ****************************** ***
-$c-white:                               rgb(255,255,255);   // #ffffff
-$c-black:                               rgb(0,0,0);         // #000000
-$c-red:                                 rgb(255,0,0);       // #ff0000
-$c-green:                               rgb(0,255,0);       // #00ff00
-$c-blue:                                rgb(0,0,255);       // #0000ff
-$c-yellow:                              rgb(255,255,0);     // #ffff00
-$c-cyan:                                rgb(0,255,255);     // #00ffff
-$c-magenta:                             rgb(255,0,255);     // #ff00ff
-// Grays - fills some gaps in the NYS core grays above ************************ ***
-$c-gray-charcoal:                       rgb(32,36,37);      // #202425
-$c-gray-dark:                           rgb(70,74,75);      // #464a4b
-$c-gray-medium:                         rgb(140,145,147);   // #8c9193
-$c-offwhite:                            rgb(246,243,244);   // #f9f2f3
-// Common Colors ************************************************************** ***
-$c-default-red:     darken($c-red, 10%);                    // #cc0000
-$c-default-green:   darken($c-green, 20%);                  // #009900
-// END BASIC COLORS *********************************************************** ***
-
 // COMPONENT COLORS *********************************************************** ***
 // **************************************************************************** ***
                     // Base                                                     ***
-$c-base-text:                           $c-core-black;
+$c-base-text:                           $c-base-black;
 $c-base-bg:                             $c-offwhite;
 $c-inverse-text:                        $c-offwhite;
-$c-inverse-bg:                          $c-core-black;
+$c-inverse-bg:                          $c-base-black;
 $c-banner-text:                         $c-offwhite;
-$c-banner-bg:                           $c-hhs-purple-web-1;
-$c-suvbanner-bg:                        $c-hhs-purple-brand-2;
+$c-banner-bg:                           $c-base-dkpurple;
+$c-suvbanner-bg:                        $c-base-medpurple;
                     // Boxes                                                    ***
-$c-box-text:                            $c-core-black;
-$c-box-bg:                              $c-core-med-gray-2;
+$c-box-text:                            $c-base-black;
+$c-box-bg:                              $c-base-purplewash;
 $c-dark-box-text:                       $c-offwhite;
 $c-dark-box-bg:                         $c-gray-dark;
 $c-gray-border:                         $c-gray-dark;
-$c-ltgray-border:                       $c-core-med-gray-1;
+$c-ltgray-border:                       $c-base-medgray;
                     // Buttons and links                                        ***
 $c-button-text:                         $c-offwhite;
 $c-button-bg:                           $c-hhs-purple-web-1;
 $c-button-active-bg:                    $c-hhs-purple-brand-1;
 $c-links-text:                          $c-core-links;
 $c-hover-text:                          $c-core-indigo-2;
-                    // Background colors                                        ***
-$c-bg-purple:                           $c-hhs-purple-web-2;
-$c-bg-slate:                            $c-psafe-slate-web-2;
-$c-bg-gold:                             $c-edu-gold-web-2;
-$c-border-gold:                         $c-edu-gold-brand-3;
-
-$c-medallion-gold:  mix($c-core-gold, $c-base-bg, 50);
 
 // Callouts ******************************************************************* ***
-$c-hilite-yellow:                       rgba($c-core-yellow-2,0.8);
-$c-hilite-gray:                         rgba($c-core-med-gray-1,0.5);
+$c-hilite-yellow:                       rgba($c-yellow,0.8);
+$c-hilite-gray:                         rgba($c-base-ltgray,0.5);
 
-$c-response-no:                         $c-core-alerts;
-$c-response-yes:                        $c-env-pine-brand-2;
+$c-response-no:                         $c-default-red;
+$c-response-yes:                        $c-default-green;
