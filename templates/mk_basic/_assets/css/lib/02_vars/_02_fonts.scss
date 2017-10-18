@@ -1,81 +1,14 @@
 // 01 Variables - 02 Fonts ==================================================== ***
-// NYS set currently includes:                                                  ***
-// - Proxima Nova Regular                                                       ***
-// - Proxima Nova Semibdold                                                     ***
-// - Proxima Nova Extrabold                                                     ***
-// - DSari (department names)                                                   ***
-// - Oswald Bold (Google Fonts, NYS branding, old link font)                    ***
-// ----------------                                                             ***
 // This file should contain only variable assignments.                          ***
 // Any CSS here may be overriden in the resets.                                 ***
 
-@font-face {
-  font-family       : 'ProximaNova';
-  font-style        : normal;
-  src: url('/_vendors/fonts/proximanova/proximanova-regular.eot');
-  src: url('/_vendors/fonts/proximanova/proximanova-regular.eot') format('embedded-opentype'),
-       url('/_vendors/fonts/proximanova/proximanova-regular.woff2') format('woff2'),
-       url('/_vendors/fonts/proximanova/proximanova-regular.woff') format('woff'),
-       url('/_vendors/fonts/proximanova/proximanova-regular.ttf') format('truetype');
-}
-@font-face {
-  font-family       : 'ProximaNova Semibold';
-  font-style        : normal;
-  font-weight       : 500;
-  src: url('/_vendors/fonts/proximanova/proximanova-semibold.eot');
-  src: url('/_vendors/fonts/proximanova/proximanova-semibold.eot') format('embedded-opentype'),
-       url('/_vendors/fonts/proximanova/proximanova-semibold.woff2') format('woff2'),
-       url('/_vendors/fonts/proximanova/proximanova-semibold.woff') format('woff'),
-       url('/_vendors/fonts/proximanova/proximanova-semibold.ttf') format('truetype');
-}
-@font-face {
-  font-family       : 'ProximaNova Bold';
-  font-style        : normal;
-  font-weight       : bold;
-  src: url('/_vendors/fonts/proximanova/proximanova-bold.eot');
-  src: url('/_vendors/fonts/proximanova/proximanova-bold.eot') format('embedded-opentype'),
-       url('/_vendors/fonts/proximanova/proximanova-bold.woff2') format('woff2'),
-       url('/_vendors/fonts/proximanova/proximanova-bold.woff') format('woff'),
-       url('/_vendors/fonts/proximanova/proximanova-bold.ttf') format('truetype');
-}
-@font-face {
-  font-family       : 'ProximaNova Italic';
-  font-style        : italic;
-  font-weight       : normal;
-  src: url('/_vendors/fonts/proximanova/proximanova-italic.eot');
-  src: url('/_vendors/fonts/proximanova/proximanova-italic.eot') format('embedded-opentype'),
-       url('/_vendors/fonts/proximanova/proximanova-italic.woff2') format('woff2'),
-       url('/_vendors/fonts/proximanova/proximanova-italic.woff') format('woff'),
-       url('/_vendors/fonts/proximanova/proximanova-italic.ttf') format('truetype');
-}
-@font-face {
-  font-family       : 'ProximaNova Extrabold';
-  font-style        : normal;
-  font-weight       : 900;
-  src: url('/_vendors/fonts/proximanova/proximanova-extrabold.eot');
-  src: url('/_vendors/fonts/proximanova/proximanova-extrabold.eot') format('embedded-opentype'),
-       url('/_vendors/fonts/proximanova/proximanova-extrabold.woff2') format('woff2'),
-       url('/_vendors/fonts/proximanova/proximanova-extrabold.woff') format('woff'),
-       url('/_vendors/fonts/proximanova/proximanova-extrabold.ttf') format('truetype');
-}
-@font-face {
-  font-family       : 'DSari Bold';
-  font-style        : normal;
-  src: url('/_vendors/fonts/dsaribold/DSari_Bold-webfont.eot');
-  src: url('/_vendors/fonts/dsaribold/DSari_Bold-webfont.eot') format('embedded-opentype'),
-       url('/_vendors/fonts/dsaribold/DSari_Bold-webfont.woff2') format('woff2'),
-       url('/_vendors/fonts/dsaribold/DSari_Bold-webfont.woff') format('woff'),
-       url('/_vendors/fonts/dsaribold/DSari_Bold-webfont.ttf') format('truetype');
-}
-                    // Oswald comes from the cloud                              ***
-@import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
                     // standard defaults                                        ***
-$f-default          : 'ProximaNova', Papyrus, Arial, sans-serif;
-$f-semibold         : 'ProximaNova Semibold', 'ProximaNova', 'Arial Bold', sans-serif;
-$f-bold             : 'ProximaNova Bold', 'ProximaNova', 'Arial Bold', sans-serif;
-$f-ultra            : 'ProximaNova Extrabold', 'ProximaNova', 'Arial Black', sans-serif;
+$f-default          : Papyrus, Arial, sans-serif;
+$f-semibold         : 'Arial Bold', sans-serif;
+$f-bold             : 'Arial Bold', sans-serif;
+$f-ultra            : 'Arial Black', sans-serif;
                     // targeted defaults                                        ***
-$f-title            : 'ProximaNova Extrabold', 'ProximaNova', 'Arial Black', sans-serif;
-$f-nav              : 'DSari Bold','Arial Bold', sans-serif;
+$f-title            : 'Arial Black', sans-serif;
+$f-nav              : 'Arial Bold', sans-serif;
 $f-code             : 'Source Code Pro', monospace;
