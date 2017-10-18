@@ -12,12 +12,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>{{page.page_title}}</title>
+<title>{% block title %}{{page.page_title}}{% endblock %}</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="/_vendors/html5shiv/src/html5shiv.js"></script>
+{% block styles %}
 <link rel="stylesheet" type="text/css" href="/templates/mk_basic/_assets/css/core.min.css" media="all" />
 <link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all">
+{% endblock %}
 </head>
 <body>
 {% if (not page['accessibility'] is defined) or page.accessibility == 'standard' %}
@@ -63,6 +64,7 @@
 <footer id="page-footer">
 {% include root_path ~ '/_assets/includes/page-footer.html.twig' %}
 </footer>
+<script src="/_vendors/html5shiv/src/html5shiv.js"></script>
 <script type="text/javascript" src="/_vendors/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/templates/mk_basic/_assets/js/library.js"></script>
 <script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
