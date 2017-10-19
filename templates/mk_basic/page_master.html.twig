@@ -11,62 +11,84 @@
 {% endif %}
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>{% block title %}{{page.page_title}}{% endblock %}</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% block styles %}
-<link rel="stylesheet" type="text/css" href="/templates/mk_basic/_assets/css/core.min.css" media="all" />
-<link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all">
-{% endblock %}
+  <meta charset="UTF-8">
+  <title>{% block meta_title %}{{page.page_title}}{% endblock meta_title %}</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block meta_styles %}
+  <link rel="stylesheet" type="text/css" href="/templates/mk_basic/_assets/css/core.min.css" media="all" />
+  <link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all">
+  {% endblock meta_styles %}
+  {% block meta_scripts %}{% endblock meta_scripts %}
 </head>
 <body>
-{% if (not page['accessibility'] is defined) or page.accessibility == 'standard' %}
-{% include root_path ~ '/_assets/includes/page-access-nav.html.twig' %}
-{% else %}
-  {{ page.accessibility | raw }}
-{% endif %}
-<header id="page-header">
-{% include root_path ~ '/_assets/includes/page-banner.html.twig' %}
-</header>
-<div id="title-box">
-<div class="title" role="presentation">{{ page.h1_title | raw }}</div>
-</div>
-<div id="page-menu">
-{% if (not page['pagemenu'] is defined) or page.pagemenu == 'standard' %}
-<p>Side menu goes here.</p>
-{% else %}
-{% include "/_assets/includes/menus/#{page.pagemenu}.html.twig" %}
-{% endif %}
-<div id="sidebar-left">
-{% if (not page['notices'] is defined) or page.leftsidebar == 'standard' %}
-  <p>Notices go here. These will get priority page order in mobile view and should be used sparingly.</p>
-{% else %}
-{% include "/_assets/includes/widgets/#{page.announce}.html.twig" %}
-{% endif %}
-</div>
-</div>
-
-<div id="content-main">
-<div id="breadcrumb-box">
-<a href="#">Bread</a>
-<i class="fa fa-angle-double-right"></i>
-<a href="#">Crumb</a>
-<i class="fa fa-angle-double-right"></i>
-<a href="#">Trail</a>
-<i class="fa fa-angle-double-right"></i>
-<span class="position">Accessing Content</span>
-</div>
-<div id="content-box">
-{{ page.main_content | raw }}
-</div>
-</div>
-<footer id="page-footer">
-{% include root_path ~ '/_assets/includes/page-footer.html.twig' %}
-</footer>
-<script src="/_vendors/html5shiv/src/html5shiv.js"></script>
-<script type="text/javascript" src="/_vendors/jquery/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/templates/mk_basic/_assets/js/library.js"></script>
-<script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
+  <h1>{{ page.h1_title | raw }}</h1>
+  {% block access %}
+  {% if (not page['accessibility'] is defined) or page.accessibility == 'standard' %}
+    {% include root_path ~ '/_assets/includes/page_access_nav.html.twig' %}
+  {% else %}
+    {{ page.accessibility | raw }}
+  {% endif %}
+  {% endblock access %}
+  <header id="page-header">
+    {% block body_header %}
+    {% include root_path ~ '/_assets/includes/page_banner.html.twig' %}
+    {% endblock body_header %}
+  </header>
+  {% block body_title %}
+  <div id="title-box">
+  <h2 class="title" role="presentation">{{ page.h1_title | raw }}</div>
+  </h2>
+  {% endblock body_title %}
+  {% block body_sidebar_left %}
+  <div id="sidebar-left">
+    <div id="sidemenu-left">
+      {% if (not page['pagemenu'] is defined) or page.pagemenu == 'standard' %}
+      <p>Side menu goes here.</p>
+      {% else %}
+      {% include "/_assets/includes/menus/#{page.pagemenu}.html.twig" %}
+      {% endif %}
+    </div>
+    <div id="announce-left">
+      {% if (not page['notices'] is defined) or page.leftsidebar == 'standard' %}
+        <p>Notices go here. These will get priority page order in mobile view and should be used sparingly.</p>
+      {% else %}
+      {% include "/_assets/includes/widgets/#{page.announce}.html.twig" %}
+      {% endif %}
+    </div>
+  </div>
+  {% endblock body_sidebar_left %}
+  {% block body_sidebar_right %}{% endblock body_sidebar_right %}
+  {% block body_content %}
+  <div id="content-main">
+    {% block body_breadcrumb %}
+    <div id="breadcrumb-box">
+      <a href="#">Bread</a>
+      <i class="fa fa-angle-double-right"></i>
+      <a href="#">Crumb</a>
+      <i class="fa fa-angle-double-right"></i>
+      <a href="#">Trail</a>
+      <i class="fa fa-angle-double-right"></i>
+      <span class="position">Accessing Content</span>
+    </div>
+    {% endblock body_breadcrumb %}
+    {% block body_content_inner %}
+    <div id="content-box">
+      {{ page.main_content | raw }}
+    </div>
+    {% endblock body_content_inner %}
+  </div>
+  {% endblock body_content %}
+  <footer id="page-footer">
+    {% block body_footer %}
+    {% include root_path ~ '/_assets/includes/page_footer.html.twig' %}
+    {% endblock body_footer %}
+  </footer>
+  {% block body_scripts %}
+  <script src="/_vendors/html5shiv/src/html5shiv.js"></script>
+  <script type="text/javascript" src="/_vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/templates/mk_basic/_assets/js/library.js"></script>
+  <script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
+  {% endblock body_scripts %}
 </body>
 </html>
