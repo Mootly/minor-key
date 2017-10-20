@@ -10,7 +10,7 @@ a {
 }
                     // Force hover outline color.                               ***
 a:focus {
-  outline: thin dotted $dark-box;
+  outline: thin dotted $c-gray-border;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }

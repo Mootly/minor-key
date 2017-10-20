@@ -43,7 +43,7 @@ button:-moz-focusring,
 [type="submit"]:-moz-focusring { outline: 1px dotted ButtonText; }
                     // Change the border, margin, and padding in all browsers.  ***
 fieldset {
-  border:  1px solid $default-box;
+  border:  1px solid $c-gray-border;
   margin:  0 2px;
   padding: 0.35em 0.625em 0.75em;
 }

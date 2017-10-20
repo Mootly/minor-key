@@ -24,7 +24,7 @@
                     # For subfolders that are their own subdomains, adjust
                     # accordingly
   if (!defined('DEF_ROOT')) define( 'DEF_ROOT', '');
-  if (!defined('CURR_PATH')) define( 'CURR_PATH', dirname($_SERVER['REQUEST_URI']));
+  if (!defined('CURR_PATH')) define( 'CURR_PATH', dirname($_SERVER['PHP_SELF']));
                     # If the templates being used have a class library,
                     # specify it here.
   // if (!defined('DEF_CLASSLIB')) {

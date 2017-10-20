@@ -5,7 +5,7 @@
   *:before,
   *:after {
     text-shadow: none        !important;
-    color:       $black      !important;
+    color:       $c-black      !important;
     background:  transparent !important;
     box-shadow:  none        !important;
   }
@@ -19,7 +19,7 @@
   a[href^="#"]:after { content: ""; }
   pre,
   blockquote {
-    border: 1px solid $nys-med-gray-core-1;
+    border: 1px solid $c-gray-border;
     page-break-inside: avoid;
   }
   thead { display: table-header-group; }

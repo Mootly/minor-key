@@ -31,19 +31,18 @@
 // @import "01_funcs/01_sizing";
 // 02 Variables *************************************************************** ***
 @import "02_vars/01_colors";
-// @import "02_vars/02_fonts";
-// @import "02_vars/03_sizes";
-// @import "02_vars/11_mediaQueries";
+@import "02_vars/02_fonts";
+@import "02_vars/03_sizes";
+@import "02_vars/11_mediaQueries";
 // 03 Mixins ****************************************************************** ***
-// @import "03_mixins/01_colorCombos";
-// @import "03_mixins/02_elementSizing";
-// @import "03_mixins/03_positioning";
-// @import "03_mixins/11_bannerTypos";
+@import "03_mixins/01_colorCombos";
 // 04 Resets ****************************************************************** ***
-// @import "04_reset/01_core";
-// @import "04_reset/02_semantics";
-// @import "04_reset/03_linkContent";
-// @import "04_reset/04_forms";
-// @import "04_reset/11_print";
+@import "04_reset/01_core";
+@import "04_reset/02_semantics";
+@import "04_reset/03_linkContent";
+@import "04_reset/04_forms";
+@import "04_reset/11_print";
+// 05 Layout ****************************************************************** ***
+@import "05_layout/01_core";
 // 06 Parts ******************************************************************* ***
 // @import "06_parts/00_skip";

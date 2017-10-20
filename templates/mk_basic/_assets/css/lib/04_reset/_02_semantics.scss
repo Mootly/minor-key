@@ -6,7 +6,7 @@
                     // Add the correct text decoration in                       ***
                     // Chrome, Edge, IE, Opera, and Safari.                     ***
 abbr {
-  border-bottom:    1px dotted $default-color;
+  border-bottom:    1px dotted $c-gray-border;
 }
                     // Prevent the duplication of bolder in Safari 6.           ***
 b,
@@ -22,8 +22,8 @@ var { font-style: italic; }
 h1 { font-size: 2em; margin: 0.67em 0; }
                     // Add the correct background and color in IE 9-.           ***
 mark {
-  background-color: $pure-yellow;
-  color:            $black;
+  background-color: $c-yellow;
+  color:            $c-black;
 }
                     // Set the correct font size for small tag.                 ***
 small { font-size:  80%; }

@@ -65,6 +65,8 @@ $c-inverse-text:                        $c-offwhite;
 $c-inverse-bg:                          $c-base-black;
 $c-banner-text:                         $c-offwhite;
 $c-banner-bg:                           $c-base-dkpurple;
+$c-footer-text:                         $c-offwhite;
+$c-footer-bg:                           $c-base-dkpurple;
 $c-suvbanner-bg:                        $c-base-medpurple;
                     // Boxes                                                    ***
 $c-box-text:                            $c-base-black;
@@ -75,10 +77,16 @@ $c-gray-border:                         $c-gray-dark;
 $c-ltgray-border:                       $c-base-medgray;
                     // Buttons and links                                        ***
 $c-button-text:                         $c-offwhite;
-$c-button-bg:                           $c-hhs-purple-web-1;
-$c-button-active-bg:                    $c-hhs-purple-brand-1;
-$c-links-text:                          $c-core-links;
-$c-hover-text:                          $c-core-indigo-2;
+$c-button-bg:                           $c-base-dkpurple;
+$c-button-active-bg:                    $c-base-medpurple;
+$c-links-text:                          $c-base-blue;
+$c-hover-text:                          $c-base-blue;
+$c-visited-text:                        $c-base-blue;
+$c-h1-text          : $c-base-slate;
+$c-h2-text          : mix($c-base-slate, $c-base-black, 80);
+$c-h3-text          : mix($c-base-slate, $c-base-black, 60);
+$c-h4-text          : mix($c-base-slate, $c-base-black, 40);
+$c-h5-text          : mix($c-base-slate, $c-base-black, 20);
 
 // Callouts ******************************************************************* ***
 $c-hilite-yellow:                       rgba($c-yellow,0.8);

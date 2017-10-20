@@ -1,8 +1,4 @@
-// 04 Reset Rules - Aggregator ================================================ ***
+// 05 Layout Rules - Aggregator =============================================== ***
 // Core partial should always be first.                                         ***
 // Print partial should always be last.                                         ***
 @import "./01_core";
-@import "./02_semantics";
-@import "./03_linkContent";
-@import "./04_forms";
-@import "./11_print";

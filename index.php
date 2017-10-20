@@ -31,7 +31,7 @@ ob_end_clean();
 $page_elements = $mko_parts->build_page();
 $loader = new Twig_Loader_Filesystem($mko_paths->template);
 $twig   = new Twig_Environment($loader, array(
-  // 'debug' => true
+// 'debug' => true
 ));
 // $twig->addExtension(new Twig_Extension_Debug());
 echo ($twig->render($mkt_full_template, array('page'=>$page_elements['content'])));

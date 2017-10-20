@@ -2,13 +2,14 @@
 // This file should contain only variable assignments.                          ***
 // Any CSS here may be overriden in the resets.                                 ***
 
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,600,700,900&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
                     // standard defaults                                        ***
-$f-default          : Papyrus, Arial, sans-serif;
-$f-semibold         : 'Arial Bold', sans-serif;
-$f-bold             : 'Arial Bold', sans-serif;
-$f-ultra            : 'Arial Black', sans-serif;
+$f-default          : 'Raleway', Papyrus, Arial, sans-serif;
+$f-semibold         : 'Raleway Semi-Bold', 'Arial Bold', sans-serif;
+$f-bold             : 'Raleway Bold', sans-serif;
+$f-ultra            : 'Raleway Black', 'Arial Black', sans-serif;
                     // targeted defaults                                        ***
-$f-title            : 'Arial Black', sans-serif;
-$f-nav              : 'Arial Bold', sans-serif;
+$f-title            : 'Raleway Black', 'Arial Black', sans-serif;
+$f-nav              : 'Raleway Bold', 'Arial Bold', sans-serif;
 $f-code             : 'Source Code Pro', monospace;
