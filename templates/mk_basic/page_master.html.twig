@@ -22,7 +22,7 @@
   {% block meta_scripts %}{% endblock meta_scripts %}
 </head>
 <body>
-  <h1>{{ page.h1_title | raw }}</h1>
+  <h1 id="first-el">{{ page.h1_title | raw }}</h1>
   {% block access %}
   {% if (not page['accessibility'] is defined) or page.accessibility == 'standard' %}
     {% include root_path ~ '/_assets/includes/page_access_nav.html.twig' %}
@@ -37,7 +37,7 @@
   </header>
   {% block body_title %}
   <div id="title-box">
-  <h2 class="title" role="presentation">{{ page.h1_title | raw }}</div>
+  <h2 class="page-title" role="presentation">{{ page.h1_title | raw }}</div>
   </h2>
   {% endblock body_title %}
   {% block body_sidebar_left %}

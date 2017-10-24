@@ -1,0 +1,24 @@
+// 06 Parts- 03 Code ========================================================== ***
+pre {
+  @include set-blended-background($c-inverse-bg, 0.0625, $c-base-bg);
+  @include set-blended-border($c-inverse-bg, left, 0.25, 0.5em, solid, $c-base-bg);
+  overflow          : auto;
+  color             : $c-code;
+  padding           : 0.75em;
+  font-family       : $f-code;
+  font-size         : 0.875em;
+  line-height: $ht-line-tall;
+  var {
+    color           : $c-gray-text;
+    font-style      : italic;
+  }
+}
+
+code {
+  font-family       : $f-code;
+  color             : $c-code;
+  var {
+    color           : $c-gray-text;
+    font-style      : italic;
+  }
+}

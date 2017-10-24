@@ -22,9 +22,10 @@ body {
   border-bottom: 2px solid $c-banner-bg;
   h1, h2.page-title {
     margin          : 0;
-    padding         : 0.5em 0.5em 0.5em 0.75em;
+    padding         : 0.5em 0.5em 0.125em 0.5em;
     font-family     : $f-title;
     font-size       : $h1-size;
+    font-weight     : 900;
     line-height     : $ht-line-compact;
     color           : $c-h1-text;
   }
@@ -32,7 +33,7 @@ body {
 // Accessibility thingy
 // Hide real H1 from sighted users, use H2 to replace it further down
 // In text stream, H2 will begin the content at the same level as other
-// H2 block markers. 
+// H2 block markers.
 h1#first-el {
   position        : absolute;
   clip            : rect(0 0 0 0);
@@ -50,7 +51,8 @@ h1#first-el {
     color: $c-gray-border;
     @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg)
     a {
-      font-family: $f-bold;
+      font-family: $f-nav;
+      font-weight: 600;
       border: 0;
     }
     a:hover {
@@ -66,9 +68,10 @@ h1#first-el {
   p {
     line-height: $ht-line-default;
   }
-    h2 {
+  h2 {
     margin          : 1.25em 0 0 0;
     font-family     : $f-title;
+    font-wight: 900;
     font-size       : $h2-size;
     line-height     : $ht-line-compact;
     color           : $c-h2-text;
@@ -76,6 +79,7 @@ h1#first-el {
   h3 {
     margin          : 1.25em 0 0 0;
     font-family     : $f-title;
+    font-wight: 700;
     font-size       : $h3-size;
     line-height     : $ht-line-compact;
     color           : $c-h3-text;
@@ -83,6 +87,7 @@ h1#first-el {
   h4 {
     margin          : 1.0em 0 0 0;
     font-family     : $f-title;
+    font-wight: 700;
     font-size       : $h4-size;
     line-height     : $ht-line-compact;
     color           : $c-h4-text;
@@ -90,6 +95,7 @@ h1#first-el {
   h5 {
     margin          : 1.0em 0 0 0;
     font-family     : $f-title;
+    font-wight: 600;
     font-size       : $h5-size;
     line-height     : $ht-line-compact;
     color           : $c-h5-text;
@@ -97,6 +103,7 @@ h1#first-el {
   h6 {
     margin          : 1.0em 0 0 0;
     font-family     : $f-title;
+    font-wight: 600;
     font-size       : $h6-size;
     line-height     : $ht-line-compact;
     color           : $c-h5-text;

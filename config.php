@@ -36,12 +36,12 @@
   if (!defined('DEF_PREFIX'))  {
     define(
       'DEF_PREFIX',
-      'mk'
+      'ocfs'
     ); }
   if (!defined('DEF_TEMPLATE')) {
     define(
       'DEF_TEMPLATE',
-      'basic'
+      'master'
     ); }
 # Initialize the Site --------------------------------------------------------- *
   require_once( MK_ROOT.'/_core/init.php' );
@@ -49,8 +49,8 @@
 # Site specific variables ----------------------------------------------------- *
   $mko_parts->page_path     = dirname($_SERVER['PHP_SELF']);
                     # Values expected by the site or sub-site ----------------- *
-  $mko_parts->site_name     = 'Minor Key';
-  $mko_parts->site_abbr     = '[mk]';
+  $mko_parts->site_name     = 'OCFS';
+  $mko_parts->site_abbr     = '[ofcs]';
                     # Template formatting rules ------------------------------- *
   $mkt_full_template        = 'page_master.html.twig';      # for generating complete pages
   $mkt_header_template      = 'page_header.html.twig';      # header include for flat file content
