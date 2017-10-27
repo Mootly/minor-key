@@ -111,7 +111,7 @@
 /**
   * Returns an array of parge parts.
   * Builds the apge title if it is not already done.
-  * Beyond that, this is a no frills data dump of all page comonents stured in
+  * Beyond that, this is a no frills data dump of all page comonents stored in
   * the object, including potential interim values. See docs for a list of the
   * core components.
   * @return array

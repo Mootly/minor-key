@@ -39,10 +39,11 @@
     $temp_string            = "mk_basic";
   }
 # Locate our templates and class library -------------------------------------- *
-                    # If the template contains a classlib, declear in config.php
+                    # If the template contains a classlib, declare in config.php
                     # Otherwise it will assume:
                     # /templates/template_name/classlib
   define( 'MK_PSEP', '/' );
+  $mko_parts->template      = $temp_string ;
   $mko_paths->template      = MK_ROOT . '/templates/' . $temp_string ;
   if (defined('DEF_CLASSLIB')) {
     $mko_paths->tp_classlib = MK_ROOT . DEF_CLASSLIB;

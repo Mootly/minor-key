@@ -22,17 +22,12 @@ ob_start();
 
 <p>This means we can create static content for an HTML page in a file then invoke the template to wrap that content. The content file is an easy to read PHP file that only requires the content creator to assign values to a few variables and fill in the content between the proverbial lines.</p>
 <?php
- $mko_parts->accessibility = 'standard';
+$mko_parts->accessibility = 'standard';
 $mko_parts->main_content = ob_get_clean();
 ob_end_clean();
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
                     # Content developers shouldn't touch anything below here.
                     # Invoke the template ------------------------------------- *
 $page_elements = $mko_parts->build_page();
-$loader = new Twig_Loader_Filesystem($mko_paths->template);
-$twig   = new Twig_Environment($loader, array(
-// 'debug' => true
-));
-// $twig->addExtension(new Twig_Extension_Debug());
 echo ($twig->render($mkt_full_template, array('page'=>$page_elements['content'])));
 ?>
