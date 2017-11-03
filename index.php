@@ -25,9 +25,6 @@ ob_start();
 $mko_parts->accessibility = 'standard';
 $mko_parts->main_content = ob_get_clean();
 ob_end_clean();
-                    # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-                    # Content developers shouldn't touch anything below here.
-                    # Invoke the template ------------------------------------- *
 $page_elements = $mko_parts->build_page();
 echo ($twig->render($mkt_full_template, array('page'=>$page_elements['content'])));
 ?>

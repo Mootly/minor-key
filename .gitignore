@@ -7,12 +7,13 @@ sites/*
 sites/*/files
 sites/*/private
 templates/*
+templates/*/cache
+# Add minor-key specific paths back in.
+!templates/mk_*
+templates/mk_*/cache
 
 # Ignore licensed content in vendors.
 _vendors/fonts/
-
-# Add minor-key specific paths back in.
-!templates/mk_*
 
 # Ignore default text files
 *.txt
