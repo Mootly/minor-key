@@ -14,11 +14,18 @@
  * ---------------------------------------------------------------------------- */
 $(window).on( 'load', function () {
   if ($('#toc-links').length) {
-    var menuList = '';
+    var menuList  = '';
                     // TOC starts with this heagding                            ***
-    var tier1 = 'h2';
+    var tier1     = 'h2';
                     // To catch DTs, specify parent DL                          ***
-    var tier2 = 'h3, dl';
+    var tier2     = 'h3, dl';
+                    // Generate links back to the top of the page               ***
+                    // If no body ID, go to TOC.                                ***
+                    // Set skipfirst to true to skip first section before       ***
+                    // adding top links
+    var skipfirst = false;
+    var topID     = ($('body').attr('id').length == 0) ? 'toc-link' : $('body').attr('id');
+    var returnto  = '<div class="top-link"><a href="#'+topID+'"><span>[top]</span></a></div>';
                     // don't include headings with this text in them            ***
     var tocSystem = ['Status', 'Warning', 'Quick Links', 'Contents', 'Internal Notes'];
                     // generate an array of all H2 headings                     ***
@@ -34,7 +41,9 @@ $(window).on( 'load', function () {
                     // add link to toc                                          ***
         menuList += '<li id="jumpto-'+tocThis.attr('id')+'"><a href="#'+tocThis.attr('id')+'">'+tocThisText+'</a>';
                     // add links for tier 2 elements                            ***
+        if (skipfirst) { skipfirst = false; } else { tocThis.before(returnto); }
         var flList = tocThis.nextUntil(tier1,tier2);
+        flList.before(returnto);
         var flLength = flList.length;
         for (var j=0; j<flLength; j++) {
                     // this will only catch siblings                            ***
