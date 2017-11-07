@@ -57,4 +57,13 @@
   $mkt_footer_template      = 'page_footer.html.twig';      # footer include for flat file content
   $mko_parts->title_struct  = ['page_name','section_name','site_name'];
   $mko_parts->separator     = ' | ';
+# Invoke Twig ----------------------------------------------------------------- *
+  $loader = new Twig_Loader_Filesystem($mko_paths->template);
+  $twig   = new Twig_Environment($loader, array(
+    'cache'       => MK_ROOT.'/templates/ocfs_master/cache',
+    'auto_reload' => true,
+  //'debug'       => true,
+  ));
+  // $twig->addExtension(new Twig_Extension_Debug());
+
 // end config ----------------------------------------------------------------- *
