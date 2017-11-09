@@ -60,7 +60,7 @@
 # Invoke Twig ----------------------------------------------------------------- *
   $loader = new Twig_Loader_Filesystem($mko_paths->template);
   $twig   = new Twig_Environment($loader, array(
-    'cache'       => MK_ROOT.'/templates/ocfs_master/cache',
+    'cache'       => MK_ROOT.'/templates/mk_basic/cache',
     'auto_reload' => true,
   //'debug'       => true,
   ));
