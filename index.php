@@ -13,6 +13,12 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # page_name should equal your H1 title.
 $mko_parts->page_name = 'Hello!';
 $mko_parts->h1_title  = 'Example of a page as a write-deferred block';
+$mko_parts->link_title  = 'Home';
+$mko_parts->page_name = $mko_parts->h1_title;
+$mko_parts->section_name = 'Home';
+$mko_parts->accessibility = 'standard';
+// $mko_parts->pagemenu = 'docs.general';
+
                     # The main content body of the page is developed here.
                     # It can be built from pieces or written as a block,
                     # depending on the site.
