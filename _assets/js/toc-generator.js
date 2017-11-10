@@ -19,11 +19,12 @@ $(window).on( 'load', function () {
     var tier1     = 'h2';
                     // To catch DTs, specify parent DL                          ***
     var tier2     = 'h3, dl';
-                    // Generate links back to the top of the page               ***
+                    // Varaibles to generate links back to the top of the page  ***
                     // If no body ID, go to TOC.                                ***
-                    // Set skipfirst to true to skip first section before       ***
-                    // adding top links
-    var skipfirst = false;
+                    // skipfirst  == true ? skip link on first heading          ***
+                    // skipnested == true ? only add links to top level headings***
+    if (typeof skipfirst  == 'undefined') { var skipfirst  = true; }
+    if (typeof skipnested == 'undefined') { var skipnested = true; }
     var topID     = ($('body').attr('id').length == 0) ? 'toc-link' : $('body').attr('id');
     var returnto  = '<div class="top-link"><a href="#'+topID+'"><span>[top]</span></a></div>';
                     // don't include headings with this text in them            ***
@@ -43,7 +44,6 @@ $(window).on( 'load', function () {
                     // add links for tier 2 elements                            ***
         if (skipfirst) { skipfirst = false; } else { tocThis.before(returnto); }
         var flList = tocThis.nextUntil(tier1,tier2);
-        flList.before(returnto);
         var flLength = flList.length;
         for (var j=0; j<flLength; j++) {
                     // this will only catch siblings                            ***
@@ -52,6 +52,7 @@ $(window).on( 'load', function () {
             if (!(flThis.is('[id]'))) {
               flThis.attr('id', 't2-'+flThis.text().replace(/ /g,'-'));
             }
+            if (!skipnested) { flThis.before(returnto); }
             subMenuList += '<li><a href="#'+flThis.attr('id')+'">'+flThis.text()+'</a></li>';
           }
                     // this will catch DTs                                      ***
