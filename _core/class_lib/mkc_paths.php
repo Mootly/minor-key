@@ -54,5 +54,9 @@
       }
       return true;
     }
+    public function build_list() {
+      return $this->path;
+    }
+
   }
 // End mkc_paths -------------------------------------------------------------- *
