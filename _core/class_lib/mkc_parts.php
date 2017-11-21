@@ -14,8 +14,10 @@
   *   Return values from an array of pseudoproperties.
   * @method bool    __set(string, string)
   *   Add pseudo-properties to array with assigned values.
-  * @method array  title()
+  * @method array   build_title()
   *   Returns the title of the page.
+  * @method array   build_page()
+  *   Returns an array of all page components.
   * @copyright 2017 Mootly Obviate
   * @package   minor_key
   * --------------------------------------------------------------------------- */

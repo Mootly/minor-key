@@ -1,14 +1,17 @@
 /** -- Page content menu generator -------------------------------------------- *
  * This routine automates the table of contents for jump links internal to
  * the current page.
- * It uses IDs and ignores any embedded anchors.
- * A menu is inserted after element with id="toc-links":
+ * Tasks:
+ * - A menu is inserted after element with id="toc-links":
  *   Exmaple: <h2 id="toc-links">Contents</h2>
- * The menu includes all tier 1 elements in the document.
- * If a tier 1 element does not have an ID, it assigns one.
- * Checks for the class 'add-toc" to include tier 2 elements.
- * Assumes tier 2 elements are siblings of tier 1 elements,
- * so it might miss things with complicated nesting.
+ * - The menu includes all tier 1 elements (var: mkc_toc_tier1).
+ * - Checks for '.add-toc" to include tier 2 elements (var: mkc_toc_tier2).
+ * - If a listed element does not have an ID, it assigns one.
+ * Assumptions:
+ * - Only uses IDs and ignores embedded anchors.
+ * - Only checks for targets in div#content-main.
+ * - Tier 2 elements are siblings of tier 1 elements.
+ * - If DL is listed for tier 2, targets child DT elements.
  * ---------------------------------------------------------------------------- */
 $(window).on( 'load', function () {
   if ($('#toc-links').length) {
@@ -23,7 +26,7 @@ $(window).on( 'load', function () {
                     // skipnested == true ? only add links to top level headings*
     if (typeof skipfirst  == 'undefined') { var skipfirst  = true; }
     if (typeof skipnested == 'undefined') { var skipnested = true; }
-    var mkv_toc_topID     = ($('body').attr('id').length == 0) ? 'toc-link' : $('body').attr('id');
+    var mkv_toc_topID     = ($('body').is('[id]')) ? $('body').attr('id') : 'toc-link' ;
     var mkv_toc_returnto  = '<div class="top-link"><a href="#'+mkv_toc_topID+'"><span>[top]</span></a></div>';
                     // don't include headings with this text in them            *
     var mkv_toc_system = ['Status', 'Warning', 'Quick Links', 'Contents', 'Internal Notes'];

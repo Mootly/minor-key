@@ -14,6 +14,8 @@
   *   Return values from an array of pseudoproperties.
   * @method bool    __set(string, string)
   *   Add pseudo-properties to array with assigned values.
+  * @method hash    build_list()
+  *   Returns an associative array of paths.
   * @copyright 2017 Mootly Obviate
   * @package   minor_key
   * --------------------------------------------------------------------------- */
@@ -54,6 +56,10 @@
       }
       return true;
     }
+                    /**
+                      * Returns an associative array of paths.
+                      * @return hash
+                      */
     public function build_list() {
       return $this->path;
     }
