@@ -4,6 +4,7 @@
  * - nav bar  - .navBar_item
  * - anchor   - .jumplink
  * mkv_JTTLastAction tracks which script fired off last to keep them from arguing
+ * This was a one off for a project, but I thought it might be useful elsewhere.
  * ---------------------------------------------------------------------------- */
                     // Get an array of anchors to to prior elements on up       ***
 var mkv_JTTlinkset = $('.jumplink').toArray();

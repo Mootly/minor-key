@@ -54,26 +54,25 @@ $(window).on('hashchange', function(e){
 });
                     // Open fold on direct select                               *
 $(mkv_clam_list).on('click', 'a.more-link', function(event) {
-  var togType = ($(this).find('i span').text() == '[show details]') ? true : false;
-  $(this).find('i span').text(togType ? '[hide details]' : '[show details]');
+  var tTogType      = ($(this).find('i span').text() == '[show details]') ? true : false;
+  $(this).find('i span').text(tTogType ? '[hide details]' : '[show details]');
   $(this).find('i').toggleClass(icon_is_closed+' '+icon_is_open);
   $(event.target).closest(mkv_clam_head).next(mkv_clam_fold).toggleClass(hidden_class);
   return false;
 });
                     // Open all folds on direct select                          *
 $(mkv_clam_list).on('click', 'a.all-link', function(event) {
-  var togType = ($(this).find('span').text() == 'Show All') ? true : false;
-  if (togType) {
+  var tTogType = ($(this).find('span').text() == 'Show All') ? true : false;
+  if (tTogType) {
     $(event.target).closest(mkv_clam_class).children(mkv_clam_fold).removeClass(hidden_class);
   } else {
     $(event.target).closest(mkv_clam_class).children(mkv_clam_fold).addClass(hidden_class);
   }
-  $(this).find('span').text(togType ? 'Hide All' : 'Show All');
-  $(event.target).closest(mkv_clam_class).children(mkv_clam_head).find('a.more-link i span').text(togType ? '[hide details]' : '[show details]');
-  $(event.target).closest(mkv_clam_class).children(mkv_clam_head).find('a.more-link i').attr('class', togType ? 'fa '+icon_is_open : 'fa '+icon_is_closed);
+  $(this).find('span').text(tTogType ? 'Hide All' : 'Show All');
+  $(event.target).closest(mkv_clam_class).children(mkv_clam_head).find('a.more-link i span').text(tTogType ? '[hide details]' : '[show details]');
+  $(event.target).closest(mkv_clam_class).children(mkv_clam_head).find('a.more-link i').attr('class', tTogType ? 'fa '+icon_is_open : 'fa '+icon_is_closed);
   return false;
 });
-
 // ONLOAD Actions ------------------------------------------------------------- *
                     // Add fold toggle links.                                   *
                     // Generate IDs if none provided (loops append counters).   *
