@@ -1,6 +1,6 @@
 # minor-key license
 
-Copyright (c) 2017 Mootly Obviate
+Copyright (c) 2017-2018 Mootly Obviate
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -18,9 +18,12 @@ All third party resources are subject to the copyrights and licenses for those r
 
 - [Composer](https://github.com/composer/composer/blob/master/LICENSE)
 - [Font Awesome](http://fontawesome.io/license/)
+- [HTML5 Shiv](https://github.com/aFarkas/html5shiv/blob/master/MIT%20and%20GPL2%20licenses.md)
 - [jQuery](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
+- [PHP DOM Wrapper](https://travis-ci.org/scotteh/php-dom-wrapper)
 - [Symfony](https://symfony.com/license)
 - [Twig](https://twig.sensiolabs.org/license)
+- [Waypoints](https://github.com/imakewebthings/waypoints/blob/master/licenses.txt)
 
 ## Template licenses
 

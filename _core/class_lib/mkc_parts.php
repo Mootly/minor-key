@@ -14,8 +14,10 @@
   *   Return values from an array of pseudoproperties.
   * @method bool    __set(string, string)
   *   Add pseudo-properties to array with assigned values.
-  * @method array  title()
+  * @method array   build_title()
   *   Returns the title of the page.
+  * @method array   build_page()
+  *   Returns an array of all page components.
   * @copyright 2017 Mootly Obviate
   * @package   minor_key
   * --------------------------------------------------------------------------- */
@@ -109,7 +111,7 @@
       return $this->response;
     }
 /**
-  * Returns an array of parge parts.
+  * Returns an array of page parts.
   * Builds the apge title if it is not already done.
   * Beyond that, this is a no frills data dump of all page comonents stored in
   * the object, including potential interim values. See docs for a list of the

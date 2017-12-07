@@ -1,5 +1,12 @@
 {
-    "require": {
-        "twig/twig": "~2.0"
-    }
+  "extra": {
+    "config-notes": "Note the change of vendor directory to be consistent with core and asset directory names. If it is not a content directory, the path begins with an underscore."
+  },
+  "config": {
+    "vendor-dir": "_vendors"
+  },
+  "require": {
+    "twig/twig": "~2.0",
+    "scotteh/php-dom-wrapper": "dev-master"
+  }
 }

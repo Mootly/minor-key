@@ -10,14 +10,14 @@
   <link rel="stylesheet" type="text/css" href="./css/docs.min.css" media="all" />
   <link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all" />
 
-  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="/_vendors/html5shiv/dist/html5shiv.min.js"></script>
 </head>
-<body>
+<body id="page-body">
 
 <!-- *** BEGIN CONTENT *** *************************************** -->
 <h1>Minor-Key docs</h1>
 
-<div id="contents">
+<div id="content-main">
 
 <h2 id="toc-links">Contents</h2>
 
@@ -200,6 +200,58 @@
 <p>The <cite>parts</cite> object contains information fields for a page as well as a content blob.</p>
 
 <p>It can also be used recursively for page components.</p>
+
+<p>It uses magic functions to generate properties as needed. The reserved properties are:</p>
+
+<ul>
+  <li></li>
+</ul>
+
+<dl class="clamshell">
+
+  <dt>Constructor</dt>
+  <dd>
+    <pre>mkc_parts( [bool $is_locked=false] );</pre>
+
+    <p>On instantiation, can be passed boolean to determine whether to protect existing values.</p>
+  </dd>
+
+  <dt>Store a page component</dt>
+  <dd>
+    <pre></pre>
+
+    <p></p>
+  </dd>
+
+  <dt>Set the page title</dt>
+  <dd>
+    <pre></pre>
+
+    <p></p>
+  </dd>
+
+  <dt>Return a page component</dt>
+  <dd>
+    <pre></pre>
+
+    <p></p>
+  </dd>
+
+  <dt>Return the complete page title for the title bar</dt>
+  <dd>
+    <pre></pre>
+
+    <p></p>
+  </dd>
+
+  <dt>Return an array of all page components</dt>
+  <dd>
+    <pre></pre>
+
+    <p></p>
+  </dd>
+
+</dl>
 
 <!-- *** paths object *** **************************************** -->
 <h3 class="add-toc">mkc_paths</h3>

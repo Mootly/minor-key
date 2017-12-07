@@ -1,5 +1,6 @@
 # Ignore configuration files that may contain sensitive information.
 sites/*/*settings*.php
+config.php
 
 # Ignore paths that contain generated content.
 files/
@@ -7,9 +8,11 @@ sites/*
 sites/*/files
 sites/*/private
 templates/*
-templates/*/cache
+
 # Add minor-key specific paths back in.
 !templates/mk_*
+# Ignore caches.
+templates/*/cache
 templates/mk_*/cache
 
 # Ignore licensed content in vendors.

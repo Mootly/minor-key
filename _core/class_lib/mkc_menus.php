@@ -12,7 +12,9 @@
   *   to protect existing values.
   * @method array   setmenu(string, array)
   *   Create a new menu.
-  * @method array  getmenu(string, array)
+  * @method array  getmenu(string)
+  *   Return all links in an HTML menu using UL lists.
+  * @method array  getlist(string, array)
   *   Return all links in a menu as an associative array of array[title] = URL.
   * @method array  getlink(string, string, array)
   *   The URL of a specific link.
@@ -106,7 +108,7 @@
   *         success         bool    - was the call successful.
   *         content         string  - results or error message.
   */
-    public function getmenu($name, $params) {
+    public function getlist($name, $params) {
       if ( array_key_exists($name, $this->menu) ) {
         return $this->menu[$name]['links'];
       }
