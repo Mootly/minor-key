@@ -5,9 +5,18 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:400,600,700');
 @import url('https://fonts.googleapis.com/css?family=Prompt:400,600,700,900');
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+@import url('https://fonts.googleapis.com/css?family=Walter+Turncoat');
+@import url('https://fonts.googleapis.com/css?family=Short+Stack');
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono:400,700&subset=latin-ext');
+
                     // standard defaults                                        ***
 $f-default          : 'Muli', 'Arial', sans-serif;
-                    // targeted defaults                                        ***
 $f-title            : 'Prompt', 'Arial Black', sans-serif;
 $f-nav              : 'Prompt', 'Arial', sans-serif;
 $f-code             : 'Source Code Pro', monospace;
+                    // alternate defaults (use class 'draft' in the body)       ***
+$f-draft-default    : 'Short Stack', 'Arial', sans-serif;
+$f-draft-title      : 'Walter Turncoat', 'Arial Black', sans-serif;
+$f-draft-nav        : 'Walter Turncoat', 'Arial', sans-serif;
+$f-draft-code       : 'Fira Mono', 'Source Code Pro', monospace;
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

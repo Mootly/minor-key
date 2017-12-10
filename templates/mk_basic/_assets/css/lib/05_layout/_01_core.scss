@@ -9,14 +9,22 @@ body {
   font              : normal normal 400 1.0em $f-default;
   line-height       : $ht-line-tall;
 }
-
-.mobile-only, .hide { display: none; }
-.hidden {
-  width             : 0;
-  height            : 0;
-  overflow          : hidden;
+                    // Accessibility Fix                                        ***
+                    // Hide H1 from sighted users, replace w H2 further down.   ***
+                    // In text stream, H2 will begin the content                ***
+                    // at the same level as other H2 block markers.             ***
+h1#first-el {
+  position        : absolute;
+  clip            : rect(0 0 0 0);
+  width           : 1px;
+  height          : 1px;
+  overflow        : hidden;
+  margin          : -1px;
+  border          : 0;
+  padding         : 0;
 }
-
+                    // Use H2 to emulate H1 in displayed title block if         ***
+                    // using accessibility fix above.                           ***
 #title-box {
   margin: 0;
   background-color: $c-base-bg;
@@ -31,37 +39,8 @@ body {
     color           : $c-h1-text;
   }
 }
-// Accessibility thingy
-// Hide real H1 from sighted users, use H2 to replace it further down
-// In text stream, H2 will begin the content at the same level as other
-// H2 block markers.
-h1#first-el {
-  position        : absolute;
-  clip            : rect(0 0 0 0);
-  width           : 1px;
-  height          : 1px;
-  overflow        : hidden;
-  margin          : -1px;
-  border          : 0;
-  padding         : 0;
-}
+                    // Main body of the page.                                   ***
 #content-main {
-  #breadcrumb-box {
-    padding-left: 1.0em;
-    background-color: $c-footer-bg;
-    color: $c-gray-border;
-    @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg)
-    a {
-      font-family: $f-nav;
-      font-weight: 600;
-      border: 0;
-    }
-    a:hover {
-      @include set-blended-border($c-links-text, bottom, 0.85, 1px, solid, $c-footer-bg);
-    }
-
-  }
-
   #content-box {
     margin: 1.0em 2.0em 2.0em 20.0em;
     max-width: $max-content-width;
@@ -137,3 +116,4 @@ h1#first-el {
     #content-box { margin: 2.0em; }
   }
 }
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

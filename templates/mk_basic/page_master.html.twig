@@ -1,35 +1,18 @@
 <!DOCTYPE html>
 {# *** Make sure our root and current path are defined -------------------- *** #}
 {% if constant('DEF_ROOT') is defined %}
-  {% set root_path = constant('DEF_ROOT') %}
+{%   set root_path = constant('DEF_ROOT') %}
 {% else %}
-  {% set root_path = '' %}
+{%   set root_path = '' %}
 {% endif %}
 {% if constant('CURR_PATH') is defined %}
-  {% set curr_path = constant('CURR_PATH') %}
+{%   set curr_path = constant('CURR_PATH') %}
 {% else %}
-  {% set curr_path = '' %}
+{%   set curr_path = '' %}
 {% endif %}
 {# *** Begin HTML document ------------------------------------------------ *** #}
-{# *** Use 'meta_' prefix to uniquely identify all header template blocks.  *** #}
-{# *** Currently in use:                                                    *** #}
-{# *** - meta_title           : inner HTML of page title                    *** #}
-{# *** - meta_tags            : page specfic meta content                   *** #}
-{# *** - meta_styles          : all style sheets                            *** #}
-{# *** - meta_scripts         : all top of document scripts                 *** #}
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{% block meta_title %}{{page.page_title}}{% endblock meta_title %}</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% block meta_tags %}{% endblock meta_tags %}
-  {% block meta_styles %}
-  <link rel="stylesheet" type="text/css" href="/templates/{{page.template}}/_assets/css/core.min.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all">
-  {% endblock meta_styles %}
-  {% block meta_scripts %}{% endblock meta_scripts %}
-</head>
+{% include root_path ~ '/_assets/includes/page_meta.html.twig' %}
 {# *** Begin body of document --------------------------------------------- *** #}
 {# *** Use 'body_' prefix to uniquely identify visibly template blocks.     *** #}
 {# *** Currently in use:                                                    *** #}
@@ -45,7 +28,7 @@
 {# *** - body_content         : main content block                          *** #}
 {# ***   - body_breadcrumb    : breadcrumpb links block                     *** #}
 {# ***   - body_content_inner : inner content block                         *** #}
-<body id="page-body">
+<body id="page-body" class="{{ page.body_class}}">
 {# For accessibility, the H1 tag is place here, then hidden for view.       *** #}
 {# It is repeated as a display title below to label the top of the content. *** #}
   <h1 id="first-el">{{ page.h1_title | raw }}</h1>
@@ -75,12 +58,23 @@
       {% else %}
       {% include "/_assets/includes/menus/#{page.pagemenu}.html.twig" %}
       {% endif %}
+      {% include root_path ~ '/_assets/includes/widgets/google_translate.html.twig' %}
     </div>
     {% endblock body_menu_left %}
     {% block body_announce_left %}
     <div id="announce-left">
-      {% if (not page['notices'] is defined) or page.leftsidebar == 'standard' %}
-        <p>Notices go here. These will get priority page order in mobile view and should be used sparingly.</p>
+      {% if (not page['announce'] is defined) %}
+        {% if (not page['notices'] is defined) %}
+        <div class="item">
+          <h2>Item header</h2>
+          <p>Notices go here. These will get priority page order in mobile view and should be used sparingly.</p>
+        </div>
+        <div class="item">
+          <p>Header is optional.</p>
+        </div>
+        {% else %}
+          {{ page.notices | raw }}
+        {% endif %}
       {% else %}
       {% include "/_assets/includes/widgets/#{page.announce}.html.twig" %}
       {% endif %}
@@ -96,9 +90,9 @@
   <div id="content-main">
     {% block body_breadcrumb %}
     <div id="breadcrumb-box">
-      <a href="#">Bread</a>
+      <a href="#">{{root_path}}</a>
       <i class="fa fa-angle-double-right"></i>
-      <a href="#">Crumb</a>
+      <a href="#">{{curr_path}}</a>
       <i class="fa fa-angle-double-right"></i>
       <a href="#">Trail</a>
       <i class="fa fa-angle-double-right"></i>
@@ -118,10 +112,8 @@
     {% endblock body_footer %}
   </footer>
   {% block body_scripts %}
-  <script src="/_vendors/html5shiv/src/html5shiv.js"></script>
-  <script type="text/javascript" src="/_vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/templates/mk_basic/_assets/js/library.js"></script>
-  <script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
+    {% include root_path ~ '/_assets/includes/page_scripts.html.twig' %}
   {% endblock body_scripts %}
 </body>
 </html>
+{# --- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- #}

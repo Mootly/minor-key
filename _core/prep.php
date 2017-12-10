@@ -12,8 +12,8 @@
 
   $loader = new Twig_Loader_Filesystem($mko_paths->template);
   $twig   = new Twig_Environment($loader, array(
-    'debug' => true
+//    'debug' => true
   ));
-  $twig->addExtension(new Twig_Extension_Debug());
+//  $twig->addExtension(new Twig_Extension_Debug());
 
 // end include file ----------------------------------------------------------- *

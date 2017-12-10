@@ -36,41 +36,43 @@ $(window).on( 'load', function () {
     for (var i=0; i<h2Len; i++) {
       var mkv_toc_this      = mkv_toc_list.eq(i);
       var mkv_toc_thisText  = mkv_toc_this.text();
-      var subMenuList = '';
-      if (($.inArray(mkv_toc_thisText, mkv_toc_system) == -1) && mkv_toc_thisText) {
-                    // add id attribute to h2 if none                           *
-        if (!(mkv_toc_this.is('[id]'))) { mkv_toc_this.attr('id', 't1-'+mkv_toc_thisText.replace(/ /g,'-')); }
-                    // add link to toc                                          *
-        mkv_toc_menuList += '<li id="jumpto-'+mkv_toc_this.attr('id')+'"><a href="#'+mkv_toc_this.attr('id')+'">'+mkv_toc_thisText+'</a>';
-                    // add links for tier 2 elements                            *
-        if (skipfirst) { skipfirst = false; } else { mkv_toc_this.before(mkv_toc_returnto); }
-        var mkv_toc_flList = mkv_toc_this.nextUntil(mkv_toc_tier1,mkv_toc_tier2);
-        var mkv_toc_flLength = mkv_toc_flList.length;
-        for (var j=0; j<mkv_toc_flLength; j++) {
-                    // this will only catch siblings                            *
-          var mkv_toc_flThis = mkv_toc_flList.eq(j);
-          if (mkv_toc_flThis.hasClass('add-toc')) {
-            if (!(mkv_toc_flThis.is('[id]'))) {
-              mkv_toc_flThis.attr('id', 't2-'+mkv_toc_flThis.text().replace(/ /g,'-'));
+      if (!(mkv_toc_this.hasClass('toc-skip'))) {
+        var subMenuList = '';
+        if (($.inArray(mkv_toc_thisText, mkv_toc_system) == -1) && mkv_toc_thisText) {
+          // add id attribute to h2 if none                           *
+          if (!(mkv_toc_this.is('[id]'))) { mkv_toc_this.attr('id', 't1-'+mkv_toc_thisText.replace(/ /g,'-')); }
+          // add link to toc                                          *
+          mkv_toc_menuList += '<li id="jumpto-'+mkv_toc_this.attr('id')+'"><a href="#'+mkv_toc_this.attr('id')+'">'+mkv_toc_thisText+'</a>';
+          // add links for tier 2 elements                            *
+          if (skipfirst) { skipfirst = false; } else { mkv_toc_this.before(mkv_toc_returnto); }
+          var mkv_toc_flList = mkv_toc_this.nextUntil(mkv_toc_tier1,mkv_toc_tier2);
+          var mkv_toc_flLength = mkv_toc_flList.length;
+          for (var j=0; j<mkv_toc_flLength; j++) {
+            // this will only catch siblings                            *
+            var mkv_toc_flThis = mkv_toc_flList.eq(j);
+            if (mkv_toc_flThis.hasClass('add-toc')) {
+              if (!(mkv_toc_flThis.is('[id]'))) {
+                mkv_toc_flThis.attr('id', 't2-'+mkv_toc_flThis.text().replace(/ /g,'-'));
+              }
+              if (!skipnested) { mkv_toc_flThis.before(mkv_toc_returnto); }
+              subMenuList += '<li><a href="#'+mkv_toc_flThis.attr('id')+'">'+mkv_toc_flThis.text()+'</a></li>';
             }
-            if (!skipnested) { mkv_toc_flThis.before(mkv_toc_returnto); }
-            subMenuList += '<li><a href="#'+mkv_toc_flThis.attr('id')+'">'+mkv_toc_flThis.text()+'</a></li>';
-          }
-                    // this will catch DTs                                      *
-          var mkv_toc_fl2List = mkv_toc_flThis.children('.add-toc');
-          var mkv_toc_fl2Length = mkv_toc_fl2List.length;
-          for (var k=0; k<mkv_toc_fl2Length; k++) {
-            var mkv_toc_fl2This = mkv_toc_fl2List.eq(k);
-            if (!(mkv_toc_fl2This.is('[id]'))) {
-              mkv_toc_fl2This.attr('id', 'dl-'+mkv_toc_fl2This.text().replace(/ /g,'-'));
+            // this will catch DTs                                      *
+            var mkv_toc_fl2List = mkv_toc_flThis.children('.add-toc');
+            var mkv_toc_fl2Length = mkv_toc_fl2List.length;
+            for (var k=0; k<mkv_toc_fl2Length; k++) {
+              var mkv_toc_fl2This = mkv_toc_fl2List.eq(k);
+              if (!(mkv_toc_fl2This.is('[id]'))) {
+                mkv_toc_fl2This.attr('id', 'dl-'+mkv_toc_fl2This.text().replace(/ /g,'-'));
+              }
+              subMenuList += '<li><a href="#'+mkv_toc_fl2This.attr('id')+'">'+mkv_toc_fl2This.text()+'</a></li>';
             }
-            subMenuList += '<li><a href="#'+mkv_toc_fl2This.attr('id')+'">'+mkv_toc_fl2This.text()+'</a></li>';
           }
+          // if submenu, nest in menu                                 *
+          if (subMenuList) { subMenuList = '<ul>'+subMenuList+'</ul>'; }
+          mkv_toc_menuList += subMenuList;
+          mkv_toc_menuList += '</li>';
         }
-                    // if submenu, nest in menu                                 *
-        if (subMenuList) { subMenuList = '<ul>'+subMenuList+'</ul>'; }
-        mkv_toc_menuList += subMenuList;
-        mkv_toc_menuList += '</li>';
       }
     }
                     // write the menu                                           *

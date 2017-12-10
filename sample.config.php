@@ -58,12 +58,6 @@
   $mko_parts->title_struct  = ['page_name','section_name','site_name'];
   $mko_parts->separator     = ' | ';
 # Invoke Twig ----------------------------------------------------------------- *
-  $loader = new Twig_Loader_Filesystem($mko_paths->template);
-  $twig   = new Twig_Environment($loader, array(
-    'cache'       => MK_ROOT.'/templates/mk_basic/cache',
-    'auto_reload' => true,
-  //'debug'       => true,
-  ));
-  // $twig->addExtension(new Twig_Extension_Debug());
+require_once( MK_ROOT.'/_core/prep.php' );
 
 // end config ----------------------------------------------------------------- *
