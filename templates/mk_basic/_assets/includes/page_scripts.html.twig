@@ -1,0 +1,21 @@
+{# === Bottom of page scripts ================================================= #}
+{# *** Uses scripts instance of paths object                               ***  #}
+                    {# Libraries and emulators                                  #}
+<script type="text/javascript" src="/_vendors/jquery/jquery-3.2.1.min.js"></script>
+<script src="/_assets/js/polyfills/Array.indexOf.js"></script>
+<script src="/_vendors/html5shiv/src/html5shiv.js"></script>
+<script type="text/javascript" src="/_vendors/imakethings/waypoints/lib/jquery.waypoints.min.js"></script>
+                    {# Minor Key scripts                                        #}
+<script type="text/javascript" src="/_assets/js/clamshell.js"></script>
+<script type="text/javascript" src="/_assets/js/matchedSelectorSync.js"></script>
+<script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
+                    {# Template scripts                                         #}
+<script type="text/javascript">
+/* template scripts */
+{{ source('/_assets/js/library.js', ignore_missing = true) }}
+{{ source('/_assets/js/title_loc.js', ignore_missing = true) }}
+</script>
+{% for tKey, tPath in scripts %}
+<script type="text/javascript" src="{{tPath|raw}}"></script>
+{% endfor %}
+{# --- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- #}

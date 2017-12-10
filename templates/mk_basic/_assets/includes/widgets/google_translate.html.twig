@@ -1,0 +1,14 @@
+{# === Google translate widget ================================================ #}
+<div id="google-translate-box">
+  <div id="google_translate_menu"></div>
+  <script type="text/javascript">
+    function googleTranslateMenuInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false, multilanguagePage: true}, 'google_translate_menu');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateMenuInit"></script>
+{# Point this to a disclaimer page if you want one.
+  <div id="translation-disclaimer"><a href="{{root_path}}/help/translation-disclaimer.php">Translation Disclaimer</a></div>
+  </div>
+#}
+{# --- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- #}

@@ -1,0 +1,23 @@
+// === 05 Layout - 05 Breadcrumb menu ========================================= ***
+#content-main #breadcrumb-box {
+  padding           : 0.375em 0 0.25em 1.0em;
+  background-color  : $c-base-bg;
+  color             : $c-gray-border;
+  a {
+    font-family     : $f-nav;
+    font-weight     : bold;
+    border          : 0;
+  }
+  a:hover {
+    @include set-blended-border($c-links-text, bottom, 0.85, 1px, solid, $c-footer-bg);
+  }
+}
+// Media rules for small screens ---------------------------------------------- ***
+@media (max-width: $breakDesktop) {
+  #content-main #breadcrumb-box {
+    background-color: $c-footer-bg;
+    @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
+    @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg)
+  }
+}
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
