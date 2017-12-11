@@ -3,7 +3,7 @@
   * Any code specific to prepping the system to return Web pages goes here..
   *
   * @copyright 2017 Mootly Obviate
-  * @package   minor_key
+  * @package   moosepress
   * --------------------------------------------------------------------------- */
 
 # Init Twig ------------------------------------------------------------------- *

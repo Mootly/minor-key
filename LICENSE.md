@@ -1,4 +1,4 @@
-# minor-key license
+# moosepress license
 
 Copyright (c) 2017-2018 Mootly Obviate
 
@@ -10,11 +10,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Third party licenses
 
-Third-party resources except templates in the **minor-key** repo live in the `` folder. Some handlers and configuration files for third-party resources may live in the root directory for the site.
+Third-party resources except templates in the **moosepress** repo live in the `` folder. Some handlers and configuration files for third-party resources may live in the root directory for the site.
 
-All third party resources are subject to the copyrights and licenses for those resources as specified by the developers or owners of those resources. Respective third-party licenses will take precedence over the **minor-key** license for all resources that exist in the  directory. If a third-party resource has no license, locally or remotely, no assumption is made that the **minor-key** license or copyright is in effect for that resource.
+All third party resources are subject to the copyrights and licenses for those resources as specified by the developers or owners of those resources. Respective third-party licenses will take precedence over the **moosepress** license for all resources that exist in the  directory. If a third-party resource has no license, locally or remotely, no assumption is made that the **moosepress** license or copyright is in effect for that resource.
 
-### Third party resources used by minor-key
+### Third party resources used by moosepress
 
 - [Composer](https://github.com/composer/composer/blob/master/LICENSE)
 - [Font Awesome](http://fontawesome.io/license/)
@@ -27,10 +27,10 @@ All third party resources are subject to the copyrights and licenses for those r
 
 ## Template licenses
 
-All templates in  the **minor-key** repo live in the `/templates` folder.
+All templates in  the **moosepress** repo live in the `/templates` folder.
 
-Templates are licensed as per the license provided with that template. Template licenses will take precedence over the **minor-key** license for all resources that exist in a given template. If a template has no license, locally or remotely, no assumption is made that the **minor-key** license or copyright is in effect for that template.
+Templates are licensed as per the license provided with that template. Template licenses will take precedence over the **moosepress** license for all resources that exist in a given template. If a template has no license, locally or remotely, no assumption is made that the **moosepress** license or copyright is in effect for that template.
 
 ## Site content
 
-No assumption is made that the **minor-key** license or copyright is in effect for any content posted to the Web using **minor-key** as a platform. All content posted to the Web using **minor-key** as a platform is licensed and copyrighted by the creators or owners of that content as per their copyright and licesning terms.
+No assumption is made that the **moosepress** license or copyright is in effect for any content posted to the Web using **moosepress** as a platform. All content posted to the Web using **moosepress** as a platform is licensed and copyrighted by the creators or owners of that content as per their copyright and licesning terms.

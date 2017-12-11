@@ -17,7 +17,7 @@
   * @method hash    build_list()
   *   Returns an associative array of paths.
   * @copyright 2017 Mootly Obviate
-  * @package   minor_key
+  * @package   moosepress
   * --------------------------------------------------------------------------- */
   class mkc_paths {
     protected $is_locked;

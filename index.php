@@ -3,7 +3,7 @@
   * Demo homepage.
   *
   * @copyright 2017 Mootly Obviate
-  * @package   minor_key
+  * @package   moosepress
   * --------------------------------------------------------------------------- */
                     # Call config to inti the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );

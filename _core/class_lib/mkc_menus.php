@@ -21,7 +21,7 @@
   * @method array    setlink(string, string, string, array)
   *   Create a new menu item.
   * @copyright 2017 Mootly Obviate
-  * @package   minor_key
+  * @package   moosepress
   * --------------------------------------------------------------------------- */
   class mkc_menus {
     protected $is_locked;

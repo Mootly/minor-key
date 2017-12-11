@@ -11,10 +11,11 @@ sites/*/private
 templates/*
 
 # Add minor-key specific paths back in.
-!templates/mk_*
+!templates/MP_*
+
 # Ignore caches.
 templates/*/cache
-templates/mk_*/cache
+templates/MP_*/cache
 
 # Ignore licensed content in vendors.
 _vendors/fonts/

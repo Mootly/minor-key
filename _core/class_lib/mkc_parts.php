@@ -19,7 +19,7 @@
   * @method array   build_page()
   *   Returns an array of all page components.
   * @copyright 2017 Mootly Obviate
-  * @package   minor_key
+  * @package   moosepress
   * --------------------------------------------------------------------------- */
   class mkc_parts {
     protected $is_locked;

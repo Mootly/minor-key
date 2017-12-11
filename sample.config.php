@@ -5,7 +5,7 @@
   * Set all your system varaibles here.
   *
   * @copyright 2017 Mootly Obviate
-  * @package   minor_key
+  * @package   moosepress
   * --------------------------------------------------------------------------- */
 
   # Constants ----------------------------------------------------------------- *
@@ -15,11 +15,11 @@
                     # This defines the full site root
                     # It is used for object library pathing
                     # e.g., C:/Web/minor-key
-  if (!defined('MK_ROOT')) { define( 'MK_ROOT', $_SERVER['DOCUMENT_ROOT'] ); }
+  if (!defined('MP_ROOT')) { define( 'MP_ROOT', $_SERVER['DOCUMENT_ROOT'] ); }
                     # Core file paths ----------------------------------------- *
                     # This defines the site root as used by templates
                     # This should be blank for standard pathing.
-                    # This should match MK_ROOT for servers that expect
+                    # This should match MP_ROOT for servers that expect
                     # absolute server pathing
                     # For subfolders that are their own subdomains, adjust
                     # accordingly
@@ -30,7 +30,7 @@
   // if (!defined('DEF_CLASSLIB')) {
   //   define(
   //     'DEF_CLASSLIB',
-  //     '/mk_core/class_lib/'
+  //     '/MP_core/class_lib/'
   //   ); }
                     # Specify our template names
   if (!defined('DEF_PREFIX'))  {
@@ -44,7 +44,7 @@
       'basic'
     ); }
 # Initialize the Site --------------------------------------------------------- *
-  require_once( MK_ROOT.'/_core/init.php' );
+  require_once( MP_ROOT.'/_core/init.php' );
 
 # Site specific variables ----------------------------------------------------- *
   $mko_parts->page_path     = dirname($_SERVER['PHP_SELF']);
@@ -58,6 +58,6 @@
   $mko_parts->title_struct  = ['page_name','section_name','site_name'];
   $mko_parts->separator     = ' | ';
 # Invoke Twig ----------------------------------------------------------------- *
-require_once( MK_ROOT.'/_core/prep.php' );
+require_once( MP_ROOT.'/_core/prep.php' );
 
 // end config ----------------------------------------------------------------- *
