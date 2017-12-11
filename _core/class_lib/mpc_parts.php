@@ -21,7 +21,7 @@
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
-  class mkc_parts {
+  class mpc_parts {
     protected $is_locked;
     protected $temp_status;
     protected $component  = array();
@@ -73,11 +73,11 @@
 /**
   * Return the <title> of the page.
   * Defaults if not set:
-  * - $mko_parts->title_struct  = ['page_name','section_name','site_name'];
-  * - $mko_parts->separator     = ' | ';
-  * - $mko_parts->page_name     = ''
-  * - $mko_parts->section_name  = ''
-  * - $mko_parts->site_name     = ''
+  * - $mpo_parts->title_struct  = ['page_name','section_name','site_name'];
+  * - $mpo_parts->separator     = ' | ';
+  * - $mpo_parts->page_name     = ''
+  * - $mpo_parts->section_name  = ''
+  * - $mpo_parts->site_name     = ''
   * If page, section, site name and page title are all blank, an error will be thrown.
   * If a page title has already been specified, ti will not overwrite it.
   * @return array
@@ -132,4 +132,4 @@
       return $this->response;
     }
   }
-// End mkc_parts -------------------------------------------------------------- *
+// End mpc_parts -------------------------------------------------------------- *

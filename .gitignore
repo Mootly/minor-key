@@ -10,7 +10,7 @@ sites/*/files
 sites/*/private
 templates/*
 
-# Add minor-key specific paths back in.
+# Add MoosePress specific paths back in.
 !templates/MP_*
 
 # Ignore caches.

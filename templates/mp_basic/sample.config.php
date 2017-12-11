@@ -14,7 +14,7 @@
                     # Don't touch this ---------------------------------------- *
                     # This defines the full site root
                     # It is used for object library pathing
-                    # e.g., C:/Web/minor-key
+                    # e.g., C:/Web/moosepress
   if (!defined('MP_ROOT')) { define( 'MP_ROOT', $_SERVER['DOCUMENT_ROOT'] ); }
                     # Core file paths ----------------------------------------- *
                     # This defines the site root as used by templates
@@ -36,7 +36,7 @@
   if (!defined('DEF_PREFIX'))  {
     define(
       'DEF_PREFIX',
-      'mk'
+      'mp'
     ); }
   if (!defined('DEF_TEMPLATE')) {
     define(
@@ -47,18 +47,18 @@
   require_once( MP_ROOT.'/_core/init.php' );
 
 # Site specific variables ----------------------------------------------------- *
-  $mko_parts->page_path     = dirname($_SERVER['PHP_SELF']);
+  $mpo_parts->page_path     = dirname($_SERVER['PHP_SELF']);
                     # Values expected by the site or sub-site ----------------- *
-  $mko_parts->site_name     = 'Minor Key';
-  $mko_parts->site_abbr     = '[mk]';
+  $mpo_parts->site_name     = 'MoosePress';
+  $mpo_parts->site_abbr     = '[mp]';
                     # Template formatting rules ------------------------------- *
-  $mkt_full_template        = 'page_master.html.twig';      # for generating complete pages
-  $mkt_header_template      = 'page_header.html.twig';      # header include for flat file content
-  $mkt_footer_template      = 'page_footer.html.twig';      # footer include for flat file content
-  $mko_parts->title_struct  = ['page_name','section_name','site_name'];
-  $mko_parts->separator     = ' | ';
+  $mpt_full_template        = 'page_master.html.twig';      # for generating complete pages
+  $mpt_header_template      = 'page_header.html.twig';      # header include for flat file content
+  $mpt_footer_template      = 'page_footer.html.twig';      # footer include for flat file content
+  $mpo_parts->title_struct  = ['page_name','section_name','site_name'];
+  $mpo_parts->separator     = ' | ';
 # Invoke Twig ----------------------------------------------------------------- *
-  $loader = new Twig_Loader_Filesystem($mko_paths->template);
+  $loader = new Twig_Loader_Filesystem($mpo_paths->template);
   $twig   = new Twig_Environment($loader, array(
     'cache'       => MP_ROOT.'/templates/MP_basic/cache',
     'auto_reload' => true,

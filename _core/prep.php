@@ -10,7 +10,7 @@
 # Comment out the debug lines for production.
 # Debug is used with <pre>{{ dump(var) }}<pre> to dump variables out
 
-  $loader = new Twig_Loader_Filesystem($mko_paths->template);
+  $loader = new Twig_Loader_Filesystem($mpo_paths->template);
   $twig   = new Twig_Environment($loader, array(
 //    'debug' => true
   ));

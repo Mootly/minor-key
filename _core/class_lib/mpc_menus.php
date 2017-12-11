@@ -23,7 +23,7 @@
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
-  class mkc_menus {
+  class mpc_menus {
     protected $is_locked;
     public $menu        = array();
     protected $response = array();
@@ -152,4 +152,4 @@
       return $this->menu[$name]['links'];
     }
   }
-// End mkc_parts -------------------------------------------------------------- *
+// End mpc_parts -------------------------------------------------------------- *

@@ -19,7 +19,7 @@
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
-  class mkc_paths {
+  class mpc_paths {
     protected $is_locked;
     protected $path = array();
                     /**
@@ -65,4 +65,4 @@
     }
 
   }
-// End mkc_paths -------------------------------------------------------------- *
+// End mpc_paths -------------------------------------------------------------- *

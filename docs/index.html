@@ -15,7 +15,7 @@
 <body id="page-body">
 
 <!-- *** BEGIN CONTENT *** *************************************** -->
-<h1>Minor-Key docs</h1>
+<h1>MoosePress docs</h1>
 
 <div id="content-main">
 
@@ -49,30 +49,30 @@
 <!-- *** NAMING CONVENTIONS *** ********************************** -->
 <h3 class="add-toc">Naming conventions</h3>
 
-<p>Minor-Key uses prefixes to designate namespaces reserved for use by core and to designate certain categories of variables. These prefexes are broken out by what they label.</p>
+<p>MoosePress uses prefixes to designate namespaces reserved for use by core and to designate certain categories of variables. These prefexes are broken out by what they label.</p>
 
 <p>Reserved prefixes:</p>
 <dl class="inline-terms">
   <dt id="dfn-prefix-usc">_ <small>(underscore)</small></dt><dd>System folders in root begin with an underscore to float them to the top. These are <b>_assets</b>, <b>_core</b>, and <b>_vendors</b>.</dd>
-  <dt id="dfn-prefix-mk">MP_</dt><dd>General use to clarify files and directories as part of the minor-key code base.</dd>
-  <dt id="dfn-prefix-mkk">MP_</dt><dd>Constants defined by core.</dd>
-  <dt id="dfn-prefix-mkc">mkc_</dt><dd>Class definitions. There may be a fourth letter to specify specific the nature of the class definition.</dd>
-  <dt id="dfn-prefix-mkf">mkf_</dt><dd>Functions. All public core functions are prefixed with <b>mkf_</b></dd>
-  <dt id="dfn-prefix-mko">mko_</dt><dd>Object instances. All instantiated core objects should be prefixed with <b>mko_</b>.</dd>
-  <dt id="dfn-prefix-mkv">mkv_</dt><dd>Variables. Most public core variables are prefixed with <b>mkv_</b>.</dd>
-  <dt id="dfn-prefix-mkv">mkt_</dt><dd>Template settings.</dd>
-  <dt id="dfn-prefix-mkpre">mkpre_</dt><dd>User defined functions to run before a core function of the same name. Not all functions support this.</dd>
-  <dt id="dfn-prefix-mkpost">mkpost_</dt><dd>User defined functions to run after a core function of the same name. Not all functions support this.</dd>
-  <dt id="dfn-prefix-mkpost">DEF_</dt><dd>Site specific default constants. These should only be set in <b>init.php</b> or the template-specific equivalent.</dd>
-  <dt id="dfn-prefix-mkpost">temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
-  <dt id="dfn-prefix-mkpost">t_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
+  <dt id="dfn-prefix-mp">MP_</dt><dd>General use to clarify files and directories as part of the  code base.</dd>
+  <dt id="dfn-prefix-mpk">MP_</dt><dd>Constants defined by core.</dd>
+  <dt id="dfn-prefix-mpc">mpc_</dt><dd>Class definitions. There may be a fourth letter to specify specific the nature of the class definition.</dd>
+  <dt id="dfn-prefix-mpf">mpf_</dt><dd>Functions. All public core functions are prefixed with <b>mkf_</b></dd>
+  <dt id="dfn-prefix-mpo">mpo_</dt><dd>Object instances. All instantiated core objects should be prefixed with <b>mpo_</b>.</dd>
+  <dt id="dfn-prefix-mpv">mpv_</dt><dd>Variables. Most public core variables are prefixed with <b>mpv_</b>.</dd>
+  <dt id="dfn-prefix-mpv">mpt_</dt><dd>Template settings.</dd>
+  <dt id="dfn-prefix-mppre">mppre_</dt><dd>User defined functions to run before a core function of the same name. Not all functions support this.</dd>
+  <dt id="dfn-prefix-mppost">mppost_</dt><dd>User defined functions to run after a core function of the same name. Not all functions support this.</dd>
+  <dt id="dfn-prefix-mppost">DEF_</dt><dd>Site specific default constants. These should only be set in <b>init.php</b> or the template-specific equivalent.</dd>
+  <dt id="dfn-prefix-mppost">temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
+  <dt id="dfn-prefix-mppost">t_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
 </dl>
 
 <!-- *** COMMENT STLYES *** ************************************** -->
 
 <h3 class="add-toc">Commenting the code</h3>
 
-<p>Minor-Key uses multiple types of commments, depending on function:</p>
+<p>MoosePress uses multiple types of commments, depending on function:</p>
 <dl class="inline-terms">
   <dt id="dfn-comments-block">simple block</dt>
   <dd>
@@ -104,7 +104,7 @@
 <p>Minor Key uses objects for tracking various page components and some of the site settings. This is to make the code easier to use and to allow for automated validation of various elements.</p>
 
 <!-- *** menu object *** *************************************** -->
-<h3 class="add-toc">mkc_menus</h3>
+<h3 class="add-toc">mpc_menus</h3>
 
 <p>The <cite>menu</cite> object stores the menu sets for a page.</p>
 
@@ -133,7 +133,7 @@
 
 <dt>Constructor</dt>
   <dd>
-    <pre>mkc_menus( [bool $is_locked=true] );</pre>
+    <pre>mpc_menus( [bool $is_locked=true] );</pre>
 
     <p>Use <code>$is_locked</code> to specify existing values as immutable. This allows later scripts to add new menus and add new links to menus, but not change the attributes of existing links or menus.</p>
 
@@ -143,7 +143,7 @@
   <dd>
     <p>If a menu and its menu set is not locked, this method can be used to reset a menu.</p>
 
-    <pre>mko_menus->setmenu( str $name  [, array $settings] );</pre>
+    <pre>mpo_menus->setmenu( str $name  [, array $settings] );</pre>
 
     <p>Settings:</p>
 
@@ -173,29 +173,29 @@
   </dd>
 <dt>Create or edit a link</dt>
   <dd>
-    <pre>mko_menus->setlink( str $menu, string $text, str $url [, array $settings] );</pre>
+    <pre>mpo_menus->setlink( str $menu, string $text, str $url [, array $settings] );</pre>
   </dd>
 <dt>Return a menu as an HTML list</dt>
   <dd>
-    <pre>mko_menus->getmenu( str $name [, array $settings ] );</pre>
+    <pre>mpo_menus->getmenu( str $name [, array $settings ] );</pre>
   </dd>
 <dt>Return a menu as an array</dt>
   <dd>
-    <pre>mko_menus->getlist( str $name [, array $settings ] );</pre>
+    <pre>mpo_menus->getlist( str $name [, array $settings ] );</pre>
   </dd>
 <dt>Return the properties of a menu</dt>
   <dd>
-    <pre>mko_menus->getmenuprop( str $menu, str $property );</pre>
+    <pre>mpo_menus->getmenuprop( str $menu, str $property );</pre>
   </dd>
 <dt>Return the properties of a link</dt>
   <dd>
-    <pre>mko_menus->getlink( str $menu, str $text [, array $settings] );</pre>
+    <pre>mpo_menus->getlink( str $menu, str $text [, array $settings] );</pre>
   </dd>
 </dl>
 
 
 <!-- *** parts object *** **************************************** -->
-<h3 class="add-toc">mkc_parts</h3>
+<h3 class="add-toc">mpc_parts</h3>
 
 <p>The <cite>parts</cite> object contains information fields for a page as well as a content blob.</p>
 
@@ -211,7 +211,7 @@
 
   <dt>Constructor</dt>
   <dd>
-    <pre>mkc_parts( [bool $is_locked=false] );</pre>
+    <pre>mpc_parts( [bool $is_locked=false] );</pre>
 
     <p>On instantiation, can be passed boolean to determine whether to protect existing values.</p>
   </dd>
@@ -254,7 +254,7 @@
 </dl>
 
 <!-- *** paths object *** **************************************** -->
-<h3 class="add-toc">mkc_paths</h3>
+<h3 class="add-toc">mpc_paths</h3>
 
 <p>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies</p>
 

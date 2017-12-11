@@ -11,14 +11,14 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT VARIABLES BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mko_parts->page_name     = 'Hello!';
-$mko_parts->h1_title      = 'Element Test Page';
-$mko_parts->link_title    = 'Home';
-$mko_parts->page_name     = $mko_parts->h1_title;
-$mko_parts->section_name  = 'Home';
-$mko_parts->accessibility = 'standard';
-$mko_parts->body_class    = 'draft';
-// $mko_parts->pagemenu = 'docs.general';
+$mpo_parts->page_name     = 'Hello!';
+$mpo_parts->h1_title      = 'Element Test Page';
+$mpo_parts->link_title    = 'Home';
+$mpo_parts->page_name     = $mpo_parts->h1_title;
+$mpo_parts->section_name  = 'Home';
+$mpo_parts->accessibility = 'standard';
+$mpo_parts->body_class    = 'draft';
+// $mpo_parts->pagemenu = 'docs.general';
 
                     # The main content body of the page is developed here.      *
                     # You can iterate across the two ob_ functions to create    *
@@ -75,9 +75,9 @@ A <b>bold</b> and <em>emphatic</em> thing.
 <p>This means we can create static content for an HTML page in a file then invoke the template to wrap that content. The content file is an easy to read PHP file that only requires the content creator to assign values to a few variables and fill in the content between the proverbial lines.</p>
 <?php
                     # ↑↑↑ EDIT CONTENT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ ***
-$mko_parts->accessibility = 'standard';
-$mko_parts->main_content = ob_get_clean();
+$mpo_parts->accessibility = 'standard';
+$mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
-$page_elements = $mko_parts->build_page();
-echo ($twig->render($mkt_full_template, array('page'=>$page_elements['content'])));
+$page_elements = $mpo_parts->build_page();
+echo ($twig->render($mpt_full_template, array('page'=>$page_elements['content'])));
 ?>
