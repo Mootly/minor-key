@@ -5,14 +5,14 @@
  *   Text field   | fieldID     | matchedText                                   *
  *   Selector     | fieldIDSel  | matchedSel                                    *
  * ---------------------------------------------------------------------------- */
-                    // Selector sets text field                                 *
+                    // Selector sets text field                                 ***
 $('select.matchedSel').change(function () {
   var tVal = this.value;
   var tID  = '#'+$(this).attr('id').slice(0,-3);
   if (tVal == 'invalid') { $(tID).val('') }
   else { $(tID).val(tVal); }
 });
-                    // Text field sets selector                                 *
+                    // Text field sets selector                                 ***
 $('input.matchedText').change(function () {
   var tVal = this.value.trim();
   var tID  = '#'+$(this).attr('id')+'Sel';
@@ -26,3 +26,4 @@ $('input.matchedText').change(function () {
 //  procError('form',$(this).attr('id'),'Please enter a valid value for this field.');
   }
 });
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

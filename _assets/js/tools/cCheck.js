@@ -7,3 +7,4 @@ function cCheck(someData) {
 //  console.dir(formJSON);
 }
 // cCheck(formData);
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

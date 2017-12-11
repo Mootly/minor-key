@@ -1,4 +1,4 @@
-/** -- Clamshell creator ------------------------------------------------------ *
+/* --- Clamshell creator ------------------------------------------------------ *
  * Clamshell / accordion fold any:
  *  - DL with a class of 'clamshell-list'
  *  - DL with a class of 'example-box'
@@ -22,20 +22,20 @@ var icon_list_all   = 'fa-list';
 var icon_is_closed  = 'fa-toggle-right';
 var icon_is_open    = 'fa-toggle-down';
 var hidden_class    = 'hidden';
-                    // Determine what we are collapsing.                        *
+                    // Determine what we are collapsing.                        ***
 var mpv_clam_class  = 'dl.clamshell, dl.example-box, div.clamshell';
 var mpv_clam_list   = $(mpv_clam_class);
 var mpv_clam_fold   = 'dd, .clamfold';
 var mpv_clam_head   = 'dt';
-                    // If using DIVs, find out what we are using for headings   *
+                    // If using DIVs, find out what we are using for headings   ***
 var mpv_clam_block  = $('div.clamshell');
 if (mpv_clam_block.length > 0) {
   var mpv_tvar      = mpv_clam_block.attr('class').indexOf('use-');
       mpv_clam_head = mpv_clam_head+', '
       + mpv_clam_block.attr('class').substring(mpv_tvar+4, mpv_tvar+6);
 }
-// EVENT Actions - user and synthetic ----------------------------------------- *
-                    //  Open target fold                                        *
+/* --- EVENT Actions - user and synthetic ------------------------------------- */
+                    //  Open target fold                                        ***
 $(window).on('hashchange', function(e){
   if (($(mpv_clam_list)) && (location.hash!='')) {
     var mpv_clam_target = location.hash;
@@ -52,7 +52,7 @@ $(window).on('hashchange', function(e){
     }
   }
 });
-                    // Open fold on direct select                               *
+                    // Open fold on direct select                               ***
 $(mpv_clam_list).on('click', 'a.more-link', function(event) {
   var tTogType      = ($(this).find('i span').text() == '[show details]') ? true : false;
   $(this).find('i span').text(tTogType ? '[hide details]' : '[show details]');
@@ -60,7 +60,7 @@ $(mpv_clam_list).on('click', 'a.more-link', function(event) {
   $(event.target).closest(mpv_clam_head).next(mpv_clam_fold).toggleClass(hidden_class);
   return false;
 });
-                    // Open all folds on direct select                          *
+                    // Open all folds on direct select                          ***
 $(mpv_clam_list).on('click', 'a.all-link', function(event) {
   var tTogType = ($(this).find('span').text() == 'Show All') ? true : false;
   if (tTogType) {
@@ -73,9 +73,9 @@ $(mpv_clam_list).on('click', 'a.all-link', function(event) {
   $(event.target).closest(mpv_clam_class).children(mpv_clam_head).find('a.more-link i').attr('class', tTogType ? 'fa '+icon_is_open : 'fa '+icon_is_closed);
   return false;
 });
-// ONLOAD Actions ------------------------------------------------------------- *
-                    // Add fold toggle links.                                   *
-                    // Generate IDs if none provided (loops append counters).   *
+/* --- ONLOAD Actions --------------------------------------------------------- */
+                    // Add fold toggle links.                                   ***
+                    // Generate IDs if none provided (loops append counters).   ***
 mpv_clam_list.each(function (index1) {
   $(this).children('dt, '+mpv_clam_head).each(function (index2) {
     if (!($(this).is('[id]'))) {
@@ -86,7 +86,7 @@ mpv_clam_list.each(function (index1) {
     + icon_is_closed+'"><span>[show details]</span></i></a></span>');
   });
 });
-//                  // Add list headers and hide/show all links                 *
+                    // Add list headers and hide/show all links                 ***
 $(mpv_clam_list).each(function () {
   if ($(this).children(mpv_clam_head).length > 1) {
     if ($(this).children(mpv_clam_head).first().is('dt')) {
@@ -103,7 +103,6 @@ $(mpv_clam_list).each(function () {
   }
   $(this).children(mpv_clam_fold).addClass(hidden_class);
 });
-                    // Open list item on direct link to it in URL
+                    // Open list item on direct link to it in URL               ***
 if (($(mpv_clam_list)) && (location.hash!='')) { $(window).trigger('hashchange'); }
-
 /*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

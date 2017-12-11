@@ -1,4 +1,4 @@
-/** -- Jump link navbar tab toggle on scroll ---------------------------------- *
+/* --- Jump link navbar tab toggle on scroll ---------------------------------- *
  * Set the current highlight to the correct tab in a multipart page
  * Classes:
  * - nav bar  - .navBar_item

@@ -1,4 +1,4 @@
-# moosepress
+# MoosePress
 
 The core of a small, bespoke CMS for the work that I do.
 
