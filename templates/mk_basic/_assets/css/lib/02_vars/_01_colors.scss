@@ -64,10 +64,11 @@ $c-base-bg:                             $c-offwhite;
 $c-inverse-text:                        $c-offwhite;
 $c-inverse-bg:                          $c-base-black;
 $c-banner-text:                         $c-offwhite;
-$c-banner-bg:                           $c-base-dkpurple;
+$c-banner-bg:                           $c-base-flatpurple;
 $c-footer-text:                         $c-offwhite;
 $c-footer-bg:                           $c-base-dkpurple;
 $c-suvbanner-bg:                        $c-base-medpurple;
+$c-selected-bg:                         $c-base-medpurple;
                     // Boxes                                                    ***
 $c-box-text:                            $c-base-black;
 $c-box-bg:                              $c-base-purplewash;
@@ -85,10 +86,11 @@ $c-links-text:                          $c-base-blue;
 $c-hover-text:                          $c-base-blue;
 $c-visited-text:                        $c-base-blue;
 $c-h1-text          : $c-base-slate;
-$c-h2-text          : mix($c-base-slate, $c-base-black, 80);
-$c-h3-text          : mix($c-base-slate, $c-base-black, 60);
-$c-h4-text          : mix($c-base-slate, $c-base-black, 40);
-$c-h5-text          : mix($c-base-slate, $c-base-black, 20);
+$c-h2-text          : mix($c-base-slate, $c-base-black, 95);
+$c-h3-text          : mix($c-base-slate, $c-base-black, 90);
+$c-h4-text          : mix($c-base-slate, $c-base-black, 85);
+$c-h5-text          : mix($c-base-slate, $c-base-black, 80);
+$c-h6-text          : mix($c-base-slate, $c-base-black, 75);
 
 // Callouts ******************************************************************* ***
 $c-hilite-yellow:                       rgba($c-yellow,0.8);

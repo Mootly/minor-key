@@ -70,6 +70,8 @@ Efficient fallaciousness.
 A <b>bold</b> and <em>emphatic</em> thing.
 </pre>
 
+<p>Be <b>bold</b> and <em>emphatic</em>.</p>
+
 <p>This means we can create static content for an HTML page in a file then invoke the template to wrap that content. The content file is an easy to read PHP file that only requires the content creator to assign values to a few variables and fill in the content between the proverbial lines.</p>
 <?php
                     # ↑↑↑ EDIT CONTENT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ ***

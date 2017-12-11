@@ -32,7 +32,6 @@
 // Each defaults to doing nothing but repeating the provided color.             ***
 
                     // Blended color rules for text                             ***
-                    // Variable sequence based on things most likely defaulted  ***
                     // $mxcolor:        border color, only required value       ***
                     // $mxalpha:        0.0 - 1.0                               ***
                     // $mxbgcolor:      background color to create mix          ***
@@ -43,7 +42,6 @@
   color             : rgba($mxcolor, $mxalpha);
 }
                     // Blended color rules for backgrounds                      ***
-                    // Variable sequence based on things most likely defaulted  ***
                     // $mxcolor:        border color, only required value       ***
                     // $mxalpha:        0.0 - 1.0                               ***
                     // $mxbgcolor:      background color to create mix          ***
@@ -60,7 +58,6 @@
 }
                     // Blended color rule for borders                           ***
                     // Default is       border: 1px solid color                 ***
-                    // Variable sequence based on things most likely defaulted  ***
                     // $mxcolor:        border color, only required value       ***
                     // $mxside:         all, left, right, top, bottom           ***
                     // $mxalpha:        0.0 - 1.0                               ***
@@ -77,5 +74,41 @@
     border-#{$mxside}: $mxsize $mxtype mix($mxcolor, $mxbg-color, $mxweight);
     @if $mxalpha != 1.0 { border-#{$mxside}: $mxsize $mxtype rgba($mxcolor, $mxalpha); }
   }
+}
+                    // Blended color rules for text drop shadows                ***
+                    // $mxxpos:         horizontal offset of the shadow         ***
+                    // $mxypos:         vertical offset of the shadow           ***
+                    // $mxcolor:        text color or starter color             ***
+                    // $mxalpha:        0.0 - 1.0                               ***
+                    // $mxbgcolor:      background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+                    // $mxblur:         blur radius of the shadow               ***
+@mixin set-blended-text-shadow($mxxpos, $mxypos, $mxcolor, $mxalpha: 1.0, $mxbg-color: $mxcolor, $mxblur: 0) {
+  $mxweight         : 100*$mxalpha;
+  text-shadow       : $mxxpos $mxypos $mxblur mix($mxcolor, $mxbg-color, $mxweight);
+  text-shadow       : $mxxpos $mxypos $mxblur rgba($mxcolor, $mxalpha);
+}
+                    // Same as above without RBGA, useful to overcome nesting   ***
+@mixin set-blended-text-shadow-simple($mxxpos, $mxypos, $mxcolor, $mxalpha: 1.0, $mxbg-color: $mxcolor, $mxblur: 0) {
+$mxweight           : 100*$mxalpha;
+text-shadow         : $mxxpos  $mxypos $mxblur mix($mxcolor, $mxbg-color, $mxweight);
+}
+                    // Blended color rules for backgrounds                      ***
+                    // $mxxpos:         horizontal offset of the shadow         ***
+                    // $mxypos:         vertical offset of the shadow           ***
+                    // $mxcolor:        base color for shadow                   ***
+                    // $mxalpha:        0.0 - 1.0                               ***
+                    // $mxbgcolor:      background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+                    // $mxblur:         blur radius of the shadow               ***
+@mixin set-blended-box-shadow($mxxpos, $mxypos, $mxcolor, $mxalpha: 1.0, $mxbg-color: $mxcolor, $mxblur: 0) {
+  $mxweight         : 100*$mxalpha;
+  box-shadow        : $mxxpos $mxypos $mxblur mix($mxcolor, $mxbg-color, $mxweight);
+  box-shadow        : $mxxpos $mxypos $mxblur rgba($mxcolor, $mxalpha);
+}
+                    // Same as above without RBGA, useful to overcome nesting   ***
+@mixin set-blended-box-shadow-simple($mxxpos, $mxypos, $mxcolor, $mxalpha: 1.0, $mxbg-color: $mxcolor, $mxblur: 0) {
+  $mxweight         : 100*$mxalpha;
+  box-shadow        : $mxxpos  $mxypos $mxblur mix($mxcolor, $mxbg-color, $mxweight);
 }
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

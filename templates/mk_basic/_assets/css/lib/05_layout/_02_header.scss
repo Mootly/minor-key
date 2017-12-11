@@ -1,0 +1,202 @@
+// === 05 Layout - 02 Page Header ============================================= ***
+// *** The page header ******************************************************** ***
+#page-header {
+  position          : relative;
+  z-index           : 30;
+  clear             : both;
+  margin            : 0;
+  background-color  : $c-banner-bg;
+  color             : $c-banner-text;
+  font-family       : $f-nav;
+  font-weight       : bold;
+  letter-spacing    : 0.05em;
+
+  #header-title {
+    padding         : 0.125em 1.0em 0.125em 1.0em;
+    font-family     : $f-title;
+    font-size       : $hb-size;
+  }
+  #navigation-search {
+    @media (min-width: $breakTablet) { display: block !important; }
+    position        : relative;
+    box-sizing      : border-box;
+    width           : 100%;
+    border-bottom   : 0.125em solid  $c-banner-bg;
+    padding         : 0;
+    background-color: $c-white;
+    text-align      : left;
+    font-size       : 1.125em;
+    margin          : 0.125em 0.125em 0 0;
+    button,
+    input {
+      box-sizing    : border-box;
+      margin        : 0;
+      border        : 0;
+      padding       : 0.25em;
+      color         : $c-gray-dark;
+      font-family   : $f-default;
+      font-weight   : normal;
+      text-align    : left;
+    }
+    input {
+      height        : 2.1825em;
+      width         : 85%;
+      margin-left   : 5.0em;
+      padding       : 0.25em 1.0em;
+      background-color: $c-white;
+      border: 0;
+    }
+    button {
+      @media (min-width: $breakTablet) {
+        height       : 2.1675em;
+        position    : absolute;
+        top         : 0;
+        left        : 0;
+      }
+      box-sizing    : border-box;
+      background-color: $c-banner-bg;
+      border-right  : 2px solid $c-banner-bg;
+      padding       : 0.1875em 1.75em 0.1875em 1.75em;
+      color         : $c-dark-box-text;
+      font-weight   : bold;
+      font-size     : 1.01em;
+      &:hover {
+        background-color : $c-selected-bg;
+      }
+    }
+  }
+  #header-nav {
+    clear           : both;
+    ul {
+      list-style-type: none;
+      padding       : 0;
+      margin        : 0 0 0 1.25em;
+      li {
+        display     : inline;
+        line-height : 1.25em;
+        a {
+          display   : inline-block;
+          box-sizing: border-box;
+          padding   : 0.5em 0.75em;
+          font-size : 0.875em;
+        }
+        a:hover { text-decoration: underline; }
+      }
+    }
+  }
+  a,
+  a:active,
+  a:hover,
+  a:link,
+  a:visited {
+    text-decoration : none;
+    color           : $c-banner-text;
+  }
+  #google-translate-box {
+    float: right;
+    padding: 0 1.0em 0.25em 1.0em;
+    a,
+    a:active,
+    a:hover,
+    a:link,
+    a:visited {
+      text-decoration : none;
+      color           : $c-base-text;
+    }
+  }
+}
+
+// *** The page header - MOBILE VIEW ****************************************** ***
+@media (max-width: $breakTablet) {
+  div.mobile-only { display: block; }
+  span.mobile-only { display: inline; }
+  #page-header {
+    .fa { display: inline; display: inline-block; }
+    #header-title {
+      margin   : 0 0 0 6.0em;
+      padding       : 0 0.5em 0 1.375em;
+      text-align: right;
+      font-size      : px2ems(18);
+
+    }
+    #header-nav-toggle {
+      display       : block;
+      position      : absolute;
+      top           : 0;
+      left          : 0.25em;
+      margin        : 0;
+      padding       : 0;
+      font-size     : px2ems(32);
+      text-decoration: none;
+      color         : $c-inverse-text;
+      span { display: none; }
+      a {
+        display     : inline-block;
+        padding     : 0.375em 0.5em 0.5em 0.25em;
+        @include set-blended-border($c-base-bg, right, 0.75, 1px, solid, $c-banner-bg);
+      }
+    }
+    #header-nav {
+      clear         : both;
+      margin-top    : 0;
+    }
+    #header-nav #header-nav-body {
+      box-sizing    : border-box;
+      margin-top    : 0;
+      &.mobile-hidden {
+        position: absolute;
+        top: 0; left:-1000em;
+      }
+      ul#header-nav-list {
+        box-sizing  : border-box;
+        margin-top  : 0;
+        margin-left : 0;
+        border-top  : 0.125em solid $c-base-bg;
+        background-color: $c-banner-bg;
+      }
+      li {
+        display     : block;
+        font-size   : 1.5em;
+        a {
+          width     : 100%;
+          border-bottom: 1px solid $c-ltgray-border;
+          padding-left: 2.0em;
+         }
+        a:hover, a:focus { text-decoration: none; background-color: $c-selected-bg; }
+      }
+    }
+    #navigation-search  {
+      box-sizing    : border-box;
+      margin        : 0;
+      font-size     : 1.5em;
+      &.mobile-hidden {
+        position    : absolute;
+        top: 0; left: -1000em;
+      }
+      input {
+        width       : 80%;
+        margin-right: 4.0em;
+        margin-left : 0;
+      }
+      button {
+        position    : absolute;
+        top         : 0;
+        right       : 0;
+        border-left : 2px solid $c-box-bg;
+        border-right: 0;
+        font-size   : 1.0em;
+        &:hover {
+          background-color : $c-box-bg;
+          color       : $c-base-text;
+        }
+      }
+    }
+    #google-translate-box {
+      float: none;
+      text-align: right;
+      padding-right: 0.5em
+    }
+  }
+}
+
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

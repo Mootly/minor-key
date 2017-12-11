@@ -15,7 +15,6 @@
 // Media rules for small screens ---------------------------------------------- ***
 @media (max-width: $breakDesktop) {
   #content-main #breadcrumb-box {
-    background-color: $c-footer-bg;
     @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
     @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg)
   }

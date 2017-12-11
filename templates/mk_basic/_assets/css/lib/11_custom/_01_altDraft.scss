@@ -1,6 +1,12 @@
 // 11 Custome - 01 Alt style overrides for body class 'draft' ================= ***
 body.draft {
   font-family: $f-draft-default;
+  #page-header {
+    font-family     : $f-draft-nav;
+    #header-title {
+      font-family     : $f-draft-title;
+    }
+  }
   #title-box {
     h1, h2.page-title { font-family: $f-draft-title; }
   }

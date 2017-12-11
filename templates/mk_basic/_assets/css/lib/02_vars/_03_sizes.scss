@@ -13,11 +13,15 @@ $f-size-default     : px2ems(16);
                     // but adjusted for whole pixels steps                      ***
                     // assuming a 16px base font                                ***
 $h1-size            : px2ems(40);
+$h1-mob-size        : px2ems(32);
 $h2-size            : px2ems(32);
 $h3-size            : px2ems(28);
 $h4-size            : px2ems(22);
 $h5-size            : px2ems(19);
 $h6-size            : px2ems(17);
+$hb-size            : px2ems(24);
+$hb-mob-size        : px2ems(18);
+
                     // line heights                                             ***
 $ht-line-compact    : px2ems(17);
 $ht-line-default    : px2ems(22);
