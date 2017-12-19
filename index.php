@@ -44,6 +44,7 @@ ob_start();
 
 <h1>Inline H1</h1>
 <p>Following paragraph.</p>
+<p>Following paragraph.</p>
 
 <h2 class="toc-skip">Inline H2</h2>
 <p>Following paragraph.</p>
@@ -60,8 +61,9 @@ ob_start();
 <h6>Inline H6</h6>
 <p>Following paragraph.</p>
 
-
-<p>The most common use of the <code>ob_</code> (output buffer) control functions is to defer buffer output until a specific time. In this case, this allows the write proces to be delayed until the content is passed to the template, allowing the page to be fully generated before writing anything to output.</p>
+<hr />
+<h2>Code</h2>
+<hr />
 
 <pre>
 A test block.
@@ -69,6 +71,8 @@ To test blockiness.
 Efficient fallaciousness.
 A <b>bold</b> and <em>emphatic</em> thing.
 </pre>
+
+<p>The most common use of the <code>ob_</code> (output buffer) control functions is to defer buffer output until a specific time. In this case, this allows the write proces to be delayed until the content is passed to the template, allowing the page to be fully generated before writing anything to output.</p>
 
 <p>Be <b>bold</b> and <em>emphatic</em>.</p>
 
