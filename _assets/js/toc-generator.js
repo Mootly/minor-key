@@ -9,7 +9,7 @@
  * - If a listed element does not have an ID, it assigns one.
  * Assumptions:
  * - Only uses IDs and ignores embedded anchors.
- * - Only checks for targets in div#content-main.
+ * - Only checks for targets in specified divs by ID.
  * - Tier 2 elements are siblings of tier 1 elements.
  * - If DL is listed for tier 2, targets child DT elements.
  * ---------------------------------------------------------------------------- */
@@ -20,6 +20,8 @@ $(window).on( 'load', function () {
     var mpv_toc_tier1     = 'h2';
                     // To catch DTs, specify parent DL                          ***
     var mpv_toc_tier2     = 'h3, dl';
+                    // Comma separated list of content section IDs to use       ***
+    var mpv_toc_container = '#content-main, #right_content';
                     // Varaibles to generate links back to the top of the page  ***
                     // If no body ID, go to TOC.                                ***
                     // skipfirst  == true ? skip link on first heading          ***
@@ -31,7 +33,7 @@ $(window).on( 'load', function () {
                     // don't include headings with this text in them            ***
     var mpv_toc_system = ['Status', 'Warning', 'Quick Links', 'Contents', 'Internal Notes'];
                     // generate an array of all H2 headings                     ***
-    var mpv_toc_list = $('#content-main').find(mpv_toc_tier1);
+    var mpv_toc_list = $(mpv_toc_container).find(mpv_toc_tier1);
     var h2Len = mpv_toc_list.length;
     for (var i=0; i<h2Len; i++) {
       var mpv_toc_this      = mpv_toc_list.eq(i);
