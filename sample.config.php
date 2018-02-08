@@ -15,7 +15,11 @@
                     # This defines the full site root
                     # It is used for object library pathing
                     # e.g., C:/Web/moosepress
-  if (!defined('MP_ROOT')) { define( 'MP_ROOT', $_SERVER['DOCUMENT_ROOT'] ); }
+  if (!defined('MP_ROOT')) {
+    define(
+      'MP_ROOT',
+      $_SERVER['DOCUMENT_ROOT']
+    ); }
                     # Core file paths ----------------------------------------- *
                     # This defines the site root as used by templates
                     # This should be blank for standard pathing.
@@ -23,16 +27,19 @@
                     # absolute server pathing
                     # For subfolders that are their own subdomains, adjust
                     # accordingly
-  if (!defined('DEF_ROOT')) define( 'DEF_ROOT', '');
-  if (!defined('CURR_PATH')) define( 'CURR_PATH', dirname($_SERVER['PHP_SELF']));
-                    # If the templates being used have a class library,
-                    # specify it here.
-  // if (!defined('DEF_CLASSLIB')) {
-  //   define(
-  //     'DEF_CLASSLIB',
-  //     '/MP_core/class_lib/'
-  //   ); }
-                    # Specify our template names
+  if (!defined('DEF_ROOT')) {
+    define(
+      'DEF_ROOT',
+      ''
+    ); }
+  if (!defined('CURR_PATH')) {
+    define(
+      'CURR_PATH',
+      dirname($_SERVER['PHP_SELF'])
+    );}
+                    # Specify our template name
+                    # Template names have the following format:
+                    # {prefix}_{name}
   if (!defined('DEF_PREFIX'))  {
     define(
       'DEF_PREFIX',
@@ -43,6 +50,13 @@
       'DEF_TEMPLATE',
       'basic'
     ); }
+                    # If the templates being used have a class library,
+                    # specify it here.
+// if (!defined('DEF_CLASSLIB')) {
+//   define(
+//     'DEF_CLASSLIB',
+//     '/MP_core/class_lib/'
+//   ); }
 # Initialize the Site --------------------------------------------------------- *
   require_once( MP_ROOT.'/_core/init.php' );
 

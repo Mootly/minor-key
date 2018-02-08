@@ -2,7 +2,7 @@
 /**
   * This is the init script for the Minor Key application.
   *
-  * @copyright 2017 Mootly Obviate
+  * @copyright 2017-2018 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
 
@@ -50,6 +50,7 @@
   } else {
     $mpo_paths->tp_classlib = MP_ROOT . '/templates/' . $temp_string .'/classlib';
   }
+                    # init autoloader
   spl_autoload_register(function ($classname) {
     if(preg_match('/^mpc_/', $classname)) {
       global $mpo_paths;
