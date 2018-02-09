@@ -89,6 +89,7 @@
       if ($this->component['page_title'] == '') {
         $this->title_struct  = $this->title_struct ?? ['page_name','section_name','site_name'];
         $this->separator     = $this->separator    ??  ' | ';
+                    // make sure these exist so defaults don't blow up
         $this->component['page_name']     = $this->component['page_name']     ??  '';
         $this->component['section_name']  = $this->component['section_name']  ??  '';
         $this->component['site_name']     = $this->component['site_name']     ??  '';

@@ -54,18 +54,19 @@
 <p>Reserved prefixes:</p>
 <dl class="inline-terms">
   <dt id="dfn-prefix-usc">_ <small>(underscore)</small></dt><dd>System folders in root begin with an underscore to float them to the top. These are <b>_assets</b>, <b>_core</b>, and <b>_vendors</b>.</dd>
-  <dt id="dfn-prefix-mp">MP_</dt><dd>General use to clarify files and directories as part of the  code base.</dd>
+  <dt id="dfn-prefix-mppost">DEF_</dt><dd>Site specific default constants. These should only be set in <b>init.php</b> or the template-specific equivalent.</dd>
+  <dt id="dfn-prefix-mp">mp_</dt><dd>General use to clarify files and directories as part of the  code base.</dd>
   <dt id="dfn-prefix-mpk">MP_</dt><dd>Constants defined by core.</dd>
   <dt id="dfn-prefix-mpc">mpc_</dt><dd>Class definitions. There may be a fourth letter to specify specific the nature of the class definition.</dd>
   <dt id="dfn-prefix-mpf">mpf_</dt><dd>Functions. All public core functions are prefixed with <b>mkf_</b></dd>
   <dt id="dfn-prefix-mpo">mpo_</dt><dd>Object instances. All instantiated core objects should be prefixed with <b>mpo_</b>.</dd>
-  <dt id="dfn-prefix-mpv">mpv_</dt><dd>Variables. Most public core variables are prefixed with <b>mpv_</b>.</dd>
   <dt id="dfn-prefix-mpv">mpt_</dt><dd>Template settings.</dd>
+  <dt id="dfn-prefix-mpv">mpv_</dt><dd>Variables. Most public core variables are prefixed with <b>mpv_</b>.</dd>
   <dt id="dfn-prefix-mppre">mppre_</dt><dd>User defined functions to run before a core function of the same name. Not all functions support this.</dd>
   <dt id="dfn-prefix-mppost">mppost_</dt><dd>User defined functions to run after a core function of the same name. Not all functions support this.</dd>
-  <dt id="dfn-prefix-mppost">DEF_</dt><dd>Site specific default constants. These should only be set in <b>init.php</b> or the template-specific equivalent.</dd>
-  <dt id="dfn-prefix-mppost">temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
-  <dt id="dfn-prefix-mppost">t_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
+  <dt id="dfn-prefix-mppost">t_, temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
+  <dt id="dfn-prefix-mppost">tp_</dt><dd>Overrides from the current template.</dd>
+  <dt id="dfn-prefix-mppost">tpo_</dt><dd>Object instances. All instantiated objects from a template library should be prefixed with <b>mpo_</b>.</dd>
 </dl>
 
 <!-- *** COMMENT STLYES *** ************************************** -->
@@ -89,7 +90,7 @@
   <dd>
     Where possible, inline comments beign with a hash mark: <code>#</code>. This is to differentiate it from commented-out code.
     <pre># inline comment</pre>
-    For section breaks, or to call out a comment, a dashed line is used with one or more asterisks at the end to make it easier to scan for comments.
+    For section breaks, or to call out a comment, use one or more asterisks at the end to make it easier to scan for comments.
     <pre># Do some new stuff -------------------------------------------------- ***</pre>
   </dd>
   <dt id="dfn-comments-block">inactive code</dt>
@@ -144,7 +145,7 @@
 
 <dt>Constructor</dt>
   <dd>
-    <pre>mpc_menus( [bool $is_locked=true] );</pre>
+    <pre>$mpo_menus = new $mpc_menus( [bool $is_locked=true] );</pre>
 
     <p>Use <code>$is_locked</code> to specify existing values as immutable. This allows later scripts to add new menus and add new links to menus, but not change the attributes of existing links or menus.</p>
 
@@ -154,14 +155,14 @@
   <dd>
     <p>If a menu and its menu set is not locked, this method can be used to reset a menu.</p>
 
-    <pre>mpo_menus->setmenu( str $name  [, array $settings] );</pre>
+    <pre>$mpo_menus->setmenu( str $name  [, array $settings] );</pre>
 
     <p>Settings:</p>
 
     <dl>
-    <dt><code>settings['is_locked'] bool = false</code></dt>
+    <dt><code>$settings['is_locked'] bool = false</code></dt>
       <dd><p>A menu can be locked spearately from the menu set. Setting this to false will not override a parent setting of true.</p></dd>
-    <dt><code>settings['permissions'] string = 'public'</code></dt>
+    <dt><code>$settings['permissions'] string = 'public'</code></dt>
       <dd>
         <p>A space separated string of permission levels for this menu. These are restrictive values. The string must be provided when generating the menu or the menu is blocked. The value of 'public' is a placeholder and is ignored by the code. Current permission levels are:</p>
         <ul>
@@ -172,11 +173,11 @@
           <li>admin</li>
         </ul>
       </dd>
-    <dt><code>settings['type'] string = 'left-sidebar'</code></dt>
+    <dt><code>$settings['type'] string = 'left-sidebar'</code></dt>
       <dd>
         <p>A template specific description of the function this menu serves. Most commonly, its location on the page.</p>
       </dd>
-    <dt><code>settings['classes'] string = ''</code></dt>
+    <dt><code>$settings['classes'] string = ''</code></dt>
       <dd>
         <p>A space separated list of classes to be added to the container element when generating the menu.</p>
       </dd>
@@ -184,26 +185,25 @@
   </dd>
 <dt>Create or edit a link</dt>
   <dd>
-    <pre>mpo_menus->setlink( str $menu, string $text, str $url [, array $settings] );</pre>
+    <pre>$mpo_menus->setlink( str $menu, string $text, str $url [, array $settings] );</pre>
   </dd>
 <dt>Return a menu as an HTML list</dt>
   <dd>
-    <pre>mpo_menus->getmenu( str $name [, array $settings ] );</pre>
+    <pre>$result = $mpo_menus->getmenu( str $name [, array $settings ] );</pre>
   </dd>
 <dt>Return a menu as an array</dt>
   <dd>
-    <pre>mpo_menus->getlist( str $name [, array $settings ] );</pre>
+    <pre>$result = $mpo_menus->getlist( str $name [, array $settings ] );</pre>
   </dd>
 <dt>Return the properties of a menu</dt>
   <dd>
-    <pre>mpo_menus->getmenuprop( str $menu, str $property );</pre>
+    <pre>$result = $mpo_menus->getmenuprop( str $menu, str $property );</pre>
   </dd>
 <dt>Return the properties of a link</dt>
   <dd>
-    <pre>mpo_menus->getlink( str $menu, str $text [, array $settings] );</pre>
+    <pre>$result = $mpo_menus->getlink( str $menu, str $text [, array $settings] );</pre>
   </dd>
 </dl>
-
 
 <!-- *** parts object *** **************************************** -->
 <h3 class="add-toc">mpc_parts</h3>
@@ -212,54 +212,80 @@
 
 <p>It can also be used recursively for page components.</p>
 
-<p>It uses magic functions to generate properties as needed. The reserved properties are:</p>
+<p>It uses magic functions to generate properties as needed. The properties defined on initialization and/or instantiation or otherwise reserved are:</p>
 
 <ul>
-  <li></li>
+  <li>page_name</li>
+  <li>page_path</li>
+  <li>page_title</li>
+  <li>section_name</li>
+  <li>separator *</li>
+  <li>site_abbr</li>
+  <li>site_name</li>
+  <li>template</li>
+  <li>title_struct *</li>
 </ul>
+
+<p><small>* These are public properties and not part of the final component array.</small></p>
 
 <dl class="clamshell">
 
   <dt>Constructor</dt>
   <dd>
-    <pre>mpc_parts( [bool $is_locked=false] );</pre>
+    <pre>$mpo_parts = new $mpc_parts( [bool $is_locked=false] );</pre>
 
-    <p>On instantiation, can be passed boolean to determine whether to protect existing values.</p>
+    <p>On instantiation, can be passed boolean to determine whether to protect existing values. When protected, you can add new page components, but not overwrite old.</p>
   </dd>
 
-  <dt>Store a page component</dt>
+  <dt>Store or update a page component</dt>
   <dd>
-    <pre></pre>
+    <pre>$mpo_parts-><var>component</var> = <var>value</var>;</pre>
 
-    <p></p>
-  </dd>
-
-  <dt>Set the page title</dt>
-  <dd>
-    <pre></pre>
-
-    <p></p>
+    <p>Uses magic functions to generate properties as needed.</p>
   </dd>
 
   <dt>Return a page component</dt>
   <dd>
-    <pre></pre>
+    <pre>$result = $mpo_parts-><var>component</var>;</pre>
+  </dd>
 
-    <p></p>
+  <dt>Set the page title</dt>
+  <dd>
+    <p>There are two parts to setting the page title:</p>
+    <ul>
+      <li>specifying the format, and</li>
+      <li>specifying the values.</li>
+    </ul>
+    <p>The format consists of an array of the names of the property to be concatenated, in order of appearance, and the separator to use between them, including spaces.</p>
+    <p>The default format and values are as follows:</p>
+    <pre>
+// set the structure
+$mpo_parts->title_struct  = ['page_name','section_name','site_name'];
+$mpo_parts->separator     = ' | ';
+// set the parts
+$mpo_parts->page_name     = <var>value</var>;
+$mpo_parts->section_name  = <var>value</var>;
+$mpo_parts->site_name     = <var>value</var>;</pre>
+  <p>A simple title including just the page name would be formatted as follows:</p>
+  <pre>
+$mpo_parts->title_struct  = ['page_name'];
+$mpo_parts->separator     = '';
+$mpo_parts->page_name     = <var>value</var>;</pre>
   </dd>
 
   <dt>Return the complete page title for the title bar</dt>
   <dd>
-    <pre></pre>
+    <pre>$result = $mpo_parts->build_title();</pre>
 
-    <p></p>
+    <p>This action is performed automatically when you build the page.</p>
+    <p>The default title has the format of: <b><var>page name</var> | <var>section name</var> | <var>site name</var></b>. Empty components will be omitted from the string.</p>
   </dd>
 
   <dt>Return an array of all page components</dt>
   <dd>
-    <pre></pre>
+    <pre>$result = $mpo_parts->build_page();</pre>
 
-    <p></p>
+    <p>The results include an arry of all page components added by the name of the property to which they were assigned.</p>
   </dd>
 
 </dl>
@@ -267,9 +293,46 @@
 <!-- *** paths object *** **************************************** -->
 <h3 class="add-toc">mpc_paths</h3>
 
-<p>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies</p>
+<p>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies.</p>
 
 <p>If a path is hard-coded in the process code instead of being defined in the config or init files, you did something wrong.</p>
+
+<p>It uses magic functions to generate properties as needed. The properties defined on initialization and/or instantiation are:</p>
+
+<ul>
+  <li>core</li>
+  <li>mp_classlib</li>
+  <li>template</li>
+  <li>tp_classlib</li>
+  <li>vendor</li>
+</ul>
+
+<dl class="clamshell">
+
+  <dt>Constructor</dt>
+  <dd>
+    <pre>$mpo_paths = new $mpc_paths( [bool $is_locked=false] );</pre>
+
+    <p>On instantiation, can be passed boolean to determine whether to protect existing values. When protected, you can add new paths, but not overwrite old.</p>
+  </dd>
+
+  <dt>Store or update a path</dt>
+  <dd>
+    <pre>$mpo_paths-><var>path</var> = <var>value</var>;</pre>
+
+    <p>Uses magic functions to generate properties as needed.</p>
+  </dd>
+
+  <dt>Return a path</dt>
+  <dd>
+    <pre>$result = $mpo_paths-><var>path</var>;</pre>
+  </dd>
+
+  <dt>Return all paths in an array</dt>
+  <dd>
+    <pre>$result = $mpo_paths->build_list();</pre>
+  </dd>
+</dl>
 </div>
 <!-- *** end contents *** **************************************** -->
 

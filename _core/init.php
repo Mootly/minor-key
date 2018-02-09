@@ -21,11 +21,11 @@
                     # Page components
   require_once( MP_CLASSLIB . '/mpc_parts.php');
   if (!isset($mpo_parts)) $mpo_parts = new mpc_parts(true);
-  if (!isset($mpo_menus)) $mpo_menus = new mpc_parts(true);
+//  if (!isset($mpo_menus)) $mpo_menus = new mpc_parts(true);
                     # Set default paths for assets
   require_once( MP_CLASSLIB . '/mpc_paths.php' );
   if (!isset($mpo_paths)) $mpo_paths = new mpc_paths(true);
-  $mpo_paths->MP_classlib   = MP_CLASSLIB;
+  $mpo_paths->mp_classlib   = MP_CLASSLIB;
   $mpo_paths->core          = MP_ROOT . '/_core';
   $mpo_paths->vendor        = MP_ROOT . '/_vendors';
                     # Define our template name
@@ -54,7 +54,7 @@
   spl_autoload_register(function ($classname) {
     if(preg_match('/^mpc_/', $classname)) {
       global $mpo_paths;
-      require_once $mpo_paths->MP_classlib . MP_PSEP . strtolower($classname) . '.php';
+      require_once $mpo_paths->mp_classlib . MP_PSEP . strtolower($classname) . '.php';
     } else {
       require_once $mpo_paths->tp_classlib . MP_PSEP . strtolower($classname) . '.php';
     }
