@@ -212,9 +212,10 @@
 
 <p>It can also be used recursively for page components.</p>
 
-<p>It uses magic functions to generate properties as needed. The properties defined on initialization and/or instantiation or otherwise reserved are:</p>
+<p>It uses magic functions to generate properties as needed. The properties defined on initialization and/or instantiation or otherwise used by the default page templates are:</p>
 
 <ul>
+  <li>bodyclasses</li>
   <li>page_name</li>
   <li>page_path</li>
   <li>page_title</li>
@@ -226,7 +227,7 @@
   <li>title_struct *</li>
 </ul>
 
-<p><small>* These are public properties and not part of the final component array.</small></p>
+<p><small>* These are not part of the final component array.</small></p>
 
 <dl class="clamshell">
 

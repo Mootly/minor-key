@@ -10,6 +10,11 @@
 {% else %}
 {%   set curr_path = '' %}
 {% endif %}
+{% if page.bodyclasses is defined %}
+{%   set bodyclasses = 'page ' ~ page.bodyclasses %}
+{% else %}
+{%   set bodyclasses = 'page' %}
+{% endif %}
 {# *** Begin HTML document ------------------------------------------------ *** #}
 <html lang="en">
 {% include root_path ~ '/_assets/includes/page_meta.html.twig' %}
@@ -28,7 +33,7 @@
 {# *** - body_content         : main content block                          *** #}
 {# ***   - body_breadcrumb    : breadcrumpb links block                     *** #}
 {# ***   - body_content_inner : inner content block                         *** #}
-<body id="page-body" class="{{ page.body_class}}">
+<body id="page-body" class="{{ page.bodyclasses }}">
 {# For accessibility, the H1 tag is place here, then hidden for view.       *** #}
 {# It is repeated as a display title below to label the top of the content. *** #}
   <h1 id="first-el">{{ page.h1_title | raw }}</h1>
