@@ -9,40 +9,9 @@ body {
   font              : normal normal 400 1.0em $f-default;
   line-height       : $ht-line-tall;
 }
-                    // Accessibility Fix                                        ***
-                    // Hide H1 from sighted users, replace w H2 further down.   ***
-                    // In text stream, H2 will begin the content                ***
-                    // at the same level as other H2 block markers.             ***
-h1#first-el {
-  position        : absolute;
-  clip            : rect(0 0 0 0);
-  width           : 1px;
-  height          : 1px;
-  overflow        : hidden;
-  margin          : -1px;
-  border          : 0;
-  padding         : 0;
-}
-                    // Use H2 to emulate H1 in displayed title block if         ***
-                    // using accessibility fix above.                           ***
-#title-box {
-  margin: 0;
-  background-color: $c-base-bg;
-  border-bottom: 2px solid $c-banner-bg;
-  @include set-blended-box-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
-  h1, h2.page-title {
-    margin          : 0;
-    padding         : 0.25em 0.5em 0.125em 0.5em;
-    font-family     : $f-title;
-    font-size       : $h1-size;
-    font-weight     : 900;
-    line-height     : $ht-line-compact;
-    color           : $c-h1-text;
-    @include set-blended-text-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
-  }
-}
                     // Main body of the page.                                   ***
 #content-main {
+  width: 100%;
   #content-box {
     margin: 1.0em 2.0em 2.0em 20.0em;
     max-width: $max-content-width;
@@ -50,13 +19,17 @@ h1#first-el {
   p {
     line-height: $ht-line-default;
   }
+  h1+p, h2+p, h3+p, h4+p, h5+p, h6+p { margin-top: 0; }
   h1 {
+    padding         : 1.25em 0 0.5em 0;
+    margin          : 0;
     color           : $c-h1-text;
     font-family     : $f-title;
     font-weight: 900;
   }
   h2 {
-    margin          : 1.25em 0 0 0;
+    padding         : 1.25em 0 0.375em 0;
+    margin          : 0;
     font-family     : $f-title;
     font-weight: 900;
     font-size       : $h2-size;
@@ -64,7 +37,8 @@ h1#first-el {
     color           : $c-h2-text;
   }
   h3 {
-    margin          : 1.25em 0 0 0;
+    padding         : 1.25em 0 0.375em 0;
+    margin          : 0;
     font-family     : $f-title;
     font-weight: 700;
     font-size       : $h3-size;
@@ -72,7 +46,8 @@ h1#first-el {
     color           : $c-h3-text;
   }
   h4 {
-    margin          : 1.0em 0 0 0;
+    padding         : 1.25em 0 0.375em 0;
+    margin          : 0;
     font-family     : $f-title;
     font-weight: 700;
     font-size       : $h4-size;
@@ -80,7 +55,8 @@ h1#first-el {
     color           : $c-h4-text;
   }
   h5 {
-    margin          : 1.0em 0 0 0;
+    padding         : 1.25em 0 0.375em 0;
+    margin          : 0;
     font-family     : $f-title;
     font-weight: 600;
     font-size       : $h5-size;
@@ -88,15 +64,13 @@ h1#first-el {
     color           : $c-h5-text;
   }
   h6 {
-    margin          : 1.0em 0 0 0;
+    padding         : 1.25em 0 0.375em 0;
+    margin          : 0;
     font-family     : $f-title;
     font-weight: 600;
     font-size       : $h6-size;
     line-height     : $ht-line-compact;
-    color           : $c-h56text;
-  }
-  h2+p, h3+p, h4+p, h5+p, h6+p {
-    margin-top: 0.5em;
+    color           : $c-h6-text;
   }
   a {
     color           : $c-links-text;
@@ -112,6 +86,7 @@ h1#first-el {
   }
 }
 
+// --- Media rules for small screens ------------------------------------------ ***
 @media (max-width: $breakDesktop) {
   .no-mobile { display: none; }
   #breadcrumb-box {
@@ -120,12 +95,12 @@ h1#first-el {
   #title-box {
     clear: both;
     h1, h2.page-title {
-      padding         : 0.125em 0.25em 0.125em 0.25em;
-      font-family     : $f-title;
-      font-size       : $h1-mob-size;
-      font-weight     : 900;
-      line-height     : $ht-line-compact;
-      color           : $c-h1-text;
+      padding       : 0.125em 0.25em 0.125em 0.25em;
+      font-family   : $f-title;
+      font-size     : $h1-mob-size;
+      font-weight   : 900;
+      line-height   : $ht-line-compact;
+      color         : $c-h1-text;
     }
   }
   #content-main {

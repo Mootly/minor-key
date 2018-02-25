@@ -1,0 +1,58 @@
+// === 05 Layout - 05 Title formatting ======================================= ***
+// Accessibility haxie for header                                               ***
+                    // Hide real H1 from sighted users,                         ***
+                    // use H2 to replace it further down                        ***
+                    // H2 will begin the content at the same level as other     ***
+                    // H2 block markers.                                        ***
+                    // Accessibility Fix                                        ***
+                    // Hide H1 from sighted users, replace w H2 further down.   ***
+                    // In text stream, H2 will begin the content                ***
+                    // at the same level as other H2 block markers.             ***
+h1#first-el {
+  position        : absolute;
+  clip            : rect(0 0 0 0);
+  width           : 1px;
+  height          : 1px;
+  overflow        : hidden;
+  margin          : -1px;
+  border          : 0;
+  padding         : 0;
+}
+                    // Use H2 to emulate H1 in displayed title block if         ***
+                    // using accessibility fix above.                           ***
+#title-box {
+  margin: 0;
+  background-color: $c-base-bg;
+  border-bottom: 2px solid $c-banner-bg;
+  @include set-blended-box-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
+  h1, h2.page-title {
+    margin          : 0;
+    padding         : 0.25em 0.5em 0.125em 0.5em;
+    font-family     : $f-title;
+    font-size       : $h1-size;
+    font-weight     : 900;
+    line-height     : $ht-line-compact;
+    color           : $c-h1-text;
+//    @include set-blended-text-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
+  }
+}
+                    // Waypoints used to fix title at top of page on scroll.    ***
+#title-box.fixed-top {
+  z-index           : 100;
+  h1, h2.page-title, p.page-title {
+    margin          : 0;
+    padding         : 0.5em 0.5em 0.5em 0.75em;
+    font-family     : $f-title;
+    font-size       : $h3-size;
+    line-height     : $ht-line-compact;
+    color           : $c-h1-text;
+  }
+}
+                    // Fix to elements below fixed title to avoid page jump     ***
+                    // under on element collapse. Height overwritten by script. ***
+.fixed-above { margin-top: 4.0em; }
+// --- Media rules for small screens ------------------------------------------ ***
+@media (max-width: $breakDesktop) {
+  #title-box { clear: both; }
+}
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

@@ -36,6 +36,7 @@
 @import "02_vars/11_mediaQueries";
 // 03 Mixins ****************************************************************** ***
 @import "03_mixins/01_colorCombos";
+// @import "03_mixins/02_commonElements";
 // 04 Resets ****************************************************************** ***
 @import "04_reset/01_core";
 @import "04_reset/02_semantics";
@@ -46,6 +47,7 @@
 @import "05_layout/00_accessibility";
 @import "05_layout/01_core";
 @import "05_layout/02_header";
+@import "05_layout/04_title";
 @import "05_layout/05_breadcrumb";
 // 06 Parts ******************************************************************* ***
 @import "06_parts/03_code";

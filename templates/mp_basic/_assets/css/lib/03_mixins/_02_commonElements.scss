@@ -1,0 +1,20 @@
+// === 03 Mixins - 02 Common Elements ========================================= ***
+// For consistency, all internal variables are prefixed with "mx"               ***
+// ----------------                                                             ***
+// This file should contain only mixin calls.                                   ***
+// Any raw CSS here may be overriden in the resets.                             ***
+                    // Hidden spans                                             ***
+@mixin span-hidden {
+  span {
+    display         : block;
+    position        : absolute;
+    clip            : rect(0 0 0 0);
+    width           : 1px;
+    height          : 1px;
+    overflow        : hidden;
+    margin          : -1px;
+    border          : 0;
+    padding         : 0;
+  }
+}
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
