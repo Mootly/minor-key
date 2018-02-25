@@ -41,6 +41,11 @@
   color             : mix($mxcolor, $mxbg-color, $mxweight);
   color             : rgba($mxcolor, $mxalpha);
 }
+                    // Same as above without RBGA, useful to overcome nesting   ***
+@mixin set-blended-text-simple($mxcolor, $mxalpha: 1.0, $mxbg-color: $mxcolor) {
+  $mxweight         : 100*$mxalpha;
+  color             : mix($mxcolor, $mxbg-color, $mxweight);
+}
                     // Blended color rules for backgrounds                      ***
                     // $mxcolor:        border color, only required value       ***
                     // $mxalpha:        0.0 - 1.0                               ***

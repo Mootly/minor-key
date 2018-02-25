@@ -1,0 +1,76 @@
+// === 06 Parts - 01 Lists ==================================================== ***
+ul li, ol li, dl dd {
+  line-height: $ht-line-default;
+  margin-bottom: 0.5em;
+}
+
+ul, ol {
+  padding-left: 1.75em;
+  ul, ol {
+    padding-left: 1.375em;
+  }
+}
+// *** Tables of Contents ----------------------------------------------------- ***
+ul#jumpto {
+  margin-left       : 0;
+  padding-left      : 1.75em;
+  li {
+    margin-bottom   : 0.5em;
+    color           : #000099;
+    list-style-type : none;
+    ul {
+      margin-left   : 0.75em;
+      padding-left  : 0.75em;
+      li {
+        font-weight : normal;
+        margin-bottom: 0.125em;
+      }
+    }
+    a { text-decoration: none; }
+    &:before {
+      content       : '\f149';
+      margin        : 0 0.5em 0 -1.5em;
+      font-family   : 'FontAwesome';
+      @include set-blended-text($c-link-icons, 0.5, $c-base-bg);
+    }
+  }
+}
+p + ul, p + ol {
+  margin-top: 0;
+}
+// *** Definition Lists ------------------------------------------------------- ***
+#content-main, #content-full {
+  dl {
+    dt { font-weight: bold; }
+    dd {
+      margin-bottom : 1.0em;
+      p { margin-top: 0; }
+    }
+    &.inline-terms {
+      @include set-blended-border($c-base-text, top, 0.125, 1px, solid, $c-base-bg);
+      @include set-blended-border($c-base-text, bottom, 0.125, 1px, solid, $c-base-bg);
+      dt {
+        clear       : left;
+        float       : left;
+        width       : 8.5em;
+        padding-top : 0.325em;
+        padding-right: 0.5em;
+        padding-bottom: 0.375em;
+        text-align  : right;
+        line-height: $ht-line-default;
+        &::after {
+          content   : ' : ';
+        }
+      }
+      dd {
+        margin-left : 10.0em;
+        padding-top : 0.375em;
+        padding-bottom: 0.375em;
+        line-height : $ht-line-default;
+        @include set-blended-border($c-base-text, top, 0.125, 1px, solid, $c-base-bg);
+        &:first-of-type { border-top : none; }
+      }
+    }
+  }
+}
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

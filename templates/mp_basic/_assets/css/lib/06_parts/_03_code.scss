@@ -9,7 +9,7 @@ pre {
   font-size         : 0.875em;
   line-height: $ht-line-tall;
   var {
-    color           : $c-gray-text;
+    @include set-blended-text($c-gray-text, 0.75, $c-base-bg);
     font-style      : italic;
   }
 }
@@ -18,7 +18,14 @@ code {
   font-family       : $f-code;
   color             : $c-code;
   var {
-    color           : $c-gray-text;
+    @include set-blended-text($c-gray-text, 0.75, $c-base-bg);
     font-style      : italic;
   }
 }
+
+code, pre, span {
+  &.cc-html { color: $c-code-hilite-1; }
+  &.cc-js   { color: $c-code-hilite-2; }
+  &.cc-php  { color: $c-code-hilite-2; }
+}
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

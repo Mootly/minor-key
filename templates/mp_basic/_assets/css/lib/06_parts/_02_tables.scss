@@ -1,0 +1,68 @@
+// === 06 Parts- 02 Tables ==================================================== ***
+#content-main, #content-full {
+  td :first-child,
+  th :first-child { margin-top: 0; }
+  tr.callout td,
+  tr.callout th { background-color: rgb(212,213,227); }
+  th.emph {
+    font-size: $h6-size;
+    font-weight: bold;
+    padding: 0.125em 0 0.125em 0.5em;
+  }
+  tbody.totals th,
+  tbody.totals td {
+    font-weight      : bold;
+  }
+  table.accounting tr {
+    th:last-child,
+    td:last-child {
+      text-align: right;
+    }
+  }
+  caption {
+    text-align: left;
+    font-size: 0.875em;
+    caption-side: bottom;
+    margin: 0 0.25em 1.0em 0.25em;
+    .title { font-weight: bold; }
+  }
+}
+
+// *** List-style table ------------------------------------------------------- ***
+table.list-table {
+  width             : 100%;
+  margin            : 1.0em 0;
+  border-bottom     : 0.25em solid $c-ltgray-border;
+  border-collapse   : collapse;
+  border-spacing    : 0;
+  td,
+  th {
+    padding         : 0.5em 1.0em;
+    vertical-align  : top;
+    text-align      : left;
+    line-height     : $ht-line-default;
+  }
+  thead {
+    background-color: $c-ltgray-border;
+    color           : $c-white;
+    text-align      : left;
+    font-weight     : bold;
+    font-size       : 1.125em;
+  }
+  tfoot {
+    background-color: $c-ltgray-border;
+    color           : $c-white;
+    text-align      : left;
+    font-weight     : bold;
+  }
+  tbody td, tbody th,
+  tfoot th, tfoot td {
+    @include set-blended-border($c-ltgray-border, bottom, 0.125, 1px, solid, $c-base-bg);
+  }
+  tfoot tr:last-child th, tfoot tr:last-child td { border-bottom: 0; }
+
+  tbody + tbody {
+    @include set-blended-border($c-ltgray-border, top, 0.25, 0.25em, solid, $c-base-bg);
+  }
+}
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

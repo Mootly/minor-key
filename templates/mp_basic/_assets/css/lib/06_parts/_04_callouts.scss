@@ -1,0 +1,171 @@
+// === 06 Parts- 04 Callouts ================================================== ***
+// *** Color Highlights ------------------------------------------------------- ***
+#content-main, #content-full {
+  .red {
+    color           : $c-default-red;
+    font-weight     : bold;
+  }
+  .green {
+    color           : $c-default-green;
+    font-weight     : bold;
+  }
+  .hilite-red {
+    @include set-blended-text-simple($c-red, 0.25, $c-base-bg);
+  }
+  .hilite-yellow {
+    @include set-blended-text-simple($c-yellow, 0.25, $c-base-bg);
+  }
+  .hilite-green {
+    @include set-blended-text-simple($c-default-green, 0.25, $c-base-bg);
+  }
+}
+// *** Sematic Block Highlights ----------------------------------------------- ***
+#content-main, #content-full {
+  .warning {
+    border-left     : 0.5em solid $c-alert-red;
+    margin          : 1.0em 1.0em auto -0.5em;
+    padding         : 0.25em 1.0em 0.5em 1.0em;
+    background-color: $c-white ;
+    .title {
+      color         : $c-alert-red;
+      font-weight   : bold;
+    }
+  }
+  .note {
+    border-left     : 0.5em solid $c-tip-border;
+    margin          : 1.0em 1.0em auto -0.5em;
+    padding         : 0.25em 1.0em 0.5em 1.0em;
+    background-color: $c-white ;
+    .title {
+      color         : $c-tip-border;
+      font-weight   : bold;
+    }
+  }
+  .alert-box {
+    margin          : 0.5em;
+    padding         : 0.5em;
+    border          : 1px solid $c-alert-red;
+    border-left     : 0.5em solid $c-alert-red;
+    color           : $c-alert-red;
+    font-weight     : bold;
+  }
+  .wrong-box {
+    @include set-blended-background($c-red, 0.125, $c-base-bg);
+    margin          : 0.5em;
+    padding         : 0.5em;
+  }
+  li.wrong-flag, li.right-flag {
+    list-style-type : none;
+    margin-left     : -1.25em;
+  }
+  .wrong-flag:before {
+    content: '\f00d';
+    font-family     : 'FontAwesome';
+    color           : $c-default-red;
+    display         : block;
+    float           : left;
+    margin-right    : 0.5em;
+  }
+  .right-flag:before {
+    content         : '\f00c';
+    font-family     : 'FontAwesome';
+    color           : $c-default-green;
+    display         : block;
+    float           : left;
+    margin-right    : 0.5em;
+  }
+
+  .pull-box {
+    padding         : 0.5em;
+    margin          : 0.5em;
+    background-color: $c-box-bg;
+    color           : $c-base-text;
+  }
+
+  .pull-box-dark {
+    padding         : 0.5em;
+    margin          : 0.5em;
+    background-color: $c-dark-box-bg;
+    color           : $c-inverse-text;
+    h1, h2, h3, h4, h5, h6 { color: inherit; }
+  }
+
+  .pull-box-alt {
+    padding         : 0.5em;
+    margin          : 0.5em;
+    background-color: $c-box-alt-bg;
+    color           : $c-base-text;
+  }
+
+  .pull-box-example {
+    padding         : 0.5em;
+    margin          : 0.5em;
+    background-color: $c-white;
+    color           : $c-base-text;
+    border          : 1px solid $c-gray-border;
+  }
+  [class^='pull-box'] {
+    h1:first-child,
+    h2:first-child,
+    h3:first-child,
+    h4:first-child,
+    h5:first-child,
+    h6:first-child {
+      margin-top    : 0;
+      padding-top   : 0;
+    }
+
+  }
+}
+
+// *** Sematic Inline Highlights ---------------------------------------------- ***
+#content-main, #content-full {
+  .task {
+    font-style      : italic;
+    @include set-blended-text($c-visited-text, 0.75, $c-base-bg);
+  }
+  .bad-idea {
+    position        : relative;
+    &:before {
+      @include set-blended-border($c-default-red, bottom, 0.25, 0.125em, solid, $c-base-bg);
+      position      : absolute;
+      content       : '';
+      width         : 100%;
+      height        : 50%;
+    }
+  }
+}
+// *** Font Awesome callouts -------------------====--------------------------- ***
+.fa-ban,
+.fa-times,
+.fa-question {
+  color             : $c-default-red;
+}
+.fa-check {
+  color             : $c-default-green;
+}
+
+.aud-technical::after {
+  content           : '\f0ad';
+  font-family       : 'FontAwesome';
+  margin-left       : 0.5em;
+  font-weight       : bold;
+  @include set-blended-text($c-default-red, 0.5, $c-base-bg);
+}
+
+.aud-general::after {
+  content           : '\f0c0';
+  font-family       : 'FontAwesome';
+  margin-left       : 0.5em;
+  font-weight       : normal;
+  @include set-blended-text($c-default-green, 0.25, $c-base-bg);
+}
+
+body.tech-notes h2.page-title::after {
+  content           : '\f0ad';
+  font-family       : 'FontAwesome';
+  margin-left       : 0.5em;
+  font-weight       : normal;
+  @include set-blended-text($c-default-red, 0.5, $c-base-bg);
+}
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

@@ -1,0 +1,11 @@
+// === 05 Layout - 11 Left sidebar ============================================ ***
+// Not much here since this is just a container for other things.               ***
+#sidebar-left { float: left; }
+// Rules for small screens ---------------------------------------------------- ***
+@media (max-width: $breakDesktop) {
+  #sidebar-left {
+    position        : relative;
+    width           : 100%;
+   }
+}
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

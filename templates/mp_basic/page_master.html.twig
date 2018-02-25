@@ -10,13 +10,18 @@
 {% else %}
 {%   set curr_path = '' %}
 {% endif %}
+{% if constant('DEF_HOME') is defined %}
+{%   set home_path = constant('DEF_HOME') %}
+{% else %}
+{%   set home_path = '/' %}
+{% endif %}
 {% if page.bodyclasses is defined %}
 {%   set bodyclasses = 'page ' ~ page.bodyclasses %}
 {% else %}
 {%   set bodyclasses = 'page' %}
 {% endif %}
 {# *** Begin HTML document ------------------------------------------------ *** #}
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 {% include root_path ~ '/_assets/includes/page_meta.html.twig' %}
 {# *** Begin body of document --------------------------------------------- *** #}
 {# *** Use 'body_' prefix to uniquely identify visibly template blocks.     *** #}
@@ -33,7 +38,7 @@
 {# *** - body_content         : main content block                          *** #}
 {# ***   - body_breadcrumb    : breadcrumpb links block                     *** #}
 {# ***   - body_content_inner : inner content block                         *** #}
-<body id="page-body" class="{{ page.bodyclasses }}">
+<body id="page-body" class="{{ page.bodyclasses | raw }}">
 {# For accessibility, the H1 tag is place here, then hidden for view.       *** #}
 {# It is repeated as a display title below to label the top of the content. *** #}
   <h1 id="first-el">{{ page.h1_title | raw }}</h1>
@@ -51,13 +56,14 @@
   </header>
   {% block body_title %}
   <div id="title-box">
-  <h2 class="page-title" role="presentation">{{ page.h1_title | raw }}</div>
+    <h2 class="page-title" role="presentation">{{ page.h1_title | raw }}</div>
   </h2>
+
   {% endblock body_title %}
   {% block body_sidebar_left %}
   <div id="sidebar-left">
     {% block body_menu_left %}
-    <div id="sidemenu-left">
+    <div id="menu-left">
       {% if (not page['pagemenu'] is defined) or page.pagemenu == 'standard' %}
       <p>Side menu goes here.</p>
       {% else %}
@@ -65,25 +71,6 @@
       {% endif %}
     </div>
     {% endblock body_menu_left %}
-    {% block body_announce_left %}
-    <div id="announce-left">
-      {% if (not page['announce'] is defined) %}
-        {% if (not page['notices'] is defined) %}
-        <div class="item">
-          <h2>Item header</h2>
-          <p>Notices go here. These will get priority page order in mobile view and should be used sparingly.</p>
-        </div>
-        <div class="item">
-          <p>Header is optional.</p>
-        </div>
-        {% else %}
-          {{ page.notices | raw }}
-        {% endif %}
-      {% else %}
-      {% include "/_assets/includes/widgets/#{page.announce}.html.twig" %}
-      {% endif %}
-    </div>
-    {% endblock body_announce_left %}
   </div>
   {% endblock body_sidebar_left %}
   {% block body_sidebar_right %}

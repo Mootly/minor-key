@@ -17,7 +17,8 @@ body {
     max-width: $max-content-width;
   }
   p {
-    line-height: $ht-line-default;
+    line-height     : $ht-line-default;
+    margin          : 0.5em 0.125em;
   }
   h1+p, h2+p, h3+p, h4+p, h5+p, h6+p { margin-top: 0; }
   h1 {
@@ -73,15 +74,15 @@ body {
     color           : $c-h6-text;
   }
   a {
-    color           : $c-links-text;
+    color           : $c-link-text;
     text-decoration : none;
-    @include set-blended-border($c-links-text, bottom, 0.15, 1px, solid, $c-base-bg);
+    @include set-blended-border($c-link-text, bottom, 0.15, 1px, solid, $c-base-bg);
   }
   a:visited {
     color           : $c-visited-text;
   }
   a:hover {
-    @include set-blended-border($c-links-text, bottom, 0.85, 1px, solid, $c-base-bg);
+    @include set-blended-border($c-link-text, bottom, 0.85, 1px, solid, $c-base-bg);
     @include set-blended-background($c-button-bg, 0.025, $c-base-bg)
   }
 }

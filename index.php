@@ -17,7 +17,7 @@ $mpo_parts->link_title    = 'Home';
 $mpo_parts->page_name     = $mpo_parts->h1_title;
 $mpo_parts->section_name  = 'Home';
 $mpo_parts->accessibility = 'standard';
-$mpo_parts->body_class    = 'draft';
+$mpo_parts->bodyclasses   = 'draft';
 // $mpo_parts->pagemenu = 'docs.general';
 
                     # The main content body of the page is developed here.      *
@@ -269,7 +269,7 @@ ob_start();
 </div>
 
 <div class="pull-box-alt">
-  <h4>Gold Box</h4>
+  <h4>Alt Box</h4>
   <p>Alternate color for light boxes.</p>
 </div>
 
@@ -286,7 +286,8 @@ ob_start();
 
 <h3>Link Icons</h3>
 
-<p><a href="https://external.org">External Link</a> (begins with "http" AND domain fragment not in URL)</p>
+<p>You may want to further refine the external link, in case you are using full pathing in all URLS. See CSS for commented example.</p>
+<p><a href="https://external.org">External Link</a> (begins with "http")</p>
 <p><a href="ocfs/document.xls">Excel document</a> (.xls, .xlsx)</p>
 <p><a href="ocfs/document.wmv">Media files</a> (.wmv, .wvx, .mov, .mpg, .mpeg, .flv, .avi, .mp4, .asx, .rm)</p>
 <p><a href="ocfs/document.pdf">PDF document</a> (.pdf)</p>
