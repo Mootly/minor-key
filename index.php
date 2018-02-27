@@ -211,6 +211,22 @@ ob_start();
   </tbody>
 </table>
 
+<h4>Accounting table (<code>.list-table .accounting</code>)</h4>
+
+<table class="list-table accounting">
+    <thead>
+      <tr> <th>Thing</th>   <th>Received</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Thing 1</td>  <td>$120,792,000</td></tr>
+      <tr><td>Thing 2</td>	<td>28,198,100</td></tr>
+      <tr><td>Thing 3</td>  <td>28,814,700</td></tr>
+    </tbody>
+    <tbody class="totals">
+      <tr><td>Total</td>    <td>$177,804,800</td></tr>
+    </tbody>
+  </table>
+
 <h2 class="section">Callouts</h2>
 
 <h3>Alert Boxes</h3>
