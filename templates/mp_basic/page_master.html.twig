@@ -62,6 +62,7 @@
   {% endblock body_title %}
   {% block body_sidebar_left %}
   <div id="sidebar-left">
+    {% include root_path ~ '/_assets/includes/widgets/google_translate.html.twig' %}
     {% block body_menu_left %}
     <div id="menu-left">
       {% if (not page['pagemenu'] is defined) or page.pagemenu == 'standard' %}
