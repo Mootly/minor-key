@@ -8,14 +8,14 @@
   * @package   moosepress
   * --------------------------------------------------------------------------- */
 
-  # Constants ----------------------------------------------------------------- *
-  # We use constants for our base variables to make them easy to spot and to
-  # ensure they can't be overwritten in the code.
+# Constants ------------------------------------------------------------------- *
+# We use constants for our base variables to make them easy to spot and to
+# ensure they can't be overwritten in the code.
                     # Don't touch this ---------------------------------------- *
                     # This defines the full site root
                     # It is used for object library pathing
                     # e.g., C:/Web/moosepress
-  if (!defined('MP_ROOT')) { define( 'MP_ROOT', $_SERVER['DOCUMENT_ROOT'] ); }
+  if (!defined('MP_ROOT'))        define( 'MP_ROOT', $_SERVER['DOCUMENT_ROOT'] );
                     # Core file paths ----------------------------------------- *
                     # This defines the site root as used by templates
                     # This should be blank for standard pathing.
@@ -23,26 +23,19 @@
                     # absolute server pathing
                     # For subfolders that are their own subdomains, adjust
                     # accordingly
-  if (!defined('DEF_ROOT')) define( 'DEF_ROOT', '');
-  if (!defined('CURR_PATH')) define( 'CURR_PATH', dirname($_SERVER['PHP_SELF']));
+  if (!defined('DEF_ROOT'))       define( 'DEF_ROOT', '' );
+  if (!defined('CURR_PATH'))      define( 'CURR_PATH', dirname($_SERVER['PHP_SELF']) );
+                    # Where does the home page live (if not root)?
+  // if (!defined('DEF_HOME'))       define( 'DEF_HOME', '/main/' );
+                    # Specify our template names
+                    # Template names have the following format:
+                    # {prefix}_{name}
+  if (!defined('DEF_PREFIX'))     define( 'DEF_PREFIX', 'mp' );
+  if (!defined('DEF_TEMPLATE'))   define( 'DEF_TEMPLATE', 'basic' );
                     # If the templates being used have a class library,
                     # specify it here.
-  // if (!defined('DEF_CLASSLIB')) {
-  //   define(
-  //     'DEF_CLASSLIB',
-  //     '/MP_core/class_lib/'
-  //   ); }
-                    # Specify our template names
-  if (!defined('DEF_PREFIX'))  {
-    define(
-      'DEF_PREFIX',
-      'mp'
-    ); }
-  if (!defined('DEF_TEMPLATE')) {
-    define(
-      'DEF_TEMPLATE',
-      'basic'
-    ); }
+  // if (!defined('DEF_CLASSLIB'))   define( 'DEF_CLASSLIB', '/mp_core/class_lib/' );
+
 # Initialize the Site --------------------------------------------------------- *
   require_once( MP_ROOT.'/_core/init.php' );
 
@@ -53,6 +46,8 @@
   $mpo_parts->site_abbr     = '[mp]';
                     # Template formatting rules ------------------------------- *
   $mpt_full_template        = 'page_master.html.twig';      # for generating complete pages
+  // $mpt_home_template        = 'home_master.html.twig';      # for the home pages
+  // $mpt_form_template        = 'form_master.html.twig';      # for form pages
   $mpt_header_template      = 'page_header.html.twig';      # header include for flat file content
   $mpt_footer_template      = 'page_footer.html.twig';      # footer include for flat file content
   $mpo_parts->title_struct  = ['page_name','section_name','site_name'];
@@ -60,7 +55,7 @@
 # Invoke Twig ----------------------------------------------------------------- *
   $loader = new Twig_Loader_Filesystem($mpo_paths->template);
   $twig   = new Twig_Environment($loader, array(
-    'cache'       => MP_ROOT.'/templates/MP_basic/cache',
+    'cache'       => MP_ROOT.'/templates/mp_basic/cache',
     'auto_reload' => true,
   //'debug'       => true,
   ));

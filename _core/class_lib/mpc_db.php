@@ -20,14 +20,20 @@
   * --------------------------------------------------------------------------- */
   class mpc_db {
     protected $mp_conn;
-    protected $_status  = '';
-    protected $query    = array();
-    protected $results  = array();
-    protected $error    = array(
-      'current' => 'none',
-      'success' => 'Connected.',
-      'conn01'  => 'Connection type not valid or not specified. Currently supported: sqlsrv',
-      'conn02'  => 'Missing arguments: ',
+    protected $_status        = '';
+    protected $querynum       = -1;
+    protected $querylist      = array();
+    protected $paramlist      = array();
+    protected $optionlist     = array();
+    protected $errorlist      = array();
+    protected $resultset      = array();
+    protected $error          = array(
+      'current'     => 'none',
+      'connected'   => 'Connected.',
+      'noerrors'    => 'No errors reported.',
+      'conn01'      => 'Connection type not valid or not specified. Currently supported: sqlsrv',
+      'conn02'      => 'Missing arguments: ',
+      'result1'     => 'No results returned for ',
     );
                     /**
                       * Constructor
@@ -44,60 +50,96 @@
                       */
     public function __construct($callby, $args) {
       // http://php.net/manual/en/book.sqlsrv.php
-      $_status      = '';
-      $_status     += array_key_exists('host', $args)   ? '' : ' host';
-      $_status     += array_key_exists('dbname', $args) ? '' : ' dbname';
-      $_status     += array_key_exists('user', $args)   ? '' : ' user';
-      $_status     += array_key_exists('pass', $args)   ? '' : ' pass';
-      if ($_status != '') {
-        $_status = $error['conn02'].$errresult.;
+      $this->_status     = '';
+      $this->_status    += array_key_exists('host', $args)   ? '' : ' host';
+      $this->_status    += array_key_exists('dbname', $args) ? '' : ' dbname';
+      $this->_status    += array_key_exists('user', $args)   ? '' : ' user';
+      $this->_status    += array_key_exists('pwd', $args)    ? '' : ' pass';
+      if ($this->_status != '') {
+        $this->_status   = $error['conn02'].$this->_status;
       } else {
         switch ($callby) {
         case 'sqlsrv':
-          $mp_conn  = sqlsrv_connect( $args['host'], array( "Database"=>$args['dbname'], "UID"=>$args['user'], "PWD"=>$args['pass']));
-          if( $mp_conn ) {
-            $_status = $error['success'];
-          }else{
-            $_status = sqlsrv_errors();
+          $this->mp_conn = sqlsrv_connect( $args['host'], array(
+            "Database"   => $args['dbname'],
+            "UID"        => $args['user'],
+            "PWD"        => $args['pwd']
+          ));
+
+          if( $this->mp_conn ) {
+            $this->_status = $this->error['connected'];
+          } else {
+            $this->_status = sqlsrv_errors();
           }
           break;
         default:
-          $_status  = $error['conn01'];
+          $this->_status  = $this->error['conn01'];
           break;
         }
-      }
-      return $_status;
-    }
-                    /**
-                      * Return the value of asset path.
-                      * @param  string $property The pseudoproperty name.
-                      * @return string
-                      */
-    public function __get($property) {
-      return $this->path[$property];
-    }
-                    /**
-                      * Set a pseudo property to a value.
-                      * If instance is locked, only allow new properties.
-                      * @param  string $property  The pseudoproperty name.
-                      * @param  string $value     The value to be assigned.
-                      * @return bool
-                      */
-    public function __set($property, $value) {
-      if ($this->is_locked) {
-        $this->path[$property] = $this->path[$property] ?? $value;
-      }else {
-        $this->path[$property] = $value;
       }
       return true;
     }
                     /**
-                      * Returns an associative array of paths.
-                      * @return hash
+                      * Return the status of the last call.
+                      * @return mixed
+                      *   the object will return a string
+                      *   the database will return an array
                       */
-    public function build_list() {
-      return $this->path;
+    public function getstatus() {
+      return $this->_status;
     }
-
+                    /**
+                      * Close this database connection.
+                      * @return bool
+                      */
+    public function close() {
+      sqlsrv_close( $this->mp_conn );
+      return true;
+    }
+                    /**
+                      * Return the status of a call.
+                      * @return multiple
+                      *   the object will return a string
+                      *   the database will return an array
+                      */
+    public function runquery($query, $params, $options='') {
+      $this->querynum                   += 1;
+      $this->querylist[$this->querynum]  = $query;
+      $this->paramlist[$this->querynum]  = $params;
+      $this->optionlist[$this->querynum] = $options;
+      $this->errorlist[$this->querynum]  = '';
+      $this->resultset[$this->querynum]  = sqlsrv_query(
+        $this->mp_conn,
+        $query,
+        $params,
+        $options
+      );
+      if ($this->resultset[$this->querynum] === false ) {
+        if ( sqlsrv_errors() != null ) {
+          $this->_status = sqlsrv_errors();
+        } else {
+          $this->_status = $this->error['result1'] . $query;
+        }
+      } else {
+        if (sqlsrv_has_rows($this->resultset[$this->querynum])) {
+          $this->_status = $this->error['noerrors'];
+          echo "<pre>";
+          var_dump($this->resultset[$this->querynum]);
+          echo "</pre>";
+          while( $row = sqlsrv_fetch_array($this->resultset[$this->querynum], SQLSRV_FETCH_ASSOC)) {
+            echo "<pre>";
+            var_dump($row);
+            echo "</pre>";
+          }
+        } else {
+          $this->_status = $this->error['result1'] . $query;
+        }
+      }
+      $this->errorlist[$this->querynum] = $this->_status;
+      return $this->_status;
+    }
   }
-// End mpc_paths -------------------------------------------------------------- *
+  //
+  // sqlsrv_free_stmt( $getProducts );
+  // sqlsrv_close( $conn );
+// End mpc_db ----------------------------------------------------------------- *

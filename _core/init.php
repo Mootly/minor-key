@@ -15,7 +15,7 @@
   if (!defined('DEF_PREFIX'))   define( 'DEF_PREFIX',    'mp' );
   if (!defined('DEF_TEMPLATE')) define( 'DEF_TEMPLATE',  'basic' );
   if (!defined('DEF_ROOT'))     define( 'DEF_ROOT', '' );
-  if (!defined('DEF_CLASSLIB')) define( 'DEF_CLASSLIB', MP_ROOT.'/_core/class_lib/' );
+  if (!defined('DEF_CLASSLIB')) define( 'DEF_CLASSLIB', '/_core/class_lib/' );
 
 # Call our core objects ------------------------------------------------------- *
                     # Page components
