@@ -86,11 +86,11 @@ ob_start();
     <ul>
       <li>Item 1</li>
       <li>Item 2
-        <ul>
+        <ol>
           <li>Item 1</li>
           <li>Item 2</li>
           <li>Item 3</li>
-        </ul>
+        </ol>
       </li>
       <li>Item 3</li>
     </ul>
@@ -98,6 +98,24 @@ ob_start();
   <li>Item 2</li>
   <li>Item 3</li>
 </ul>
+
+<ol>
+  <li>Item 1
+    <ol>
+      <li>Item 1</li>
+      <li>Item 2
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </li>
+      <li>Item 3</li>
+    </ol>
+</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ol>
 
 <h3>Definition Lists</h3>
 
