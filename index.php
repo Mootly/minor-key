@@ -117,6 +117,16 @@ ob_start();
   <li>Item 3</li>
 </ol>
 
+<h3>Fake Lists (<code>.fake-li</code>)</h3>
+
+<p>The fake list item uses span tags for when you want to toss a list item in the middle of a paragraph.</p>
+<p>
+  To get the whatchagizzy working properly, please change
+  <span class="fake-li">thignamabomb</span>
+  to its correct spelling of
+  <span class="fake-li">thingamabob.</span>
+</p>
+
 <h3>Definition Lists</h3>
 
 <h4>Basic DL</h4>
