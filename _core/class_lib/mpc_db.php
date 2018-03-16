@@ -27,6 +27,7 @@
     protected $optionlist     = array();
     protected $errorlist      = array();
     protected $resultset      = array();
+    protected $result         = array();
     protected $error          = array(
       'current'     => 'none',
       'connected'   => 'Connected.',
@@ -89,6 +90,14 @@
       return $this->_status;
     }
                     /**
+                      * Return the index position of the last query.
+                      * @return int
+                      *   -1 returned if no queries run
+                      */
+    public function getqueryidx() {
+      return $this->querynum;
+    }
+                    /**
                       * Close this database connection.
                       * @return bool
                       */
@@ -97,12 +106,13 @@
       return true;
     }
                     /**
-                      * Return the status of a call.
+                      * Return the results of a query.
                       * @return multiple
                       *   the object will return a string
                       *   the database will return an array
                       */
     public function runquery($query, $params, $options='') {
+      $this->result                      = '';
       $this->querynum                   += 1;
       $this->querylist[$this->querynum]  = $query;
       $this->paramlist[$this->querynum]  = $params;
@@ -110,9 +120,9 @@
       $this->errorlist[$this->querynum]  = '';
       $this->resultset[$this->querynum]  = sqlsrv_query(
         $this->mp_conn,
-        $query,
-        $params,
-        $options
+        $this->querylist[$this->querynum],
+        $this->paramlist[$this->querynum],
+        $this->optionlist[$this->querynum]
       );
       if ($this->resultset[$this->querynum] === false ) {
         if ( sqlsrv_errors() != null ) {
@@ -123,14 +133,10 @@
       } else {
         if (sqlsrv_has_rows($this->resultset[$this->querynum])) {
           $this->_status = $this->error['noerrors'];
-          echo "<pre>";
-          var_dump($this->resultset[$this->querynum]);
-          echo "</pre>";
           while( $row = sqlsrv_fetch_array($this->resultset[$this->querynum], SQLSRV_FETCH_ASSOC)) {
-            echo "<pre>";
-            var_dump($row);
-            echo "</pre>";
+            $this->result[] = $row;
           }
+          return $this->result;
         } else {
           $this->_status = $this->error['result1'] . $query;
         }
@@ -139,7 +145,4 @@
       return $this->_status;
     }
   }
-  //
-  // sqlsrv_free_stmt( $getProducts );
-  // sqlsrv_close( $conn );
 // End mpc_db ----------------------------------------------------------------- *

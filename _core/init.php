@@ -16,11 +16,10 @@
   if (!defined('DEF_TEMPLATE')) define( 'DEF_TEMPLATE',  'basic' );
   if (!defined('DEF_ROOT'))     define( 'DEF_ROOT', '' );
   if (!defined('DEF_CLASSLIB')) define( 'DEF_CLASSLIB', '/_core/class_lib/' );
-
 # Call our core objects ------------------------------------------------------- *
                     # Page components
   require_once( MP_CLASSLIB . '/mpc_parts.php');
-  if (!isset($mpo_parts)) $mpo_parts = new mpc_parts(true);
+  if (!isset($mpo_parts)) $mpo_parts = new mpc_parts();
 //  if (!isset($mpo_menus)) $mpo_menus = new mpc_parts(true);
                     # Set default paths for assets
   require_once( MP_CLASSLIB . '/mpc_paths.php' );
