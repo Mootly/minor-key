@@ -31,7 +31,7 @@ if ($mpo_parts->status == 'verified') {
   $mpo_user         = new mpc_db('sqlsrv', $db_login);
   $p_user           = htmlspecialchars($_POST['userid']);
   $p_pass           = htmlspecialchars($_POST['password']);
-  $sql              = 'select password from dbo.ref_audience where audience_key = ?';
+  $sql              = 'select password from dbo.ref_audience where audience_key = ? collate Latin1_General_BIN';
   $params           = array($p_user);
   $options          = array('Scrollable' => SQLSRV_CURSOR_KEYSET);
   $results          = $mpo_user->runquery($sql, $params, $options);

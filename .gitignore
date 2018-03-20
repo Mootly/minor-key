@@ -9,6 +9,7 @@ sites/*
 sites/*/files
 sites/*/private
 templates/*
+mantisbt/
 
 # Add MoosePress specific paths back in.
 !templates/MP_*
