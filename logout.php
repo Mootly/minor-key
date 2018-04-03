@@ -48,7 +48,9 @@ if ($mpo_parts->status == 'public') {
                     # If log out successful ----------------------------------- *
 } elseif ((!empty($_POST)) and ($_POST['logout'] == 'Log Out')) {
   $mpo_parts->status = 'public';
-  $_SESSION['group'] = 'public';
+  $_SESSION = array();
+  session_unset();
+  session_destroy();
 ?>
     <legend>Success!</legend>
     <div class="form_directions directions">

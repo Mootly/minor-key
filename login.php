@@ -46,19 +46,19 @@ if ($mpo_parts->status == 'verified') {
       $mpo_parts->login_message = '';
     }
     $_SESSION['group'] = $p_user;
+    $_SESSION['last_activity'] = $tTime;
   } else {
     $mpo_parts->login_message = '<p class="wrong-box center">The user ID or password was not correct.</p>';
   }
 }
-                    # The notices in the left bar go here.--------------------- *
 ob_start();
+                    # The notices in the left bar go here.--------------------- *
 ?>
-
 <?php
 $mpo_parts->notices = ob_get_clean();
 ob_end_clean();
-                    # The main content body of the page goes here. ------------ *
 ob_start();
+                    # The main content body of the page goes here. ------------ *
 ?>
 <?php
 $mpo_parts->main_content = ob_get_clean();
