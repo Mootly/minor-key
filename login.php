@@ -8,7 +8,7 @@
                     # Call config to inti the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 require_once( $mpo_paths->template.'/db_config.php' );
-require_once( $mpo_paths->template.'/_assets/php_widgets/login_check.php' );
+require_once( $mpo_paths->template.'/_assets/php_widgets/login/check.php' );
                     # Build the page ------------------------------------------ *
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
