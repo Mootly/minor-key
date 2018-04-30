@@ -20,6 +20,10 @@ class ComposerStaticInit82ff9d9a7d18a7565114416af7e931c6
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\CssSelector\\' => 30,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
         'D' => 
         array (
             'DOMWrap\\' => 8,
@@ -38,6 +42,10 @@ class ComposerStaticInit82ff9d9a7d18a7565114416af7e931c6
         'Symfony\\Component\\CssSelector\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/css-selector',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'DOMWrap\\' => 
         array (
