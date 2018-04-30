@@ -53,7 +53,7 @@ $(window).on('hashchange', function(e){
   }
 });
                     // Open fold on direct select                               ***
-$(mpv_clam_list).on('click', 'a.more-link', function(event) {
+$(mpv_clam_list).on('click', '.item-toggle, item-toggle a.more-link', function(event) {
   var tTogType      = ($(this).find('i span').text() == '[show details]') ? true : false;
   $(this).find('i span').text(tTogType ? '[hide details]' : '[show details]');
   $(this).find('i').toggleClass(icon_is_closed+' '+icon_is_open);
@@ -61,6 +61,7 @@ $(mpv_clam_list).on('click', 'a.more-link', function(event) {
   return false;
 });
                     // Open all folds on direct select                          ***
+
 $(mpv_clam_list).on('click', 'a.all-link', function(event) {
   var tTogType = ($(this).find('span').text() == 'Show All') ? true : false;
   if (tTogType) {
@@ -77,7 +78,8 @@ $(mpv_clam_list).on('click', 'a.all-link', function(event) {
                     // Add fold toggle links.                                   ***
                     // Generate IDs if none provided (loops append counters).   ***
 mpv_clam_list.each(function (index1) {
-  $(this).children('dt, '+mpv_clam_head).each(function (index2) {
+  $(this).children(mpv_clam_head).each(function (index2) {
+    $(this).addClass('item-toggle')
     if (!($(this).is('[id]'))) {
       $(this).attr('id', 'tog-'+$(this).text().replace(/ /g,'-')+'-'+index1+'-'+index2);
     }
