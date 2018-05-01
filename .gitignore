@@ -2,6 +2,7 @@
 sites/*/*settings*.php
 config.php
 config.codekit
+web.config
 
 # Ignore paths that contain generated content.
 files/
