@@ -1,4 +1,4 @@
-// === 05 Layout - 05 Title formatting ======================================= ***
+// === 05 Layout - 03 Title formatting ======================================= ***
 // Accessibility haxie for header                                               ***
                     // Hide real H1 from sighted users,                         ***
                     // use H2 to replace it further down                        ***
@@ -52,7 +52,18 @@ h1#first-el {
                     // under on element collapse. Height overwritten by script. ***
 .fixed-above { margin-top: 4.0em; }
 // --- Media rules for small screens ------------------------------------------ ***
-@media (max-width: $breakDesktop) {
+@media (max-width: $break-1024-desktop) {
   #title-box { clear: both; }
+  #title-box {
+    clear: both;
+    h1, h2.page-title {
+      padding       : 0.125em 0.25em 0.125em 0.25em;
+      font-family   : $f-title;
+      font-size     : $h1-mob-size;
+      font-weight   : 900;
+      line-height   : $ht-line-compact;
+      color         : $c-h1-text;
+    }
+  }
 }
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

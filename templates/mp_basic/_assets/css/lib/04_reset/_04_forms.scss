@@ -1,4 +1,4 @@
-// 04 Reset Rules - 04 Form resets ============================================ ***
+// *** 04 Reset Rules - 04 Form resets ======================================== ***
 // Reset rules adapted from normalize.css v4.1.1 | MIT License                  ***
 // github.com/necolas/normalize.css                                             ***
                     // Set default font properties to inherit.                  ***
@@ -43,8 +43,8 @@ button:-moz-focusring,
 [type="submit"]:-moz-focusring { outline: 1px dotted ButtonText; }
                     // Change the border, margin, and padding in all browsers.  ***
 fieldset {
-  border:  1px solid $c-gray-border;
-  margin:  0 2px;
+  border: 1px solid $c-gray-border;
+  margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
                     // Correct the text wrapping in Edge and IE.                ***
@@ -52,12 +52,12 @@ fieldset {
                     // Remove the padding so developers are not caught out      ***
                     // when zeroing out fieldset elements in all browsers.      ***
 legend {
-  box-sizing:  border-box;
-  color:       inherit;
-  display:     table;
-  max-width:   100%;
-  padding:     0;
-  border:      0;
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
   white-space: normal;
 }
                     // Remove the default vertical scrollbar in IE.             ***
@@ -73,10 +73,10 @@ textarea { overflow: auto; vertical-align: top; }
                     // Correct the odd appearance in Chrome and Safari.         ***
                     // Correct the outline style in Safari.                     ***
 [type="search"] {
-  -moz-box-sizing:    content-box;
-  box-sizing:         content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
   -webkit-appearance: textfield;
-  outline-offset:     -2px;
+  outline-offset: -2px;
 }
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
@@ -99,4 +99,4 @@ input[type="reset"],
 input[type="submit"],
 input[type="radio"],
 input[type="checkbox"] { cursor: pointer; }
-// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

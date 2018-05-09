@@ -17,7 +17,7 @@
     font-size       : $hb-size;
   }
   #navigation-search {
-    @media (min-width: $breakTablet) { display: block !important; }
+    @media (min-width: $break-800-tablet) { display: block !important; }
     position        : relative;
     box-sizing      : border-box;
     width           : 100%;
@@ -47,7 +47,7 @@
       border: 0;
     }
     button {
-      @media (min-width: $breakTablet) {
+      @media (min-width: $break-800-tablet) {
         height       : 2.1675em;
         position    : absolute;
         top         : 0;
@@ -107,7 +107,7 @@
 }
 
 // *** The page header - MOBILE VIEW ****************************************** ***
-@media (max-width: $breakTablet) {
+@media (max-width: $break-800-tablet) {
   div.mobile-only { display: block; }
   span.mobile-only { display: inline; }
   #page-header {

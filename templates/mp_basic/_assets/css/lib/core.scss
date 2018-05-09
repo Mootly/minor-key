@@ -1,4 +1,4 @@
-// BEGIN CORE CSS FILE ======================================================== ***
+// *** BEGIN CORE CSS FILE ==================================================== ***
 // NOTE: This file should contain nothing but import statements.                ***
 // GENERAL USE NOTES                                                            ***
 // ============================================================================ ***
@@ -27,38 +27,72 @@
 // there is no reason for it to appear anywhere but in this file.               ***
 // ============================================================================ ***
 
-// 01 Functions *************************************************************** ***
+// *** 01 Functions ----------------------------------------------------------- ***
 @import "01_funcs/01_sizing";
-// 02 Variables *************************************************************** ***
+// *** 02 Variables ----------------------------------------------------------- ***
 @import "02_vars/01_colors";
 @import "02_vars/02_fonts";
 @import "02_vars/03_sizes";
 @import "02_vars/11_mediaQueries";
-// 03 Mixins ****************************************************************** ***
+// *** 03 Mixins *------------------------------------------------------------- ***
 @import "03_mixins/01_colorCombos";
 @import "03_mixins/02_commonElements";
-// 04 Resets ****************************************************************** ***
+// *** 04 Resets -------------------------------------------------------------- ***
+/*!
+--- begin resets --- should be nothing but font definitions above this point ---
+*/
 @import "04_reset/01_core";
 @import "04_reset/02_semantics";
 @import "04_reset/03_linkContent";
 @import "04_reset/04_forms";
 @import "04_reset/11_print";
-// 05 Layout ****************************************************************** ***
+// *** 05 Layout -------------------------------------------------------------- ***
+/*!
+--- begin accessibility ---
+*/
 @import "05_layout/00_accessibility";
+/*!
+--- begin page layout ---
+*/
 @import "05_layout/01_core";
+/*!
+--- begin header and title ---
+*/
 @import "05_layout/02_header";
-@import "05_layout/04_title";
-@import "05_layout/05_breadcrumb";
+@import "05_layout/03_title";
+// @import "05_layout/04_footer";
+/*!
+--- begin nvigation ---
+*/
 @import "05_layout/11_sidebar_left";
 @import "05_layout/12_menu_left";
 @import "05_layout/13_announce_left";
-// 06 Parts ******************************************************************* ***
+@import "05_layout/21_breadcrumb";
+// *** 06 Parts --------------------------------------------------------------- ***
+/*!
+--- begin lists ---
+*/
 @import "06_parts/01_lists";
+/*!
+--- begin tables ---
+*/
 @import "06_parts/02_tables";
+/*!
+--- begin code ---
+*/
 @import "06_parts/03_code";
+/*!
+--- begin collouts ---
+*/
 @import "06_parts/04_callouts";
+/*!
+--- begin links ---
+*/
 @import "06_parts/10_links";
+/*!
+--- begin utility classes ---
+*/
 @import "06_parts/31_utility_classes";
-// 11 Custom ****************************************************************** ***
+// *** 11 Custom -------------------------------------------------------------- ***
 @import "11_custom/01_altDraft";
-/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */
+/*! *** Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md ------------- */

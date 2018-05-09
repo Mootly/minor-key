@@ -1,15 +1,15 @@
-// 01 Variables - 11 Media Queries ============================================ ***
+// *** 01 Variables - 11 Media Queries ================== Namespace: break- === ***
 // This file should contain only variable assignments.                          ***
 // Any CSS here may be overriden in the resets.                                 ***
                     // device breakouts                                         ***
-$breakSmallPhone    :	20em;             // 320px
-$breakPhone         :	30em;             // 480px
-$breakPhoneAlt      :	35em;             // 560px
-$breakTablet        :	50em;             // 800px
-$breakDesktop       :	64em;             // 1024px
+$break-320-phone    : 20em;             // 320px
+$break-480-phone    : 30em;             // 480px
+$break-560-phone    : 35em;             // 560px
+$break-800-tablet   : 50em;             // 800px
+$break-1024-desktop : 64em;             // 1024px
                     // not used but here for completeness                       ***
-$olderScreen        : 80em;             // 1280px
-$typicalScreen      :	85em;             // 1360px
-$breakHiRes         :	90em;             // 1440px
-$breakRetina        : 100em;            // 1600px
-// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+$break-1280-desktop : 80em;             // 1280px
+$break-1360-desktop : 85em;             // 1360px
+$break-1440-desktop : 90em;             // 1440px
+$break-1600-desktop : 100em;            // 1600px
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

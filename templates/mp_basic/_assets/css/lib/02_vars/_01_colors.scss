@@ -1,16 +1,14 @@
-
-// 02 Variables - 01 Colors ================================= Namespace: c- === ***
+// *** 01 Variables - 01 Colors ============================= Namespace: c- === ***
 // All colors should be defined in and referenced from this file.               ***
 // The important bits are at the bottom.                                        ***
 // ----------------                                                             ***
 // This file should contain only variable assignments.                          ***
 // Any CSS here may be overriden in the resets.                                 ***
-// **************************************************************************** ***
+// ---------------------------------------------------------------------------- ***
 
-// BASIC COLORS *************************************************************** ***
+// *** BASIC COLORS =========================================================== ***
 // Just some basic colors so they are predefined                                ***
-// **************************************************************************** ***
-// Primaries ****************************************************************** ***
+// *** Primaries -------------------------------------------------------------- ***
 $c-white            : rgb(255,255,255);                     // #ffffff
 $c-black            : rgb(0,0,0);                           // #000000
 $c-red              : rgb(255,0,0);                         // #ff0000
@@ -19,50 +17,47 @@ $c-blue             : rgb(0,0,255);                         // #0000ff
 $c-yellow           : rgb(255,255,0);                       // #ffff00
 $c-cyan             : rgb(0,255,255);                       // #00ffff
 $c-magenta          : rgb(255,0,255);                       // #ff00ff
-// Grays ********************************************************************** ***
+// *** Grays ------------------------------------------------------------------ ***
 $c-gray-charcoal    : rgb(32,36,37);                        // #202425
 $c-gray-dark        : rgb(70,74,75);                        // #464a4b
 $c-gray-medium      : rgb(140,145,147);                     // #8c9193
 $c-offwhite         : rgb(246,243,244);                     // #f9f2f3
-// Common Colors ************************************************************** ***
-$c-default-red      : darken($c-red, 10%);                  // #cc0000
+// *** Common Colors ---------------------------------------------------------- ***
+$c-default-red      : darken($c-red, 20%);                  // #990000
 $c-default-green    : darken($c-green, 20%);                // #009900
-// END BASIC COLORS *********************************************************** ***
+// *** END BASIC COLORS ======================================================= ***
 
-// TEMPLATE COLORS ************************************************************ ***
-// **************************************************************************** ***
+// *** TEMPLATE COLORS ======================================================== ***
 $c-base-black       : rgb(17,15,16);                        // #110f10
 $c-base-dkgray      : rgb(43,40,43);                        // #2b282b
 $c-base-medgray     : rgb(76,64,76);                        // #4c404c
 $c-base-ltgray      : rgb(162,148,162);                     // #a294a2
 $c-base-graywash    : rgb(221,215,221);                     // #ddd7dd
 $c-base-plumwash    : rgb(234,227,238);                     // #eae3ef
-// $c-base-graywash    : rgb(240,240,238);                     // #f0f0ee
+$c-base-graywash    : rgb(240,240,238);                     // #f0f0ee
 $c-base-limewash    : rgb(238,255,238);                     // #eeffee
-
+// ***
 $c-base-dkred       : rgb(34,0,0);                          // #220000
 $c-base-medred      : rgb(78,16,16);                        // #4e1010
 $c-base-red         : rgb(153,34,34);                       // #992222
 $c-base-pink        : rgb(242,121,121);                     // #f27979
 $c-base-palerose    : rgb(216,173,173);                     // #d8adad
 $c-base-tan         : rgb(242,242,218);                     // #f2f2da
-
+// ***
 $c-base-dkteal      : rgb(0,32,32);                         // #002020
 $c-base-medteal     : rgb(0,64,64);                         // #004040
 $c-base-teal        : rgb(0,128,128);                       // #008080
 $c-base-tealwash    : rgb(218,242,242);                     // #daf2f2
-
+// ***
 $c-base-blue        : rgb(32,17,136);                       // #201188
 $c-base-slate       : rgb(85,85,119);                       // #555577
 $c-base-ltslate     : rgb(187,187,221);                     // #bbbbdd
-
+// ***
 $c-base-plum        : rgb(112,61,116);                      // #703d74
 $c-base-dkplum      : rgb(67,37,70);                        // #432546
 $c-base-medplum     : rgb(90,49,93);                        // #5a315d
 $c-base-flatplum    : rgb(99,68,100);                       // #644564
-
-// COMPONENT COLORS *********************************************************** ***
-// **************************************************************************** ***
+// *** COMPONENT COLORS ------------------------------------------------------- ***
                     // Base                                                     ***
 $c-base-text        : $c-base-black;
 $c-base-bg          : $c-offwhite;
@@ -107,11 +102,11 @@ $c-h6-text          : mix($c-base-slate, $c-base-black, 55);
 
 $c-ppt-orange       : rgb(183,66,21);                       // #b74215
 $c-word-blue        : $c-base-blue;
-// Callouts ******************************************************************* ***
+                    // Callouts                                                 ***
 $c-hilite-yellow    : rgba($c-yellow,0.8);
 $c-hilite-gray      : rgba($c-base-ltgray,0.5);
 $c-tip-border       : $c-base-plum;
 $c-alert-red        : $c-base-red;
 $c-response-no      : $c-default-red;
 $c-response-yes     : $c-default-green;
-// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

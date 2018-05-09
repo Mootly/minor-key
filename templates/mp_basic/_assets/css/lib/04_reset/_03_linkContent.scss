@@ -1,7 +1,7 @@
-// 04 Reset Rules - 03 Links and linked content resets ======================== ***
+// *** 04 Reset Rules - 03 Links and linked content resets ==================== ***
 // Reset rules adapted from normalize.css v4.1.1 | MIT License                  ***
 // github.com/necolas/normalize.css                                             ***
-// LINKS FIXES **************************************************************** ***
+// *** LINKS FIXES ------------------------------------------------------------ ***
                     // Remove the gray background on active links in IE 10.     ***
                     // Remove gaps in links underline in iOS 8+ and Safari 8+.  ***
 a {
@@ -18,15 +18,15 @@ a:focus {
                     // or hovered in all browsers.                              ***
 a:active,
 a:hover { outline: 0; outline-width: 0; }
-// EMBEDDED CONTENT *********************************************************** ***
+// *** EMBEDDED CONTENT ------------------------------------------------------- ***
                     // Remove the border on images inside links in IE 10-.      ***
 img { border-style: none; border: 0; }
                     // Clean up image sizing.                                   ***
 img {
-  max-width:              100%;
-  height:                 auto;
-  vertical-align:         middle;
-  border:                 0;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
   -ms-interpolation-mode: bicubic;
 }
                     // Clean up image sizing for IE8.                           ***
@@ -41,8 +41,4 @@ iframe,
 img,
 svg,
 video { vertical-align: middle; }
-                    // Google cleanup (not used)                                ***
-// #map_canvas img, .google-maps img { max-width: none }
-// Hide the overflow in IE. (not used)
-// svg:not(:root) { overflow: hidden; }
-// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

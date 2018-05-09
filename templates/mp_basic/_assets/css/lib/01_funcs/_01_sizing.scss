@@ -1,4 +1,4 @@
-// 02 Functions - 01 Sizing functions ========================================= ***
+// *** 01 Functions - 01 Sizing functions ===================================== ***
 // Functions to scale and size:                                                 ***
                     // calculate column widths on the page                      ***
                     // The default assumes a 12 column layout                   ***
@@ -11,5 +11,4 @@
 @function px2ems($fx_num, $fx_count: 16) {
   @return ($fx_num / $fx_count) * 1.0em ;
 }
-
-// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

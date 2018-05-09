@@ -1,4 +1,5 @@
-// 05 Layout - 01 Basic formatting for the document =========================== ***
+// *** 05 Layout - 01 Basic formatting for the document ======================= ***
+                    // set our core body Rules                                  ***
 body {
   box-sizing        : border-box;
   position          : relative;
@@ -9,71 +10,73 @@ body {
   font              : normal normal 400 1.0em $f-default;
   line-height       : $ht-line-tall;
 }
-                    // Main body of the page.                                   ***
+                    // make everything relative to save some code               ***
+* { position: relative; }
+// *** Main body of the page is #content-main --------------------------------- ***
+// #content-box is our inner wrapper - normally everything but breadcrumbs      ***
 #content-main {
-  width: 100%;
+  width             : 100%;
   #content-box {
-    margin: 1.0em 2.0em 2.0em 20.0em;
-    max-width: $max-content-width;
+    max-width       : $max-content-width;
+    margin          : 1.0em 2.0em 2.0em 20.0em;
   }
+                    // paragraphs have a small side margin for visual alignment ***
   p {
-    line-height     : $ht-line-default;
     margin          : 0.5em 0.125em;
+    line-height     : $ht-line-default;
   }
+                    // tighten paragaphs after titles                           ***
   h1+p, h2+p, h3+p, h4+p, h5+p, h6+p { margin-top: 0; }
+                    // set headers                                              ***
   h1 {
-    padding         : 1.25em 0 0.5em 0;
-    margin          : 0;
+    @include header-spacing;
     color           : $c-h1-text;
     font-family     : $f-title;
-    font-weight: 900;
+    font-size       : $h1-size;
+    font-weight     : 900;
   }
   h2 {
-    padding         : 1.25em 0 0.375em 0;
-    margin          : 0;
-    font-family     : $f-title;
-    font-weight: 900;
-    font-size       : $h2-size;
-    line-height     : $ht-line-compact;
+    @include header-spacing;
     color           : $c-h2-text;
+    font-family     : $f-title;
+    font-size       : $h2-size;
+    font-weight     : 900;
+    line-height     : $ht-line-compact;
   }
   h3 {
-    padding         : 1.25em 0 0.375em 0;
-    margin          : 0;
-    font-family     : $f-title;
-    font-weight: 700;
-    font-size       : $h3-size;
-    line-height     : $ht-line-compact;
+    @include header-spacing;
     color           : $c-h3-text;
+    font-family     : $f-title;
+    font-size       : $h3-size;
+    font-weight     : 700;
+    line-height     : $ht-line-compact;
   }
   h4 {
-    padding         : 1.25em 0 0.375em 0;
-    margin          : 0;
-    font-family     : $f-title;
-    font-weight: 700;
-    font-size       : $h4-size;
-    line-height     : $ht-line-compact;
+    @include header-spacing;
     color           : $c-h4-text;
+    font-family     : $f-title;
+    font-size       : $h4-size;
+    font-weight     : 700;
+    line-height     : $ht-line-compact;
   }
   h5 {
-    padding         : 1.25em 0 0.375em 0;
-    margin          : 0;
-    font-family     : $f-title;
-    font-weight: 600;
-    font-size       : $h5-size;
-    line-height     : $ht-line-compact;
+    @include header-spacing;
     color           : $c-h5-text;
+    font-family     : $f-title;
+    font-size       : $h5-size;
+    font-weight     : 600;
+    line-height     : $ht-line-compact;
   }
   h6 {
-    padding         : 1.25em 0 0.375em 0;
-    margin          : 0;
-    font-family     : $f-title;
-    font-weight: 600;
-    font-size       : $h6-size;
-    line-height     : $ht-line-compact;
+    @include header-spacing;
     color           : $c-h6-text;
+    font-family     : $f-title;
+    font-size       : $h6-size;
+    font-weight     : 600;
+    line-height     : $ht-line-compact;
   }
-  a {
+                    // set links                                                ***
+  a, a:active {
     color           : $c-link-text;
     text-decoration : none;
     @include set-blended-border($c-link-text, bottom, 0.15, 1px, solid, $c-base-bg);
@@ -81,32 +84,17 @@ body {
   a:visited {
     color           : $c-visited-text;
   }
-  a:hover {
+  a:hover, a:focus {
     @include set-blended-border($c-link-text, bottom, 0.85, 1px, solid, $c-base-bg);
     @include set-blended-background($c-button-bg, 0.025, $c-base-bg)
   }
 }
-
-// --- Media rules for small screens ------------------------------------------ ***
-@media (max-width: $breakDesktop) {
+// *** Media rules for small screens ------------------------------------------ ***
+@media (max-width: $break-1024-desktop) {
   .no-mobile { display: none; }
-  #breadcrumb-box {
-    @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg)
-  }
-  #title-box {
-    clear: both;
-    h1, h2.page-title {
-      padding       : 0.125em 0.25em 0.125em 0.25em;
-      font-family   : $f-title;
-      font-size     : $h1-mob-size;
-      font-weight   : 900;
-      line-height   : $ht-line-compact;
-      color         : $c-h1-text;
-    }
-  }
   #content-main {
     clear           : both;
     #content-box { margin: 2.0em; }
   }
 }
-// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

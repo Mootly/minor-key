@@ -1,4 +1,4 @@
-// === 05 Layout - 00 Accessibility =========================================== ***
+// *** 05 Layout - 00 Accessibility =========================================== ***
 // Define our core accessible navigation block                                  ***
 #access-nav {
   width             : 100%;
@@ -15,32 +15,11 @@
     padding         : 0;
   }
 }
+                    // elements only rtext readers should see                   ***
 .reader-only {
   display           : block;
   position          : absolute;
   top               : 0;
   left              : -1000em;
 }
-                    // Fix to prevent this feature from triggering for mobile   ***
-                    // It addresses a bug in the state header                   ***
-@media (min-width: $breakTablet) {
-  #access-nav {
-    a:focus {
-      display       : block;
-      position      : static;
-      clip          : auto;
-      width         : 100%;
-      height        : auto;
-      overflow      : visible;
-      margin        : 0;
-      padding       : 0.5em;
-      background-color: $c-banner-bg;
-      text-align    : center;
-      color         : $c-banner-text;
-      font-weight   : bold;
-      font-size     : px2ems(20);
-      z-index       : 500;
-    }
-  }
-}
-// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

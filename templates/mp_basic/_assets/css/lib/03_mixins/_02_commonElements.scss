@@ -1,4 +1,4 @@
-// === 03 Mixins - 02 Common Elements ========================================= ***
+// *** 03 Mixins - 02 Common Elements ========================================= ***
 // For consistency, all internal variables are prefixed with "mx"               ***
 // ----------------                                                             ***
 // This file should contain only mixin calls.                                   ***
@@ -17,4 +17,9 @@
     padding         : 0;
   }
 }
-// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+                    // default header padding                                             ***
+@mixin header-spacing {
+  margin            : 0;
+  padding           : 1.25em 0 0.5em 0;
+}
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

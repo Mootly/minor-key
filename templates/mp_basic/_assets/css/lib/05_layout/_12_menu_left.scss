@@ -113,7 +113,7 @@
   }
 }
 // Media rules ---------------------------------------------------------------- ***
-@media (max-width: $breakDesktop) {
+@media (max-width: $break-1024-desktop) {
   #menu-left {
     position        : relative;
     width           : 100%;

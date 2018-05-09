@@ -35,7 +35,7 @@
     @include set-blended-background($c-button-bg, 0.025, $c-base-bg)
   }
 }
-@media (max-width: $breakDesktop) {
+@media (max-width: $break-1024-desktop) {
   #announce-left {
     position        : relative;
     width           : 100%;
