@@ -29,51 +29,40 @@ body {
   h1+p, h2+p, h3+p, h4+p, h5+p, h6+p { margin-top: 0; }
                     // set headers                                              ***
   h1 {
-    @include header-spacing;
+    @include header-constants;
     color           : $c-h1-text;
-    font-family     : $f-title;
     font-size       : $h1-size;
     font-weight     : 900;
   }
   h2 {
-    @include header-spacing;
+    @include header-constants;
     color           : $c-h2-text;
-    font-family     : $f-title;
     font-size       : $h2-size;
     font-weight     : 900;
-    line-height     : $ht-line-compact;
   }
   h3 {
-    @include header-spacing;
+    @include header-constants;
     color           : $c-h3-text;
-    font-family     : $f-title;
     font-size       : $h3-size;
     font-weight     : 700;
-    line-height     : $ht-line-compact;
   }
   h4 {
-    @include header-spacing;
+    @include header-constants;
     color           : $c-h4-text;
-    font-family     : $f-title;
     font-size       : $h4-size;
     font-weight     : 700;
-    line-height     : $ht-line-compact;
   }
   h5 {
-    @include header-spacing;
+    @include header-constants;
     color           : $c-h5-text;
-    font-family     : $f-title;
     font-size       : $h5-size;
     font-weight     : 600;
-    line-height     : $ht-line-compact;
   }
   h6 {
-    @include header-spacing;
+    @include header-constants;
     color           : $c-h6-text;
-    font-family     : $f-title;
     font-size       : $h6-size;
     font-weight     : 600;
-    line-height     : $ht-line-compact;
   }
                     // set links                                                ***
   a, a:active {
