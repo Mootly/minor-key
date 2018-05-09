@@ -21,6 +21,7 @@ h1#first-el {
                     // Use H2 to emulate H1 in displayed title block if         ***
                     // using accessibility fix above.                           ***
 #title-box {
+  clear: both;
   margin: 0;
   background-color: $c-base-bg;
   border-bottom: 2px solid $c-banner-bg;

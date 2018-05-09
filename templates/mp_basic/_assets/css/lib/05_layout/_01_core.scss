@@ -1,8 +1,8 @@
 // *** 05 Layout - 01 Basic formatting for the document ======================= ***
                     // set our core body Rules                                  ***
 body {
-  box-sizing        : border-box;
   position          : relative;
+  box-sizing        : border-box;
   margin            : 0;
   padding           : 0;
   background-color  : $c-base-bg;
@@ -10,8 +10,11 @@ body {
   font              : normal normal 400 1.0em $f-default;
   line-height       : $ht-line-tall;
 }
-                    // make everything relative to save some code               ***
-* { position: relative; }
+                    // set some basic values that get used everywhere           ***
+* {
+  position          : relative;
+  box-sizing        : border-box;
+ }
 // *** Main body of the page is #content-main --------------------------------- ***
 // #content-box is our inner wrapper - normally everything but breadcrumbs      ***
 #content-main {
@@ -85,5 +88,9 @@ body {
     clear           : both;
     #content-box { margin: 2.0em; }
   }
+}
+@media (max-width: $break-800-tablet) {
+  div.mobile-only { display: block; }
+  span.mobile-only { display: inline; }
 }
 // *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
