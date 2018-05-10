@@ -59,16 +59,17 @@
 /*!
 --- begin header and title ---
 */
-@import "05_layout/02_header";
-@import "05_layout/03_title";
+@import "05_layout/11_header";
+@import "05_layout/12_header_title";
+@import "05_layout/13_header_nav";
+@import "05_layout/15_title";
 // @import "05_layout/04_footer";
 /*!
 --- begin nvigation ---
 */
-@import "05_layout/11_sidebar_left";
-@import "05_layout/12_menu_left";
-@import "05_layout/13_announce_left";
-@import "05_layout/21_breadcrumb";
+@import "05_layout/21_sidebar_left";
+@import "05_layout/22_menu_left";
+@import "05_layout/23_announce_left";
 // *** 06 Parts --------------------------------------------------------------- ***
 /*!
 --- begin lists ---
@@ -94,6 +95,13 @@
 --- begin utility classes ---
 */
 @import "06_parts/31_utility_classes";
+// *** 07 Widgets ------------------------------------------------------------- ***
+/*!
+--- begin widgets ---
+*/
+@import "07_widgets/01_searchbar";
+@import "07_widgets/02_breadcrumb";
+@import "07_widgets/03_google_trans";
 // *** 11 Custom -------------------------------------------------------------- ***
 @import "11_custom/01_altDraft";
 /*! *** Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md ------------- */

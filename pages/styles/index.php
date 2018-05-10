@@ -36,23 +36,23 @@ ob_start();
       <th colspan="2">Style Guide</th>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/style-callouts.php">Text Elements &amp; Callouts</a></td>
+      <td><a href="<?=CURR_PATH?>/callouts.php">Text Elements &amp; Callouts</a></td>
       <td>Basic text formatting and calouts of all stripes.</td>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/style-links.php">Links &amp; Images</a></td>
+      <td><a href="<?=CURR_PATH?>/links.php">Links &amp; Images</a></td>
       <td>Link, images, and other embedded content</td>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/style-lists.php">Lists</a></td>
+      <td><a href="<?=CURR_PATH?>/lists.php">Lists</a></td>
       <td>Lists.</td>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/style-tables.php">Tables</a></td>
+      <td><a href="<?=CURR_PATH?>/tables.php">Tables</a></td>
       <td>The different tables currently available.</td>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/style-text.php">Text Elements</a></td>
+      <td><a href="<?=CURR_PATH?>/text.php">Text Elements</a></td>
       <td>Text, text styling, and callouts.</td>
     </tr>
   </tbody>
