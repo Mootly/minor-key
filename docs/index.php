@@ -1,24 +1,28 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Index | minor.key Documentation</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" type="text/css" href="./css/docs.min.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all" />
-
-  <script src="/_vendors/html5shiv/dist/html5shiv.min.js"></script>
-</head>
-<body id="page-body">
-
-<!-- *** BEGIN CONTENT *** *************************************** -->
-<h1>MoosePress docs</h1>
-
-<div id="content-main">
-
+<?php
+/* === Style Guide: Text and Callouts ========================================= *
+ * Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md
+ * --- Revision History ------------------------------------------------------- *
+ * 2018-05-09 | Copied over from test page.
+ * ---------------------------------------------------------------------------- */
+                    # Call config to init the application
+require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
+require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
+# --- ↓↓↓ EDIT VARIABLES BELOW ↓↓↓ -------------------------------------------- ***
+$mpo_parts->h1_title          = 'MoosePress Docs';
+$mpo_parts->link_title        = 'MoosePress Docs';
+                    # page_name should equal your H1 title.
+$mpo_parts->page_name         = $mpo_parts->h1_title;
+$mpo_parts->section_name      = 'Documentation';
+$mpo_parts->accessibility     = 'standard';
+// $mpo_parts->pagemenu          = 'docs.internal';
+$mpo_parts->bodyclasses       = 'final';
+$page_path                    = $mpo_parts->page_path;
+ob_start();
+# --- ↓↓↓ EDIT CONTENT BELOW ↓↓↓ ---------------------------------------------- ***
+                    # The main content body of the page is developed here.
+                    # It can be built from pieces or written as a block,
+                    # depending on the site.
+?>
 <h2 id="toc-links">Contents</h2>
 
 <h2>Code organization</h2>
@@ -334,11 +338,10 @@ $mpo_parts->page_name     = <var>value</var>;</pre>
     <pre>$result = $mpo_paths->build_list();</pre>
   </dd>
 </dl>
-</div>
-<!-- *** end contents *** **************************************** -->
-
-<script type="text/javascript" src="/_vendors/jquery/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
-<script type="text/javascript" src="/_assets/js/clamshell.js"></script>
-</body>
-</html>
+<?php
+# --- ↑↑↑ EDIT CONTENT ABOVE ↑↑↑ ---------------------------------------------- ***
+$mpo_parts->main_content = ob_get_clean();
+ob_end_clean();
+$page_elements = $mpo_parts->build_page();
+echo ($twig->render($mpt_full_template, array('page'=>$page_elements['content'])));
+?>

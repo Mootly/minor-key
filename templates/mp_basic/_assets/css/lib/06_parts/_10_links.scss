@@ -22,13 +22,14 @@
     @include set-blended-text($c-base-flatplum, 0.5, $c-base-bg)
   }
                     // Resource type flags                                      *
-  a[href*='www.youtube.com/watch']::after {
-    content:        '\f16a';
-    color:          $c-red;
-    font-size:      1.0625em;
-    font-family:    FontAwesome;
-    padding:        0 0.125em 0 0.375em;
-  }
+a[href*='http://www.youtube.com/watch']:after,
+a[href*='https://www.youtube.com/watch']:after {
+  content         : '\f16a';
+  font-size       : 1.0625em;
+  font-family     : FontAwesome;
+  padding         : 0 0.125em 0 0.375em;
+  @include set-blended-text($c-red, 0.5, $c-base-bg)
+}
   a[href$='.pdf']::after,
   a[href$='.PDF']::after {
     content:        '\f1c1';

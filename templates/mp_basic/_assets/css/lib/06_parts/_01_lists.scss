@@ -50,7 +50,6 @@ p + ul, p + ol {
       @include set-blended-border($c-base-text, top, 0.125, 1px, solid, $c-base-bg);
       @include set-blended-border($c-base-text, bottom, 0.125, 1px, solid, $c-base-bg);
       dt {
-        clear       : left;
         float       : left;
         width       : 8.5em;
         padding-top : 0.325em;
@@ -58,9 +57,6 @@ p + ul, p + ol {
         padding-bottom: 0.375em;
         text-align  : right;
         line-height: $ht-line-default;
-        &::after {
-          content   : ' : ';
-        }
       }
       dd {
         margin-left : 10.0em;
