@@ -17,7 +17,7 @@ $mpo_parts->link_title    = 'Home';
 $mpo_parts->page_name     = $mpo_parts->h1_title;
 $mpo_parts->section_name  = 'Home';
 $mpo_parts->accessibility = 'standard';
-$mpo_parts->bodyclasses   = 'draft';
+$mpo_parts->bodyclasses   = 'final';
 // $mpo_parts->pagemenu = 'docs.general';
 
                     # The main content body of the page is developed here.      *

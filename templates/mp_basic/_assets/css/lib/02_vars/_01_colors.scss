@@ -86,8 +86,8 @@ $c-code-hilite-2    : $c-base-medteal;
 
                     // Buttons and links                                        ***
 $c-button-text      : $c-offwhite;
-$c-button-bg        : $c-base-dkplum;
-$c-button-active-bg : $c-base-medplum;
+$c-button-bg        : $c-base-flatplum;
+$c-button-active-bg : lighten($c-base-flatplum, 10);
 $c-link-icons       : $c-base-flatplum;
 $c-link-text        : $c-base-teal;
 $c-link-header-txt  : $c-base-plumwash;

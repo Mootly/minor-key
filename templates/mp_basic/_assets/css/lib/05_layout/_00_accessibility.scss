@@ -4,22 +4,8 @@
   width             : 100%;
   margin            : 0;
   padding           : 0;
-  h1, h2, p, ol, li, a {
-    position        : absolute;
-    clip            : rect(0 0 0 0);
-    width           : 1px;
-    height          : 1px;
-    overflow        : hidden;
-    margin          : -1px;
-    border          : 0;
-    padding         : 0;
-  }
+  h1, h2, p, ol, li, a { @include hidden-element-rules; }
 }
                     // elements only text readers should see                    ***
-.reader-only {
-  display           : block;
-  position          : absolute;
-  top               : 0;
-  left              : -1000em;
-}
+.reader-only { @include offscreen-element-rules; }
 // *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

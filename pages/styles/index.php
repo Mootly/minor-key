@@ -14,7 +14,7 @@ $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation';
 $mpo_parts->accessibility     = 'standard';
 // $mpo_parts->pagemenu          = 'docs.internal';
-$mpo_parts->bodyclasses       = 'draft';
+$mpo_parts->bodyclasses       = 'final';
 $page_path                    = $mpo_parts->page_path;
 ob_start();
 # --- ↓↓↓ EDIT CONTENT BELOW ↓↓↓ ---------------------------------------------- ***

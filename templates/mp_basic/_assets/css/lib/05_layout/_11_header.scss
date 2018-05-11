@@ -25,11 +25,4 @@
     color           : $c-banner-text;
   }
 }
-// *** The page header - OLD MOBILE VIEW ****************************************** ***
-@media (max-width: $break-800-tablet) {
-  #page-header {
-    .fa { display: inline; display: inline-block; }
-  }
-}
-
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

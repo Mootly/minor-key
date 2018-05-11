@@ -10,15 +10,15 @@ body {
   font              : normal normal 400 1.0em $f-default;
   line-height       : $ht-line-tall;
 }
-                    // set some basic values that get used everywhere           ***
+                    // set some basic values that get used almost everywhere    ***
 * {
-  position          : relative;
   box-sizing        : border-box;
 }
 // *** Main body of the page is #content-main --------------------------------- ***
-// #content-box is our inner wrapper - normally everything but breadcrumbs      ***
 #content-main {
   width             : 100%;
+                    // #content-box is our inner wrapper                        ***
+                    // it normally contains everything but breadcrumbs          ***
   #content-box {
     max-width       : $max-content-width;
     margin          : 1.0em 2.0em 2.0em 20.0em;
@@ -73,9 +73,7 @@ body {
     text-decoration : none;
     @include set-blended-border($c-link-text, bottom, 0.15, 1px, solid, $c-base-bg);
   }
-  a:visited {
-    color           : $c-visited-text;
-  }
+  a:visited { color : $c-visited-text; }
   a:hover, a:focus {
     @include set-blended-border($c-link-text, bottom, 0.85, 1px, solid, $c-base-bg);
     @include set-blended-background($c-button-bg, 0.025, $c-base-bg)

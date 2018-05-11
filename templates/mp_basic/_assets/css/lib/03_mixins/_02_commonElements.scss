@@ -3,19 +3,27 @@
 // ----------------                                                             ***
 // This file should contain only mixin calls.                                   ***
 // Any raw CSS here may be overriden in the resets.                             ***
+                    // Hidden element rules                                     ***
+@mixin hidden-element-rules {
+  display           : block;
+  position          : absolute;
+  clip              : rect(0 0 0 0);
+  width             : 1px;
+  height            : 1px;
+  overflow          : hidden;
+  margin            : -1px;
+  border            : 0;
+  padding           : 0;
+}
+@mixin offscreen-element-rules {
+  display           : block;
+  position          : absolute;
+  top               : 0;
+  left              : -1000em;
+}
                     // Hidden spans                                             ***
 @mixin span-hidden {
-  span {
-    display         : block;
-    position        : absolute;
-    clip            : rect(0 0 0 0);
-    width           : 1px;
-    height          : 1px;
-    overflow        : hidden;
-    margin          : -1px;
-    border          : 0;
-    padding         : 0;
-  }
+  span { @include hidden-element-rules; }
 }
                     // default header padding                                   ***
 @mixin header-constants {
