@@ -65,7 +65,7 @@
   <div id="sidebar-left">
     {% block body_menu_left %}
     <div id="menu-left">
-      {% if (not page['pagemenu'] is defined) or page.pagemenu == 'standard' %}
+      {% if (not page['pagemenu'] is defined) or (page.pagemenu == 'standard') %}
       <p>Side menu goes here.</p>
       {% else %}
       {% include "/_assets/includes/menus/#{page.pagemenu}.html.twig" %}

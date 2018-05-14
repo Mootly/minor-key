@@ -8,11 +8,9 @@
   a {
     font-family     : $f-nav;
     border          : 0;
-    font-size: 1.125em;
   }
   span.position {
     font-weight: bold;
-    font-size: 1.125em;
    }
   a:hover, a:focus {
     @include set-blended-border($c-link-text, bottom, 0.85, 1px, solid, $c-base-bg);

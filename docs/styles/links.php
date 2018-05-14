@@ -52,29 +52,29 @@ ob_start();
 <h2>Basic Image Box</h2>
 
 <figure class="figure">
-  <img src="../_assets/edo-women.jpg" alt="" />
+  <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 1:</span> Edo Women by Uehara Konen (1878-1940)</figcaption>
 </figure>
 
 <h2>Floated Image Box</h2>
 
 <figure class="figure left50">
-  <img src="<?= $mpo_parts->section_base ?>/_assets/edo-women.jpg" alt="" />
+  <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 2:</span> Left half-screen float</figcaption>
 </figure>
 
 <figure class="figure right50">
-  <img src="<?= $mpo_parts->section_base ?>/_assets/edo-women.jpg" alt="" />
+  <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 3:</span> Right half-screen float</figcaption>
 </figure>
 
 <figure class="figure left30">
-  <img src="<?= $mpo_parts->section_base ?>/_assets/edo-women.jpg" alt="" />
+  <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 4:</span> Left third-screen float</figcaption>
 </figure>
 
 <figure class="figure right30">
-  <img src="<?= $mpo_parts->section_base ?>/_assets/edo-women.jpg" alt="" />
+  <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 5:</span> Right third-screen float</figcaption>
 </figure>
 
