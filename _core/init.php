@@ -1,6 +1,6 @@
 <?php
 /**
-  * This is the init script for the Minor Key application.
+  * This is the init script for the MoosePress application.
   *
   * @copyright 2017-2018 Mootly Obviate
   * @package   moosepress
@@ -61,7 +61,7 @@
   });
                     # Load registered components needed by third party modules
   require_once( $mpo_paths->vendor . '/autoload.php' );
-                    # Load the Minor Key processing environment
+                    # Load the mooseplum processing environment
   require_once( $mpo_paths->core   . '/grab.php' );
   require_once( $mpo_paths->core   . '/proc.php' );
 

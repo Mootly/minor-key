@@ -1,0 +1,21 @@
+{# === Menu for /docs/ pages ================================================== #}
+<nav class="page-nav">
+  <div id="page-nav-toggle" class="mobile-only">
+    <a href="#" role="button" id="page-menu-control" aria-hidden="true"><i class="fa fa-bars"></i> Section Navigation</a>
+  </div>
+  <div id="page-nav-body" class="mobile-hidden">
+    <ul id="page-nav-list">
+      <li class="top-page"><a href="{{ page.section_base }}/">Help Pages Home</a></li>
+      <li class="collapse-header closed"><a href="#">Style Guide</a>
+        <ul class="page-nav-sublist collapse-list hidden">
+          <li><a href="{{ page.section_base }}/styles/">Style Guide</a></li>
+          <li><a href="{{ page.section_base }}/styles/callouts.php">Text Elements</a></li>
+          <li><a href="{{ page.section_base }}/styles/headings.php">Headings</a></li>
+          <li><a href="{{ page.section_base }}/styles/links.php">Links &amp; Images</a></li>
+          <li><a href="{{ page.section_base }}/styles/lists.php">Lists</a></li>
+          <li><a href="{{ page.section_base }}/styles/tables.php">Tables</a></li>
+          </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

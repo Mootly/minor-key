@@ -6,17 +6,18 @@
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 # --- ↓↓↓ EDIT VARIABLES BELOW ↓↓↓ -------------------------------------------- ***
 $mpo_parts->h1_title          = 'MoosePress Docs';
 $mpo_parts->link_title        = 'MoosePress Docs';
                     # page_name should equal your H1 title.
 $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation';
+$mpo_parts->section_base      = '/docs';
 $mpo_parts->accessibility     = 'standard';
-// $mpo_parts->pagemenu          = 'docs.internal';
+$mpo_parts->pagemenu          = 'docs';
 $mpo_parts->bodyclasses       = 'final';
 $page_path                    = $mpo_parts->page_path;
+require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 # --- ↓↓↓ EDIT CONTENT BELOW ↓↓↓ ---------------------------------------------- ***
                     # The main content body of the page is developed here.
@@ -117,7 +118,7 @@ ob_start();
 <!-- *** OBJECTS *** ********************************************* -->
 <h2>Objects</h2>
 
-<p>Minor Key uses objects for tracking various page components and some of the site settings. This is to make the code easier to use and to allow for automated validation of various elements.</p>
+<p>MoosePress uses objects for tracking various page components and some of the site settings. This is to make the code easier to use and to allow for automated validation of various elements.</p>
 
 <!-- *** menu object *** *************************************** -->
 <h3 class="add-toc">mpc_menus</h3>

@@ -12,10 +12,12 @@ $mpo_parts->link_title        = 'Text and Callouts';
                     # page_name should equal your H1 title.
 $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation';
+$mpo_parts->section_base      = '/docs';
 $mpo_parts->accessibility     = 'standard';
-// $mpo_parts->pagemenu          = 'docs.internal';
+$mpo_parts->pagemenu          = 'docs';
 $mpo_parts->bodyclasses       = 'final';
 $page_path                    = $mpo_parts->page_path;
+require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 # --- ↓↓↓ EDIT CONTENT BELOW ↓↓↓ ---------------------------------------------- ***
                     # The main content body of the page is developed here.

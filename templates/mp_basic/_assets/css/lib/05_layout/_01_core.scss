@@ -67,6 +67,16 @@ body {
     font-size       : $h6-size;
     font-weight     : 600;
   }
+                    // borders to call out headers for section breaks           *
+  h1, h2, h3, h4, h5, h6 {
+    &.section {
+      @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
+      @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg);
+      margin-top: 1.0em;
+      padding-top: 0.5em;
+    }
+  }
+
                     // set links                                                ***
   a, a:active {
     color           : $c-link-text;

@@ -1,8 +1,14 @@
 // *** 03 Widgets - 03 Google Translate ======================================= ***
 #page-header {
   #google-translate-box {
-    float: right;
-    padding: 0 1.0em 0.25em 1.0em;
+    height          : 0.25em;
+    overflow        : hidden;
+    position        : fixed;
+    top             : 0;
+    right           : 0;
+    padding         : 0 0.5em 0.125em 0.5em;
+    background-color: $c-base-bg;
+    @include set-border-radius('bottom-left', 0.5em)
     a,
     a:active,
     a:hover,
@@ -12,16 +18,10 @@
       color           : $c-base-text;
     }
   }
-}
-// *** The page header - OLD MOBILE VIEW ****************************************** ***
-@media (max-width: $break-800-tablet) {
-  #page-header {
-    #google-translate-box {
-      float: none;
-      text-align: right;
-      padding-right: 0.5em
-    }
+  #google-translate-box:hover,
+  #google-translate-box:focus {
+    height: auto;
+    overflow: auto;
   }
 }
-
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

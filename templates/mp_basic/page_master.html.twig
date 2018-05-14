@@ -51,6 +51,7 @@
   {% endblock access_menu %}
   <header id="page-header">
     {% block body_header %}
+    {% include root_path ~ '/_assets/includes/widgets/google_translate.html.twig' %}
     {% include root_path ~ '/_assets/includes/page_banner.html.twig' %}
     {% endblock body_header %}
   </header>
@@ -62,7 +63,6 @@
   {% endblock body_title %}
   {% block body_sidebar_left %}
   <div id="sidebar-left">
-    {% include root_path ~ '/_assets/includes/widgets/google_translate.html.twig' %}
     {% block body_menu_left %}
     <div id="menu-left">
       {% if (not page['pagemenu'] is defined) or page.pagemenu == 'standard' %}
@@ -81,15 +81,11 @@
   {% block body_content %}
   <div id="content-main">
     {% block body_breadcrumb %}
+    {% if (page['crumbs'] is defined) %}
     <div id="breadcrumb-box">
-      <a href="#">{{root_path}}</a>
-      <i class="fa fa-angle-double-right"></i>
-      <a href="#">{{curr_path}}</a>
-      <i class="fa fa-angle-double-right"></i>
-      <a href="#">Trail</a>
-      <i class="fa fa-angle-double-right"></i>
-      <span class="position">Accessing Content</span>
+      {{ page.crumbs | raw }}
     </div>
+    {% endif %}
     {% endblock body_breadcrumb %}
     {% block body_content_inner %}
     <div id="content-box">

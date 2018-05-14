@@ -1,6 +1,8 @@
 // === 05 Layout - 21 Left sidebar ============================================ ***
 // Not much here since this is just a container for other things.               ***
-#sidebar-left { float: left; }
+#sidebar-left {
+  float: left;
+}
 // Rules for small screens ---------------------------------------------------- ***
 @media (max-width: $break-1024-desktop) {
   #sidebar-left {
