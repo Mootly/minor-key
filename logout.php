@@ -7,8 +7,8 @@
   * --------------------------------------------------------------------------- */
                     # Call config to inti the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-require_once( $mpo_paths->template.'/db_config.php' );
-require_once( $mpo_paths->template.'/_assets/php_widgets/login/check.php' );
+require_once( $mpo_paths->template.$mpo_parts->template.'/db_config.php' );
+require_once( $mpo_paths->template.$mpo_parts->template.'/_assets/php_widgets/login/check.php' );
                     # Build the page ------------------------------------------ *
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -78,5 +78,5 @@ if ($mpo_parts->status == 'public') {
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
 $page_elements = $mpo_parts->build_page();
-echo ($twig->render($mpt_form_template, array('page'=>$page_elements['content'])));
+echo ($twig->render($mpo_parts->template.$mpt_form_template, array('page'=>$page_elements['content'])));
 ?>

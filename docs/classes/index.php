@@ -1,5 +1,5 @@
 <?php
-/* === Developer Notes ======================================================== *
+/* === Style Guide ============================================================ *
  * Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md
  * --- Revision History ------------------------------------------------------- *
  * 2018-05-09 | Copied over from test page.
@@ -10,8 +10,8 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Developer Notes';
-$mpo_parts->link_title        = 'Developer Notes';
+$mpo_parts->h1_title          = 'Class List';
+$mpo_parts->link_title        = 'Class List';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation';
 $mpo_parts->section_base      = '/docs';
@@ -27,6 +27,10 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
+<h2>Classes</h2>
+
+<p>MoosePress uses objects for tracking various page components and some of the site settings. This is to make the code easier to use and to allow for automated validation of various elements.</p>
+
 <h3>What's Here</h3>
 
 <table class="list-table">
@@ -38,19 +42,19 @@ ob_start();
   </thead>
   <tbody>
     <tr>
-      <th colspan="2">Developer Notes</th>
+      <th colspan="2">List of Objects</th>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/organization.php">Code Organization</a></td>
-      <td>How the code has been structured.</td>
+      <td><a href="<?=CURR_PATH?>/mpc_menus.php">mpc_menus</a></td>
+      <td>The <cite>menu</cite> object stores the menu sets for a page.</td>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/naming.php">Naming Conventions</a></td>
-      <td>Naming conventions used throughout the project.</td>
+      <td><a href="<?=CURR_PATH?>/mpc_parts.php">mpc_parts</a></td>
+      <td>The <cite>parts</cite> object contains information fields for a page as well as a content blob.</td>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/comments.php">Comments</a></td>
-      <td>Guidelines on using comments in the code.</td>
+      <td><a href="<?=CURR_PATH?>/mpc_paths.php">mpc_paths</a></td>
+      <td>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies.</td>
     </tr>
   </tbody>
 </table>

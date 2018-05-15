@@ -12,8 +12,8 @@
                     {# Template scripts                                         #}
 <script type="text/javascript">
 /* template scripts */
-{{ source('/_assets/js/library.js', ignore_missing = true) }}
-{{ source('/_assets/js/title_loc.js', ignore_missing = true) }}
+{{ source(page.template ~ '/_assets/js/library.js', ignore_missing = true) }}
+{{ source(page.template ~ '/_assets/js/title_loc.js', ignore_missing = true) }}
 </script>
 {% for tKey, tPath in scripts %}
 <script type="text/javascript" src="{{tPath|raw}}"></script>

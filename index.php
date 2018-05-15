@@ -359,5 +359,5 @@ $mpo_parts->accessibility = 'standard';
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
 $page_elements = $mpo_parts->build_page();
-echo ($twig->render($mpt_full_template, array('page'=>$page_elements['content'])));
+echo ($twig->render($mpo_parts->template.$mpt_full_template, array('page'=>$page_elements['content'])));
 ?>

@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-{# *** Make sure our root and current path are defined -------------------- *** #}
-{% if constant('DEF_ROOT') is defined %}
-{%   set root_path = constant('DEF_ROOT') %}
-{% else %}
-{%   set root_path = '' %}
-{% endif %}
+{# *** Make sure our current path isdefined ------------------------------- *** #}
 {% if constant('CURR_PATH') is defined %}
 {%   set curr_path = constant('CURR_PATH') %}
 {% else %}
@@ -22,7 +17,7 @@
 {% endif %}
 {# *** Begin HTML document ------------------------------------------------ *** #}
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-{% include root_path ~ '/_assets/includes/page_meta.html.twig' %}
+{% include page.template ~ '/_assets/includes/page_meta.html.twig' %}
 {# *** Begin body of document --------------------------------------------- *** #}
 {# *** Use 'body_' prefix to uniquely identify visibly template blocks.     *** #}
 {# *** Currently in use:                                                    *** #}
@@ -44,15 +39,15 @@
   <h1 id="first-el">{{ page.h1_title | raw }}</h1>
   {% block access_menu %}
   {% if (not page['accessibility'] is defined) or page.accessibility == 'standard' %}
-    {% include root_path ~ '/_assets/includes/page_access_nav.html.twig' %}
+    {% include page.template ~ '/_assets/includes/page_access_nav.html.twig' %}
   {% else %}
     {{ page.accessibility | raw }}
   {% endif %}
   {% endblock access_menu %}
   <header id="page-header">
     {% block body_header %}
-    {% include root_path ~ '/_assets/includes/widgets/google_translate.html.twig' %}
-    {% include root_path ~ '/_assets/includes/page_banner.html.twig' %}
+    {% include page.template ~ '/_assets/includes/widgets/google_translate.html.twig' %}
+    {% include page.template ~ '/_assets/includes/page_banner.html.twig' %}
     {% endblock body_header %}
   </header>
   {% block body_title %}
@@ -68,8 +63,10 @@
       <p>Side menu goes here.</p>
       {% elseif (page.pagemenu == 'import') %}
       {{ page.page_menu | raw }}
+      {% elseif (page.pagemenu == 'perm') %}
+      {% include page.perm_template ~ "/_assets/includes/menus/docs.html.twig" %}
       {% else %}
-      {% include "/_assets/includes/menus/docs.html.twig" %}
+      {% include page.template ~ "/_assets/includes/menus/docs.html.twig" %}
       {% endif %}
     </div>
     {% endblock body_menu_left %}
@@ -97,11 +94,11 @@
   {% endblock body_content %}
   <footer id="page-footer">
     {% block body_footer %}
-    {% include root_path ~ '/_assets/includes/page_footer.html.twig' %}
+    {% include page.template ~ '/_assets/includes/page_footer.html.twig' %}
     {% endblock body_footer %}
   </footer>
   {% block body_scripts %}
-    {% include root_path ~ '/_assets/includes/page_scripts.html.twig' %}
+    {% include page.template ~ '/_assets/includes/page_scripts.html.twig' %}
   {% endblock body_scripts %}
 </body>
 </html>
