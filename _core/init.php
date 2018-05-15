@@ -44,7 +44,8 @@
   define( 'MP_PSEP', '/' );
   $mpo_parts->template      = $temp_string ;
   $mpo_paths->template      = MP_ROOT . '/templates/' . $temp_string ;
-  $mpo_paths->php_widgets   = MP_ROOT . '/_assets/php_widgets/' ;
+  $mpo_paths->php_widgets   = MP_ROOT . '/_assets/php_widgets' ;
+  $mpo_paths->docs          = MP_ROOT . '/docs' ;
   if (defined('DEF_CLASSLIB')) {
     $mpo_paths->tp_classlib = MP_ROOT . DEF_CLASSLIB;
   } else {

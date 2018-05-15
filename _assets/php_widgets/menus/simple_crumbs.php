@@ -2,7 +2,7 @@
 /**
   * Create a simple directory-based breadcrumb trail.
   *
-  * Invoke after config. will build $mpo_parts->crumbs.
+  * Invoke after config and setting variables. Will build $mpo_parts->crumbs.
   * <div id="breadcrumb-box">
   *   <a href="link">label</a>
   *   <i class="fa fa-iconname"></i>

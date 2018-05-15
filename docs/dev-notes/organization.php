@@ -1,5 +1,5 @@
 <?php
-/* === Style Guide: Headings ================================================== *
+/* === Developer Notes ======================================================== *
  * Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md
  * --- Revision History ------------------------------------------------------- *
  * 2018-05-09 | Copied over from test page.
@@ -7,8 +7,8 @@
                     # Call config to init the application
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 # --- ↓↓↓ EDIT VARIABLES BELOW ↓↓↓ -------------------------------------------- ***
-$mpo_parts->h1_title          = 'Style Guide: Headings';
-$mpo_parts->link_title        = 'Headings';
+$mpo_parts->h1_title          = 'Developer Notes: Code Organization';
+$mpo_parts->link_title        = 'Code Organization';
                     # page_name should equal your H1 title.
 $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation';
@@ -26,37 +26,30 @@ ob_start();
                     # It can be built from pieces or written as a block,
                     # depending on the site.
 ?>
-<h2 id="toc-links">Contents</h2>
+<h2>Code organization</h2>
 
-<h2 class="section">Stacked Headings</h2>
+<p>These are the basic rules set out for writing code for this application.</p>
 
-<h1>Stacked H1</h1>
-<h2 class="toc-skip">Stacked H2</h2>
-<h3>Stacked H3</h3>
-<h4>Stacked H4</h4>
-<h5>Stacked H5</h5>
-<h6>Stacked H6</h6>
+<p>The standards are kept pretty loose, but should be adhered to.</p>
 
-<h2 class="section">Inline Headings</h2>
+<h3 class="add-toc">Component separation and processing order</h3>
 
-<h1>Inline H1</h1>
-<p>First Paragraph. Aliqua eiusmod sunt ullamco minim consequat duis ad ipsum cupidatat est dolore do occaecat. Officia dolore anim ut sit consequat mollit est esse proident veniam velit. Labore non tempor ipsum officia commodo et aute mollit aute cillum ex sit excepteur occaecat reprehenderit nisi.</p>
-<p>Subsequent paragraphs. Et elit sint officia mollit officia anim sit ipsum eiusmod elit.</p>
+<p>All core code has been written with the unidirectional flow described below. You can iterate, but not move backwards.</p>
 
-<h2 class="toc-skip">Inline H2</h2>
-<p>Ea consequat aliqua in proident nisi fugiat ipsum sint adipisicing laboris deserunt et tempor et magna magna nostrud.</p>
+<p>Direction of flow is enforced by encapsulation and an expection that a particular type of object will be passed each step of the way. Core files will include the following strings to indicate what part of the process they are involved with.</p>
 
-<h3>Inline H3</h3>
-<p>Irure velit laborum non culpa sint est ullamco elit qui incididunt id nulla ut pariatur est ea.</p>
+<p>Request evaluation and computation:</p>
+<dl class="inline-terms">
+  <dt id="dfn-process-init">init</dt><dd>Initialize core.</li></dd>
+  <dt id="dfn-process-grab">grab</dt><dd>Retrieve requests and accompanying data.</dd>
+  <dt id="dfn-process-proc">proc</dt><dd>Process request data and gather response data.</dd>
+</dl>
 
-<h4>Inline H4</h4>
-<p>Nisi pariatur enim ullamco in aute dolore aliqua proident.</p>
-
-<h5>Inline H5</h5>
-<p>Aute culpa duis tempor nulla incididunt aliquip duis eu veniam qui.</p>
-
-<h6>Inline H6</h6>
-<p>Sit non veniam ex ex exercitation reprehenderit aute ullamco proident et velit.</p>
+<p>Response assembly and presentation:</p>
+<dl class="inline-terms">
+  <dt id="dfn-process-prep">prep</dt><dd>Use the template to prepare response for presentation</dd>
+  <dt id="dfn-process-send">send</dt><dd>Send response</dd>
+</dl>
 <?php
 # --- ↑↑↑ EDIT CONTENT ABOVE ↑↑↑ ---------------------------------------------- ***
 $mpo_parts->main_content = ob_get_clean();

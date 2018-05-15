@@ -59,7 +59,6 @@
   <div id="title-box">
     <h2 class="page-title" role="presentation">{{ page.h1_title | raw }}</div>
   </h2>
-
   {% endblock body_title %}
   {% block body_sidebar_left %}
   <div id="sidebar-left">
@@ -67,8 +66,10 @@
     <div id="menu-left">
       {% if (not page['pagemenu'] is defined) or (page.pagemenu == 'standard') %}
       <p>Side menu goes here.</p>
+      {% elseif (page.pagemenu == 'import') %}
+      {{ page.page_menu | raw }}
       {% else %}
-      {% include "/_assets/includes/menus/#{page.pagemenu}.html.twig" %}
+      {% include "/_assets/includes/menus/docs.html.twig" %}
       {% endif %}
     </div>
     {% endblock body_menu_left %}
