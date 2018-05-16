@@ -40,6 +40,8 @@ ob_start();
 <dl class="inline-terms">
   <dt>accessibility</dt>
   <dd><p>Flag to set accessibility features on the page.</p></dd>
+  <dt>alt_template</dt>
+  <dd><p>A template override. Should only be used if sharing between templates is allowed.</p></dd>
   <dt>bodyclasses</dt>
   <dd><p>Space separated list of classes to add to <b>body</b> element.</p></dd>
   <dt>crumbs</dt>
@@ -57,7 +59,7 @@ ob_start();
   <dt>page_title</dt>
   <dd><p>The title of the current page as it will appear in the title bar.</p></dd>
   <dt>perm_template</dt>
-  <dd><p>A template override. Should always be <code>mp_basic</code>. Should only be used if sharing between templates.</p></dd>
+  <dd><p>A template override. Should always be <code>mp_basic</code>. Should only be used if sharing between templates is allowed.</p></dd>
   <dt>section_base</dt>
   <dd><p>The path to the root of the current site section.</p></dd>
   <dt>section_name</dt>

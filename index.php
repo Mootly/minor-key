@@ -19,7 +19,7 @@ $mpo_parts->section_name  = 'Home';
 $mpo_parts->accessibility = 'standard';
 $mpo_parts->bodyclasses   = 'final';
 // $mpo_parts->pagemenu = 'docs.general';
-require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
+require_once( $mpo_paths->php_widgets.'menus/simple_crumbs.php' );
                     # The main content body of the page is developed here.      *
                     # You can iterate across the two ob_ functions to create    *
                     # more page parts.                                          *
