@@ -1,6 +1,6 @@
 // === 06 Parts- 04 Callouts ================================================== ***
 // *** Color Highlights ------------------------------------------------------- ***
-#content-main, #content-full {
+#content-main {
   .red {
     color           : $c-default-red;
     font-weight     : bold;
@@ -20,7 +20,7 @@
   }
 }
 // *** Sematic Block Highlights ----------------------------------------------- ***
-#content-main, #content-full {
+#content-main {
   .warning {
     border-left     : 0.5em solid $c-alert-red;
     margin          : 1.0em 1.0em auto -0.5em;
@@ -119,7 +119,7 @@
 }
 
 // *** Sematic Inline Highlights ---------------------------------------------- ***
-#content-main, #content-full {
+#content-main {
   .task {
     font-style      : italic;
     @include set-blended-text($c-visited-text, 0.75, $c-base-bg);

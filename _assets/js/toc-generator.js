@@ -15,6 +15,7 @@
  * ---------------------------------------------------------------------------- */
 $(window).on( 'load', function () {
   if ($('#toc-links').length) {
+    $('#toc-links').show();
     var mpv_toc_menuList  = '';
                     // TOC starts with this heagding                            ***
     var mpv_toc_tier1     = 'h2';

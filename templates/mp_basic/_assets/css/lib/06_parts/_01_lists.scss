@@ -11,27 +11,37 @@ ul, ol {
   }
 }
 // *** Tables of Contents ----------------------------------------------------- ***
-ul#jumpto {
-  margin-left       : 0;
-  padding-left      : 1.75em;
-  li {
-    margin-bottom   : 0.5em;
-    color           : #000099;
-    list-style-type : none;
-    ul {
-      margin-left   : 0.75em;
-      padding-left  : 0.75em;
-      li {
-        font-weight : normal;
-        margin-bottom: 0.125em;
+#content-main {
+  #toc-links {                          // hide unelss script runs
+    display: none;
+    padding-top: 0.375em;
+    @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
+  }
+  ul#jumpto {
+    margin-top      : 0.5em;
+    margin-left     : 0;
+    padding-left    : 1.75em;
+    padding-bottom  : 1.0em;
+    @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg);
+    li {
+      margin-bottom   : 0.5em;
+      color           : #000099;
+      list-style-type : none;
+      ul {
+        margin-left   : 0.75em;
+        padding-left  : 0.75em;
+        li {
+          font-weight : normal;
+          margin-bottom: 0.125em;
+        }
       }
-    }
-    a { text-decoration: none; }
-    &:before {
-      content       : '\f149';
-      margin        : 0 0.5em 0 -1.5em;
-      font-family   : 'FontAwesome';
-      @include set-blended-text($c-link-icons, 0.5, $c-base-bg);
+      a { text-decoration: none; }
+      &:before {
+        content       : '\f149';
+        margin        : 0 0.5em 0 -1.5em;
+        font-family   : 'FontAwesome';
+        @include set-blended-text($c-link-icons, 0.5, $c-base-bg);
+      }
     }
   }
 }
@@ -39,7 +49,7 @@ p + ul, p + ol {
   margin-top: 0;
 }
 // *** Definition Lists ------------------------------------------------------- ***
-#content-main, #content-full {
+#content-main {
   dl {
     dt { font-weight: bold; }
     dd {

@@ -94,17 +94,20 @@ a[href*='https://www.youtube.com/watch']:after {
     padding:        0 0.25em 0 0.375em;
   }
 }
+                    // gray out separators in a link list                       *
+.linkset { color: $c-box-bg; }
+                    // link meta information                                    *
+.fileinfo { color: $c-base-flatplum; font-size: 0.875em; }
                     // underline things meant to represent links in examples    *
 .fake-link {
   color             : $c-link-text;
   @include set-blended-background($c-base-text, 0.05, $c-base-bg)
-  @include set-blended-border($c-link-text, bottom, 0.15, 1px, solid, $c-base-bg);
+  @include set-blended-border($c-link-text, bottom, 0.35, 1px, solid, $c-base-bg);
 }
 // *** Link icons back to top of page ----------------------------------------- *
 // Use: <div class="top-link"><a href="#page-body"><span>[top]</span></a></div> *
 
-#content-main,
-#content-full {
+#content-main {
   a i.fa {
     @include span-hidden;
   }
