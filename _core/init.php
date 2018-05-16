@@ -9,12 +9,13 @@
 # Constants ------------------------------------------------------------------- *
 # Values are repeated in case there was no config file.
                     # Core file paths
+  if (!defined('MP_PSEP'))       define( 'MP_PSEP', '/' );
   if (!defined('MP_ROOT'))       define( 'MP_ROOT', $_SERVER['DOCUMENT_ROOT'] );
   if (!defined('MP_CLASSLIB'))   define( 'MP_CLASSLIB', MP_ROOT.'/_core/class_lib/' );
                     # Fail to default MP_basic template if none specified
-  if (!defined('DEF_PREFIX'))    define( 'DEF_PREFIX',    'mp' );
-  if (!defined('DEF_TEMPLATE'))  define( 'DEF_TEMPLATE',  'basic' );
-  if (!defined('PERM_TEMPLATE')) define( 'PERM_TEMPLATE',  'mp_basic' );
+  if (!defined('DEF_PREFIX'))    define( 'DEF_PREFIX', 'mp' );
+  if (!defined('DEF_TEMPLATE'))  define( 'DEF_TEMPLATE', 'basic' );
+  if (!defined('PERM_TEMPLATE')) define( 'PERM_TEMPLATE', '/mp_basic' );
   if (!defined('DEF_ROOT'))      define( 'DEF_ROOT', '' );
   if (!defined('DEF_CLASSLIB'))  define( 'DEF_CLASSLIB', '/_core/class_lib/' );
 # Call our core objects ------------------------------------------------------- *
@@ -31,21 +32,20 @@
                     # Define our template name
   if(defined('DEF_TEMPLATE')) {
     if (defined('DEF_PREFIX')) {
-      $temp_string          = DEF_PREFIX . '_' . DEF_TEMPLATE;
+      $temp_string          = MP_PSEP . DEF_PREFIX . '_' . DEF_TEMPLATE;
     } else {
-      $temp_string          = DEF_TEMPLATE;
+      $temp_string          = MP_PSEP . DEF_TEMPLATE;
     }
   } else {
-    $temp_string            = "MP_basic";
+    $temp_string            = "/mp_basic";
   }
 # Locate our templates and class library -------------------------------------- *
                     # If the template contains a classlib, declare in config.php
                     # Otherwise it will assume:
                     # /templates/template_name/classlib
-  define( 'MP_PSEP', '/' );
-  $mpo_parts->template      = $temp_string . '/' ;
-  $mpo_parts->perm_template = PERM_TEMPLATE . '/' ;
-  $mpo_paths->template      = MP_ROOT . '/templates/' ;
+  $mpo_parts->template      = $temp_string ;
+  $mpo_parts->perm_template = PERM_TEMPLATE ;
+  $mpo_paths->template      = MP_ROOT . '/templates' ;
   $mpo_paths->php_widgets   = MP_ROOT . '/_assets/php_widgets' ;
   $mpo_paths->docs          = MP_ROOT . '/docs' ;
   if (defined('DEF_CLASSLIB')) {

@@ -66,9 +66,9 @@
   $mpo_parts->site_name     = 'MoosePress';
   $mpo_parts->site_abbr     = '[mp]';
                     # Template formatting rules ------------------------------- *
-  $mpt_full_template        = 'page_master.html.twig';      # for generating complete pages
-  $mpt_header_template      = 'page_header.html.twig';      # header include for flat file content
-  $mpt_footer_template      = 'page_footer.html.twig';      # footer include for flat file content
+  $mpt_full_template        = '/page_master.html.twig';     # for generating complete pages
+  $mpt_header_template      = '/page_header.html.twig';     # header include for flat file content
+  $mpt_footer_template      = '/page_footer.html.twig';     # footer include for flat file content
   $mpo_parts->title_struct  = ['page_name','section_name','site_name'];
   $mpo_parts->separator     = ' | ';
 # Invoke Twig ----------------------------------------------------------------- *
