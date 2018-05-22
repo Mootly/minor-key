@@ -61,7 +61,6 @@ $(mpv_clam_list).on('click', '.item-toggle, item-toggle a.more-link', function(e
   return false;
 });
                     // Open all folds on direct select                          ***
-
 $(mpv_clam_list).on('click', 'a.all-link', function(event) {
   var tTogType = ($(this).find('span').text() == 'Show All') ? true : false;
   if (tTogType) {

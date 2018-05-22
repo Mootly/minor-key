@@ -48,4 +48,15 @@ div.anchor:focus { outline: none; }
   margin-top        : -2.5em;
   content           : '';
 }
+.size-img { position: relative; }
+div.element-size {
+  position: absolute;
+  top: 0; left: 0;
+  color: $c-banner-bg;
+  font-weight: bold;
+  font-size: 0.875em;
+  padding: 0.25em 0.5em;
+  @include set-blended-background($c-footer-bg, 0.75);
+}
+
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
