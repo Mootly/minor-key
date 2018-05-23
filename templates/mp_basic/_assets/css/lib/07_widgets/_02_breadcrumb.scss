@@ -1,6 +1,8 @@
 // === 07 Widgets - 02 Breadcrumb Menu ======================================== ***
 #content-main #breadcrumb-box {
-  padding           : 0.125em 0 0.25em 1.0em;
+  margin            : 0.25em 1.0em 0.25em 19.0em;
+  z-index           : $zidx-breadcrumbs;
+  padding           : 0.25em 0 0 1.0em;
   background-color  : $c-base-bg;
   color             : $c-gray-border;
   text-transform    : lowercase;
@@ -19,15 +21,13 @@
     @include set-blended-border($c-visited-text, bottom, 0.85, 1px, solid, $c-base-bg);
   }
 }
-
+#breadcrumb-box + #content-box { margin-top: 0; }
 // Media rules for small screens ---------------------------------------------- ***
 @media (max-width: $break-1024-desktop) {
   #content-main #breadcrumb-box {
+    margin: 0;
     @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
     @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg)
-  }
-  #breadcrumb-box {
-    @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg)
   }
 }
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

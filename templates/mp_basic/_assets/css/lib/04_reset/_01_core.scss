@@ -32,11 +32,6 @@ canvas,
 progress,
 video { display: inline-block; }
                     // Old browser tweaks for new media components              ***
-.lt-ie8 {
-  audio,
-  canvas,
-  video { display: inline; zoom: 1; }
-}
 audio:not([controls]) { display: none; height: 0; }
 progress { vertical-align: baseline; }
 template,

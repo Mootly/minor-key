@@ -14,6 +14,14 @@ body {
 * {
   box-sizing        : border-box;
 }
+// --- Some general display rules --------------------------------------------- *
+.mobile-only, .hide { display: none; }
+                    // this ensure collapsers only collase one screens          *
+@media screen {
+  .hidden { @include hidden-element-rules; }
+}
+.toggleHide { display: none !important; }
+.toggleShow { display: block !important; }
 // *** Main body of the page is #content-main --------------------------------- ***
 #content-main {
   width             : 100%;
@@ -31,38 +39,33 @@ body {
                     // tighten paragaphs after titles                           ***
   h1+p, h2+p, h3+p, h4+p, h5+p, h6+p { margin-top: 0; }
                     // set headers                                              ***
+  h1, h2, h3, h4, h5, h6 { @include header-constants; }
   h1 {
-    @include header-constants;
     color           : $c-h1-text;
     font-size       : $h1-size;
     font-weight     : 900;
   }
   h2 {
-    @include header-constants;
     color           : $c-h2-text;
     font-size       : $h2-size;
     font-weight     : 900;
   }
   h3 {
-    @include header-constants;
     color           : $c-h3-text;
     font-size       : $h3-size;
     font-weight     : 700;
   }
   h4 {
-    @include header-constants;
     color           : $c-h4-text;
     font-size       : $h4-size;
     font-weight     : 700;
   }
   h5 {
-    @include header-constants;
     color           : $c-h5-text;
     font-size       : $h5-size;
     font-weight     : 600;
   }
   h6 {
-    @include header-constants;
     color           : $c-h6-text;
     font-size       : $h6-size;
     font-weight     : 600;
@@ -86,7 +89,7 @@ body {
   a:visited { color : $c-visited-text; }
   a:hover, a:focus {
     @include set-blended-border($c-link-text, bottom, 0.85, 1px, solid, $c-base-bg);
-    @include set-blended-background($c-button-bg, 0.025, $c-base-bg)
+    @include set-blended-background($c-button-bg, 0.025, $c-base-bg);
   }
 }
 // *** Media rules for small screens ------------------------------------------ ***
