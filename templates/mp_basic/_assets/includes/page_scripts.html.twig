@@ -6,14 +6,14 @@
 <script src="/_vendors/html5shiv/src/html5shiv.js"></script>
 <script type="text/javascript" src="/_vendors/imakethings/waypoints/lib/jquery.waypoints.min.js"></script>
                     {# MoosePress scripts                                       #}
-<script type="text/javascript" src="/_assets/js/clamshell.js"></script>
-<script type="text/javascript" src="/_assets/js/matchedSelectorSync.js"></script>
-<script type="text/javascript" src="/_assets/js/toc-generator.js"></script>
+<script type="text/javascript" src="/_assets/js/clamshell.min.js"></script>
+<script type="text/javascript" src="/_assets/js/matchedSelectorSync.min.js"></script>
+<script type="text/javascript" src="/_assets/js/toc-generator.min.js"></script>
                     {# Template scripts                                         #}
 <script type="text/javascript">
 /* template scripts */
-{{ source(page.template ~ '/_assets/js/library.js', ignore_missing = true) }}
-{{ source(page.template ~ '/_assets/js/title_loc.js', ignore_missing = true) }}
+{{ source(page.template ~ '/_assets/js/library.min.js', ignore_missing = true) }}
+{{ source(page.template ~ '/_assets/js/title_loc.min.js', ignore_missing = true) }}
 </script>
 {% for tKey, tPath in scripts %}
 <script type="text/javascript" src="{{tPath|raw}}"></script>
