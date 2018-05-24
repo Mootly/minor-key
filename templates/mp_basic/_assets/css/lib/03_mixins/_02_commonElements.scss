@@ -6,7 +6,6 @@
                     // Hidden element rules                                     ***
 @mixin hidden-element-rules {
   display           : block;
-  position          : absolute;
   clip              : rect(0 0 0 0);
   width             : 1px;
   height            : 1px;

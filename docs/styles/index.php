@@ -26,7 +26,7 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
                     # depending on the site.
 ob_start();
 ?>
-<!-- *** BEGIN CONTENT ******************************************************** -->
+<!-- *** begin content ******************************************************** -->
 <h3>What's Here</h3>
 
 <table class="list-table">
@@ -58,7 +58,7 @@ ob_start();
     </tr>
   </tbody>
 </table>
-<!-- *** end contents ********************************************************* -->
+<!-- *** end content ********************************************************** -->
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
                     # Content developers shouldn't touch anything below here.

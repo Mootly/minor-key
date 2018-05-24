@@ -50,14 +50,12 @@
       margin-top    : 0;
     }
     #header-nav #header-nav-body {
-      box-sizing    : border-box;
       margin-top    : 0;
       &.mobile-hidden {
         position: absolute;
         top: 0; left:-1000em;
       }
       ul#header-nav-list {
-        box-sizing  : border-box;
         margin-top  : 0;
         margin-left : 0;
         border-top  : 0.125em solid $c-base-bg;

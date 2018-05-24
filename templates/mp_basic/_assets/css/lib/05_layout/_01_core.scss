@@ -10,18 +10,9 @@ body {
   font              : normal normal 400 1.0em $f-default;
   line-height       : $ht-line-tall;
 }
-                    // set some basic values that get used almost everywhere    ***
-* {
-  box-sizing        : border-box;
-}
-// --- Some general display rules --------------------------------------------- *
-.mobile-only, .hide { display: none; }
-                    // this ensure collapsers only collase one screens          *
-@media screen {
-  .hidden { @include hidden-element-rules; }
-}
-.toggleHide { display: none !important; }
-.toggleShow { display: block !important; }
+                    // force border box so everything works the same may        ***
+                    // notinherited by forms field in some browsers             ***
+* { box-sizing        : border-box; }
 // *** Main body of the page is #content-main --------------------------------- ***
 #content-main {
   width             : 100%;
@@ -31,7 +22,16 @@ body {
     max-width       : $max-content-width;
     margin          : 1.0em 2.0em 2.0em 20.0em;
   }
+  &.full-width {
+    width: 100%;
+    #content-box {
+      margin      : 1.0em auto 2.0em auto;
+      max-width   : $max-full-page-width;
+    }
+  }
+}
                     // paragraphs have a small side margin for visual alignment ***
+#content-main {
   p {
     margin          : 0.5em 0.125em;
     line-height     : $ht-line-default;

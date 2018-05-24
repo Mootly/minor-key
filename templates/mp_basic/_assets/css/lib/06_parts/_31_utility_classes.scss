@@ -29,10 +29,9 @@
 }
                     // Hidden element rules                                     ***
 .mobile-only, .hide { display: none; }
-.hidden {
-  width             : 0;
-  height            : 0;
-  overflow          : hidden;
+                    // this ensure collapsers only collase on screens           ***
+@media screen {
+  .hidden { @include hidden-element-rules; }
 }
 .toggleHide { display: none !important; }
 .toggleShow { display: block !important; }

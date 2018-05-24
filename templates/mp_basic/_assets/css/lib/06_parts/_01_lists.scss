@@ -15,7 +15,9 @@ ul, ol {
   #toc-links {                          // hide unelss script runs
     display: none;
     padding-top: 0.375em;
-    @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
+    @media screen and (min-width: $break-1024-desktop) {
+      @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
+    }
   }
   ul#jumpto {
     margin-top      : 0.5em;

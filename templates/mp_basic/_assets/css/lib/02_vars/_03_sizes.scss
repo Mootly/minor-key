@@ -5,6 +5,8 @@
 // Any CSS here may be overriden in the resets.                                 ***
                     // State footer capped at 78em                              ***
 $max-content-width  :	60em;             // 960px @ 16em
+$max-full-page-width:	100%;             
+
                     // Font sizes                                               ***
                     // by pixel change on a base 20px font                      ***
 $f-size-default     : px2ems(16);
