@@ -10,10 +10,10 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Style Guide: Links &amp; Images';
+$mpo_parts->h1_title          = 'Links &amp; Images';
 $mpo_parts->link_title        = 'Links &amp; Images';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
-$mpo_parts->section_name      = 'Documentation';
+$mpo_parts->section_name      = 'Documentation: Style Guide';
 $mpo_parts->section_base      = '/docs';
 $mpo_parts->accessibility     = 'standard';
 $mpo_parts->pagemenu          = 'perm';
