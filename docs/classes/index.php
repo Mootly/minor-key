@@ -10,10 +10,10 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Class List';
-$mpo_parts->link_title        = 'Class List';
+$mpo_parts->h1_title          = 'Class Library';
+$mpo_parts->link_title        = 'Class Library';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
-$mpo_parts->section_name      = 'Documentation';
+$mpo_parts->section_name      = 'Documentation: Class Library';
 $mpo_parts->section_base      = '/docs';
 $mpo_parts->accessibility     = 'standard';
 $mpo_parts->pagemenu          = 'perm';
@@ -27,7 +27,6 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
-<h2>Classes</h2>
 
 <p>MoosePress uses objects for tracking various page components and some of the site settings. This is to make the code easier to use and to allow for automated validation of various elements.</p>
 

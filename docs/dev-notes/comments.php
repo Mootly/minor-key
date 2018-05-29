@@ -10,10 +10,10 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Developer Notes: Comments';
+$mpo_parts->h1_title          = 'Commenting the Code';
 $mpo_parts->link_title        = 'Comments';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
-$mpo_parts->section_name      = 'Documentation';
+$mpo_parts->section_name      = 'Documentation: Developer Notes';
 $mpo_parts->section_base      = '/docs';
 $mpo_parts->accessibility     = 'standard';
 $mpo_parts->pagemenu          = 'perm';
@@ -27,8 +27,6 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
-<h2>Commenting the code</h2>
-
 <p>MoosePress uses multiple types of commments, depending on function.</p>
 <p>All comments in the code should be written to be stripped out by the parser unless otherwise noted.</p>
 <dl class="inline-terms">

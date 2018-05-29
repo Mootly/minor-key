@@ -10,10 +10,10 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Developer Notes: Code Organization';
+$mpo_parts->h1_title          = 'Code Organization';
 $mpo_parts->link_title        = 'Code Organization';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
-$mpo_parts->section_name      = 'Documentation';
+$mpo_parts->section_name      = 'Documentation: Developer Notes';
 $mpo_parts->section_base      = '/docs';
 $mpo_parts->accessibility     = 'standard';
 $mpo_parts->pagemenu          = 'perm';
@@ -27,8 +27,6 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
-<h2>Code organization</h2>
-
 <p>These are the basic rules set out for writing code for this application.</p>
 
 <p>The standards are kept pretty loose, but should be adhered to.</p>
