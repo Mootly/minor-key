@@ -39,67 +39,43 @@
 @import "03_mixins/01_colorCombos";
 @import "03_mixins/02_commonElements";
 // *** 04 Resets -------------------------------------------------------------- ***
-/*!
---- begin resets --- should be nothing but font definitions above this point ---
-*/
+/*! --- begin resets --- should be nothing but font definitions above this point --- */
 @import "04_reset/01_core";
 @import "04_reset/02_semantics";
 @import "04_reset/03_linkContent";
 @import "04_reset/04_forms";
 @import "04_reset/91_print";
 // *** 05 Layout -------------------------------------------------------------- ***
-/*!
---- begin accessibility ---
-*/
+/*! --- begin accessibility --- */
 @import "05_layout/00_accessibility";
-/*!
---- begin page layout ---
-*/
+/*! --- begin page layout --- */
 @import "05_layout/01_core";
-/*!
---- begin header and title ---
-*/
+/*! --- begin header and title --- */
 @import "05_layout/11_header";
 @import "05_layout/12_header_title";
 @import "05_layout/13_header_nav";
 @import "05_layout/15_title";
 // @import "05_layout/04_footer";
-/*!
---- begin nvigation ---
-*/
+/*! --- begin nvigation --- */
 @import "05_layout/21_sidebar_left";
 @import "05_layout/22_menu_left";
 @import "05_layout/23_announce_left";
 // *** 06 Parts --------------------------------------------------------------- ***
-/*!
---- begin lists ---
-*/
+/*! --- begin lists --- */
 @import "06_parts/01_lists";
-/*!
---- begin tables ---
-*/
+/*! --- begin tables --- */
 @import "06_parts/02_tables";
-/*!
---- begin code ---
-*/
+/*! --- begin code --- */
 @import "06_parts/03_code";
-/*!
---- begin collouts ---
-*/
+/*! --- begin collouts --- */
 @import "06_parts/04_callouts";
-/*!
---- begin links ---
-*/
+/*! --- begin links --- */
 @import "06_parts/10_links";
-/*!
---- begin utility classes ---
-*/
+/*! --- begin utility classes --- */
 @import "06_parts/31_utility_classes";
 @import "06_parts/32_clamshell";
 // *** 07 Widgets ------------------------------------------------------------- ***
-/*!
---- begin widgets ---
-*/
+/*! --- begin widgets --- */
 @import "07_widgets/01_searchbar";
 @import "07_widgets/02_breadcrumb";
 @import "07_widgets/03_google_trans";
