@@ -617,40 +617,40 @@
 				var isPolyfill = acorn.$self.hasClass('nonnative-api-active');
 				if(fullscreenMode) {
 					// exit fullscreen
-					if(!isPolyfill && acorn.$self[0].cancelFullScreen) {
-						acorn.$self[0].cancelFullScreen();
-					} else if(!isPolyfill && acorn.$self[0].webkitCancelFullScreen) {
-						acorn.$self[0].webkitCancelFullScreen();
-					} else if(!isPolyfill && acorn.$self[0].mozCancelFullScreen) {
-							acorn.$self[0].mozCancelFullScreen();
-					} else {
+					// if(!isPolyfill && acorn.$self[0].cancelFullScreen) {
+					// 	acorn.$self[0].cancelFullScreen();
+					// } else if(!isPolyfill && acorn.$self[0].webkitCancelFullScreen) {
+					// 	acorn.$self[0].webkitCancelFullScreen();
+					// } else if(!isPolyfill && acorn.$self[0].mozCancelFullScreen) {
+					// 		acorn.$self[0].mozCancelFullScreen();
+					// } else {
 						// if no fullscreen api support, use full-page mode
 						$('body').css('overflow', '');
-
-
 						acorn.$controls.removeClass('fullscreen-controls');
 						acorn.$self.parent().removeClass('has-fullscreen-video');
-					}
+            acorn.$self.removeClass('fullscreen-video');
+					// }
 
 					fullscreenMode = false;
 
 				} else {
 					// enter fullscreen
-					if(!isPolyfill && acorn.$self[0].requestFullscreen) {
-						acorn.$self[0].requestFullscreen();
-					} else if(!isPolyfill && acorn.$self[0].webkitRequestFullscreen) {
-						acorn.$self[0].webkitRequestFullscreen();
-					} else if(!isPolyfill && acorn.$self[0].mozRequestFullScreen) {
-							acorn.$self[0].mozRequestFullScreen();
-					} else {
+					// if(!isPolyfill && acorn.$self[0].requestFullscreen) {
+          //   window.alert('here 1');
+					// 	acorn.$self[0].requestFullscreen();
+					// } else if(!isPolyfill && acorn.$self[0].webkitRequestFullscreen) {
+          //   window.alert('here 2');
+					// 	acorn.$self[0].webkitRequestFullscreen();
+					// } else if(!isPolyfill && acorn.$self[0].mozRequestFullScreen) {
+          //   window.alert('here 3');
+					// 		acorn.$self[0].mozRequestFullScreen();
+					// } else {
+          //  window.alert('here 4');
 						$('body').css('overflow', 'hidden');
-
 						acorn.$self.addClass('fullscreen-video');
-
 						acorn.$self.parent().addClass('has-fullscreen-video');
-
 						acorn.$controls.addClass('fullscreen-controls');
-					}
+					// }
 
 					fullscreenMode = true;
 
