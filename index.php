@@ -16,18 +16,12 @@ $mpo_parts->h1_title      = 'Test Page';
 $mpo_parts->link_title    = 'Home';
 $mpo_parts->page_name     = $mpo_parts->h1_title;
 $mpo_parts->section_name  = 'Home';
+$mpo_parts->section_base  = '/';
 $mpo_parts->accessibility = 'standard';
 $mpo_parts->bodyclasses   = 'final';
 // $mpo_parts->pagemenu = 'docs.general';
 require_once( $mpo_paths->php_widgets.'menus/simple_crumbs.php' );
-$mpo_styles               = new mpc_paths();
-$mpo_styles->mediashim    = 'https://afarkas.github.io/webshim/js-webshim/minified/shims/styles/shim.css';
-$mpo_styles->mediabase    = '/_vendors/ghinda/acornmediaplayer/acornmediaplayer.base.css';
-$mpo_styles->mediatheme   = '/_vendors/ghinda/acornmediaplayer/themes/access/acorn.access.css';
-$mpo_scripts              = new mpc_paths();
-$mpo_scripts->customui    = '/_vendors/jquery/jquery-ui.min.js';
-$mpo_scripts->mediaplayer = '/_vendors/ghinda/acornmediaplayer/jquery.acornmediaplayer.js';
-$mpo_scripts->mediatrigger= '/_vendors/ghinda/trigger.js';
+require_once( $mpo_paths->php_widgets.'/video_components.php' );
                     # The main content body of the page is developed here.      *
                     # You can iterate across the two ob_ functions to create    *
                     # more page parts.                                          *
@@ -37,26 +31,21 @@ ob_start();
                     # ↓↓↓ EDIT CONTENT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ ***
 ?>
 
-<section>
-  <figure>
-    <video controls="controls" style="width: 100%;" poster="/_assets/testvid/images/tos-poster.jpg" preload="metadata" aria-describedby="full-descript">
-      <source type="video/webm" src="/_assets/testvid/tears_of_steel.webm" />
-      <!-- <source type="video/mp4" src="https://acornmedia.herokuapp.com/media/tears_of_steel_480.mp4" /> -->
-
-      <track src="/_assets/testvid/subs/TOS-arabic.srt" kind="subtitles" srclang="ar" label="Arabic" />
-      <track src="/_assets/testvid/subs/TOS-japanese.srt" kind="subtitles" srclang="jp" label="Japanese" />
-      <track src="/_assets/testvid/subs/TOS-english.srt" kind="subtitles" srclang="en" label="English" />
-      <track src="/_assets/testvid/subs/TOS-turkish.srt" kind="subtitles" srclang="tr" label="Turkish" />
-      <track src="/_assets/testvid/subs/TOS-ukrainian.srt" kind="subtitles" srclang="uk" label="Ukrainian" />
-
-      You can download Tears of Steel at <a href="http://mango.blender.org/">mango.blender.org</a>.
-    </video>
-    <figcaption id="full-descript">
-      <p><em>"Tears of Steel"</em> was realized with crowd-funding by users of the open source 3D creation tool <a href="http://www.blender.org">Blender</a>. Target was to improve and test a complete open and free pipeline for visual effects in film - and to make a compelling sci-fi film in Amsterdam, the Netherlands. </p>
-      <p>(CC) Blender Foundation - <a href="http://www.tearsofsteel.org">http://www.tearsofsteel.org</a></p>
-    </figcaption>
-  </figure>
-</section>
+<div id="contents">
+  <section>
+    <figure>
+      <!-- <video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="640" height="360" data-setup='{}'> -->
+      <video controls="controls" style="width: 100%;" preload="metadata" aria-describedby="full-descript">
+        <source type="video/mp4" src="/sites/vidtest/best-of-cb.mp4" />
+        <track src="/sites/vidtest/best-of-cb.srt" kind="subtitles" srclang="en" label="English" />
+      </video>
+      <figcaption>
+        <p>Having trouble viewing the video in your browser?<br />
+        <a href="/sites/vidtest/best-of-cb.mp4">Open the video directly in your media player</a>.</p>
+      </figcaption>
+    </figure>
+  </section>
+</div>
 
 <?php
                     # ↑↑↑ EDIT CONTENT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ ***
