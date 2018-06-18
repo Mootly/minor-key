@@ -27,6 +27,8 @@
       $t_currpath = '/';
       $t_currel = 'home';
     }
+    $t_currel = preg_replace('/\-([^\-])/', ' ${1}', $t_currel);
+    $t_currel = preg_replace('/\- /', '-', $t_currel);
     $crumbstring = '<a href="' . $t_currpath . '">' . $t_currel . '</a> <i class="fa fa-angle-double-right"></i> ' .$crumbstring;
   }
 //  $crumbstring = '<div id="breadcrumb-box">' . $crumbstring . '</div>';
