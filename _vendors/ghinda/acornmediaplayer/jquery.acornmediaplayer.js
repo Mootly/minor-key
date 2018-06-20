@@ -134,7 +134,7 @@
 			 * Markup for the fullscreen button
 			 * If the element is not <video> we leave if blank, as the button if useless on <audio> elements
 			 */
-			var fullscreenBtnMarkup = (acorn.$self.is('video')) ? '<button class="acorn-fullscreen-button" title="' + text.fullscreenTitle + '" aria-controls="' + acorn.id + '">' + text.fullscreen + '</button>' : '';
+			var fullscreenBtnMarkup = (acorn.$self.is('video')) ? '<button class="acorn-fullscreen-button" title="' + text.fullscreenTitle + '" aria-controls="' + acorn.id + '"><span class="reader-only">' + text.fullscreen + '</span></button>' : '';
 
 			/*
 			 * Markup for player tooltips
@@ -150,7 +150,7 @@
 								'<input type="range" class="acorn-seek-slider" title="' + text.seekTitle + '" value="0" min="0" max="150" step="0.1" aria-controls="' + acorn.id + '"/>' +
 								'<span class="acorn-timer">00:00</span>' +
 								'<div class="acorn-volume-box">' +
-									'<button class="acorn-volume-button" title="' + text.mute + '" aria-controls="' + acorn.id + '">' + text.mute + '</button>' +
+									'<button class="acorn-volume-button" title="' + text.mute + '" aria-controls="' + acorn.id + '"><span class="reader-only">' + text.mute + '</span></button>' +
 									'<input type="range" class="acorn-volume-slider" title="' + text.volumeTitle + '" value="1" min="0" max="1" step="0.05" aria-controls="' + acorn.id + '"/>' +
 								'</div>' +
 								fullscreenBtnMarkup +
@@ -502,7 +502,8 @@
 				if(acorn.$self.prop('muted')) {
 					acorn.$self.prop('muted', false);
 					acorn.$volumeBtn.removeClass('acorn-volume-mute');
-					acorn.$volumeBtn.text(text.mute).attr('title', text.mute);
+					acorn.$volumeBtn.find('.reader-only').text(text.mute);
+          acorn.$volumeBtn.attr('title', text.mute);
 				}
 
 				// set the new volume on the media
@@ -530,7 +531,8 @@
 					}
 
 					acorn.$volumeBtn.removeClass('acorn-volume-mute');
-					acorn.$volumeBtn.text(text.mute).attr('title', text.mute);
+          acorn.$volumeBtn.find('.reader-only').text(text.mute);
+          acorn.$volumeBtn.attr('title', text.mute);
 				} else {
 					acorn.$self.prop('muted', true);
 
@@ -541,7 +543,8 @@
 					}
 
 					acorn.$volumeBtn.addClass('acorn-volume-mute');
-					acorn.$volumeBtn.text(text.unmute).attr('title', text.unmute);
+          acorn.$volumeBtn.find('.reader-only').text(text.unmute);
+          acorn.$volumeBtn.attr('title', text.unmute);
 				}
 			};
 
