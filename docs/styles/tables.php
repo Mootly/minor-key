@@ -96,7 +96,7 @@ ob_start();
 <div class="directory-table deep">
   <h3 class="listing-head">Deep Listing</h3>
   <div class="listing">
-    <p class="secure">Red Flag</p>
+    <p class="flagged red">Red Flag</p>
     <h4 class="name">Entity name</h4>
     <p class="description">Entity description</p>
     <p class="address">Address</p>
@@ -112,7 +112,7 @@ ob_start();
     </p>
   </div>
   <div class="listing">
-    <p class="nonsecure">No Flag</p>
+    <p class="flagged">No Flag</p>
     <h4 class="name">Entity name</h4>
     <p class="description">Entity with list of data points</p>
     <p class="multi-col">

@@ -48,33 +48,33 @@
 @import "04_reset/91_print";
 // *** 05 Layout -------------------------------------------------------------- ***
 /*! --- begin accessibility --- */
-@import "05_layout/00_accessibility";
+@import "06_page_layout/00_accessibility";
 /*! --- begin page layout --- */
-@import "05_layout/01_core";
+@import "06_page_layout/01_core";
 /*! --- begin header and title --- */
-@import "05_layout/11_header";
-@import "05_layout/12_header_title";
-@import "05_layout/13_header_nav";
-@import "05_layout/15_title";
-@import "05_layout/21_footer";
+@import "06_page_layout/11_header";
+@import "06_page_layout/12_header_title";
+@import "06_page_layout/13_header_nav";
+@import "06_page_layout/15_title";
+@import "06_page_layout/21_footer";
 /*! --- begin nvigation --- */
-@import "05_layout/31_sidebar_left";
-@import "05_layout/32_menu_left";
-@import "05_layout/33_announce_left";
+@import "06_page_layout/31_sidebar_left";
+@import "06_page_layout/32_menu_left";
+@import "06_page_layout/33_announce_left";
 // *** 06 Parts --------------------------------------------------------------- ***
 /*! --- begin lists --- */
-@import "06_parts/01_lists";
+@import "05_elements/01_lists";
 /*! --- begin tables --- */
-@import "06_parts/02_tables";
+@import "05_elements/02_tables";
 /*! --- begin code --- */
-@import "06_parts/03_code";
+@import "05_elements/03_code";
 /*! --- begin collouts --- */
-@import "06_parts/04_callouts";
+@import "05_elements/04_callouts";
 /*! --- begin links --- */
-@import "06_parts/10_links";
+@import "05_elements/10_links";
 /*! --- begin utility classes --- */
-@import "06_parts/31_utility_classes";
-@import "06_parts/32_clamshell";
+@import "05_elements/31_utility_classes";
+@import "05_elements/32_clamshell";
 // *** 07 Widgets ------------------------------------------------------------- ***
 /*! --- begin widgets --- */
 @import "07_widgets/01_searchbar";
