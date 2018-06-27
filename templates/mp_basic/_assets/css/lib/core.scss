@@ -38,6 +38,7 @@
 // *** 03 Mixins *------------------------------------------------------------- ***
 @import "03_mixins/01_colorCombos";
 @import "03_mixins/02_commonElements";
+@import "03_mixins/03_boxProperties";
 // *** 04 Resets -------------------------------------------------------------- ***
 /*! --- begin resets --- should be nothing but font definitions above this point --- */
 @import "04_reset/01_core";
@@ -55,11 +56,11 @@
 @import "05_layout/12_header_title";
 @import "05_layout/13_header_nav";
 @import "05_layout/15_title";
-// @import "05_layout/04_footer";
+@import "05_layout/21_footer";
 /*! --- begin nvigation --- */
-@import "05_layout/21_sidebar_left";
-@import "05_layout/22_menu_left";
-@import "05_layout/23_announce_left";
+@import "05_layout/31_sidebar_left";
+@import "05_layout/32_menu_left";
+@import "05_layout/33_announce_left";
 // *** 06 Parts --------------------------------------------------------------- ***
 /*! --- begin lists --- */
 @import "06_parts/01_lists";

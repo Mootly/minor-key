@@ -1,4 +1,7 @@
 // 06 Parts- 03 Code ========================================================== ***
+                    // Correct inheritance and scaling of font size.            ***
+                    // Correct odd `em` font sizing.                            ***
+code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
 pre {
   @include set-blended-background($c-inverse-bg, 0.0625, $c-base-bg);
   @include set-blended-border($c-inverse-bg, left, 0.25, 0.5em, solid, $c-base-bg);

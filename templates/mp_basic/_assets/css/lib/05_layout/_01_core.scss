@@ -1,8 +1,17 @@
 // *** 05 Layout - 01 Basic formatting for the document ======================= ***
+                    // Prevent adjustments of font size after orientation       ***
+                    // changes in IE and iOS.                                   ***
+html {
+  font-size:                100%;
+  -ms-text-size-adjust:     100%;
+  -webkit-text-size-adjust: 100%;
+  height:                   100%;
+}
                     // set our core body Rules                                  ***
 body {
   position          : relative;
   box-sizing        : border-box;
+  height            : 100%;
   margin            : 0;
   padding           : 0;
   background-color  : $c-base-bg;

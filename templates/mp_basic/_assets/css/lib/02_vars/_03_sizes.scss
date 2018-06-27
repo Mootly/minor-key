@@ -3,10 +3,9 @@
 // ----------------                                                             ***
 // This file should contain only variable assignments.                          ***
 // Any CSS here may be overriden in the resets.                                 ***
-                    // State footer capped at 78em                              ***
+// ---------------------------------------------------------------------------- ***
 $max-content-width  :	60em;             // 960px @ 16em
-$max-full-page-width:	100%;             
-
+$max-full-page-width:	100%;
                     // Font sizes                                               ***
                     // by pixel change on a base 20px font                      ***
 $f-size-default     : px2ems(16);
@@ -23,14 +22,12 @@ $h5-size            : px2ems(19);
 $h6-size            : px2ems(17);
 $hb-size            : px2ems(24);
 $hb-mob-size        : px2ems(18);
-
                     // line heights                                             ***
 $ht-line-compact    : px2ems(17);
 $ht-line-default    : px2ems(22);
 $ht-line-med        : px2ems(24);
 $ht-line-tall       : px2ems(28);
 $ht-line-dbl        : px2ems(32);
-
 $ht-line-heading    : px2ems(18);
 $ht-line-select     : px2ems(24);
 // *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

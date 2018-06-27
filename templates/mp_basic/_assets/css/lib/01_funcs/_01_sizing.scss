@@ -1,5 +1,9 @@
 // *** 01 Functions - 01 Sizing functions ===================================== ***
-// Functions to scale and size:                                                 ***
+// Functions to scale and size.                                                 ***
+// ----------------                                                             ***
+// This file should contain only function assignments.                          ***
+// Any CSS here may be overriden in the resets.                                 ***
+// ---------------------------------------------------------------------------- ***
                     // calculate column widths on the page                      ***
                     // The default assumes a 12 column layout                   ***
                     // 3% is subtracted from all columns to avoid bumps         ***
@@ -11,46 +15,4 @@
 @function px2ems($fx_num, $fx_count: 16) {
   @return ($fx_num / $fx_count) * 1.0em ;
 }
-                    // Border radius                                            ***
-                    // Default is       border-radius: 0.5em;                   ***
-                    // Attributes are:
-                    // $mxside:         all, left, right, top, bottom           ***
-                    //                  top-left, top-right                     ***
-                    //                  bottom-left, bottom-right               ***
-                    // $mxradius:       any valid width unit                    ***
-@mixin set-border-radius($mxside: all, $mxradius: 0.5em) {
-  background-clip: padding-box;
-  @if $mxside == all {
-    border-radius: $mxradius;
-  }
-  @if $mxside == top-left {
-    border-top-left-radius: $mxradius;
-  }
-  @if $mxside == top-right {
-    border-top-right-radius: $mxradius;
-  }
-  @if $mxside == bottom-left {
-    border-bottom-left-radius: $mxradius;
-  }
-  @if $mxside == bottom-right {
-    border-bottom-right-radius: $mxradius;
-  }
-  @if $mxside == top {
-    border-top-left-radius: $mxradius;
-    border-top-right-radius: $mxradius;
-  }
-  @if $mxside == right {
-    border-top-right-radius: $mxradius;
-    border-bottom-right-radius: $mxradius;
-  }
-  @if $mxside == bottom {
-    border-bottom-left-radius: $mxradius;
-    border-bottom-right-radius: $mxradius;
-  }
-  @if $mxside == left {
-    border-top-left-radius: $mxradius;
-    border-bottom-left-radius: $mxradius;
-  }
-}
-
 // *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

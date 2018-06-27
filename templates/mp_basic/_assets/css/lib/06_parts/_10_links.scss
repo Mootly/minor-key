@@ -109,7 +109,7 @@ a[href*='https://www.youtube.com/watch']:after {
 
 #content-main {
   a i.fa {
-    @include span-hidden;
+    @include hidden-span;
   }
   .top-link,
   .right-link {
@@ -142,7 +142,7 @@ a[href*='https://www.youtube.com/watch']:after {
         @include set-blended-text($c-link-icons, 0.5, $c-base-bg);
         @include set-blended-border($c-link-icons, top, 0.5, 0.1825em, solid, $c-base-bg);
       }
-      @include span-hidden;
+      @include hidden-span;
     }
     @media (max-width: $break-1024-desktop) {
       font-size     : 2.0em;

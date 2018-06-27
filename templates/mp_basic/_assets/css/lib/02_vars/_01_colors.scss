@@ -8,7 +8,7 @@
 
 // *** BASIC COLORS =========================================================== ***
 // Just some basic colors so they are predefined                                ***
-// *** Primaries -------------------------------------------------------------- ***
+                    // *** Primaries ------------------------------------------ ***
 $c-white            : rgb(255,255,255);                     // #ffffff
 $c-black            : rgb(0,0,0);                           // #000000
 $c-red              : rgb(255,0,0);                         // #ff0000
@@ -17,17 +17,16 @@ $c-blue             : rgb(0,0,255);                         // #0000ff
 $c-yellow           : rgb(255,255,0);                       // #ffff00
 $c-cyan             : rgb(0,255,255);                       // #00ffff
 $c-magenta          : rgb(255,0,255);                       // #ff00ff
-// *** Grays ------------------------------------------------------------------ ***
+                    // *** Grays ---------------------------------------------- ***
 $c-gray-charcoal    : rgb(32,36,37);                        // #202425
 $c-gray-dark        : rgb(70,74,75);                        // #464a4b
 $c-gray-medium      : rgb(140,145,147);                     // #8c9193
 $c-offwhite         : rgb(250,248,249);                     // #faf8f9
-// *** Common Colors ---------------------------------------------------------- ***
+                    // *** Common Colors -------------------------------------- ***
 $c-default-red      : darken($c-red, 20%);                  // #990000
 $c-default-green    : darken($c-green, 20%);                // #009900
-// *** END BASIC COLORS ======================================================= ***
-
 // *** TEMPLATE COLORS ======================================================== ***
+                    // This is where you set your base colors ----------------- ***
 $c-base-black       : rgb(17,15,16);                        // #110f10
 $c-base-dkgray      : rgb(43,40,43);                        // #2b282b
 $c-base-medgray     : rgb(76,64,76);                        // #4c404c
@@ -63,12 +62,15 @@ $c-base-text        : $c-base-black;
 $c-base-bg          : $c-offwhite;
 $c-inverse-text     : $c-offwhite;
 $c-inverse-bg       : $c-base-black;
+                    // Header and Footer                                        ***
 $c-banner-text      : $c-offwhite;
 $c-banner-bg        : $c-base-flatplum;
+$c-banner-hilite    : $c-base-medplum;
 $c-footer-text      : $c-offwhite;
 $c-footer-bg        : $c-base-dkplum;
-$c-suvbanner-bg     : $c-base-medplum;
-$c-selected-bg      : $c-base-medplum;
+$c-footer-hilite    : $c-base-medplum;
+$c-subbanner-bg     : $c-base-medplum;
+$c-subbanner-hilite : $c-base-flatplum;
                     // Boxes                                                    ***
 $c-box-text         : $c-base-black;
 $c-box-bg           : $c-base-graywash;
@@ -83,13 +85,12 @@ $c-gray-text        : $c-base-medgray;
 $c-code             : $c-base-dkplum;
 $c-code-hilite-1    : $c-base-plum;
 $c-code-hilite-2    : $c-base-medteal;
-
                     // Buttons and links                                        ***
 $c-button-text      : $c-offwhite;
 $c-button-bg        : $c-base-flatplum;
 $c-button-active-bg : lighten($c-base-flatplum, 10);
 $c-link-icons       : $c-base-flatplum;
-$c-link-text        : $c-base-teal;
+$c-link-text        : $c-base-medteal;
 $c-link-header-txt  : $c-base-plumwash;
 $c-hover-text       : $c-base-blue;
 $c-visited-text     : $c-base-flatplum;

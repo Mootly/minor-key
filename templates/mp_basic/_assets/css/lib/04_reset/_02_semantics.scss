@@ -1,24 +1,17 @@
 // *** 04 Reset Rules - 02 Semantic element resets ============================ ***
 // Reset rules adapted from normalize.css v4.1.1 | MIT License                  ***
 // github.com/necolas/normalize.css                                             ***
+//----------------------------------------------------------------------------- ***
 // *** TEXT LEVEL SEMANTICS --------------------------------------------------- ***
-                    // Remove the bottom border in Firefox 39-.                 ***
-                    // Add the correct text decoration in                       ***
-                    // Chrome, Edge, IE, Opera, and Safari.                     ***
 abbr { border-bottom: 1px dotted $c-gray-border; }
-                    // Prevent the duplication of bolder in Safari 6.           ***
-b, strong { font-weight: inherit; }
 b, strong { font-weight: bold; }
 dfn, cite, em, i, var { font-style: italic; }
-                    // Correct the font size and margin on h1 elements.         ***
-h1 { font-size: 2em; margin: 0.67em 0; }
                     // Add the correct background and color in IE 9-.           ***
 mark { background-color: $c-yellow; color: $c-black; }
                     // Set the correct font size for small tag.                 ***
 small { font-size: 80%; }
                     // Keep sub and sup elements from affecting the line height ***
-sub,
-sup {
+sub, sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -26,17 +19,4 @@ sup {
 }
 sub { bottom: -0.25em; }
 sup { top: -0.5em; }
-// *** GROUPING CONTENT ------------------------------------------------------- ***
-                    // Correct inheritance and scaling of font size.            ***
-code,
-kbd,
-pre,
-samp { font-family: monospace, monospace; font-size: 1em; }
-                    // Contain overflow in all browsers.                        ***
-pre { overflow: auto; }
-                    // Add the correct margin in IE 8.                          ***
-figure { margin: 1em 40px; }
-                    // Add the correct box sizing in Firefox.                   ***
-                    // Show the overflow in Edge and IE.                        ***
-hr { box-sizing: content-box; height: 0; overflow: visible; }
-// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
+/// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

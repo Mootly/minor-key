@@ -1,4 +1,8 @@
 // === 06 Parts- 02 Tables ==================================================== ***
+                    // Remove most spacing between table cells.                 ***
+table { border-collapse: collapse; border-spacing: 0; }
+td, th { padding: 0; }
+
 #content-main {
   td :first-child,
   th :first-child { margin-top: 0; }

@@ -3,6 +3,7 @@
 // ----------------                                                             ***
 // This file should contain only mixin calls.                                   ***
 // Any raw CSS here may be overriden in the resets.                             ***
+//----------------------------------------------------------------------------- ***
                     // Hidden element rules                                     ***
 @mixin hidden-element-rules {
   display           : block;
@@ -21,10 +22,10 @@
   left              : -1000em;
 }
                     // Hidden spans                                             ***
-@mixin span-hidden {
+@mixin hidden-span {
   span { @include hidden-element-rules; }
 }
-                    // default header padding                                   ***
+                    // default header (H#) formatting                           ***
 @mixin header-constants {
   margin            : 0;
   padding           : 1.25em 0 0.5em 0;
