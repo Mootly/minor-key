@@ -1,4 +1,21 @@
 // === 06 Parts - 10 Links ==================================================== ***
+// *** LINKS FIXES ------------------------------------------------------------ ***
+                    // Remove the gray background on active links in IE 10.     ***
+                    // Remove gaps in links underline in iOS 8+ and Safari 8+.  ***
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+                    // Force hover outline color.                               ***
+a:focus {
+  outline: thin dotted $c-gray-border;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+                    // Remove the outline on focused links when also active     ***
+                    // or hovered in all browsers.                              ***
+a:active,
+a:hover { outline: 0; outline-width: 0; }
 #content-main {
   a {
     color           : $c-link-text;

@@ -1,0 +1,23 @@
+// *** EMBEDDED CONTENT ------------------------------------------------------- ***
+                    // Remove the border on images inside links in IE 10-.      ***
+img { border-style: none; border: 0; }
+                    // Clean up image sizing.                                   ***
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+                    // Clean up image sizing for IE8.                           ***
+.lt-ie8 img { width: auto\9; }
+                    // Correct overflow not hidden in IE 9/10/11.               ***
+svg:not(:root) { overflow: hidden; }
+                    // Remove the gap between audio, canvas, iframes,           ***
+                    // images, videos and the bottom of their containers.       ***
+audio,
+canvas,
+iframe,
+img,
+svg,
+video { vertical-align: middle; }
