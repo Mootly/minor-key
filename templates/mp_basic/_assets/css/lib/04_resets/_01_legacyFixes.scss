@@ -1,6 +1,4 @@
 // *** 04 Reset Rules - 01 Base resets ======================================== ***
-// Reset rules adapted from normalize.css v4.1.1 | MIT License                  ***
-// github.com/necolas/normalize.css                                             ***
 // Most resets are now integrated directly with related rules.                  ***
 //----------------------------------------------------------------------------- ***
                     // Block and format fixes for various browsers              ***
@@ -25,7 +23,4 @@ video { display: inline-block; }
 audio:not([controls]) { display: none; height: 0; }
 progress { vertical-align: baseline; }
 template, [hidden] { display: none; }
-                    // Add the correct HR box sizing in Firefox.                ***
-                    // Show the overflow in Edge and IE.                        ***
-hr { box-sizing: content-box; height: 0; overflow: visible; }
 // *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

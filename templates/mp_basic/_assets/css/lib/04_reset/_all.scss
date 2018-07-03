@@ -1,9 +1,0 @@
-// *** 04 Reset Rules - Aggregator ============================================ ***
-// Core partial should always be first.                                         ***
-// Print partial should always be last.                                         ***
-@import "./01_core";
-@import "./02_semantics";
-@import "./03_linkContent";
-@import "./04_forms";
-@import "./91_print";
-// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

@@ -33,19 +33,18 @@
 @import "02_vars/01_colors";
 @import "02_vars/02_fonts";
 @import "02_vars/03_sizes";
-@import "02_vars/05_z_indices";
+@import "02_vars/05_zIndices";
 @import "02_vars/11_mediaQueries";
 // *** 03 Mixins *------------------------------------------------------------- ***
 @import "03_mixins/01_colorCombos";
 @import "03_mixins/02_commonElements";
 @import "03_mixins/03_boxProperties";
 // *** 04 Resets -------------------------------------------------------------- ***
-/*! --- begin resets --- should be nothing but font definitions above this point --- */
-@import "04_reset/01_core";
-@import "04_reset/02_semantics";
-@import "04_reset/03_linkContent";
-@import "04_reset/04_forms";
-@import "04_reset/91_print";
+/*!
+--- begin resets ---
+--- should be nothing but font definitions above this point ---
+*/
+@import "04_resets/01_legacyFixes";
 // *** 05 Layout -------------------------------------------------------------- ***
 /*! --- begin accessibility --- */
 @import "06_page_layout/00_accessibility";

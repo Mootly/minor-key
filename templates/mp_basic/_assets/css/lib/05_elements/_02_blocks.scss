@@ -1,0 +1,3 @@
+// Add the correct HR box sizing in Firefox.                ***
+// Show the overflow in Edge and IE.                        ***
+hr { box-sizing: content-box; height: 0; overflow: visible; }
