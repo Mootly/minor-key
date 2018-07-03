@@ -25,11 +25,4 @@
 @mixin hidden-span {
   span { @include hidden-element-rules; }
 }
-                    // default header (H#) formatting                           ***
-@mixin header-constants {
-  margin            : 0;
-  padding           : 1.25em 0 0.5em 0;
-  font-family       : $f-title;
-  line-height       : $ht-line-compact;
-}
 // *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

@@ -1,0 +1,23 @@
+// *** 06 Parts- 00 Root ====================================================== ***
+                    // prevent adjustments of font size after orientation       *
+                    // changes in IE and iOS.                                   *
+html {
+  height            : 100%;
+  font-size         : 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  box-sizing        : border-box;
+  position          : relative;
+  height            : 100%;
+  margin            : 0;
+  padding           : 0;
+  @include set-default-colors;
+  font              : normal normal 400 1.0em $f-default;
+  line-height       : $ht-line-tall;
+}
+                    // force border box so everything works the same may        *
+                    // notinherited by forms field in some browsers             *
+* { box-sizing        : border-box; }
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

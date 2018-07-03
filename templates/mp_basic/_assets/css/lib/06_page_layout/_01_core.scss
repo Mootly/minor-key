@@ -1,27 +1,4 @@
 // *** 05 Layout - 01 Basic formatting for the document ======================= ***
-                    // Prevent adjustments of font size after orientation       ***
-                    // changes in IE and iOS.                                   ***
-html {
-  font-size:                100%;
-  -ms-text-size-adjust:     100%;
-  -webkit-text-size-adjust: 100%;
-  height:                   100%;
-}
-                    // set our core body Rules                                  ***
-body {
-  position          : relative;
-  box-sizing        : border-box;
-  height            : 100%;
-  margin            : 0;
-  padding           : 0;
-  background-color  : $c-base-bg;
-  color             : $c-base-text;
-  font              : normal normal 400 1.0em $f-default;
-  line-height       : $ht-line-tall;
-}
-                    // force border box so everything works the same may        ***
-                    // notinherited by forms field in some browsers             ***
-* { box-sizing        : border-box; }
 // *** Main body of the page is #content-main --------------------------------- ***
 #content-main {
   width             : 100%;
@@ -47,47 +24,7 @@ body {
   }
                     // tighten paragaphs after titles                           ***
   h1+p, h2+p, h3+p, h4+p, h5+p, h6+p { margin-top: 0; }
-                    // set headers                                              ***
-  h1, h2, h3, h4, h5, h6 { @include header-constants; }
-  h1 {
-    color           : $c-h1-text;
-    font-size       : $h1-size;
-    font-weight     : 900;
-  }
-  h2 {
-    color           : $c-h2-text;
-    font-size       : $h2-size;
-    font-weight     : 900;
-  }
-  h3 {
-    color           : $c-h3-text;
-    font-size       : $h3-size;
-    font-weight     : 700;
-  }
-  h4 {
-    color           : $c-h4-text;
-    font-size       : $h4-size;
-    font-weight     : 700;
-  }
-  h5 {
-    color           : $c-h5-text;
-    font-size       : $h5-size;
-    font-weight     : 600;
-  }
-  h6 {
-    color           : $c-h6-text;
-    font-size       : $h6-size;
-    font-weight     : 600;
-  }
-                    // borders to call out headers for section breaks           *
-  h1, h2, h3, h4, h5, h6 {
-    &.section {
-      @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
-      @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg);
-      margin-top: 1.0em;
-      padding-top: 0.5em;
-    }
-  }
+
 
                     // set links                                                ***
   a, a:active {

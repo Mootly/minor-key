@@ -45,7 +45,39 @@
 --- should be nothing but font definitions above this point ---
 */
 @import "04_resets/01_legacyFixes";
-// *** 05 Layout -------------------------------------------------------------- ***
+// *** 05 Elements ------------------------------------------------------------ ***
+@import "05_elements/00_root";
+/*!
+--- begin elements ---
+*/
+@import "05_elements/01_headings";
+@import "05_elements/02_blocks";
+@import "05_elements/03_inline";
+@import "05_elements/04_code";
+/*!
+--- begin lists ---
+*/
+@import "05_elements/05_lists";
+/*!
+--- begin collouts ---
+*/
+@import "05_elements/06_callouts";
+/*!
+--- begin links ---
+*/
+@import "05_elements/10_links";
+@import "05_elements/11_embeds";
+/*!
+ --- begin tables ---
+ */
+@import "05_elements/20_tables";
+/*!
+ --- begin forms ---
+ */
+@import "05_elements/30_forms";
+/*! --- begin utility classes --- */
+@import "05_elements/40_utilityClasses";
+// *** 06 Layout -------------------------------------------------------------- ***
 /*! --- begin accessibility --- */
 @import "06_page_layout/00_accessibility";
 /*! --- begin page layout --- */
@@ -60,22 +92,9 @@
 @import "06_page_layout/31_sidebar_left";
 @import "06_page_layout/32_menu_left";
 @import "06_page_layout/33_announce_left";
-// *** 06 Parts --------------------------------------------------------------- ***
-/*! --- begin lists --- */
-@import "05_elements/01_lists";
-/*! --- begin tables --- */
-@import "05_elements/02_tables";
-/*! --- begin code --- */
-@import "05_elements/03_code";
-/*! --- begin collouts --- */
-@import "05_elements/04_callouts";
-/*! --- begin links --- */
-@import "05_elements/10_links";
-/*! --- begin utility classes --- */
-@import "05_elements/31_utility_classes";
-@import "05_elements/32_clamshell";
 // *** 07 Widgets ------------------------------------------------------------- ***
 /*! --- begin widgets --- */
+@import "05_elements/32_clamshell";
 @import "07_widgets/01_searchbar";
 @import "07_widgets/02_breadcrumb";
 @import "07_widgets/03_google_trans";
