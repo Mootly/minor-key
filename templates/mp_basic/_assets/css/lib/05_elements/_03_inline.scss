@@ -1,4 +1,4 @@
-// *** TEXT LEVEL SEMANTICS --------------------------------------------------- ***
+// === 05 Elements - 03 Inline Elements ======================================= *
 abbr { border-bottom: 1px dotted $c-gray-border; }
 b, strong { font-weight: bold; }
 dfn, cite, em, i, var { font-style: italic; }
@@ -15,3 +15,6 @@ sub, sup {
 }
 sub { bottom: -0.25em; }
 sup { top: -0.5em; }
+del { color: rgba($c-default-red, 0.75); }
+ins { text-decoration: rgba($c-default-green, 0.75) underline dashed; }
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

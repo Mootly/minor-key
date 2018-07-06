@@ -25,5 +25,9 @@ _vendors/fonts/
 # Ignore default text files
 *.txt
 
+# Ignore really big files
+*.mp4
+*.webm
+
 # Ignore system files
 .DS_Store

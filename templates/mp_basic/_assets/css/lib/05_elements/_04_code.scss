@@ -1,31 +1,29 @@
-// 06 Parts- 03 Code ========================================================== ***
+// === 05 Elements- 04 Code =================================================== ***
                     // Correct inheritance and scaling of font size.            ***
                     // Correct odd `em` font sizing.                            ***
-code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
+code, kbd, pre, samp {
+  font-family       : monospace, monospace;
+  font-family       : $f-code;
+  font-size         : 1.0em;
+}
 pre {
   @include set-blended-background($c-inverse-bg, 0.0625, $c-base-bg);
   @include set-blended-border($c-inverse-bg, left, 0.25, 0.5em, solid, $c-base-bg);
   overflow          : auto;
-  color             : $c-code;
   padding           : 0.75em;
-  font-family       : $f-code;
   font-size         : 0.875em;
-  line-height: $ht-line-tall;
-  var {
-    @include set-blended-text($c-gray-text, 0.75, $c-base-bg);
-    font-style      : italic;
-  }
+  line-height       : $ht-line-tall;
 }
-
 code {
-  font-family       : $f-code;
-  color             : $c-code;
-  var {
-    @include set-blended-text($c-gray-text, 0.75, $c-base-bg);
-    font-style      : italic;
-  }
+  padding           : 0 0.25em;
+  @include set-blended-background($c-inverse-bg, 0.025, $c-base-bg);
 }
-
+                    // make sure vars are italicized                            ***
+pre var, code var, kbd var, samp var {
+  color             : rgb(136,139,141);
+  font-style        : italic;
+}
+                    // color coding of code elements                            ***
 code, pre, span {
   &.cc-html { color: $c-code-hilite-1; }
   &.cc-js   { color: $c-code-hilite-2; }

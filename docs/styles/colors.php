@@ -1,5 +1,5 @@
 <?php
-/* === Style Guide ============================================================ *
+/* === Style Guide: Headings ================================================== *
  * Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md
  * --- Revision History ------------------------------------------------------- *
  * 2018-05-09 | Copied over from test page.
@@ -10,8 +10,8 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Style Guide';
-$mpo_parts->link_title        = 'Style Guide';
+$mpo_parts->h1_title          = 'Template Colors';
+$mpo_parts->link_title        = 'Template Colors';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation: Style Guide';
 $mpo_parts->section_base      = '/docs';
@@ -26,51 +26,43 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
                     # depending on the site.
 ob_start();
 ?>
-<!-- *** begin content ******************************************************** -->
-<h3>What's Here</h3>
+<!-- *** BEGIN CONTENT ******************************************************** -->
+
+<p>The last column contains the variables as called in the CSS as well as sample swatches for color blends.
+<h2 id="toc-links">Contents</h2>
+
+<!-- *** PURPLES *** ********************************************************** -->
+<h2>Purples</h2>
 
 <table class="list-table">
   <thead>
     <tr>
-      <th>Page</th>
-      <th>Description</th>
+      <th>&nbsp;</th>
+      <th>RGB</th>
+      <th>Hex</th>
+      <th>Name</th>
+      <th>Called Variables</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th colspan="2">Style Guide</th>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/callouts.php">Text Elements &amp; Callouts</a></td>
-      <td>Text, text styling, and callouts.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/colors.php">Colors</a></td>
-      <td>This page should be customized for each template.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/headings.php">Headings</a></td>
-      <td>Headings and section spacing</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/links.php">Links &amp; Images</a></td>
-      <td>Link, images, and other embedded content</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/lists.php">Lists</a></td>
-      <td>Lists.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/tables.php">Tables</a></td>
-      <td>The different tables currently available.</td>
+      <th style="background-color: rgb(67,40,93);"> </th>
+      <td>rgb(67,40,93)</td>
+      <td>#43285d</td>
+      <td>$c-purple-web-1</td>
+      <td>
+        <ul>
+          <li>$c-banner-bg</li>
+          <li>$c-button-bg</li>
+          <li style="color:#fcf8fb; background-color:#294E7D;">$c-visited-text <br />mix($c-core-links, $c-purple-web-1, 50)</li>
+        </ul>
+      </td>
     </tr>
   </tbody>
 </table>
-<!-- *** end content ********************************************************** -->
+
+<!-- *** end contents ********************************************************* -->
 <?php
-                    # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-                    # Content developers shouldn't touch anything below here.
-                    # Invoke the template ------------------------------------- *
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
 $page_elements = $mpo_parts->build_page();

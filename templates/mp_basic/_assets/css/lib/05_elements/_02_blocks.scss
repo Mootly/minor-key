@@ -1,3 +1,20 @@
-// Add the correct HR box sizing in Firefox.                ***
-// Show the overflow in Edge and IE.                        ***
-hr { box-sizing: content-box; height: 0; overflow: visible; }
+// *** 05 Elements - 01 Blocks ================================================ ***
+                    // paragraphs have a small side margin for visual alignment ***
+p {
+  margin            : 0.5em 0.125em;
+  line-height       : $ht-line-default;
+}
+                    // tighten paragaphs after titles                           ***
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p { margin-top: 0; }
+                    // style horizontal rules(includes browser fixes)           *
+hr {
+  box-sizing        : content-box;
+  height            : 0;
+  overflow          : visible;
+  border            : 0;
+  @include set-blended-border($c-banner-bg, top, 0.25, 0.125em, solid, $c-base-bg);
+  &.thick {
+    @include set-blended-border($c-banner-bg, top, 0.25, 0.1875em, solid, $c-base-bg);
+  }
+}
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

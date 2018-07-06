@@ -13,8 +13,8 @@ ob_start();
       <li class="top-page"><a href="<?= $mpo_parts->section_base; ?>">Documentation Home</a></li>
       <li class="collapse-header closed"><a href="#">Style Guide</a>
         <ul class="page-nav-sublist collapse-list hidden">
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/">Style Guide</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/callouts.php">Text Elements and menu links that are too long</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/styles/">Style Guide Home</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/styles/callouts.php">Text Elements &amp; Callouts</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/styles/headings.php">Headings</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/styles/links.php">Links &amp; Images</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/styles/lists.php">Lists</a></li>

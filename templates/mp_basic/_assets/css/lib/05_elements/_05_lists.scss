@@ -1,7 +1,9 @@
-// === 06 Parts - 01 Lists ==================================================== ***
+// === 05 Elements - 05 Lists ================================================= ***
+                    // margin fixes                                             *
+p + ul, p + ol { margin-top: 0; }
 ul li, ol li, dl dd {
-  line-height: $ht-line-default;
-  margin-bottom: 0.5em;
+  line-height       : $ht-line-default;
+  margin-bottom     : 0.5em;
 }
 
 ul, ol {
@@ -46,9 +48,6 @@ ul, ol {
       }
     }
   }
-}
-p + ul, p + ol {
-  margin-top: 0;
 }
 // *** Definition Lists ------------------------------------------------------- ***
 #content-main {

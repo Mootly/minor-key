@@ -57,7 +57,8 @@ ob_start();
   <li class="wrong-flag">This is a list item flagged as wrong.</li>
   <li class="right-flag">This is a list item flagged as right.</li>
 </ul>
-<p class="bad-idea">This text is a bad idea. So let's not do it.</p>
+<p><span class="bad-idea">This text is a bad idea.</span> <s>While this is a normal strikethrough.</s> <del>And this is flagged as deleted.</del></p>
+<p>This is <ins>an inserted block of</ins> text.</p>
 
 <p>Text can be called out with <span class="red">red</span> or <span class="green">green</span>.</p>
 
