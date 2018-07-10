@@ -191,7 +191,8 @@ ins {
 
 code, kbd, pre, samp {
   font-family: monospace, monospace;
-  font-size: 1em;
+  font-family: "Source Code Pro", monospace;
+  font-size: 1.0em;
 }
 
 pre {
@@ -200,27 +201,19 @@ pre {
   border-left: 0.5em solid #c0bebf;
   border-left: 0.5em solid rgba(17, 15, 16, 0.25);
   overflow: auto;
-  color: #432546;
   padding: 0.75em;
-  font-family: "Source Code Pro", monospace;
   font-size: 0.875em;
   line-height: 1.75em;
 }
 
-pre var {
-  color: #786e77;
-  color: rgba(76, 64, 76, 0.75);
-  font-style: italic;
-}
-
 code {
-  font-family: "Source Code Pro", monospace;
-  color: #432546;
+  padding: 0 0.25em;
+  background-color: #f4f2f3;
+  background-color: rgba(17, 15, 16, 0.025);
 }
 
-code var {
-  color: #786e77;
-  color: rgba(76, 64, 76, 0.75);
+pre var, code var, kbd var, samp var {
+  color: #888b8d;
   font-style: italic;
 }
 
@@ -240,6 +233,10 @@ code.cc-php, pre.cc-php, span.cc-php {
 /*!
 --- begin lists ---
 */
+p + ul, p + ol {
+  margin-top: 0;
+}
+
 ul li, ol li, dl dd {
   line-height: 1.375em;
   margin-bottom: 0.5em;
@@ -253,19 +250,29 @@ ul ul, ul ol, ol ul, ol ol {
   padding-left: 1.375em;
 }
 
-#content-main #toc-links {
+.fake-li {
+  display: list-item;
+  margin-left: 0.5em;
+  list-style-type: none;
+}
+
+.fake-li:before {
+  content: '\f111';
+  margin: 0 1.5em 0 0;
+  font-size: 0.5em;
+  position: relative;
+  top: -0.25em;
+  font-family: 'FontAwesome';
+  color: #897189;
+  color: rgba(99, 68, 100, 0.75);
+}
+
+#toc-links {
   display: none;
   padding-top: 0.375em;
 }
 
-@media screen and (min-width: 64em) {
-  #content-main #toc-links {
-    border-top: 1px solid #d4cbd4;
-    border-top: 1px solid rgba(99, 68, 100, 0.25);
-  }
-}
-
-#content-main ul#jumpto {
+ul#jumpto {
   margin-top: 0.5em;
   margin-left: 0;
   padding-left: 1.75em;
@@ -274,27 +281,27 @@ ul ul, ul ol, ol ul, ol ol {
   border-bottom: 1px solid rgba(99, 68, 100, 0.25);
 }
 
-#content-main ul#jumpto li {
+ul#jumpto li {
   margin-bottom: 0.5em;
   color: #000099;
   list-style-type: none;
 }
 
-#content-main ul#jumpto li ul {
+ul#jumpto li ul {
   margin-left: 0.75em;
   padding-left: 0.75em;
 }
 
-#content-main ul#jumpto li ul li {
+ul#jumpto li ul li {
   font-weight: normal;
   margin-bottom: 0.125em;
 }
 
-#content-main ul#jumpto li a {
+ul#jumpto li a {
   text-decoration: none;
 }
 
-#content-main ul#jumpto li:before {
+ul#jumpto li:before {
   content: '\f149';
   margin: 0 0.5em 0 -1.5em;
   font-family: 'FontAwesome';
@@ -302,30 +309,26 @@ ul ul, ul ol, ol ul, ol ol {
   color: rgba(99, 68, 100, 0.5);
 }
 
-p + ul, p + ol {
-  margin-top: 0;
-}
-
-#content-main dl dt {
+dt {
   font-weight: bold;
 }
 
-#content-main dl dd {
+dd {
   margin-bottom: 1.0em;
 }
 
-#content-main dl dd p {
+dd p {
   margin-top: 0;
 }
 
-#content-main dl.inline-terms {
+dl.inline-terms {
   border-top: 1px solid #dddbdc;
   border-top: 1px solid rgba(17, 15, 16, 0.125);
   border-bottom: 1px solid #dddbdc;
   border-bottom: 1px solid rgba(17, 15, 16, 0.125);
 }
 
-#content-main dl.inline-terms dt {
+dl.inline-terms dt {
   float: left;
   width: 8.5em;
   padding-top: 0.325em;
@@ -335,7 +338,7 @@ p + ul, p + ol {
   line-height: 1.375em;
 }
 
-#content-main dl.inline-terms dd {
+dl.inline-terms dd {
   margin-left: 10.0em;
   padding-top: 0.375em;
   padding-bottom: 0.375em;
@@ -344,58 +347,81 @@ p + ul, p + ol {
   border-top: 1px solid rgba(17, 15, 16, 0.125);
 }
 
-#content-main dl.inline-terms dd:first-of-type {
+dl.inline-terms dd:first-of-type {
   border-top: none;
+}
+
+dl.inline-terms.clean {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+dl.inline-terms.clean dd {
+  border-top: 0;
 }
 
 /*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */
 /*!
 --- begin collouts ---
 */
-#content-main .red {
+.alert-box,
+.wrong-box,
+.pull-box,
+.pull-box-alt,
+.pull-box-example,
+.pull-box-dark {
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.red, .green {
+  font-weight: bold;
+}
+
+.red {
   color: #990000;
-  font-weight: bold;
 }
 
-#content-main .green {
+.green {
   color: #009900;
-  font-weight: bold;
 }
 
-#content-main .hilite-red {
+.hilite-red {
   color: #fbbabb;
 }
 
-#content-main .hilite-yellow {
+.hilite-yellow {
   color: #fbfabb;
 }
 
-#content-main .hilite-green {
+.hilite-green {
   color: #bce0bb;
 }
 
-#content-main .warning {
+.warning, .note {
+  margin: 1.0em 1.0em auto -0.5em;
+  padding: 0.25em 1.0em 0.5em 1.0em;
+  background-color: white;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.warning {
   border-left: 0.5em solid #992222;
-  margin: 1.0em 1.0em auto -0.5em;
-  padding: 0.25em 1.0em 0.5em 1.0em;
-  background-color: white;
 }
 
-#content-main .warning .title {
+.warning .title {
   color: #992222;
-  font-weight: bold;
 }
 
-#content-main .note {
+.note {
   border-left: 0.5em solid #703d74;
-  margin: 1.0em 1.0em auto -0.5em;
-  padding: 0.25em 1.0em 0.5em 1.0em;
-  background-color: white;
 }
 
-#content-main .note .title {
+.note .title {
   color: #703d74;
-  font-weight: bold;
 }
 
 #content-main .alert-box {
@@ -1877,9 +1903,9 @@ h1#first-el {
 }
 
 #content-main #breadcrumb-box {
-  margin: 0.25em 1.0em 0.25em 19.0em;
+  margin: 0.25em 2.0em 0.25em 19.0em;
   z-index: 20;
-  padding: 0.25em 0 0 1.0em;
+  padding: 0.25em 0 0.125em 1.0em;
   background-color: #faf8f9;
   color: #464a4b;
   text-transform: lowercase;

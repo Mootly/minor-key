@@ -1,8 +1,8 @@
 // === 07 Widgets - 02 Breadcrumb Menu ======================================== ***
 #content-main #breadcrumb-box {
-  margin            : 0.25em 1.0em 0.25em 19.0em;
+  margin            : 0.25em 2.0em 0.25em 19.0em;
   z-index           : $zidx-breadcrumbs;
-  padding           : 0.25em 0 0 1.0em;
+  padding           : 0.25em 0 0.125em 1.0em;
   background-color  : $c-base-bg;
   color             : $c-gray-border;
   text-transform    : lowercase;

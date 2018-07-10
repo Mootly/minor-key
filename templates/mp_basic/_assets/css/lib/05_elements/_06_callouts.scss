@@ -1,46 +1,37 @@
 // === 06 Parts- 04 Callouts ================================================== ***
-// *** Color Highlights ------------------------------------------------------- ***
-#content-main {
-  .red {
-    color           : $c-default-red;
-    font-weight     : bold;
-  }
-  .green {
-    color           : $c-default-green;
-    font-weight     : bold;
-  }
-  .hilite-red {
-    @include set-blended-text-simple($c-red, 0.25, $c-base-bg);
-  }
-  .hilite-yellow {
-    @include set-blended-text-simple($c-yellow, 0.25, $c-base-bg);
-  }
-  .hilite-green {
-    @include set-blended-text-simple($c-default-green, 0.25, $c-base-bg);
-  }
+// --- Common rules shared by blocks below ------------------------------------ ***
+.alert-box,
+.wrong-box,
+.pull-box,
+.pull-box-alt,
+.pull-box-example,
+.pull-box-dark {
+  margin            : 0.5em;
+  padding           : 0.5em;
 }
-// *** Sematic Block Highlights ----------------------------------------------- ***
+// *** Color Highlights ------------------------------------------------------- ***
+.red, .green { font-weight: bold; }
+.red { color: $c-default-red; }
+.green { color: $c-default-green; }
+.hilite-red { @include set-blended-text-simple($c-red, 0.25, $c-base-bg); }
+.hilite-yellow { @include set-blended-text-simple($c-yellow, 0.25, $c-base-bg); }
+.hilite-green { @include set-blended-text-simple($c-default-green, 0.25, $c-base-bg); }
+// *** Semantic Block Highlights ---------------------------------------------- ***
+.warning, .note {
+  margin            : 1.0em 1.0em auto -0.5em;
+  padding           : 0.25em 1.0em 0.5em 1.0em;
+  background-color  : $c-white ;
+}
+.title { font-weight: bold; }
+.warning {
+  border-left       : 0.5em solid $c-alert-red;
+  .title { color    : $c-alert-red; }
+}
+.note {
+  border-left       : 0.5em solid $c-tip-border;
+  .title { color    : $c-tip-border; }
+}
 #content-main {
-  .warning {
-    border-left     : 0.5em solid $c-alert-red;
-    margin          : 1.0em 1.0em auto -0.5em;
-    padding         : 0.25em 1.0em 0.5em 1.0em;
-    background-color: $c-white ;
-    .title {
-      color         : $c-alert-red;
-      font-weight   : bold;
-    }
-  }
-  .note {
-    border-left     : 0.5em solid $c-tip-border;
-    margin          : 1.0em 1.0em auto -0.5em;
-    padding         : 0.25em 1.0em 0.5em 1.0em;
-    background-color: $c-white ;
-    .title {
-      color         : $c-tip-border;
-      font-weight   : bold;
-    }
-  }
   .alert-box {
     margin          : 0.5em;
     padding         : 0.5em;
