@@ -1,4 +1,4 @@
-// === 06 Parts- 04 Callouts ================================================== ***
+// === 05 Elements - 06 Callouts ============================================== ***
 // --- Common rules shared by blocks below ------------------------------------ ***
 .alert-box,
 .wrong-box,
@@ -31,81 +31,72 @@
   border-left       : 0.5em solid $c-tip-border;
   .title { color    : $c-tip-border; }
 }
-#content-main {
-  .alert-box {
-    margin          : 0.5em;
-    padding         : 0.5em;
-    border          : 1px solid $c-alert-red;
-    border-left     : 0.5em solid $c-alert-red;
-    color           : $c-alert-red;
-    font-weight     : bold;
+.alert-box {
+  border            : 1px solid $c-alert-red;
+  border-left       : 0.5em solid $c-alert-red;
+  color             : $c-alert-red;
+  font-weight       : bold;
+}
+.wrong-box { @include set-blended-background($c-red, 0.125, $c-base-bg); }
+// *** Right and wrong flags -------------------------------------------------- ***
+li.wrong-flag, li.right-flag {
+  list-style-type   : none;
+  margin-left       : -1.5em;
+}
+.wrong-flag:before,
+.right-flag:before {
+  display           : block;
+  float             : left;
+  margin-right      : 0.5em;
+  font-family     : 'FontAwesome';
+  font-size         : inherit;
+}
+.wrong-flag:before {
+  content           : '\f00d';
+  color             : $c-default-red;
+}
+.right-flag:before {
+  content           : '\f00c';
+  color             : $c-default-green;
+}
+.pull-box {
+  background-color: $c-box-bg;
+  color           : $c-base-text;
+}
+.pull-box-dark {
+  background-color: $c-dark-box-bg;
+  color           : $c-inverse-text;
+  h1, h2, h3, h4, h5, h6 { color: inherit; }
+  a {
+    color         : $c-box-alt-bg;
+    @include set-blended-border($c-base-ltslate, bottom, 0.375, 1px, solid, $c-dark-box-bg);
   }
-  .wrong-box {
-    @include set-blended-background($c-red, 0.125, $c-base-bg);
-    margin          : 0.5em;
-    padding         : 0.5em;
-  }
-  li.wrong-flag, li.right-flag {
-    list-style-type : none;
-    margin-left     : -1.25em;
-  }
-  .wrong-flag:before {
-    content: '\f00d';
-    font-family     : 'FontAwesome';
-    color           : $c-default-red;
-    display         : block;
-    float           : left;
-    margin-right    : 0.5em;
-  }
-  .right-flag:before {
-    content         : '\f00c';
-    font-family     : 'FontAwesome';
-    color           : $c-default-green;
-    display         : block;
-    float           : left;
-    margin-right    : 0.5em;
-  }
-
-  .pull-box {
-    padding         : 0.5em;
-    margin          : 0.5em;
-    background-color: $c-box-bg;
-    color           : $c-base-text;
-  }
-
-  .pull-box-dark {
-    padding         : 0.5em;
-    margin          : 0.5em;
-    background-color: $c-dark-box-bg;
+  a:visited { color: $c-box-alt-bg; }
+  a:hover, a:focus, a:active {
     color           : $c-inverse-text;
-    h1, h2, h3, h4, h5, h6 { color: inherit; }
+    @include set-blended-border($c-inverse-text, bottom, 0.85, 1px, solid, $c-dark-box-bg);
+    @include set-blended-background($c-box-alt-bg, 0.0625, $c-dark-box-bg);
   }
-
-  .pull-box-alt {
-    padding         : 0.5em;
-    margin          : 0.5em;
-    background-color: $c-box-alt-bg;
-    color           : $c-base-text;
-  }
-
-  .pull-box-example {
-    padding         : 0.5em;
-    margin          : 0.5em;
-    background-color: $c-white;
-    color           : $c-base-text;
-    border          : 1px solid $c-gray-border;
-  }
-  [class^='pull-box'] {
-    h1:first-child,
-    h2:first-child,
-    h3:first-child,
-    h4:first-child,
-    h5:first-child,
-    h6:first-child {
-      margin-top    : 0;
-      padding-top   : 0;
-    }
-
+}
+.pull-box-alt {
+  background-color: $c-box-alt-bg;
+  color           : $c-base-text;
+}
+.pull-box-example {
+  background-color: $c-white;
+  color           : $c-base-text;
+  border          : 1px solid $c-gray-border;
+}
+                    // prevent large top padding                                ***
+[class^='pull-box'] {
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child,
+  h6:first-child {
+    margin-top    : 0;
+    padding-top   : 0;
   }
 }
 

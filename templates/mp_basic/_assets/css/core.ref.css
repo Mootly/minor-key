@@ -304,6 +304,7 @@ ul#jumpto li a {
 ul#jumpto li:before {
   content: '\f149';
   margin: 0 0.5em 0 -1.5em;
+  font-size: inherit;
   font-family: 'FontAwesome';
   color: #af9eaf;
   color: rgba(99, 68, 100, 0.5);
@@ -424,84 +425,91 @@ dl.inline-terms.clean dd {
   color: #703d74;
 }
 
-#content-main .alert-box {
-  margin: 0.5em;
-  padding: 0.5em;
+.alert-box {
   border: 1px solid #992222;
   border-left: 0.5em solid #992222;
   color: #992222;
   font-weight: bold;
 }
 
-#content-main .wrong-box {
+.wrong-box {
   background-color: #fbd9da;
   background-color: rgba(255, 0, 0, 0.125);
-  margin: 0.5em;
-  padding: 0.5em;
 }
 
-#content-main li.wrong-flag, #content-main li.right-flag {
+li.wrong-flag, li.right-flag {
   list-style-type: none;
-  margin-left: -1.25em;
+  margin-left: -1.5em;
 }
 
-#content-main .wrong-flag:before {
+.wrong-flag:before,
+.right-flag:before {
+  display: block;
+  float: left;
+  margin-right: 0.5em;
+  font-family: 'FontAwesome';
+  font-size: inherit;
+}
+
+.wrong-flag:before {
   content: '\f00d';
-  font-family: 'FontAwesome';
   color: #990000;
-  display: block;
-  float: left;
-  margin-right: 0.5em;
 }
 
-#content-main .right-flag:before {
+.right-flag:before {
   content: '\f00c';
-  font-family: 'FontAwesome';
   color: #009900;
-  display: block;
-  float: left;
-  margin-right: 0.5em;
 }
 
-#content-main .pull-box {
-  padding: 0.5em;
-  margin: 0.5em;
+.pull-box {
   background-color: #f0f0ee;
   color: #110f10;
 }
 
-#content-main .pull-box-dark {
-  padding: 0.5em;
-  margin: 0.5em;
+.pull-box-dark {
   background-color: #464a4b;
   color: #faf8f9;
 }
 
-#content-main .pull-box-dark h1, #content-main .pull-box-dark h2, #content-main .pull-box-dark h3, #content-main .pull-box-dark h4, #content-main .pull-box-dark h5, #content-main .pull-box-dark h6 {
+.pull-box-dark h1, .pull-box-dark h2, .pull-box-dark h3, .pull-box-dark h4, .pull-box-dark h5, .pull-box-dark h6 {
   color: inherit;
 }
 
-#content-main .pull-box-alt {
-  padding: 0.5em;
-  margin: 0.5em;
+.pull-box-dark a {
+  color: #eae3ee;
+  border-bottom: 1px solid #727482;
+  border-bottom: 1px solid rgba(187, 187, 221, 0.375);
+}
+
+.pull-box-dark a:visited {
+  color: #eae3ee;
+}
+
+.pull-box-dark a:hover, .pull-box-dark a:focus, .pull-box-dark a:active {
+  color: #faf8f9;
+  border-bottom: 1px solid #dfdedf;
+  border-bottom: 1px solid rgba(250, 248, 249, 0.85);
+  background-color: #505455;
+  background-color: rgba(234, 227, 238, 0.0625);
+}
+
+.pull-box-alt {
   background-color: #eae3ee;
   color: #110f10;
 }
 
-#content-main .pull-box-example {
-  padding: 0.5em;
-  margin: 0.5em;
+.pull-box-example {
   background-color: white;
   color: #110f10;
   border: 1px solid #464a4b;
 }
 
-#content-main [class^='pull-box'] h1:first-child,
-#content-main [class^='pull-box'] h2:first-child,
-#content-main [class^='pull-box'] h3:first-child,
-#content-main [class^='pull-box'] h4:first-child,
-#content-main [class^='pull-box'] h5:first-child,
-#content-main [class^='pull-box'] h6:first-child {
+[class^='pull-box'] h1:first-child,
+[class^='pull-box'] h2:first-child,
+[class^='pull-box'] h3:first-child,
+[class^='pull-box'] h4:first-child,
+[class^='pull-box'] h5:first-child,
+[class^='pull-box'] h6:first-child {
   margin-top: 0;
   padding-top: 0;
 }
@@ -582,23 +590,23 @@ a:hover {
   outline-width: 0;
 }
 
-#content-main a {
+a {
   color: #004040;
   text-decoration: none;
   border-bottom: 1px solid #d5dcdd;
   border-bottom: 1px solid rgba(0, 64, 64, 0.15);
 }
 
-#content-main a:visited {
+a:visited {
   color: #634464;
 }
 
-#content-main a:hover, #content-main a:focus {
+a:hover, a:focus {
   border-bottom: 1px solid #265c5c;
   border-bottom: 1px solid rgba(0, 64, 64, 0.85);
 }
 
-#content-main a:visited:hover, #content-main a:visited:focus {
+a:visited:hover, a:visited:focus {
   border-bottom: 1px solid #7a5f7a;
   border-bottom: 1px solid rgba(99, 68, 100, 0.85);
 }
@@ -1176,24 +1184,6 @@ div.element-size {
 #content-main.full-width #content-box {
   margin: 1.0em auto 2.0em auto;
   max-width: 100%;
-}
-
-#content-main a, #content-main a:active {
-  color: #004040;
-  text-decoration: none;
-  border-bottom: 1px solid #d5dcdd;
-  border-bottom: 1px solid rgba(0, 64, 64, 0.15);
-}
-
-#content-main a:visited {
-  color: #634464;
-}
-
-#content-main a:hover, #content-main a:focus {
-  border-bottom: 1px solid #265c5c;
-  border-bottom: 1px solid rgba(0, 64, 64, 0.85);
-  background-color: #f6f4f5;
-  background-color: rgba(99, 68, 100, 0.025);
 }
 
 @media (max-width: 64em) {
