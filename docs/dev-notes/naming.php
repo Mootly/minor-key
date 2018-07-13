@@ -33,19 +33,19 @@ ob_start();
 <p>Reserved prefixes:</p>
 <dl class="inline-terms">
   <dt id="dfn-prefix-usc">_ <small>(underscore)</small></dt><dd>System folders begin with an underscore to float them to the top. These are <b>_assets</b>, <b>_core</b>, and <b>_vendors</b>. Remember: <b>/_assets/</b> are template assets, while <b>/assets/</b> are content assets.</dd>
-  <dt id="dfn-prefix-mppost">DEF_</dt><dd>Site specific default constants. These should only be set in <b>init.php</b> or the template-specific equivalent.</dd>
+  <dt id="dfn-prefix-mpdef">DEF_</dt><dd>Site specific default constants. These should only be set in <b>init.php</b> or the template-specific equivalent.</dd>
   <dt id="dfn-prefix-mp">mp_</dt><dd>General use to clarify files and directories as part of the  code base.</dd>
   <dt id="dfn-prefix-mpk">MP_</dt><dd>Constants defined by core.</dd>
   <dt id="dfn-prefix-mpc">mpc_</dt><dd>Class definitions. There may be a fourth letter to specify specific the nature of the class definition.</dd>
   <dt id="dfn-prefix-mpf">mpf_</dt><dd>Functions. All public core functions are prefixed with <b>mkf_</b></dd>
   <dt id="dfn-prefix-mpo">mpo_</dt><dd>Object instances. All instantiated core objects should be prefixed with <b>mpo_</b>.</dd>
-  <dt id="dfn-prefix-mpv">mpt_</dt><dd>Template settings.</dd>
+  <dt id="dfn-prefix-mpt">mpt_</dt><dd>Template settings.</dd>
   <dt id="dfn-prefix-mpv">mpv_</dt><dd>Variables. Most public core variables are prefixed with <b>mpv_</b>.</dd>
   <dt id="dfn-prefix-mppre">mppre_</dt><dd>User defined functions to run before a core function of the same name. Not all functions support this.</dd>
   <dt id="dfn-prefix-mppost">mppost_</dt><dd>User defined functions to run after a core function of the same name. Not all functions support this.</dd>
-  <dt id="dfn-prefix-mppost">t_, temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
-  <dt id="dfn-prefix-mppost">tp_</dt><dd>Overrides from the current template.</dd>
-  <dt id="dfn-prefix-mppost">tpo_</dt><dd>Object instances. All instantiated objects from a template library should be prefixed with <b>mpo_</b>.</dd>
+  <dt id="dfn-prefix-mptemp">t_, temp_</dt><dd>Temporary variables. They should be assumed to contain garbage and should never be used across more than a few lines of code.</dd>
+  <dt id="dfn-prefix-mptp">tp_</dt><dd>Overrides from the current template.</dd>
+  <dt id="dfn-prefix-mptpo">tpo_</dt><dd>Object instances. All instantiated objects from a template library should be prefixed with <b>mpo_</b>.</dd>
 </dl>
 <!-- *** end contents ********************************************************* -->
 <?php

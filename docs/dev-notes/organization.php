@@ -39,7 +39,7 @@ ob_start();
 
 <p>Request evaluation and computation:</p>
 <dl class="inline-terms">
-  <dt id="dfn-process-init">init</dt><dd>Initialize core.</li></dd>
+  <dt id="dfn-process-init">init</dt><dd>Initialize core.</dd>
   <dt id="dfn-process-grab">grab</dt><dd>Retrieve requests and accompanying data.</dd>
   <dt id="dfn-process-proc">proc</dt><dd>Process request data and gather response data.</dd>
 </dl>

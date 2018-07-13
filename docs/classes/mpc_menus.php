@@ -67,7 +67,7 @@ ob_start();
   <dd>
     <p>If a menu and its menu set is not locked, this method can be used to reset a menu.</p>
 
-    <pre>$mpo_menus->setmenu( str $name  [, array $settings] );</pre>
+    <pre>$mpo_menus-&gt;setmenu( str $name  [, array $settings] );</pre>
 
     <p>Settings:</p>
 
@@ -97,23 +97,23 @@ ob_start();
   </dd>
 <dt>Create or edit a link</dt>
   <dd>
-    <pre>$mpo_menus->setlink( str $menu, string $text, str $url [, array $settings] );</pre>
+    <pre>$mpo_menus-&gt;setlink( str $menu, string $text, str $url [, array $settings] );</pre>
   </dd>
 <dt>Return a menu as an HTML list</dt>
   <dd>
-    <pre>$result = $mpo_menus->getmenu( str $name [, array $settings ] );</pre>
+    <pre>$result = $mpo_menus-&gt;getmenu( str $name [, array $settings ] );</pre>
   </dd>
 <dt>Return a menu as an array</dt>
   <dd>
-    <pre>$result = $mpo_menus->getlist( str $name [, array $settings ] );</pre>
+    <pre>$result = $mpo_menus-&gt;getlist( str $name [, array $settings ] );</pre>
   </dd>
 <dt>Return the properties of a menu</dt>
   <dd>
-    <pre>$result = $mpo_menus->getmenuprop( str $menu, str $property );</pre>
+    <pre>$result = $mpo_menus-&gt;getmenuprop( str $menu, str $property );</pre>
   </dd>
 <dt>Return the properties of a link</dt>
   <dd>
-    <pre>$result = $mpo_menus->getlink( str $menu, str $text [, array $settings] );</pre>
+    <pre>$result = $mpo_menus-&gt;getlink( str $menu, str $text [, array $settings] );</pre>
   </dd>
 </dl>
 

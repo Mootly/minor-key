@@ -1,119 +1,36 @@
-// === 06 Parts - 10 Links ==================================================== ***
+// === 05 Elements - 10 Links ================================================= ***
 // *** LINKS FIXES ------------------------------------------------------------ ***
                     // Remove the gray background on active links in IE 10.     ***
                     // Remove gaps in links underline in iOS 8+ and Safari 8+.  ***
 a {
-  background-color: transparent;
+  background-color  : transparent;
   -webkit-text-decoration-skip: objects;
 }
                     // Force hover outline color.                               ***
 a:focus {
-  outline: thin dotted $c-gray-border;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+  outline           : thin dotted $c-gray-border;
+  outline           : 5px auto -webkit-focus-ring-color;
+  outline-offset    : -2px;
 }
                     // Remove the outline on focused links when also active     ***
                     // or hovered in all browsers.                              ***
-a:active,
-a:hover { outline: 0; outline-width: 0; }
+a:active, a:hover { outline: 0; outline-width: 0; }
 a {
-  color           : $c-link-text;
-  text-decoration : none;
+  color             : $c-link-text;
+  text-decoration   : none;
   @include set-blended-border($c-link-text, bottom, 0.15, 1px, solid, $c-base-bg);
 }
-a:visited { color: $c-visited-text; }
+a:visited { color   : $c-visited-text; }
 a:hover, a:focus {
   @include set-blended-border($c-link-text, bottom, 0.85, 1px, solid, $c-base-bg);
 }
 a:visited:hover, a:visited:focus {
   @include set-blended-border($c-visited-text, bottom, 0.85, 1px, solid, $c-base-bg);
 }
-#content-main {
-                    // External link flag                                       *
-                    // Use this one instead for internal absolute pathing       *
-//a[href^='http']:not([href*='yourdomain'])::after {
-  a[href^='http']::after {
-    content: '\f08e';
-    font-family: 'FontAwesome';
-    margin-left: 0.5em;
-    font-weight: normal;
-    font-size: 0.875em;
-    @include set-blended-text($c-base-flatplum, 0.5, $c-base-bg)
-  }
-                    // Resource type flags                                      *
-a[href*='http://www.youtube.com/watch']:after,
-a[href*='https://www.youtube.com/watch']:after {
-  content         : '\f16a';
-  font-size       : 1.0625em;
-  font-family     : FontAwesome;
-  padding         : 0 0.125em 0 0.375em;
-  @include set-blended-text($c-red, 0.5, $c-base-bg)
-}
-  a[href$='.pdf']::after,
-  a[href$='.PDF']::after {
-    content:        '\f1c1';
-    color:          $c-default-red;
-    font-size:      0.9375em;
-    font-family:    FontAwesome;
-    padding:        0 0.25em 0 0.375em;
-  }
-  a[href$='.rtf']::after,
-  a[href$='.doc']::after,
-  a[href$='.docx']::after,
-  a[href$='.dot']::after,
-  a[href$='.DOC']::after,
-  a[href$='.DOCX']::after,
-  a[href$='.DOT']::after,
-  a[href$='.DOTX']::after,
-  a[href$='.dotx']::after {
-    content:        '\f1c2';
-    color:          $c-word-blue;
-    font-size:      0.9375em;
-    font-family:    FontAwesome;
-    padding:        0 0.25em 0 0.375em;
-  }
-  a[href$='.xls']::after,
-  a[href$='.xlsx']::after,
-  a[href$='.XLS']::after,
-  a[href$='.XLSX']::after {
-    content:        '\f1c3';
-    color:          $c-default-green;
-    font-size:      0.9375em;
-    font-family:    FontAwesome;
-    padding:        0 0.25em 0 0.375em;
-  }
-  a[href$='.pps']::after,
-  a[href$='.ppt']::after,
-  a[href$='.pptx']::after,
-  a[href$='.PPS']::after,
-  a[href$='.PPT']::after,
-  a[href$='.PPTX']::after {
-    content:        '\f1c4';
-    color:          $c-ppt-orange;
-    font-size:      0.9375em;
-    font-family:    FontAwesome;
-    padding:        0 0.25em 0 0.375em;
-  }
-  a[href$='.wmv']::after,
-  a[href$='.wvx']::after,
-  a[href$='.mov']::after,
-  a[href$='.mpg']::after,
-  a[href$='.mpeg']::after,
-  a[href$='.flv']::after,
-  a[href$='.avi']::after,
-  a[href$='.mp4']::after,
-  a[href$='.asx']::after,
-  a[href$='.rm']::after {
-    content:        '\f03d';
-    color:          $c-base-flatplum;
-    font-size:      0.9375em;
-    font-family:    FontAwesome;
-    padding:        0 0.25em 0 0.375em;
-  }
-}
-                    // gray out separators in a link list                       *
+// --- Link related highlights and callouts ----------------------------------- ***
+                    // gray out separators in a link list                       ***
 .linkset { color: $c-box-bg; }
-                    // link meta information                                    *
+                    // link meta information                                    ***
 .fileinfo { color: $c-base-flatplum; font-size: 0.875em; }
                     // underline things meant to represent links in examples    *
 .fake-link {
@@ -121,50 +38,112 @@ a[href*='https://www.youtube.com/watch']:after {
   @include set-blended-background($c-base-text, 0.05, $c-base-bg)
   @include set-blended-border($c-link-text, bottom, 0.35, 1px, solid, $c-base-bg);
 }
+// --- link flags ------------------------------------------------------------- ***
+a::after {
+  font-family       : 'FontAwesome';
+  font-weight       : normal;
+  font-size         : 0.875em;
+}
+                    // External link flag                                       ***
+                    // Use this one instead for internal absolute pathing       ***
+                    //a[href^='http']:not([href*='yourdomain'])::after {
+a[href^='http']::after {
+  content           : '\f08e';
+  margin-left       : 0.5em;
+  @include set-blended-text($c-base-flatplum, 0.5, $c-base-bg)
+}
+                    // Resource type flags                                      ***
+a[href*='http://www.youtube.com/watch']:after,
+a[href*='https://www.youtube.com/watch']:after {
+  content           : '\f16a';
+  padding           : 0 0.125em 0 0.375em;
+  @include set-blended-text($c-red, 0.5, $c-base-bg)
+}
+a[href$='.pdf']::after,
+a[href$='.PDF']::after {
+  content           : '\f1c1';
+  color             : $c-default-red;
+  padding           : 0 0.25em 0 0.375em;
+}
+a[href$='.rtf']::after,
+a[href$='.doc']::after,
+a[href$='.docx']::after,
+a[href$='.dot']::after,
+a[href$='.DOC']::after,
+a[href$='.DOCX']::after,
+a[href$='.DOT']::after,
+a[href$='.DOTX']::after,
+a[href$='.dotx']::after {
+  content           : '\f1c2';
+  color             : $c-word-blue;
+  padding           : 0 0.25em 0 0.375em;
+}
+a[href$='.xls']::after,
+a[href$='.xlsx']::after,
+a[href$='.XLS']::after,
+a[href$='.XLSX']::after {
+  content           : '\f1c3';
+  color             : $c-default-green;
+  padding           : 0 0.25em 0 0.375em;
+}
+a[href$='.pps']::after,
+a[href$='.ppt']::after,
+a[href$='.pptx']::after,
+a[href$='.PPS']::after,
+a[href$='.PPT']::after,
+a[href$='.PPTX']::after {
+  content           : '\f1c4';
+  color             : $c-ppt-orange;
+  padding           : 0 0.25em 0 0.375em;
+}
+a[href$='.wmv']::after,
+a[href$='.wvx']::after,
+a[href$='.mov']::after,
+a[href$='.mpg']::after,
+a[href$='.mpeg']::after,
+a[href$='.flv']::after,
+a[href$='.avi']::after,
+a[href$='.mp4']::after,
+a[href$='.asx']::after,
+a[href$='.rm']::after {
+  content           : '\f03d';
+  color             : $c-base-flatplum;
+  padding           : 0 0.25em 0 0.375em;
+}
 // *** Link icons back to top of page ----------------------------------------- *
 // Use: <div class="top-link"><a href="#page-body"><span>[top]</span></a></div> *
-
-#content-main {
-  a i.fa {
-    @include hidden-span;
-  }
-  .top-link,
-  .right-link {
-    float           : right;
-    position        : relative;
-    a {
-      text-decoration: none;
-      border        : 0;
-      &:hover { background-color: inherit; }
-      &:after {
-        content: '';
-        position: absolute;
-        top: -0.5em; right: -2.25em;
-        bottom: -0.5em; left: -0.25em;
-      }
+.top-link, .right-link {
+  float             : right;
+  position          : relative;
+  a {
+    text-decoration : none;
+    border          : 0;
+    &:hover { background-color: inherit; }
+    &::after {
+      content       : '';
+      position      : absolute;
+      bottom: -0.5em; left: -0.25em;
     }
   }
-  .top-link {
-    a {
-      &:hover {
-        &:before {
-          color     : $c-link-icons;
-          border-top: 0.1825em solid $c-link-icons;
-        }
-      }
-      &:before {
-        content     : '\f062';
-        margin      : 0 -1.875em 0 1.0em;
-        font-family : 'FontAwesome';
-        @include set-blended-text($c-link-icons, 0.5, $c-base-bg);
-        @include set-blended-border($c-link-icons, top, 0.5, 0.1825em, solid, $c-base-bg);
-      }
-      @include hidden-span;
+}
+.top-link {
+  a {
+    &:hover::before {
+      color         : $c-link-icons;
+      border-top    : 0.1825em solid $c-link-icons;
     }
-    @media (max-width: $break-1024-desktop) {
-      font-size     : 2.0em;
-      a:before { margin-right: -0.875em; }
+    &:before {
+      content       : '\f062';
+      margin        : 0 -1.875em 0 1.0em;
+      font-family   : 'FontAwesome';
+      @include set-blended-text($c-link-icons, 0.5, $c-base-bg);
+      @include set-blended-border($c-link-icons, top, 0.5, 0.1825em, solid, $c-base-bg);
     }
+    @include span-hidden;
   }
+}
+@media (max-width: $break-1024-desktop) {
+  .top-link { font-size: 2.0em; }
+  .top-link a::before { margin-right: -0.875em; }
 }
 /*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

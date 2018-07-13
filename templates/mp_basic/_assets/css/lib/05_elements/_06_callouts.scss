@@ -39,6 +39,7 @@
 }
 .wrong-box { @include set-blended-background($c-red, 0.125, $c-base-bg); }
 // *** Right and wrong flags -------------------------------------------------- ***
+// if custom styling general unordered lists, these will need more specificity  ***
 li.wrong-flag, li.right-flag {
   list-style-type   : none;
   margin-left       : -1.5em;
@@ -59,19 +60,20 @@ li.wrong-flag, li.right-flag {
   content           : '\f00c';
   color             : $c-default-green;
 }
+// *** Pull boxes ------------------------------------------------------------- ***
 .pull-box {
-  background-color: $c-box-bg;
-  color           : $c-base-text;
+  background-color  : $c-box-bg;
+  color             : $c-base-text;
 }
 .pull-box-dark {
-  background-color: $c-dark-box-bg;
-  color           : $c-inverse-text;
+  background-color  : $c-dark-box-bg;
+  color             : $c-inverse-text;
   h1, h2, h3, h4, h5, h6 { color: inherit; }
   a {
-    color         : $c-box-alt-bg;
+    color           : $c-box-alt-bg;
     @include set-blended-border($c-base-ltslate, bottom, 0.375, 1px, solid, $c-dark-box-bg);
   }
-  a:visited { color: $c-box-alt-bg; }
+  a:visited { color : $c-box-alt-bg; }
   a:hover, a:focus, a:active {
     color           : $c-inverse-text;
     @include set-blended-border($c-inverse-text, bottom, 0.85, 1px, solid, $c-dark-box-bg);
@@ -79,13 +81,13 @@ li.wrong-flag, li.right-flag {
   }
 }
 .pull-box-alt {
-  background-color: $c-box-alt-bg;
-  color           : $c-base-text;
+  background-color  : $c-box-alt-bg;
+  color             : $c-base-text;
 }
 .pull-box-example {
-  background-color: $c-white;
-  color           : $c-base-text;
-  border          : 1px solid $c-gray-border;
+  background-color  : $c-white;
+  color             : $c-base-text;
+  border            : 1px solid $c-gray-border;
 }
                     // prevent large top padding                                ***
 [class^='pull-box'] {
@@ -95,58 +97,48 @@ li.wrong-flag, li.right-flag {
   h4:first-child,
   h5:first-child,
   h6:first-child {
-    margin-top    : 0;
-    padding-top   : 0;
+    margin-top      : 0;
+    padding-top     : 0;
   }
 }
-
 // *** Sematic Inline Highlights ---------------------------------------------- ***
-#content-main {
-  .task {
-    font-style      : italic;
-    @include set-blended-text($c-visited-text, 0.75, $c-base-bg);
-  }
-  .bad-idea {
-    position        : relative;
-    &:before {
-      @include set-blended-border($c-default-red, bottom, 0.25, 0.125em, solid, $c-base-bg);
-      position      : absolute;
-      content       : '';
-      width         : 100%;
-      height        : 50%;
-    }
+.task {
+  font-style        : italic;
+  @include set-blended-text($c-visited-text, 0.75, $c-base-bg);
+}
+.bad-idea {
+  position          : relative;
+  &:before {
+    @include set-blended-border($c-default-red, bottom, 0.25, 0.125em, solid, $c-base-bg);
+    position        : absolute;
+    content         : '';
+    width           : 100%;
+    height          : 50%;
   }
 }
-// *** Font Awesome callouts -------------------====--------------------------- ***
+// *** Font Awesome callouts -------------------------------------------------- ***
 .fa-ban,
 .fa-times,
-.fa-question {
-  color             : $c-default-red;
+.fa-question { color: $c-default-red; } // red
+.fa-check { color: $c-default-green; }  // green
+.muted { color: $c-gray-dark ; }        // gray
+[class^='aud-']::after {
+  margin-left       : 0.5em;
+  font-family       : 'FontAwesome';
+  font-weight       : normal;
 }
-.fa-check {
-  color             : $c-default-green;
-}
-
 .aud-technical::after {
   content           : '\f0ad';
-  font-family       : 'FontAwesome';
-  margin-left       : 0.5em;
-  font-weight       : bold;
   @include set-blended-text($c-default-red, 0.5, $c-base-bg);
 }
-
 .aud-general::after {
   content           : '\f0c0';
-  font-family       : 'FontAwesome';
-  margin-left       : 0.5em;
-  font-weight       : normal;
   @include set-blended-text($c-default-green, 0.25, $c-base-bg);
 }
-
-body.tech-notes h2.page-title::after {
+body.tech-notes .page-title::after {
   content           : '\f0ad';
-  font-family       : 'FontAwesome';
   margin-left       : 0.5em;
+  font-family       : 'FontAwesome';
   font-weight       : normal;
   @include set-blended-text($c-default-red, 0.5, $c-base-bg);
 }

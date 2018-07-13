@@ -34,14 +34,14 @@ ob_start();
 <!-- *** PURPLES *** ********************************************************** -->
 <h2>Purples</h2>
 
-<table class="list-table">
+<table class="list-table" title="Color swatches of template purples">
   <thead>
     <tr>
-      <th>&nbsp;</th>
-      <th>RGB</th>
-      <th>Hex</th>
-      <th>Name</th>
-      <th>Called Variables</th>
+      <th scope="col">Swatch</th>
+      <th scope="col">RGB</th>
+      <th scope="col">Hex</th>
+      <th scope="col">Name</th>
+      <th scope="col">Called Variables</th>
     </tr>
   </thead>
   <tbody>

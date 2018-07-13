@@ -31,11 +31,11 @@ ob_start();
 
 <h3>What's Here</h3>
 
-<table class="list-table">
+<table class="list-table" title="List of section contents">
   <thead>
     <tr>
-      <th>Page</th>
-      <th>Description</th>
+      <th scope="col">Page</th>
+      <th scope="col">Description</th>
     </tr>
   </thead>
   <tbody>

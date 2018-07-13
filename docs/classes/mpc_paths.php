@@ -55,19 +55,19 @@ ob_start();
 
   <dt>Store or update a path</dt>
   <dd>
-    <pre>$mpo_paths-><var>path</var> = <var>value</var>;</pre>
+    <pre>$mpo_paths-&gt;<var>path</var> = <var>value</var>;</pre>
 
     <p>Uses magic functions to generate properties as needed.</p>
   </dd>
 
   <dt>Return a path</dt>
   <dd>
-    <pre>$result = $mpo_paths-><var>path</var>;</pre>
+    <pre>$result = $mpo_paths-&gt;<var>path</var>;</pre>
   </dd>
 
   <dt>Return all paths in an array</dt>
   <dd>
-    <pre>$result = $mpo_paths->build_list();</pre>
+    <pre>$result = $mpo_paths-&gt;build_list();</pre>
   </dd>
 </dl>
 <!-- *** end contents ********************************************************* -->

@@ -108,7 +108,7 @@ ob_start();
 <h2>Code</h2>
 
 <pre>
-<span class="cc-html">&lt;p></span>Some HTML.<span class="cc-html">&lt;p></span>
+<span class="cc-html">&lt;p&gt;</span>Some HTML.<span class="cc-html">&lt;p&gt;</span>
 JS w/ VAR tags  : <span class="cc-js">x = (<var>yourVar</var> !== null) ? <var>yourVar</var> : 'oops!'</span>
 PHP w/ VAR tags : <span class="cc-php">$x = ($<var>yourVar</var> !== null) ? $<var>yourVar</var> : 'oops!'</span>
 A <b>bold</b> and <em>emphatic</em> thing.

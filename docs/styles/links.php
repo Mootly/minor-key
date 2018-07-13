@@ -90,10 +90,10 @@ ob_start();
 
 <section>
   <figure class="figure video-box">
-    <video controls="controls" style="width: 100%;" preload="metadata" aria-describedby="full-descript">
+    <video controls="controls" style="width: 100%;" preload="metadata">
       <source type="video/webm" src="<?= $mpo_parts->section_base ?>/_assets/video/tears_of_steel_1080p.webm" />
       <track src="<?= $mpo_parts->section_base ?>/_assets/video/TOS-en.srt" kind="subtitles" srclang="en" label="English" />
-        <track src="<?= $mpo_parts->section_base ?>/_assets/video/TOS-JP.srt" kind="subtitles" srclang="jp" label="Japanese" />
+        <track src="<?= $mpo_parts->section_base ?>/_assets/video/TOS-JP.srt" kind="subtitles" srclang="ja" label="Japanese" />
     </video>
     <figcaption>
       <!-- https://mango.blender.org/download/ -->

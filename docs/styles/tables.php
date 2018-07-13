@@ -34,7 +34,7 @@ ob_start();
 <p class="warning">All tables should use a class to style them. The following two tables should appear unformatted (with default table styling).</p>
 
 <h3>Plain</h3>
-<table>
+<table title="Example unstyled table">
   <tr>
     <td>Unadorned</td>
     <td>Table</td>
@@ -47,20 +47,14 @@ ob_start();
 
 <h3>With THEAD and TFOOT</h3>
 
-<table>
-  <caption>A caption about this table.</cpation>
+<table title="Example unstyled table with table sections">
+  <caption>A caption about this table.</caption>
   <thead>
     <tr>
-      <th>Unadorned</th>
-      <th>Header</th>
+      <th scope="col">Unadorned</th>
+      <th scope="col">Header</th>
     </tr>
   </thead>
-  <tfoot>
-    <tr>
-      <th>Unadorned</th>
-      <th>Footer</th>
-    </tr>
-  </tfoot>
   <tbody>
     <tr>
       <td>Unadorned</td>
@@ -71,13 +65,22 @@ ob_start();
       <td>Labore irure sint et aliquip labore ipsum deserunt elit cillum quis aute anim Lorem duis id amet.</td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <th>Unadorned</th>
+      <th>Footer</th>
+    </tr>
+  </tfoot>
 </table>
 
 <h2>Accounting table (<code>.list-table .accounting</code>)</h2>
 
-<table class="list-table accounting">
+<table class="list-table accounting" title="Example of table using the accounting class">
     <thead>
-      <tr> <th>Thing</th>   <th>Received</th></tr>
+      <tr>
+        <th scope="col">Thing</th>
+        <th scope="col">Received</th>
+      </tr>
     </thead>
     <tbody>
       <tr><td>Thing 1</td>  <td>$120,792,000</td></tr>
@@ -161,20 +164,14 @@ ob_start();
 
 <h2>List table (<code>.list-table</code>)</h2>
 
-<table class="list-table">
-  <caption><span class="title">Label:</span> A caption about this table.</cpation>
+<table class="list-table" title="Example of table using the list-table class">
+  <caption><span class="title">Label:</span> A caption about this table.</caption>
   <thead>
     <tr>
-      <th>Header</th>
-      <th>Header</th>
+      <th scope="col">Header</th>
+      <th scope="col">Header</th>
     </tr>
   </thead>
-  <tfoot>
-    <tr>
-      <td>Footer</td>
-      <td>Section</td>
-    </tr>
-  </tfoot>
   <tbody>
     <tr>
       <td>First</td>
@@ -195,6 +192,12 @@ ob_start();
       <td>Body</td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <td>Footer</td>
+      <td>Section</td>
+    </tr>
+  </tfoot>
 </table>
 <!-- *** end contents ********************************************************* -->
 <?php

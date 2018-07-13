@@ -35,29 +35,29 @@ ob_start();
     A basic block or multiline comment uses slashterisk notation.
     <pre>/*<br /> * Some long decription<br /> */</pre>
   </dd>
-  <dt id="dfn-comments-block">PHPDoc</dt>
+  <dt id="dfn-comments-phpdoc">PHPDoc</dt>
   <dd>
     A comment block that documents how functions or objects work, or catalogs the contents of the current file, uses the modified slashterisk format to conform to PHPDoc standard. This allows PHPDoc-aware editors to color code keywords in the comments, as well as allowing a PHPDoc parser to generate documentation from the comments.
     <pre>/**<br />  * Some long decription<br />  */</pre>
   </dd>
-  <dt id="dfn-comments-block">inline</dt>
+  <dt id="dfn-comments-inline">inline</dt>
   <dd>
     Where possible, inline comments beign with a hash mark: <code>#</code>. This is to differentiate it from commented-out code.
     <pre># inline comment</pre>
     For section breaks, or to call out a comment, use one or more asterisks at the end to make it easier to scan for comments.
     <pre># Do some new stuff -------------------------------------------------- ***</pre>
   </dd>
-  <dt id="dfn-comments-block">inactive code</dt>
+  <dt id="dfn-comments-inactive">inactive code</dt>
   <dd>
     Code is commented out with a double slash <code>//</code>. This is the default in PHP, so if you use hot keys to comment out blocks of code, it is what you will get.
     <pre>// echo testvar;</pre>
   </dd>
-  <dt id="dfn-comments-block">template</dt>
+  <dt id="dfn-comments-template">template</dt>
   <dd>
     Twig uses the following syntax for comments in its templates.
     <pre>{# Your comment here #}</pre>
   </dd>
-  <dt id="dfn-comments-block">important</dt>
+  <dt id="dfn-comments-important">important</dt>
   <dd>
     For important comments that need to be preserved when minifying CSS and JavaScript, most parsers follow the system of including an exclamation mark after the opening tag of the comment. It is most commonly used to preserve copyright information or attributions.
     <pre>/*! Keep this comment intact! */</pre>

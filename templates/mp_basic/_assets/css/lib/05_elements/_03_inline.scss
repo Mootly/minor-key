@@ -17,4 +17,6 @@ sub { bottom: -0.25em; }
 sup { top: -0.5em; }
 del { color: rgba($c-default-red, 0.75); }
 ins { text-decoration: rgba($c-default-green, 0.75) underline dashed; }
+                    // Hide span inside Fontawesome calls                       ***
+i.fa { @include span-hidden; }
 // *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

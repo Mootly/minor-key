@@ -88,14 +88,14 @@ ob_start();
 
   <dt>Store or update a page component</dt>
   <dd>
-    <pre>$mpo_parts-><var>component</var> = <var>value</var>;</pre>
+    <pre>$mpo_parts-&gt;<var>component</var> = <var>value</var>;</pre>
 
     <p>Uses magic functions to generate properties as needed.</p>
   </dd>
 
   <dt>Return a page component</dt>
   <dd>
-    <pre>$result = $mpo_parts-><var>component</var>;</pre>
+    <pre>$result = $mpo_parts-&gt;<var>component</var>;</pre>
   </dd>
 
   <dt>Set the page title</dt>
@@ -109,22 +109,22 @@ ob_start();
     <p>The default format and values are as follows:</p>
     <pre>
 // set the structure
-$mpo_parts->title_struct  = ['page_name','section_name','site_name'];
-$mpo_parts->separator     = ' | ';
+$mpo_parts-&gt;title_struct  = ['page_name','section_name','site_name'];
+$mpo_parts-&gt;separator     = ' | ';
 // set the parts
-$mpo_parts->page_name     = <var>value</var>;
-$mpo_parts->section_name  = <var>value</var>;
-$mpo_parts->site_name     = <var>value</var>;</pre>
+$mpo_parts-&gt;page_name     = <var>value</var>;
+$mpo_parts-&gt;section_name  = <var>value</var>;
+$mpo_parts-&gt;site_name     = <var>value</var>;</pre>
   <p>A simple title including just the page name would be formatted as follows:</p>
   <pre>
-$mpo_parts->title_struct  = ['page_name'];
-$mpo_parts->separator     = '';
-$mpo_parts->page_name     = <var>value</var>;</pre>
+$mpo_parts-&gt;title_struct  = ['page_name'];
+$mpo_parts-&gt;separator     = '';
+$mpo_parts-&gt;page_name     = <var>value</var>;</pre>
   </dd>
 
   <dt>Return the complete page title for the title bar</dt>
   <dd>
-    <pre>$result = $mpo_parts->build_title();</pre>
+    <pre>$result = $mpo_parts-&gt;build_title();</pre>
 
     <p>This action is performed automatically when you build the page.</p>
     <p>The default title has the format of: <b><var>page name</var> | <var>section name</var> | <var>site name</var></b>. Empty components will be omitted from the string.</p>
@@ -132,7 +132,7 @@ $mpo_parts->page_name     = <var>value</var>;</pre>
 
   <dt>Return an array of all page components</dt>
   <dd>
-    <pre>$result = $mpo_parts->build_page();</pre>
+    <pre>$result = $mpo_parts-&gt;build_page();</pre>
 
     <p>The results include an arry of all page components added by the name of the property to which they were assigned.</p>
   </dd>
