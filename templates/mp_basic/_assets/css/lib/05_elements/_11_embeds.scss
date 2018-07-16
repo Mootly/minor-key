@@ -1,12 +1,12 @@
-// *** EMBEDDED CONTENT ------------------------------------------------------- ***
+// === 05 Elements - 11 Embeds ================================================ ***
                     // Remove the border on images inside links in IE 10-.      ***
 img { border-style: none; border: 0; }
                     // Clean up image sizing.                                   ***
 img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
-  border: 0;
+  max-width         : 100%;
+  height            : auto;
+  vertical-align    : middle;
+  border            : 0;
   -ms-interpolation-mode: bicubic;
 }
                     // Clean up image sizing for IE8.                           ***
@@ -15,9 +15,50 @@ img {
 svg:not(:root) { overflow: hidden; }
                     // Remove the gap between audio, canvas, iframes,           ***
                     // images, videos and the bottom of their containers.       ***
-audio,
-canvas,
-iframe,
-img,
-svg,
-video { vertical-align: middle; }
+audio, canvas, iframe, img, svg, video { vertical-align: middle; }
+// --- Figure boxes for images ------------------------------------------------ ***
+figure {
+  padding           : 0.5em;
+  margin            : 1.0em 0.5em;
+  background-color  : $c-white;
+  border            : 1px solid $c-ltgray-border;
+}
+figcaption, .figcaption {
+  line-height     : $ht-line-compact;
+  padding-top     : 0.5em;
+  @include set-blended-text($c-base-text, 0.80, $c-white);
+  span.label { color: $c-base-text; }
+}
+@media print, screen and (min-width: $break-800-tablet) {
+  figure.left50, figure.left30, figure.left25 {
+    float           : left;
+    margin          : 0 1.0em 1.0em 0;
+  }
+  .left50 { width   : 47.5%; }
+  .left30 { width   : 32%; }
+  .left25 { width   : 23.5%; }
+  figure.right50, figure.right30, figure.righ25 {
+    float           : right;
+    margin          : 0 0 1.0em 1.0em;
+  }
+  .right50 { width  : 47.5%; }
+  .right30 { width  : 32%; }
+}
+// --- Video player ----------------------------------------------------------- ***
+figure.video-box { min-width: $break-560-phone; }
+.acorn-player .acorn-caption {
+  font-size         : 1.25em;
+  line-height       : 1.0em;
+  padding-top       : 0.5em;
+  padding-bottom    : 0.5em;
+  width             : 100%;
+  background-color  : rgba(0,0,0,0.5);
+  bottom            : 50px;
+}
+.acorn-player.has-fullscreen-video .acorn-caption {
+  position          : fixed;
+  left              : 0;
+  z-index           : 999999;
+  text-align        : center;
+}
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

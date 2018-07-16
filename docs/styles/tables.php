@@ -119,10 +119,10 @@ ob_start();
     <h4 class="name">Entity name</h4>
     <p class="description">Entity with list of data points</p>
     <p class="multi-col">
-      <span class="col">Point 1</span>
-      <span class="col">Point 2</span>
-      <span class="col">Point 3</span>
-      <span class="col">Point 4</span>
+      <span class="col 4cols">Point 1</span>
+      <span class="col 4cols">Point 2</span>
+      <span class="col 4cols">Point 3</span>
+      <span class="col 4cols">Point 4</span>
     </p>
     <p class="address">Address</p>
     <p class="contact">
@@ -149,10 +149,10 @@ ob_start();
   <div class="listing">
     <h4 class="name">Entity Name with list of short data points</h4>
     <p class="multi-col">
-      <span class="col">Point 1</span>
-      <span class="col">Point 2</span>
-      <span class="col">Point 3</span>
-      <span class="col">Point 4</span>
+      <span class="col cols4">Point 1</span>
+      <span class="col cols4">Point 2</span>
+      <span class="col cols4">Point 3</span>
+      <span class="col cols4">Point 4</span>
     </p>
     <p class="contact">
       <span class="label-runin">Contact:</span>

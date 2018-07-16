@@ -797,15 +797,76 @@ svg:not(:root) {
   overflow: hidden;
 }
 
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
+audio, canvas, iframe, img, svg, video {
   vertical-align: middle;
 }
 
+figure {
+  padding: 0.5em;
+  margin: 1.0em 0.5em;
+  background-color: white;
+  border: 1px solid #4c404c;
+}
+
+figcaption, .figcaption {
+  line-height: 1.0625em;
+  padding-top: 0.5em;
+  color: #413f40;
+  color: rgba(17, 15, 16, 0.8);
+}
+
+figcaption span.label, .figcaption span.label {
+  color: #110f10;
+}
+
+@media print, screen and (min-width: 50em) {
+  figure.left50, figure.left30, figure.left25 {
+    float: left;
+    margin: 0 1.0em 1.0em 0;
+  }
+  .left50 {
+    width: 47.5%;
+  }
+  .left30 {
+    width: 32%;
+  }
+  .left25 {
+    width: 23.5%;
+  }
+  figure.right50, figure.right30, figure.righ25 {
+    float: right;
+    margin: 0 0 1.0em 1.0em;
+  }
+  .right50 {
+    width: 47.5%;
+  }
+  .right30 {
+    width: 32%;
+  }
+}
+
+figure.video-box {
+  min-width: 35em;
+}
+
+.acorn-player .acorn-caption {
+  font-size: 1.25em;
+  line-height: 1.0em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 50px;
+}
+
+.acorn-player.has-fullscreen-video .acorn-caption {
+  position: fixed;
+  left: 0;
+  z-index: 999999;
+  text-align: center;
+}
+
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */
 /*!
  --- begin tables ---
  */
@@ -818,76 +879,63 @@ td, th {
   padding: 0;
 }
 
-#content-main td :first-child,
-#content-main th :first-child {
+td :first-child, th :first-child {
   margin-top: 0;
 }
 
-#content-main tr.callout td,
-#content-main tr.callout th {
+tr.callout td, tr.callout th {
   background-color: #d4d5e3;
 }
 
-#content-main th.emph {
+th.emph {
+  padding: 0.125em 0 0.125em 0.5em;
   font-size: 1.0625em;
   font-weight: bold;
-  padding: 0.125em 0 0.125em 0.5em;
 }
 
-#content-main tbody.totals th,
-#content-main tbody.totals td {
-  font-weight: bold;
-}
-
-#content-main table.accounting tr th:last-child,
-#content-main table.accounting tr td:last-child {
-  text-align: right;
-}
-
-#content-main caption {
+caption {
+  margin: 0 0.25em 1.0em 0.25em;
   text-align: left;
   font-size: 0.875em;
   caption-side: bottom;
-  margin: 0 0.25em 1.0em 0.25em;
 }
 
-#content-main caption .title {
+caption .title {
   font-weight: bold;
+}
+
+tbody.totals th, tbody.totals td {
+  font-weight: bold;
+}
+
+table.accounting tr th:last-child, table.accounting tr td:last-child {
+  text-align: right;
 }
 
 table.list-table {
   width: 100%;
   margin: 1.0em 0;
   border-bottom: 0.25em solid #4c404c;
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
-table.list-table td,
-table.list-table th {
-  padding: 0.5em 1.0em;
-  vertical-align: top;
-  text-align: left;
-  line-height: 1.375em;
+table.list-table thead, table.list-table tfoot {
+  background-color: #4c404c;
+  color: white;
+  font-weight: bold;
 }
 
 table.list-table thead {
-  background-color: #4c404c;
-  color: white;
-  text-align: left;
-  font-weight: bold;
   font-size: 1.125em;
 }
 
-table.list-table tfoot {
-  background-color: #4c404c;
-  color: white;
+table.list-table td, table.list-table th {
+  padding: 0.5em 1.0em;
   text-align: left;
-  font-weight: bold;
+  vertical-align: top;
+  line-height: 1.375em;
 }
 
-table.list-table tbody td, table.list-table tbody th,
-table.list-table tfoot th, table.list-table tfoot td {
+table.list-table tbody td, table.list-table tbody th, table.list-table tfoot th, table.list-table tfoot td {
   border-bottom: 1px solid #e4e1e3;
   border-bottom: 1px solid rgba(76, 64, 76, 0.125);
 }
@@ -899,6 +947,52 @@ table.list-table tfoot tr:last-child th, table.list-table tfoot tr:last-child td
 table.list-table tbody + tbody {
   border-top: 0.25em solid #cfcace;
   border-top: 0.25em solid rgba(76, 64, 76, 0.25);
+}
+
+div.directory-table {
+  width: 100%;
+  margin-bottom: 2.0em;
+  border-bottom: 0.25em solid #cdcdce;
+  border-bottom: 0.25em solid rgba(70, 74, 75, 0.25);
+}
+
+div.directory-table h3.listing-head, div.directory-table h4.listing-head, div.directory-table h5.listing-head {
+  width: 100%;
+  margin: 0.5em 0;
+  padding: 0.5em 1.0em 0.5em 1.0em;
+  background-color: #634464;
+  color: #faf8f9;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+div.directory-table h4.name, div.directory-table h5.name, div.directory-table h6.name {
+  width: 100%;
+  margin: 0.25em 0;
+  padding: 0.5em 1.0em 0.5em 1.125em;
+  font-weight: bold;
+  font-size: 1.125em;
+  text-align: left;
+  background-color: #efedee;
+  background-color: rgba(70, 74, 75, 0.0625);
+}
+
+div.directory-table div.listing {
+  width: 100%;
+}
+
+div.directory-table div.listing p {
+  margin-left: 1.25em;
+}
+
+div.directory-table div.listing span.label-runin {
+  display: inline-block;
+  width: 8.0em;
+}
+
+div.directory-table div.listing + div.listing {
+  border-top: 0.125em solid #cdcdce;
+  border-top: 0.125em solid rgba(70, 74, 75, 0.25);
 }
 
 /*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */
@@ -1122,12 +1216,36 @@ div.element-size {
   position: absolute;
   top: 0;
   left: 0;
-  color: #634464;
+  color: #faf8f9;
   font-weight: bold;
   font-size: 0.875em;
   padding: 0.25em 0.5em;
   background-color: #432546;
   background-color: rgba(67, 37, 70, 0.75);
+}
+
+.multi-col .cols2 {
+  width: 49.5%;
+}
+
+.multi-col .cols3 {
+  width: 33.0%;
+}
+
+.multi-col .cols4 {
+  width: 24.5%;
+}
+
+.multi-col .cols5 {
+  width: 19.5%;
+}
+
+.multi-col .cols6 {
+  width: 19.5%;
+}
+
+.multi-col span.col {
+  display: inline-block;
 }
 
 /*! --- begin accessibility --- */
