@@ -19,7 +19,8 @@ ob_start();
           <li><a href="<?= $mpo_parts->section_base; ?>/styles/links.php">Links &amp; Images</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/styles/lists.php">Lists</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/styles/tables.php">Tables</a></li>
-          </ul>
+          <li><a href="<?= $mpo_parts->section_base; ?>/styles/forms.php">Forms</a></li>
+        </ul>
       </li>
       <li class="collapse-header closed"><a href="#">Developer Notes</a>
         <ul class="page-nav-sublist collapse-list hidden">

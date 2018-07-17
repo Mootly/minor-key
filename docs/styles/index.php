@@ -64,6 +64,10 @@ ob_start();
       <td><a href="<?=CURR_PATH?>/tables.php">Tables</a></td>
       <td>The different tables currently available.</td>
     </tr>
+    <tr>
+      <td><a href="<?=CURR_PATH?>/forms.php">Forms</a></td>
+      <td>Layouts for non-custom form fields.</td>
+    </tr>
   </tbody>
 </table>
 <!-- *** end content ********************************************************** -->

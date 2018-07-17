@@ -57,14 +57,14 @@ div.element-size {
   padding: 0.25em 0.5em;
   @include set-blended-background($c-footer-bg, 0.75);
 }
-// some of the directories need three items across          *
+                    // For creating impromtu columns                            ***
 .multi-col {
   .cols2 { width: 49.5%; }
   .cols3 { width: 33.0%; }
   .cols4 { width: 24.5%; }
   .cols5 { width: 19.5%; }
   .cols6 { width: 19.5%; }
-  span.col { display: inline-block; }
+  span.col, div.col { display: inline-block; }
 }
 
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

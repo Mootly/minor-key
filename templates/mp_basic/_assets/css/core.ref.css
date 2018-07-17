@@ -81,12 +81,14 @@ h1 {
   color: #555577;
   font-size: 2.5em;
   font-weight: 900;
+  letter-spacing: 1px;
 }
 
 h2 {
   color: #525272;
   font-size: 2em;
   font-weight: 900;
+  letter-spacing: 1px;
 }
 
 h3 {
@@ -999,11 +1001,7 @@ div.directory-table div.listing + div.listing {
 /*!
  --- begin forms ---
  */
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
   color: inherit;
   font: inherit;
   margin: 0;
@@ -1013,27 +1011,21 @@ optgroup {
   font-weight: bold;
 }
 
-button,
-input {
+button, input {
   overflow: visible;
   line-height: normal;
 }
 
-button,
-select {
+button, select {
   text-transform: none;
 }
 
-button,
-html [type="button"],
-[type="reset"],
-[type="submit"] {
+button, html [type="button"], [type="reset"], [type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
 
-button[disabled],
-html input[disabled] {
+button[disabled], html input[disabled] {
   cursor: default;
 }
 
@@ -1056,22 +1048,6 @@ button:-moz-focusring,
   outline: 1px dotted ButtonText;
 }
 
-fieldset {
-  border: 1px solid #464a4b;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-
-legend {
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  border: 0;
-  white-space: normal;
-}
-
 textarea {
   overflow: auto;
   vertical-align: top;
@@ -1089,8 +1065,8 @@ textarea {
 }
 
 [type="search"] {
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
+  -moz-box-sizing: content-box;
   -webkit-appearance: textfield;
   outline-offset: -2px;
 }
@@ -1115,15 +1091,140 @@ input[type="search"]::-webkit-search-cancel-button {
   font: inherit;
 }
 
-label,
-select,
-button,
+label, select, button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"],
 input[type="radio"],
 input[type="checkbox"] {
   cursor: pointer;
+}
+
+fieldset, .fieldset {
+  box-sizing: border-box;
+  width: 93.75%;
+  margin: 1.0em 0;
+  border: 0;
+  border-left: 0.25em solid #634464;
+  border-left: 0.25em solid rgba(99, 68, 100, 0.65);
+}
+
+fieldset legend, .fieldset .legend {
+  box-sizing: border-box;
+  display: table;
+  white-space: normal;
+  width: 100%;
+  border: 0;
+  background-color: rgba(99, 68, 100, 0.65);
+  background: linear-gradient(to right, rgba(99, 68, 100, 0.65), #634464);
+  background-clip: padding-box;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  color: white;
+  font-family: "Muli", "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+fieldset legend.subLegend, .fieldset .legend.subLegend {
+  font-size: 1.125em;
+  background: transparent;
+  color: #110f10;
+  border: 1px solid #634464;
+  border: 1px solid rgba(99, 68, 100, 0.65);
+  border-left: 0;
+}
+
+fieldset {
+  position: relative;
+  padding: 2.125em 0.5em 0.5em;
+}
+
+fieldset legend {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.25em 0.5em;
+}
+
+.fieldset {
+  overflow: auto;
+}
+
+.fieldset .legend {
+  margin: 0;
+  padding: 0.5em;
+}
+
+.fieldset .set_content {
+  padding-left: 0.5em;
+}
+
+select {
+  padding: 0.25em;
+  font-family: 'Helvetica Neue', Verdana, Arial, sans-serif;
+  font-size: 0.875em;
+}
+
+input[type=date],
+input[type=password],
+input[type=tel],
+input[type=text],
+input[type=email],
+input[type=time] {
+  box-sizing: border-box;
+  border: 1px solid #4c404c;
+  padding: 0.25em;
+  font-family: "Muli", "Arial", sans-serif;
+  font-size: 0.875em;
+}
+
+textarea {
+  box-sizing: border-box;
+  overflow: auto;
+  width: 90%;
+  height: 8.0em;
+  border: 1px solid #4c404c;
+  padding: 0.5em;
+  vertical-align: top;
+  font-family: "Muli", "Arial", sans-serif;
+  font-size: 0.875em;
+  line-height: 1.375em;
+}
+
+input:focus, select:focus, textarea:focus {
+  background-color: #eae3ee;
+  border: 1px solid #815982;
+}
+
+input:invalid, textarea:invalid {
+  background-color: #ff9999;
+  background-color: #f0dfe0;
+  background-color: rgba(153, 0, 0, 0.1);
+}
+
+input[type=button], input[type=submit] {
+  box-sizing: border-box;
+  width: 15em;
+  border: 1px solid #4c404c;
+  background-color: #f0f0ee;
+  padding: 0.25em;
+  font-size: 1.0em;
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+  color: white;
+  background-color: #634464;
+}
+
+input[type=button].bigBtn, input[type=submit].bigBtn {
+  font-size: 1.25em;
+}
+
+input.twochar {
+  height: 1.0em;
+  text-align: center;
 }
 
 /*! --- begin utility classes --- */
@@ -1244,7 +1345,7 @@ div.element-size {
   width: 19.5%;
 }
 
-.multi-col span.col {
+.multi-col span.col, .multi-col div.col {
   display: inline-block;
 }
 
