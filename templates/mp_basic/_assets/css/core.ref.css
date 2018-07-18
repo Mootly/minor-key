@@ -1072,10 +1072,7 @@ textarea {
 }
 
 input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-}
-
+input[type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-cancel-button,
 [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -1107,6 +1104,9 @@ fieldset, .fieldset {
   border: 0;
   border-left: 0.25em solid #634464;
   border-left: 0.25em solid rgba(99, 68, 100, 0.65);
+  background-clip: padding-box;
+  border-top-right-radius: 1.25em;
+  box-shadow: -0.125em -0.125em 0.125em #eae3ee;
 }
 
 fieldset legend, .fieldset .legend {
@@ -1137,7 +1137,7 @@ fieldset legend.subLegend, .fieldset .legend.subLegend {
 
 fieldset {
   position: relative;
-  padding: 2.125em 0.5em 0.5em;
+  padding: 2.375em 0.5em 0.5em;
 }
 
 fieldset legend {
@@ -1162,9 +1162,10 @@ fieldset legend {
 }
 
 select {
-  padding: 0.25em;
+  padding: 0.275em;
   font-family: 'Helvetica Neue', Verdana, Arial, sans-serif;
   font-size: 0.875em;
+  line-height: 1.375em;
 }
 
 input[type=date],
@@ -1172,59 +1173,197 @@ input[type=password],
 input[type=tel],
 input[type=text],
 input[type=email],
-input[type=time] {
-  box-sizing: border-box;
-  border: 1px solid #4c404c;
-  padding: 0.25em;
-  font-family: "Muli", "Arial", sans-serif;
-  font-size: 0.875em;
-}
-
+input[type=time],
 textarea {
   box-sizing: border-box;
-  overflow: auto;
-  width: 90%;
-  height: 8.0em;
   border: 1px solid #4c404c;
-  padding: 0.5em;
-  vertical-align: top;
+  background-clip: padding-box;
+  border-radius: 0.25em;
+  padding: 0.25em;
   font-family: "Muli", "Arial", sans-serif;
   font-size: 0.875em;
   line-height: 1.375em;
 }
 
-input:focus, select:focus, textarea:focus {
-  background-color: #eae3ee;
-  border: 1px solid #815982;
+textarea {
+  overflow: auto;
+  width: 90%;
+  height: 8.0em;
+  padding: 0.5em;
+  vertical-align: top;
 }
 
-input:invalid, textarea:invalid {
+input:focus, select:focus, textarea:focus, input.xmp_fieldfocus {
+  background-color: #eae3ee;
+  border: 1px solid blue;
+  box-shadow: 0 0 3px blue;
+}
+
+input:invalid, textarea:invalid, .xmp_fieldinvalid {
   background-color: #ff9999;
   background-color: #f0dfe0;
   background-color: rgba(153, 0, 0, 0.1);
 }
 
-input[type=button], input[type=submit] {
-  box-sizing: border-box;
-  width: 15em;
-  border: 1px solid #4c404c;
+#content-main button, input[type=button], input[type=submit], input[type=reset] {
+  border: 0.125em solid rgba(99, 68, 100, 0.35);
   background-color: #f0f0ee;
-  padding: 0.25em;
+  padding: 0.5em;
   font-size: 1.0em;
+  background-clip: padding-box;
+  border-radius: 0.25em;
 }
 
-input[type=button]:hover, input[type=submit]:hover {
-  color: white;
-  background-color: #634464;
+#content-main button:hover, input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
+  box-shadow: 1px 1px 3px #634464 inset;
+  padding: 0.55em 0.45em 0.45em 0.55em;
 }
 
-input[type=button].bigBtn, input[type=submit].bigBtn {
+#content-main button.bigBtn, input[type=button].bigBtn, input[type=submit].bigBtn, input[type=reset].bigBtn {
   font-size: 1.25em;
 }
 
+#content-main button, input[type=button], input[type=submit] {
+  width: 16em;
+}
+
+input[type=reset] {
+  width: 8em;
+}
+
 input.twochar {
-  height: 1.0em;
   text-align: center;
+}
+
+div.field_container p label {
+  display: block;
+  width: 8em;
+}
+
+@media (min-width: 50em) {
+  div.field_container p label {
+    display: inline-block;
+  }
+}
+
+div.field_container {
+  margin: 0.5em auto;
+}
+
+div.field_container p {
+  float: left;
+  width: 48%;
+  min-width: 24em;
+  margin: 0.25em auto;
+}
+
+div.field_container p.fullWidth {
+  width: 100%;
+  margin: 0.25em 0;
+}
+
+div.field_container::after {
+  content: " ";
+  display: block;
+  clear: both;
+  height: 0.5em;
+}
+
+div.form_directions {
+  clear: both;
+  background: linear-gradient(to right, #eae3ee, rgba(234, 227, 238, 0));
+  margin-left: -0.5em;
+  padding: 0.25em;
+}
+
+div.form_directions p {
+  margin-top: 0.5em;
+  margin-bottom: 0.75em;
+}
+
+div.form_directions hr {
+  clear: both;
+  border-top: 1px solid #4c404c;
+}
+
+body:not(.ie8) input[type=checkbox].makeButton,
+body:not(.ie8) input[type=radio].makeButton {
+  display: none;
+}
+
+body:not(.ie8) input[type=checkbox].makeButton + label,
+body:not(.ie8) input[type=radio].makeButton + label {
+  display: inline-block;
+  width: 32%;
+  min-width: 12em;
+  margin-bottom: 0.5em;
+  margin-right: 0.3em;
+  border: 0.125em solid rgba(99, 68, 100, 0.5);
+  background-clip: padding-box;
+  border-radius: 0.25em;
+  background-color: inherit;
+  padding: 0.375em 1.0em;
+  text-align: center;
+}
+
+body:not(.ie8) input[type=checkbox].makeButton:checked + label,
+body:not(.ie8) input[type=radio].makeButton:checked + label {
+  border: 0.125em solid rgba(99, 68, 100, 0.65);
+  background-color: #eae3ee;
+  font-weight: bold;
+}
+
+body:not(.ie8) input[type=checkbox].makeButton + label:hover,
+body:not(.ie8) input[type=radio].makeButton + label:hover {
+  box-shadow: 1px 1px 3px #634464 inset;
+}
+
+body:not(.ie8) input[type=checkbox].makeButton + label:hover span,
+body:not(.ie8) input[type=radio].makeButton + label:hover span {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+body:not(.ie8) div.field_container p.clickable_box {
+  display: inline-block;
+  width: 32%;
+  min-width: 12em;
+  position: relative;
+  text-align: left;
+  margin: 0.5em 0.5em 1.5em 0;
+}
+
+body:not(.ie8) div.field_container p.clickable_box label {
+  margin-bottom: 0;
+  width: 100%;
+  min-width: 12em;
+}
+
+.bottom-tab-box {
+  position: absolute;
+  bottom: -1.625em;
+  left: 0.75em;
+  font-size: 0.75em;
+}
+
+.bottom-tab-box a,
+.bottom-tab-box a:active,
+.bottom-tab-box a:hover,
+.bottom-tab-box a:link,
+.bottom-tab-box a:visited {
+  display: inline-block;
+  width: 5.0em;
+  height: 2.0em;
+  border-bottom: 0;
+  line-height: 2.0em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.875em;
+}
+
+p.border-box .bottom-tab-box {
+  bottom: -2.25em;
 }
 
 /*! --- begin utility classes --- */

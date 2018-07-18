@@ -29,8 +29,7 @@ ob_start();
 <!-- *** BEGIN CONTENT ******************************************************** -->
 <h2 id="toc-links">Contents</h2>
 
-<form method="post" action="#" name="examples" id="form_examples">
-</form>
+<form method="post" action="#" name="form_examples" id="form_examples">
 
 <h2>Fieldsets</h2>
 
@@ -47,7 +46,7 @@ ob_start();
   </div>
 </fieldset>
 
-<fieldset form="form_examples" name="fs_example" id="form_fs_example">
+<fieldset form="form_examples" name="fs_subexample" id="form_fs_subexample">
   <legend class="subLegend">Subsidiary Fieldset</legend>
   <div class="form_directions directions">
     <p>This fieldset should be perceived as a child of the previous element.</p>
@@ -83,12 +82,12 @@ ob_start();
   &lt;/div&gt;
 &lt;/fieldset&gt;
 </pre>
-<fieldset form="form_examples" name="fs_rxtfields" id="form_fs_textfields">
+<fieldset form="form_examples" name="fs_textfields" id="form_fs_textfields">
   <legend>Legend</legend>
   <div class="field_container">
     <p>
       <label for="form_text01">Text</label>
-      <input form="form_examples" type="text" name="text01" id="form_text1" value="" size="30" placeholder="text field" />
+      <input form="form_examples" type="text" name="text01" id="form_text01" value="" size="30" placeholder="text field" />
     </p>
     <p>
       <label for="form_pass01">Password</label>
@@ -96,11 +95,11 @@ ob_start();
     </p>
     <p>
       <label for="form_date01">Date</label>
-      <input form="form_examples" type="date" name="date01" id="form_date01" value="" size="30" placeholder="date" />
+      <input form="form_examples" type="date" name="date01" id="form_date01" value="" size="30" placeholder="mm/dd/yyyy" />
     </p>
     <p>
       <label for="form_time01">Time</label>
-      <input form="form_examples" type="time" name="time01" id="form_time01" value="" size="30" placeholder="time" />
+      <input form="form_examples" type="time" name="time01" id="form_time01" value="" size="30" placeholder="hh:mm am/pm" />
     </p>
     <p>
       <label for="form_email01">Email</label>
@@ -110,8 +109,150 @@ ob_start();
       <label for="form_tel01">Telephone</label>
       <input form="form_examples" type="tel" name="tel01" id="form_tel01" value="" size="30" placeholder="telephone" />
     </p>
+    <p class="fullWidth">
+      <label for="form_textwide">Full width</label>
+      <input form="form_examples" type="text" name="textwide" id="form_textwide" value="" size="30" placeholder="this field uses .fullWidth" />
+    </p>
+    <p>
+      <label for="form_small01">Small field</label>
+      <input form="form_examples" type="text" name="smallt01" id="form_small01" value="" size="2" placeholder="" class="twochar" />
+    </p>
+  </div>
+  <div class="center">
+    <p><label for="form_longtext">Text area example</label></p>
+    <textarea form="form_examples" name="longext" id="form_longtext" placeholder="Ex officia officia cupidatat consectetur adipisicing veniam voluptate veniam nostrud aliquip. Aliqua labore fugiat do proident adipisicing nulla commodo occaecat laboris nisi. Consectetur officia ullamco veniam excepteur tempor aliquip tempor."></textarea>
   </div>
 </fieldset>
+
+<h2>Highlighted Text Fields</h2>
+
+<fieldset form="form_examples" name="fs_hitext" id="form_fs_hitext">
+  <legend>Legend</legend>
+  <div class="field_container">
+    <p>
+      <label for="form_hitext01">Has focus</label>
+      <input form="form_examples" type="text" name="hitext01" id="form_hitext01" value="" size="30" placeholder="has focus" class="xmp_fieldfocus" />
+    </p>
+    <p>
+      <label for="form_hitext02">Is invalid</label>
+      <input form="form_examples" type="text" name="hitext02" id="form_hitext02" value="" size="30" placeholder="is invalid" class="xmp_fieldinvalid" />
+    </p>
+    <p>
+      <label for="form_datefocus">Date has focus</label>
+      <input form="form_examples" type="date" name="datefocus" id="form_datefocus" value="" size="30" placeholder="mm/dd/yyyy" class="xmp_fieldfocus" />
+    </p>
+    <p>
+      <label for="form_dateinvalid">Date is invalid</label>
+      <input form="form_examples" type="date" name="dateinvalid" id="form_dateinvalid" value="" size="30" placeholder="mm/dd/yyyy" class="xmp_fieldinvalid" />
+    </p>
+  </div>
+</fieldset>
+
+<h2>Select Fields</h2>
+
+<fieldset form="form_examples" name="fs_selfields" id="form_fs_selfields">
+  <legend>Legend</legend>
+  <div class="form_directions">
+    <p>The first field is an example of a select field locked to a text field. Each updates the other.</p>
+  </div>
+  <div class="field_container">
+    <p>
+      <label for="form_subsLang">Lang code</label>
+      <input form="form_examples" class="matchedText twochar" type="text" name="subsLang" id="form_subsLang" value="" size="2" />
+      <label for="form_subsLangSel" class='reader-only'>Lang code list</label>
+      <select form="form_examples" class="matchedSel" name="subsLangSel" id="form_subsLangSel">
+        <option value="invalid">Select</option>
+        <option value="CH">Chinese</option>
+        <option value="CR">Creole</option>
+        <option value="EN">English</option>
+        <option value="FR">French</option>
+        <option value="GR">German</option>
+        <option value="HI">Hindi</option>
+        <option value="HW">Hebrew</option>
+        <option value="IT">Italian</option>
+        <option value="JP">Japanese</option>
+        <option value="KR">Korean</option>
+        <option value="MU">Multiple</option>
+        <option value="PL">Polish</option>
+        <option value="RS">Russian</option>
+        <option value="SI">Sign</option>
+        <option value="SP">Spanish</option>
+        <option value="VT">Vietnamese</option>
+        <option value="XX">Other</option>
+      </select>
+    </p>
+  </div>
+  <div class="form_directions">
+    <p>The following are checkboxes as selectable buttons.</p>
+  </div>
+  <div class="field_container">
+    <p class="fullWidth">
+      <input form="form_examples" type="checkbox" name="susp_11" id="form_susp_11" value="11" class="makeButton" />
+      <label for="form_susp_11"><span>Label</span></label>
+      <input form="form_examples" type="checkbox" name="susp_12" id="form_susp_12" value="12" class="makeButton" />
+      <label for="form_susp_12"><span>Label</span></label>
+      <input form="form_examples" type="checkbox" name="susp_21" id="form_susp_21" value="21" class="makeButton" />
+      <label for="form_susp_21"><span>Label</span></label>
+      <input form="form_examples" type="checkbox" name="susp_22" id="form_susp_22" value="22" class="makeButton" />
+      <label for="form_susp_22"><span>Label</span></label>
+      <input form="form_examples" type="checkbox" name="susp_31" id="form_susp_31" value="31" class="makeButton" />
+      <label for="form_susp_31"><span>Label</span></label>
+      <input form="form_examples" type="checkbox" name="susp_32" id="form_susp_32" value="32" class="makeButton suspList" />
+      <label for="form_susp_32"><span>Label</span></label>
+    </p>
+  </div>
+  <div class="form_directions">
+    <p>The following are radio buttons as selectable buttons.</p>
+  </div>
+  <div class="field_container">
+    <p class="fullWidth">
+      <input form="form_examples" type="radio" name="susr_11" id="form_susr_1" value="11" class="makeButton" />
+      <label for="form_susr_1"><span>Label</span></label>
+      <input form="form_examples" type="radio" name="susr_11" id="form_susr_2" value="12" class="makeButton" />
+      <label for="form_susr_2"><span>Label</span></label>
+      <input form="form_examples" type="radio" name="susr_11" id="form_susr_3" value="21" class="makeButton" />
+      <label for="form_susr_3"><span>Label</span></label>
+    </p>
+  </div>
+  <div class="form_directions">
+    <p>There is the option for a delete tab on dynamically generated selectors. Requires JS to add and remove the selectors.</p>
+  </div>
+  <div class="field_container">
+    <p class="clickable_box">
+      <input form="form_examples" type="radio" name="delbox" id="form_delbox" value="" class="makeButton" checked />
+      <label for="form_delbox"><span>Selected item</span></label>
+      <span class="bottom-tab-box"><a href="#" class="delete_btn">Delete</a></span>
+    </p>
+    <p class="clickable_box">
+      <input form="form_examples" type="radio" name="delbox" id="form_delbox2" value="" class="makeButton" />
+      <label for="form_delbox2"><span>Unselected item</span></label>
+      <span class="bottom-tab-box"><a href="#" class="delete_btn">Delete</a></span>
+    </p>
+  </div>
+</fieldset>
+
+<h2>Buttons</h2>
+
+<fieldset form="form_examples" name="fs_btnfields" id="form_fs_btnfields">
+  <legend>Legend</legend>
+  <div class="field_container">
+    <p>
+      <input form="form_examples" type="button" value="input type button" id="form_btn" />
+    </p>
+    <p>
+      <button form="form_examples" type="button" value="button" id="form_button">button element</button>
+    </p>
+    <p class="clear-left">
+      <input form="form_examples" type="submit" value="submit" id="form_submit" />
+    </p>
+    <p>
+      <input form="form_examples" type="reset" value="reset" id="form_reset" />
+    </p>
+
+  </div>
+</fieldset>
+</form>
+
 <!-- *** end contents ********************************************************* -->
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

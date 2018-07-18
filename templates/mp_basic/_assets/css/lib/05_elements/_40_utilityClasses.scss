@@ -1,32 +1,32 @@
-// === 06 Parts- 05 Utiity Classes ============================================ ***
-.center {
-  text-align        : center;
-  margin-left       : auto;
-  margin-right      : auto;
-}
-.fleft {
-  float             : left;
-  margin-right      : 1.0em;
-}
-.fright {
-  float             : right;
-  margin-left       : 1.0em;
- }
-.clear-fix { clear  : both; }
-.clear-left { clear : left; }
+// === 05 Elements- 40 Utiity Classes ========================================= ***
+                    // standard floats                                          ***
+.center { text-align: center; margin-lef: auto; margin-right: auto; }
+.fleft  { float: left; margin-right: 1.0em; }
+.fright { float: right; margin-left: 1.0em; }
+                    // clear fixes                                              ***
+.clear-fix   { clear: both; }
+.clear-left  { clear: left; }
 .clear-right { clear: right; }
-.fixed-top {
-  position          : fixed;
-  top               : 0;
-  left              : 0;
-  width             : 100%;
+                    // elements fixed to the top and bottom of the page         ***
+.fixed-top, .fixed-bottom { position: fixed; left: 0; width: 100%; }
+.fixed-top { top: 0; }
+.fixed-bottom { bottom: 0; }
+                    // labels and hilites                                       ***
+.title       { font-weight: bold; }
+.flagged     { font-weight: bold; font-variant: small-caps; }
+.embiggen    { font-size: 1.125em; font-weight: bold; }
+.label-runin { display: inline-block; }
+                    // script-free tweak for jump link scroll height            ***
+div.anchor, div.anchor:focus { outline: none; }
+.anchor:before {
+  display           : block;
+  position          : relative;
+  width             : 0;
+  height            : 2.5em;
+  margin-top        : -2.5em;
+  content           : '';
 }
-.fixed-bottom {
-  position          : fixed;
-  bottom            : 0;
-  left              : 0;
-  width             : 100%;
-}
+
                     // Hidden element rules                                     ***
 .mobile-only, .hide { display: none; }
                     // this ensure collapsers only collase on screens           ***
@@ -36,17 +36,6 @@
 .toggleHide { display: none !important; }
 .toggleShow { display: block !important; }
 
-                    // no-script tweak for jump link scroll height              ***
-div.anchor,
-div.anchor:focus { outline: none; }
-.anchor:before {
-  display           : block;
-  position          : relative;
-  width             : 0;
-  height            : 2.5em;
-  margin-top        : -2.5em;
-  content           : '';
-}
 .size-img { position: relative; }
 div.element-size {
   position: absolute;
