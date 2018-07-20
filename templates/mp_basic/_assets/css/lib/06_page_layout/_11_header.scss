@@ -16,11 +16,7 @@
   font-weight       : bold;
   letter-spacing    : 0.05em;
                     // set our links to match our header font color             ***
-  a,
-  a:active,
-  a:hover,
-  a:link,
-  a:visited {
+  a, a:active, a:hover, a:link, a:visited {
     text-decoration : none;
     color           : $c-banner-text;
   }

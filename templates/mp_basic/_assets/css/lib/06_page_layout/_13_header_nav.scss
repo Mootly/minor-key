@@ -1,5 +1,5 @@
-// *** 05 Layout - 13 Page Header - Navigation ================================ ***
-// *** header navigation elements ---------------------------------------------- ***
+// *** 06 Layout - 13 Page Header - Navigation ================================ ***
+// *** header navigation elements --------------------------------------------- ***
 #page-header {
   #header-nav {
     clear           : both;
@@ -13,19 +13,16 @@
         line-height : 1.25em;
         a {
           display   : inline-block;
-          box-sizing: border-box;
           padding   : 0.5em 0.75em;
           font-size : 0.875em;
         }
         a:hover { text-decoration: underline; }
       }
     }
-    #header-nav-body {
-      padding: 0.125em 0;
-    }
+    #header-nav-body { padding: 0.125em 0; }
   }
 }
-// *** The page header - OLD MOBILE VIEW ****************************************** ***
+// *** The page header - OLD MOBILE VIEW ************************************** ***
 @media (max-width: $break-800-tablet) {
   #page-header {
     #header-nav-toggle {
