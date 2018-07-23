@@ -5,9 +5,9 @@
   right             : 0;
   height            : 0.375em;
   overflow          : hidden;
-  padding           : 0 0.5em 0.125em 0.75em;
+  padding           : 0.125em 0.5em;
   background-color  : $c-banner-bg;
-  @include set-border-radius('bottom-left', 1.0em)
+  @include set-border-radius('bottom-left', 0.5em)
   a,
   a:active,
   a:hover,

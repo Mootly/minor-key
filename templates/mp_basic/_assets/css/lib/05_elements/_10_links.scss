@@ -45,20 +45,21 @@ a::after {
                     // Use this one instead for internal absolute pathing       ***
                     //a[href^='http']:not([href*='yourdomain'])::after {
 a[href^='http']::after {
-  content           : '\f08e';
   margin-left       : 0.5em;
   @include set-blended-text($c-base-flatplum, 0.5, $c-base-bg)
+  font-size         : 0.75em;
+  position: relative; bottom: 0.125em;
+  content           : fa-content($fa-var-external-link);
 }
                     // Resource type flags                                      ***
-a[href*='http://www.youtube.com/watch']:after,
-a[href*='https://www.youtube.com/watch']:after {
-  content           : '\f16a';
+a[href*='www.youtube.com/watch']::after {
+  content           : fa-content($fa-var-youtube);
   padding           : 0 0.125em 0 0.375em;
-  @include set-blended-text($c-red, 0.5, $c-base-bg)
+  @include set-blended-text($c-red, 0.5, $c-base-bg);
 }
 a[href$='.pdf']::after,
 a[href$='.PDF']::after {
-  content           : '\f1c1';
+  content           : fa-content($fa-var-file-pdf-o);
   color             : $c-default-red;
   padding           : 0 0.25em 0 0.375em;
 }
@@ -71,7 +72,7 @@ a[href$='.DOCX']::after,
 a[href$='.DOT']::after,
 a[href$='.DOTX']::after,
 a[href$='.dotx']::after {
-  content           : '\f1c2';
+  content           : fa-content($fa-var-file-word-o);
   color             : $c-word-blue;
   padding           : 0 0.25em 0 0.375em;
 }
@@ -79,7 +80,7 @@ a[href$='.xls']::after,
 a[href$='.xlsx']::after,
 a[href$='.XLS']::after,
 a[href$='.XLSX']::after {
-  content           : '\f1c3';
+  content           : fa-content($fa-var-file-excel-o);
   color             : $c-default-green;
   padding           : 0 0.25em 0 0.375em;
 }
@@ -89,7 +90,7 @@ a[href$='.pptx']::after,
 a[href$='.PPS']::after,
 a[href$='.PPT']::after,
 a[href$='.PPTX']::after {
-  content           : '\f1c4';
+  content           : fa-content($fa-var-file-powerpoint-o);
   color             : $c-ppt-orange;
   padding           : 0 0.25em 0 0.375em;
 }
@@ -103,7 +104,7 @@ a[href$='.avi']::after,
 a[href$='.mp4']::after,
 a[href$='.asx']::after,
 a[href$='.rm']::after {
-  content           : '\f03d';
+  content           : fa-content($fa-var-video-camera);
   color             : $c-base-flatplum;
   padding           : 0 0.25em 0 0.375em;
 }
@@ -130,7 +131,7 @@ a[href$='.rm']::after {
       border-top    : 0.1825em solid $c-link-icons;
     }
     &:before {
-      content       : '\f062';
+      content       : fa-content($fa-var-arrow-up);
       margin        : 0 -1.875em 0 1.0em;
       font-family   : 'FontAwesome';
       @include set-blended-text($c-link-icons, 0.5, $c-base-bg);

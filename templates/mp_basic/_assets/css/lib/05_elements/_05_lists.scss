@@ -18,12 +18,12 @@ ul, ol {
   margin-left       : 0.5em;
   list-style-type   : none;
   &:before {
-    content         : '\f111';
+    font-family     : 'FontAwesome';
+    content         : fa-content($fa-var-circle);
     margin          : 0 1.5em 0 0;
     font-size       : 0.5em;
     position        : relative;
     top             : -0.25em;
-    font-family     : 'FontAwesome';
     @include set-blended-text($c-banner-bg, 0.75, $c-base-bg);
   }
 }
@@ -52,7 +52,7 @@ ul#jumpto {
     }
     a { text-decoration: none; }
     &:before {
-      content       : '\f149';
+      content       : fa-content($fa-var-level-down);
       margin        : 0 0.5em 0 -1.5em;
       font-size     : inherit;
 

@@ -28,7 +28,7 @@
     li.active::before {
       display       : block;
       float         : right;
-      content       : '\f0d9';
+      content       : fa-content($fa-var-caret-left);
       margin-right  : -0.0625em;
       margin-top    : 0.125em;
       font-size     : 4.0em;
@@ -76,8 +76,8 @@
   }
   // Control icons ------------------------------------------------------------ ***
   li.collapse-header.open > a {         // up arrow
-    &:before {
-      content       : '\f078';
+    &::before {
+      content       : fa-content($fa-var-chevron-down);
       margin-left   :  -1.75em;
       margin-right  : 0.475em;
       font-family   : 'FontAwesome';
@@ -85,14 +85,20 @@
     }
   }
   li.collapse-header.closed > a {       // down arrow
-    &:before {
-      content       : '\f054';
+    &::before {
+      content       : fa-content($fa-var-chevron-right);
       margin-left   :  -1.5em;
       margin-right  : 0.5em;
       font-family   : 'FontAwesome';
       color         : $c-box-alt-bg;
     }
   }
+}
+li.collapse-header > a:hover::before { animation: togglePulse 3s infinite; }
+@keyframes togglePulse {
+  0% {color: rgba($c-banner-text, 1.0); }
+  50% {color: rgba($c-banner-text, 0.5); }
+  100% {color: rgba($c-banner-text, 1.0); }
 }
 // Media rules ---------------------------------------------------------------- ***
 @media (max-width: $break-1024-desktop) {

@@ -1,6 +1,10 @@
 // === 06 Parts - 32 Clamshell ================================================ ***
 // Styling for clamshell menus                                                  ***
 #content-main {
+  .clamshell .more-link .fa {
+    font-family: 'FontAwesomeReg';
+  }
+
                     // Denote hidden sections outside of DLs with ellipses      ***
   @media screen {
     .clamshell {

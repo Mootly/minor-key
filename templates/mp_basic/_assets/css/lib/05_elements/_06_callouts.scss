@@ -44,20 +44,20 @@ li.wrong-flag, li.right-flag {
   list-style-type   : none;
   margin-left       : -1.5em;
 }
-.wrong-flag:before,
-.right-flag:before {
+.wrong-flag::before,
+.right-flag::before {
   display           : block;
   float             : left;
   margin-right      : 0.5em;
   font-family     : 'FontAwesome';
   font-size         : inherit;
 }
-.wrong-flag:before {
-  content           : '\f00d';
+.wrong-flag::before {
+  content           : fa-content($fa-var-times);
   color             : $c-default-red;
 }
-.right-flag:before {
-  content           : '\f00c';
+.right-flag::before {
+  content           : fa-content($fa-var-check);
   color             : $c-default-green;
 }
 // *** Pull boxes ------------------------------------------------------------- ***
@@ -128,15 +128,15 @@ li.wrong-flag, li.right-flag {
   font-weight       : normal;
 }
 .aud-technical::after {
-  content           : '\f0ad';
+  content           : fa-content($fa-var-wrench);
   @include set-blended-text($c-default-red, 0.5, $c-base-bg);
 }
 .aud-general::after {
-  content           : '\f0c0';
+  content           : fa-content($fa-var-users);
   @include set-blended-text($c-default-green, 0.25, $c-base-bg);
 }
 body.tech-notes .page-title::after {
-  content           : '\f0ad';
+  content           : fa-content($fa-var-wrench);
   margin-left       : 0.5em;
   font-family       : 'FontAwesome';
   font-weight       : normal;

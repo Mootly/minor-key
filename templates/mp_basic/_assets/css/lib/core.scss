@@ -26,12 +26,15 @@
 // For example, this block uses the double slash single line comment because    ***
 // there is no reason for it to appear anywhere but in this file.               ***
 // ============================================================================ ***
-
+// *** font-awesome imports --------------------------------------------------- ***
+$fa-font-path       : '/_vendors/fa/fonts';
+@import "../../../../../_vendors/fa/scss/font-awesome.scss";
 // *** 01 Functions ----------------------------------------------------------- ***
 @import "01_funcs/01_sizing";
 // *** 02 Variables ----------------------------------------------------------- ***
 @import "02_vars/01_colors";
 @import "02_vars/02_fonts";
+
 @import "02_vars/03_sizes";
 @import "02_vars/05_zIndices";
 @import "02_vars/11_mediaQueries";
