@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // *** 05 Layout - 12 Page Header - Title ===================================== ***
 #header-title {
   margin            : 0;
@@ -18,4 +19,20 @@
   }
 }
 
+=======
+// *** 066 Layout - 12 Page Header - Title ===================================== ***
+#page-header #header-title {
+  padding           : 0.625em 1.0em 0.625em 1.0em;
+  font-family       : $f-title;
+  font-size         : $hb-size;
+  a { display: inline-block; }
+}
+// *** Header tweaks for small screens ---------------------------------------- ***
+@media (max-width: $break-800-tablet) {
+  #page-header #header-title {
+    margin          : 0 0.5em;
+    text-align      : right;
+  }
+}
+>>>>>>> b9002fae4798c5ab66834fc43be29f2acf8c2f74
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

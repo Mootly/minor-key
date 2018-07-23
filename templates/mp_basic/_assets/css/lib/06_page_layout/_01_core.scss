@@ -1,20 +1,15 @@
-// *** 05 Layout - 01 Basic formatting for the document ======================= ***
+// *** 06 Layout - 01 Basic formatting for the document ======================= ***
 // *** Main body of the page is #content-main --------------------------------- ***
-#content-main {
-  width             : 100%;
+#content-main { width: 100%; }
                     // #content-box is our inner wrapper                        ***
                     // it normally contains everything but breadcrumbs          ***
-  #content-box {
-    max-width       : $max-content-width;
-    margin          : 1.0em 2.0em 2.0em 20.0em;
-  }
-  &.full-width {
-    width: 100%;
-    #content-box {
-      margin      : 1.0em auto 2.0em auto;
-      max-width   : $max-full-page-width;
-    }
-  }
+#content-box {
+  max-width         : $max-content-width;
+  margin            : 1.0em 2.0em 2.0em 20.0em;
+}
+#content-box.full-width #content-box {
+  margin            : 1.0em auto 2.0em auto;
+  max-width         : $max-full-page-width;
 }
 // *** Media rules for small screens ------------------------------------------ ***
 @media (max-width: $break-1024-desktop) {

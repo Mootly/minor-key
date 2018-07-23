@@ -1369,7 +1369,7 @@ p.border-box .bottom-tab-box {
 /*! --- begin utility classes --- */
 .center {
   text-align: center;
-  margin-left: auto;
+  margin-lef: auto;
   margin-right: auto;
 }
 
@@ -1395,47 +1395,39 @@ p.border-box .bottom-tab-box {
   clear: right;
 }
 
-.fixed-top {
+.fixed-top, .fixed-bottom {
   position: fixed;
-  top: 0;
   left: 0;
   width: 100%;
+}
+
+.fixed-top {
+  top: 0;
 }
 
 .fixed-bottom {
-  position: fixed;
   bottom: 0;
-  left: 0;
-  width: 100%;
 }
 
-.mobile-only, .hide {
-  display: none;
+.title {
+  font-weight: bold;
 }
 
-@media screen {
-  .hidden {
-    display: block;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-  }
+.flagged {
+  font-weight: bold;
+  font-variant: small-caps;
 }
 
-.toggleHide {
-  display: none !important;
+.embiggen {
+  font-size: 1.125em;
+  font-weight: bold;
 }
 
-.toggleShow {
-  display: block !important;
+.label-runin {
+  display: inline-block;
 }
 
-div.anchor,
-div.anchor:focus {
+div.anchor, div.anchor:focus {
   outline: none;
 }
 
@@ -1456,10 +1448,10 @@ div.element-size {
   position: absolute;
   top: 0;
   left: 0;
+  padding: 0.25em 0.5em;
   color: #faf8f9;
   font-weight: bold;
   font-size: 0.875em;
-  padding: 0.25em 0.5em;
   background-color: #432546;
   background-color: rgba(67, 37, 70, 0.75);
 }
@@ -1486,6 +1478,31 @@ div.element-size {
 
 .multi-col span.col, .multi-col div.col {
   display: inline-block;
+}
+
+.mobile-only, .hide {
+  display: none;
+}
+
+@media screen {
+  .hidden {
+    display: block;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+  }
+}
+
+.toggleHide {
+  display: none !important;
+}
+
+.toggleShow {
+  display: block !important;
 }
 
 /*! --- begin accessibility --- */
@@ -1518,16 +1535,12 @@ div.element-size {
   width: 100%;
 }
 
-#content-main #content-box {
+#content-box {
   max-width: 60em;
   margin: 1.0em 2.0em 2.0em 20.0em;
 }
 
-#content-main.full-width {
-  width: 100%;
-}
-
-#content-main.full-width #content-box {
+#content-box.full-width #content-box {
   margin: 1.0em auto 2.0em auto;
   max-width: 100%;
 }
@@ -1565,11 +1578,7 @@ div.element-size {
   letter-spacing: 0.05em;
 }
 
-#page-header a,
-#page-header a:active,
-#page-header a:hover,
-#page-header a:link,
-#page-header a:visited {
+#page-header a, #page-header a:active, #page-header a:hover, #page-header a:link, #page-header a:visited {
   text-decoration: none;
   color: #faf8f9;
 }

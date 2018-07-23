@@ -1,32 +1,26 @@
-// === 05 Layout - 03 Title formatting ======================================= ***
+// === 06 Layout - 03 Title formatting ======================================= ***
 // Accessibility haxie for header                                               ***
                     // Hide real H1 from sighted users,                         ***
-                    // use H2 to replace it further down                        ***
-                    // H2 will begin the content at the same level as other     ***
-                    // H2 block markers.                                        ***
-                    // Accessibility Fix                                        ***
-                    // Hide H1 from sighted users, replace w H2 further down.   ***
-                    // In text stream, H2 will begin the content                ***
-                    // at the same level as other H2 block markers.             ***
+                    // use title-box to replace it further down                 ***
 h1#first-el {
-  position        : absolute;
-  clip            : rect(0 0 0 0);
-  width           : 1px;
-  height          : 1px;
-  overflow        : hidden;
-  margin          : -1px;
-  border          : 0;
-  padding         : 0;
+  position          : absolute;
+  clip              : rect(0 0 0 0);
+  width             : 1px;
+  height            : 1px;
+  overflow          : hidden;
+  margin            : -1px;
+  border            : 0;
+  padding           : 0;
 }
-                    // Use H2 to emulate H1 in displayed title block if         ***
-                    // using accessibility fix above.                           ***
+// Our display title                                        *
 #title-box {
-  clear: both;
-  margin: 0;
-  background-color: $c-base-bg;
-  border-bottom: 2px solid $c-banner-bg;
+  clear             : both;
+  margin            : 0;
+  background-color  : $c-base-bg;
+  border-bottom      : 2px solid $c-banner-bg;
   @include set-blended-box-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
-  h1, h2.page-title {
+                    // Cover our bases for possible ways of placing header      ***
+h1, h2.page-title, p.page-title {
     margin          : 0;
     padding         : 0.25em 0.5em 0.125em 0.5em;
     font-family     : $f-title;
@@ -54,7 +48,6 @@ h1#first-el {
 .fixed-above { margin-top: 4.0em; }
 // --- Media rules for small screens ------------------------------------------ ***
 @media (max-width: $break-1024-desktop) {
-  #title-box { clear: both; }
   #title-box {
     clear: both;
     h1, h2.page-title {
