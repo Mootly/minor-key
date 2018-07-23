@@ -3,11 +3,11 @@
 #page-header {
   #header-nav {
     clear           : both;
+    background-color: $c-banner-bg;
     ul {
       list-style-type: none;
       padding       : 0 0 0 1.25em;
       margin        : 0;
-      @include set-blended-background($c-base-bg, 0.25, $c-banner-bg);
       li {
         display     : inline;
         line-height : 1.25em;
@@ -17,11 +17,14 @@
           padding   : 0.5em 0.75em;
           font-size : 0.875em;
         }
-        a:hover { text-decoration: underline; }
       }
     }
     #header-nav-body {
       padding: 0.125em 0;
+      background-color: $c-base-bg;
+      margin        : 0 0 0 auto;
+      width         : 90%;
+      @include set-border-radius(left, 2.0em)
     }
   }
 }
@@ -37,11 +40,12 @@
       padding       : 0;
       font-size     : px2ems(32);
       text-decoration: none;
-      color         : $c-inverse-text;
+      color         : $c-banner-text;
       span { display: none; }
       a {
         display     : inline-block;
         padding     : 0.375em 0.5em 0.5em 0.25em;
+        color       : $c-banner-text;
         @include set-blended-border($c-base-bg, right, 0.75, 2px, solid, $c-banner-bg);
       }
     }

@@ -20,16 +20,16 @@ $(window).on( 'load', function () {
     e.preventDefault();
     $('#header-nav-body').toggleClass('mobile-hidden mobile-show');
   });
-  $('#notices-control').on('click', function(e) {
+  $('#page-nav-control').on('click', function(e) {
     e.preventDefault();
-    $('#notices-body').toggleClass('mobile-hidden mobile-show');
+    $('#page-nav-body').toggleClass('mobile-hidden mobile-show');
   });
 
   $('#notices-body, #header-nav-body, #navigation-search, #page-nav-body').focusin(function () {
     $(this).removeClass('mobile-hidden');
     $(this).addClass('mobile-shown');
   })
-  $('#notiaces-body, #header-nav-body, #navigation-search, #page-nav-body').focusout(function () {
+  $('#notices-body, #header-nav-body, #navigation-search, #page-nav-body').focusout(function () {
     $(this).removeClass('mobile-shown');
     $(this).addClass('mobile-hidden');
   })

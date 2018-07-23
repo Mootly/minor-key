@@ -24,9 +24,6 @@ a:visited { color   : $c-visited-text; }
 a:hover, a:focus {
   @include set-blended-border($c-link-text, bottom, 0.85, 1px, solid, $c-base-bg);
 }
-a:visited:hover, a:visited:focus {
-  @include set-blended-border($c-visited-text, bottom, 0.85, 1px, solid, $c-base-bg);
-}
 // --- Link related highlights and callouts ----------------------------------- ***
                     // gray out separators in a link list                       ***
 .linkset { color: $c-box-bg; }

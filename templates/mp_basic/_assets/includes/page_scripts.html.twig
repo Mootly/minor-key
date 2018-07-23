@@ -12,7 +12,7 @@
                     {# Template scripts                                         #}
 <script type="text/javascript">
 /* template scripts */
-{{ source(page.template ~ '/_assets/js/library.min.js', ignore_missing = true) }}
+{{ source(page.template ~ '/_assets/js/library.js', ignore_missing = true) }}
 {{ source(page.template ~ '/_assets/js/title_loc.min.js', ignore_missing = true) }}
 </script>
 {% for tKey, tPath in scripts %}
