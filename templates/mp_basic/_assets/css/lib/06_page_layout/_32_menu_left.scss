@@ -103,7 +103,7 @@ li.collapse-header > a:hover::before { animation: togglePulse 3s infinite; }
   100% {color: rgba($c-banner-text, 1.0); }
 }
 // Media rules ---------------------------------------------------------------- ***
-@media (max-width: $break-1024-desktop) {
+@media (max-width: $break-800-tablet) {
   #menu-left {
     position        : relative;
     width           : 100%;
@@ -118,9 +118,9 @@ li.collapse-header > a:hover::before { animation: togglePulse 3s infinite; }
     #page-nav-toggle {
       display       : block;
       margin        : 0;
-      border-bottom : 1px solid $c-plum-border;
       padding       : 0;
       background-color: $c-banner-bg;
+      background        : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
       font-size     : px2ems(23);
       text-decoration: none;
       a {

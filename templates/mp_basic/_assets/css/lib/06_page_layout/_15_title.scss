@@ -16,19 +16,18 @@ h1#first-el {
 #title-box {
   clear             : both;
   margin            : 0;
-  background-color  : inherit;
-  @include set-blended-box-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
+  background-color  : $c-banner-bg;
+  background        : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
                     // Cover our bases for possible ways of placing header      ***
-h1, h2.page-title, p.page-title {
+  h1, h2.page-title, p.page-title {
     margin          : 0;
     padding         : 0.25em 0.5em 0.125em 0.5em;
     background-color: $c-base-bg;
     font-family     : $f-title;
-    font-size       : $h1-size;
     font-weight     : 900;
+    font-size       : $h1-mob-size;
     line-height     : $ht-line-compact;
     color           : $c-h1-text;
-    border-bottom      : 0.125em solid $c-banner-bg;
 //    @include set-blended-text-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
   }
 }
@@ -38,16 +37,12 @@ h1, h2.page-title, p.page-title {
                     // under on element collapse. Height overwritten by script. ***
 .fixed-above { margin-top: 4.0em; }
 // --- Media rules for small screens ------------------------------------------ ***
-@media (max-width: $break-1024-desktop) {
+@media (min-width: $break-800-tablet) {
   #title-box {
-    clear: both;
-    h1, h2.page-title {
-      font-family   : $f-title;
-      font-size     : $h1-mob-size;
-      font-weight   : 900;
-      line-height   : $ht-line-compact;
-      color         : $c-h1-text;
-    }
+    padding-bottom  : 0.25em;
+    background      : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
+    @include set-blended-box-shadow(0.0625em, 0.0625em, $c-h1-text, 0.5, $c-base-bg, 0.125em);
+    h1, h2.page-title, p.page-title { font-size: $h1-size; }
   }
 }
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

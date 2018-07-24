@@ -160,7 +160,7 @@ textarea {
   vertical-align    : top;
 }
 input:focus, select:focus, textarea:focus, input.xmp_fieldfocus {
-  background-color  : $c-box-alt-bg;
+  background-color  : $c-white;
   border            : 1px solid $c-blue;
   box-shadow        : 0 0 3px $c-blue;
 }
