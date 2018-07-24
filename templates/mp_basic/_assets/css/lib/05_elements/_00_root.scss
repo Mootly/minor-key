@@ -16,6 +16,8 @@ body {
   @include set-default-colors;
   font              : normal normal 400 1.0em $f-default;
   line-height       : $ht-line-tall;
+  bacgkround-color  : $c-base-bg;
+  background        : linear-gradient(to bottom, $c-offwhite 10%, rgba($c-base-flatplum, 0.35) 100%) fixed;
 }
                     // force border box so everything works the same may        *
                     // notinherited by forms field in some browsers             *

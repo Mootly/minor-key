@@ -3,6 +3,7 @@
   margin            : 0;
   padding           : 0.625em 1.5em;
   background-color  : $c-banner-bg;
+  background        : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
   color             : $c-banner-text;
   font-family       : $f-title;
   font-size         : $hb-size;

@@ -4,6 +4,7 @@
   #header-nav {
     clear           : both;
     background-color: $c-banner-bg;
+    background-color: rgba($c-banner-bg, 0.75);
     ul {
       list-style-type: none;
       padding       : 0 0 0 1.25em;

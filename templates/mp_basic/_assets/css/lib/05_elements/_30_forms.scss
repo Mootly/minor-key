@@ -87,7 +87,7 @@ fieldset, .fieldset {
   border-left       : 0.25em solid $c-banner-bg;
   border-left       : 0.25em solid rgba($c-banner-bg, 0.65);
   @include set-border-radius(top-right, 1.25em)
-  box-shadow        : -0.125em -0.125em 0.125em $c-box-alt-bg;
+  box-shadow        : -0.125em -0.125em 0.25em rgba($c-base-text, 0.15);
 }
 fieldset legend, .fieldset .legend {
   box-sizing        : border-box;

@@ -19,8 +19,8 @@
  *   .hidden
  * ---------------------------------------------------------------------------- */
 var icon_list_all   = 'fa-list';
-var icon_is_closed  = 'fa-caret-square-right fa-toggle-right';
-var icon_is_open    = 'fa-caret-square-down fa-toggle-down';
+var icon_is_closed  = 'fa-caret-square-o-right';
+var icon_is_open    = 'fa-caret-square-o-down';
 var hidden_class    = 'hidden';
                     // Determine what we are collapsing.                        ***
 var mpv_clam_class  = 'dl.clamshell, dl.example-box, div.clamshell';
@@ -40,7 +40,7 @@ $(window).on('hashchange', function(e){
   if (($(mpv_clam_list)) && (location.hash!='')) {
     var mpv_clam_target = location.hash;
     if ($(mpv_clam_target).length) {
-      $(mpv_clam_target).find('.more-link').find('i').addClass('fa far '+icon_is_open).removeClass(icon_is_closed);
+      $(mpv_clam_target).find('.more-link').find('i').addClass('fa '+icon_is_open).removeClass(icon_is_closed);
       $(mpv_clam_target).find('.more-link').find('i span').text('[hide details]');
       $(mpv_clam_target).closest(mpv_clam_head).next(mpv_clam_fold).toggleClass(hidden_class);
       if ( $(mpv_clam_target).parents(mpv_clam_fold) ) {
@@ -83,7 +83,7 @@ mpv_clam_list.each(function (index1) {
       $(this).attr('id', 'tog-'+$(this).text().replace(/ /g,'-')+'-'+index1+'-'+index2);
     }
     $(this).prepend('<span class="right-link"><a class="more-link" href="#'
-    + $(this).attr('id')+'" title="'+$(this).text()+'"><i class="fa far '
+    + $(this).attr('id')+'" title="'+$(this).text()+'"><i class="fa '
     + icon_is_closed+'"><span>[show details]</span></i></a></span>');
   });
 });

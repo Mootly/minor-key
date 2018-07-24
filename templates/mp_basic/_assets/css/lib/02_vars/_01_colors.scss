@@ -21,7 +21,7 @@ $c-magenta          : rgb(255,0,255);                       // #ff00ff
 $c-gray-charcoal    : rgb(32,36,37);                        // #202425
 $c-gray-dark        : rgb(70,74,75);                        // #464a4b
 $c-gray-medium      : rgb(140,145,147);                     // #8c9193
-$c-offwhite         : rgb(250,248,249);                     // #faf8f9
+$c-offwhite         : rgb(241,240,242);                     //
                     // *** Common Colors -------------------------------------- ***
 $c-default-red      : darken($c-red, 20%);                  // #990000
 $c-default-green    : darken($c-green, 20%);                // #009900
@@ -35,6 +35,7 @@ $c-base-graywash    : rgb(221,215,221);                     // #ddd7dd
 $c-base-plumwash    : rgb(234,227,238);                     // #eae3ef
 $c-base-graywash    : rgb(240,240,238);                     // #f0f0ee
 $c-base-limewash    : rgb(238,255,238);                     // #eeffee
+$c-base-bluewash    : rgb(238,238,255);                     // #eeffee
 // ***
 $c-base-dkred       : rgb(34,0,0);                          // #220000
 $c-base-medred      : rgb(78,16,16);                        // #4e1010
@@ -56,6 +57,9 @@ $c-base-plum        : rgb(112,61,116);                      // #703d74
 $c-base-dkplum      : rgb(67,37,70);                        // #432546
 $c-base-medplum     : rgb(90,49,93);                        // #5a315d
 $c-base-flatplum    : rgb(99,68,100);                       // #644564
+$c-purple-dusk      : rgb(70,35,69);                        // #462345
+$c-purple-dusk      : rgb(58,31,90);                        // #3a1f5a
+$c-purple-dusk      : rgb(147,140,155);                     // #938C9B
 // *** COMPONENT COLORS ------------------------------------------------------- ***
                     // Base                                                     ***
 $c-base-text        : $c-base-black;

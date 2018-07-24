@@ -1,6 +1,8 @@
 // *** 06 Layout - 01 Basic formatting for the document ======================= ***
 // *** Main body of the page is #content-main --------------------------------- ***
-#content-main { width: 100%; }
+#content-main {
+  width            : 100%;
+}
                     // #content-box is our inner wrapper                        ***
                     // it normally contains everything but breadcrumbs          ***
 #content-box {

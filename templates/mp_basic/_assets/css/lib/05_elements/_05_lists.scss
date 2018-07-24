@@ -19,7 +19,7 @@ ul, ol {
   list-style-type   : none;
   &:before {
     font-family     : 'FontAwesome';
-    content         : fa-content($fa-var-circle);
+    content         : $fa-var-circle;
     margin          : 0 1.5em 0 0;
     font-size       : 0.5em;
     position        : relative;
@@ -52,10 +52,9 @@ ul#jumpto {
     }
     a { text-decoration: none; }
     &:before {
-      content       : fa-content($fa-var-level-down);
+      content       : $fa-var-level-down;
       margin        : 0 0.5em 0 -1.5em;
       font-size     : inherit;
-
       font-family   : 'FontAwesome';
       @include set-blended-text($c-link-icons, 0.5, $c-base-bg);
     }

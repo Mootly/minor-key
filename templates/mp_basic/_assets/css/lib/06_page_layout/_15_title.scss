@@ -16,33 +16,24 @@ h1#first-el {
 #title-box {
   clear             : both;
   margin            : 0;
-  background-color  : $c-base-bg;
-  border-bottom      : 2px solid $c-banner-bg;
+  background-color  : inherit;
   @include set-blended-box-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
                     // Cover our bases for possible ways of placing header      ***
 h1, h2.page-title, p.page-title {
     margin          : 0;
     padding         : 0.25em 0.5em 0.125em 0.5em;
+    background-color: $c-base-bg;
     font-family     : $f-title;
     font-size       : $h1-size;
     font-weight     : 900;
     line-height     : $ht-line-compact;
     color           : $c-h1-text;
+    border-bottom      : 0.125em solid $c-banner-bg;
 //    @include set-blended-text-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
   }
 }
                     // Waypoints used to fix title at top of page on scroll.    ***
-#title-box.fixed-top {
-  z-index           : 100;
-  h1, h2.page-title, p.page-title {
-    margin          : 0;
-    padding         : 0.5em 0.5em 0.5em 0.75em;
-    font-family     : $f-title;
-    font-size       : $h3-size;
-    line-height     : $ht-line-compact;
-    color           : $c-h1-text;
-  }
-}
+#title-box.fixed-top { z-index: 100; }
                     // Fix to elements below fixed title to avoid page jump     ***
                     // under on element collapse. Height overwritten by script. ***
 .fixed-above { margin-top: 4.0em; }
