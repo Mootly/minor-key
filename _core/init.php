@@ -42,16 +42,16 @@
 # Locate our templates and class library -------------------------------------- *
                     # If the template contains a classlib, declare in config.php
                     # Otherwise it will assume:
-                    # /templates/template_name/classlib
+                    # /_templates/template_name/classlib
   $mpo_parts->template      = $temp_string ;
   $mpo_parts->perm_template = PERM_TEMPLATE.MP_PSEP ;
-  $mpo_paths->template      = MP_ROOT . 'templates/' ;
+  $mpo_paths->template      = MP_ROOT . '_templates/' ;
   $mpo_paths->php_widgets   = MP_ROOT . '_assets/php_widgets/' ;
   $mpo_paths->docs          = MP_ROOT . 'docs/' ;
   if (defined('DEF_CLASSLIB')) {
     $mpo_paths->tp_classlib = MP_ROOT . DEF_CLASSLIB;
   } else {
-    $mpo_paths->tp_classlib = MP_ROOT . 'templates/' . $temp_string .'classlib/';
+    $mpo_paths->tp_classlib = MP_ROOT . '_templates/' . $temp_string .'classlib/';
   }
                     # init autoloader
   spl_autoload_register(function ($classname) {

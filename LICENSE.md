@@ -28,7 +28,7 @@ All third party resources are subject to the copyrights and licenses for those r
 
 ## Template licenses
 
-All templates in  the **moosepress** repo live in the `/templates` folder.
+All templates in  the **moosepress** repo live in the `/_templates` folder.
 
 Templates are licensed as per the license provided with that template. Template licenses will take precedence over the **moosepress** license for all resources that exist in a given template. If a template has no license, locally or remotely, no assumption is made that the **moosepress** license or copyright is in effect for that template.
 

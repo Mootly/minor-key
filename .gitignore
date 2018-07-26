@@ -9,15 +9,15 @@ files/
 sites/*
 sites/*/files
 sites/*/private
-templates/*
+_templates/*
 mantisbt/
 
 # Add MoosePress specific paths back in.
-!templates/MP_*
+!_templates/MP_*
 
 # Ignore caches.
-templates/*/cache
-templates/MP_*/cache
+_templates/*/cache
+_templates/MP_*/cache
 
 # Ignore licensed content in vendors.
 _vendors/fonts/

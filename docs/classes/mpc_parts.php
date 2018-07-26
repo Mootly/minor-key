@@ -70,7 +70,7 @@ ob_start();
   <dt>site_name</dt>
   <dd><p>The name of the site. Should appear in the masthead and be the last item in the <b>title</b> attribute.</p></dd>
   <dt>template</dt>
-  <dd><p>The path to the template to be used by this page. For shared templates, this should be <code>/templates/</code>. Otherwise it should be <code>/templates/<var>templatename</var>/</code></p></dd>
+  <dd><p>The path to the template to be used by this page. For shared templates, this should be <code>/_templates/</code>. Otherwise it should be <code>/_templates/<var>templatename</var>/</code></p></dd>
   <dt>title_struct</dt>
   <dd><p>Pattern for generating page title. Not part of the final component array.</p></dd>
 </dl>
