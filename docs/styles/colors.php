@@ -27,6 +27,16 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
+<style type="text/css">
+                    /* custom styling for color swatch table                    */
+table.list-table td.color-swatch {
+  background: linear-gradient(to right, #ffffff 0%,#ffffff 50%,#000000 50%,#000000 100%);
+  padding: 0.25em 0; width: 6.0em;
+}
+td.color-swatch span {
+  display: block; height: 5.0em; width: 5.0em; border-radius: 2.5em; margin: auto;
+}
+</style>
 
 <p>The last column contains the variables as called in the CSS as well as sample swatches for color blends.
 <h2 id="toc-links">Contents</h2>
@@ -46,15 +56,31 @@ ob_start();
   </thead>
   <tbody>
     <tr>
-      <th style="background-color: rgb(67,40,93);"> </th>
-      <td>rgb(67,40,93)</td>
-      <td>#43285d</td>
-      <td>$c-purple-web-1</td>
+      <td class="color-swatch"><span style="background-color: rgb(112,61,116);"> </span></td>
+      <td>rgb(112,61,116)</td>
+      <td>#703d74</td>
+      <td>$c-base-plum</td>
+      <td>
+        <ul>
+          <li>$c-code-hilite-1</li>
+          <li>$c-tip-border</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="color-swatch"><span style="background-color: rgb(99,68,100);"> </span></td>
+      <td>rgb(99,68,100)</td>
+      <td>#644564</td>
+      <td>$c-base-flatplum</td>
       <td>
         <ul>
           <li>$c-banner-bg</li>
-          <li>$c-button-bg</li>
-          <li style="color:#fcf8fb; background-color:#294E7D;">$c-visited-text <br />mix($c-core-links, $c-purple-web-1, 50)</li>
+          <li>$c-base-flatplum</li>
+          <li>$c-plum-border</li>
+          <li>$c-link-icons</li>
+          <li>$c-visited-text</li>
+          <li>$c-subbanner-hilite</li>
+          <li style="color:#fcf8fb; background-color:#825a82;">$c-button-active-bg <br />lighten($c-base-flatplum, 10)</li>
         </ul>
       </td>
     </tr>

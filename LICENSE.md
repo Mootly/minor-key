@@ -16,6 +16,7 @@ All third party resources are subject to the copyrights and licenses for those r
 
 ### Third party resources used by moosepress
 
+- [Acorn Media Player](https://ghinda.net/acornmediaplayer/)
 - [Composer](https://github.com/composer/composer/blob/master/LICENSE)
 - [Font Awesome](http://fontawesome.io/license/)
 - [HTML5 Shiv](https://github.com/aFarkas/html5shiv/blob/master/MIT%20and%20GPL2%20licenses.md)
