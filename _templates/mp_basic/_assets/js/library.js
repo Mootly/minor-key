@@ -20,7 +20,7 @@ $(window).on( 'load', function () {
     e.preventDefault();
     $('#header-nav-body').toggleClass('mobile-hidden mobile-show');
   });
-  $('#page-nav-control').on('click', function(e) {
+  $('#page-menu-control').on('click', function(e) {
     e.preventDefault();
     $('#page-nav-body').toggleClass('mobile-hidden mobile-show');
   });
