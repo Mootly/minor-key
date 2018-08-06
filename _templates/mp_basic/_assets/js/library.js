@@ -5,7 +5,8 @@
   * @copyright 2017-2018 - Mootly Obviate
   *   MIT license - https://opensource.org/licenses/MIT
   */
-  var hasfocus = false;
+  var navHasFocus = false;
+  var subHasFocus = false;
 $(window).on( 'load', function () {
                     // Prevent Google translate from translating elements       *
                     // that should remain as is                                 *
@@ -20,11 +21,6 @@ $(window).on( 'load', function () {
     e.preventDefault();
     $('#header-nav-body').toggleClass('mobile-hidden mobile-show');
   });
-  $('#page-menu-control').on('click', function(e) {
-    e.preventDefault();
-    $('#page-nav-body').toggleClass('mobile-hidden mobile-show');
-  });
-
   $('#notices-body, #header-nav-body, #navigation-search, #page-nav-body').focusin(function () {
     $(this).removeClass('mobile-hidden');
     $(this).addClass('mobile-shown');
@@ -34,8 +30,28 @@ $(window).on( 'load', function () {
     $(this).addClass('mobile-hidden');
   })
 
+  $('.page-nav').on('focusin', function (e) {
+    navHasFocus=true;
+    $(this).find('#page-nav-toggle').removeClass('closed');
+    $(this).find('#page-nav-toggle').addClass('open');
+    $(this).children('#page-nav-body').removeClass('mobile-hidden');
+    $(this).children('#page-nav-body').addClass('mobile-show');
+  });
+  $('.page-nav').on('focusout', function (e) {
+    $(this).find('#page-nav-toggle').removeClass('open');
+    $(this).find('#page-nav-toggle').addClass('closed');
+    $(this).children('#page-nav-body').removeClass('mobile-show');
+    $(this).children('#page-nav-body').addClass('mobile-hidden');
+  });
+  $('#page-nav-toggle').children('a').on('click', function(e) {
+    if(!navHasFocus) {
+      $(this).parent().parent().find('#page-nav-body').toggleClass('mobile-hidden mobile-show');
+      $(this).parent().toggleClass('open closed');
+    }
+    navHasFocus=false;
+  });
   $('.collapse-header').on('focusin', function (e) {
-    hasfocus=true;
+    subHasFocus=true;
     $(this).removeClass('closed');
     $(this).addClass('open');
     $(this).children('.collapse-list').removeClass('hidden');
@@ -47,11 +63,11 @@ $(window).on( 'load', function () {
   });
   $('.collapse-header').children('a').on('click', function(e) {
     e.preventDefault();
-    if(!hasfocus) {
+    if(!subHasFocus) {
       $(this).parent().children('.page-nav-sublist').toggleClass('hidden');
       $(this).parent().toggleClass('open closed');
     }
-    hasfocus=false;
+    subHasFocus=false;
   });
                     // Flag current page in side menu                           *
                     // Strip of 'index.php' to cover default index cases        *
