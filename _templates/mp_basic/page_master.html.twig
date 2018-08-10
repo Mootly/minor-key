@@ -10,6 +10,12 @@
 {% else %}
 {%   set home_path = '/' %}
 {% endif %}
+{% endif %}
+{% if constant('MP_ROOT') is defined %}
+{%   set root_path = constant('MP_ROOT') %}
+{% else %}
+{%   set root_path = '' %}
+{% endif %}
 {% if page.bodyclasses is defined %}
 {%   set bodyclasses = 'page ' ~ page.bodyclasses %}
 {% else %}
