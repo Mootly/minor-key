@@ -20,6 +20,10 @@ class ComposerStaticInit82ff9d9a7d18a7565114416af7e931c6
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\CssSelector\\' => 30,
         ),
+        'R' => 
+        array (
+            'ReCaptcha\\' => 10,
+        ),
         'P' => 
         array (
             'PHPMailer\\PHPMailer\\' => 20,
@@ -42,6 +46,10 @@ class ComposerStaticInit82ff9d9a7d18a7565114416af7e931c6
         'Symfony\\Component\\CssSelector\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/css-selector',
+        ),
+        'ReCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (

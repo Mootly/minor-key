@@ -74,7 +74,7 @@
   '\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC'.
   '\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC'.
   ']+';
-                    # US phone is (xxx) xxx-xxx, ext xxx
+                    # US phone is (xxx) xxx-xxx, ext xxx or xxx-xxx-xxx, ext xxx
                     # extention is just .*
-  $regextocheck['US_phone'] = '[\(]\d{3}[\)]( )?\d{3}[\-]\d{4}.*';
+  $regextocheck['US_phone'] = '[\(]?\d{3}[\)]?[- ]?\d{3}[\-]\d{4}.*';
 ?>

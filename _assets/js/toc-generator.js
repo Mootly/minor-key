@@ -1,4 +1,4 @@
-/* --- Page content menu generator -------------------------------------------- *
+/* --- Page content menu generator -------------------------------------------- ***
  * This routine automates the table of contents for jump links internal to
  * the current page.
  * Tasks:
@@ -12,7 +12,7 @@
  * - Only checks for targets in specified divs by ID.
  * - Tier 2 elements are siblings of tier 1 elements.
  * - If DL is listed for tier 2, targets child DT elements.
- * ---------------------------------------------------------------------------- */
+ * ---------------------------------------------------------------------------- ***/
 $(window).on( 'load', function () {
   if ($('#toc-links').length) {
     $('#toc-links').show();

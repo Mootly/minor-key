@@ -16,16 +16,17 @@ All third party resources are subject to the copyrights and licenses for those r
 
 ### Third party resources used by moosepress
 
-- [Acorn Media Player](https://ghinda.net/acornmediaplayer/)
-- [Composer](https://github.com/composer/composer/blob/master/LICENSE)
-- [Font Awesome](http://fontawesome.io/license/)
-- [HTML5 Shiv](https://github.com/aFarkas/html5shiv/blob/master/MIT%20and%20GPL2%20licenses.md)
-- [jQuery](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
-- [PHP DOM Wrapper](https://travis-ci.org/scotteh/php-dom-wrapper)
-- [PHPMailer](https://github.com/PHPMailer/PHPMailer)
-- [Symfony](https://symfony.com/license)
-- [Twig](https://twig.sensiolabs.org/license)
-- [Waypoints](https://github.com/imakewebthings/waypoints/blob/master/licenses.txt)
+-   [Acorn Media Player](https://ghinda.net/acornmediaplayer/)
+-   [Composer](https://github.com/composer/composer/blob/master/LICENSE)
+-   [Font Awesome](http://fontawesome.io/license/)
+-   [Google reCAPTCHA PHP Client](https://github.com/google/recaptcha)
+-   [HTML5 Shiv](https://github.com/aFarkas/html5shiv/blob/master/MIT%20and%20GPL2%20licenses.md)
+-   [jQuery](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
+-   [PHP DOM Wrapper](https://travis-ci.org/scotteh/php-dom-wrapper)
+-   [PHPMailer](https://github.com/PHPMailer/PHPMailer)
+-   [Symfony](https://symfony.com/license)
+-   [Twig](https://twig.sensiolabs.org/license)
+-   [Waypoints](https://github.com/imakewebthings/waypoints/blob/master/licenses.txt)
 
 ## Template licenses
 
