@@ -59,7 +59,7 @@ $('#fld_submit_btn').click(function(e) {
        $('#fs_submitForm').get(0).scrollIntoView();
        $('#testField').html(data);
       if (!($('.allow-retry').length)) {
-        $('#fld_captcha, #fld_submit_btn, .noprint').hide();
+//        $('#fld_captcha, #fld_submit_btn, .noprint').hide();
         $('#fs_submitForm legend').text('You may print a copy of this for your records.');
       }
     })
