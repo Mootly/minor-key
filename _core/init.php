@@ -22,6 +22,7 @@
                     # Page components
   require_once( MP_CLASSLIB . 'mpc_parts.php');
   if (!isset($mpo_parts)) $mpo_parts = new mpc_parts();
+  $mpo_parts->page_path     = dirname($_SERVER['PHP_SELF']);
 //  if (!isset($mpo_menus)) $mpo_menus = new mpc_parts(true);
                     # Set default paths for assets
   require_once( MP_CLASSLIB . 'mpc_paths.php' );
@@ -44,10 +45,19 @@
                     # Otherwise it will assume:
                     # /_templates/template_name/classlib
   $mpo_parts->template      = $temp_string ;
-  $mpo_parts->perm_template = PERM_TEMPLATE.MP_PSEP ;
-  $mpo_paths->template      = MP_ROOT . '_templates/' ;
-  $mpo_paths->php_widgets   = MP_ROOT . '_assets/php_widgets/' ;
-  $mpo_paths->docs          = MP_ROOT . 'docs/' ;
+  $mpo_parts->perm_template = PERM_TEMPLATE.MP_PSEP;
+  $mpo_paths->template      = MP_ROOT . '_templates/';
+  $mpo_paths->php_widgets   = MP_ROOT . '_assets/php_widgets/';
+                    # If we are in a test copy of pages,
+                    # set site base path accordingly
+  if (strpos($mpo_parts->page_path,'_templates') !== false) {
+    $mpo_parts->site_base   = MP_PSEP . '_templates/'.$mpo_parts->template.'pages';
+  } elseif (strpos($mpo_parts->page_path,'/sites/') !== false) {
+    $mpo_parts->site_base  = MP_PSEP . 'sites';
+  } else {
+    $mpo_parts->site_base   = '';
+  }
+  $mpo_paths->docs          = $mpo_parts->site_base .'/docs';
   if (defined('DEF_CLASSLIB')) {
     $mpo_paths->tp_classlib = MP_ROOT . DEF_CLASSLIB;
   } else {

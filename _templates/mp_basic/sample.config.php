@@ -39,7 +39,6 @@
   require_once( MP_ROOT.'_core/init.php' );
 
 # Site specific variables ----------------------------------------------------- *
-  $mpo_parts->page_path     = dirname($_SERVER['PHP_SELF']);
                     # Values expected by the site or sub-site ----------------- *
   $mpo_parts->site_name     = 'MoosePress';
   $mpo_parts->site_abbr     = '[mp]';
