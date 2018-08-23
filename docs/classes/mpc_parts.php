@@ -45,8 +45,10 @@ ob_start();
   <dd><p>Space separated list of classes to add to <b>body</b> element.</p></dd>
   <dt>crumbs</dt>
   <dd><p>Used by the breadcrumb widget for a breadcrumb element.</p></dd>
+  <dt>h1_title</dt>
+  <dd><p>The title as it will appear in the H1 tag in the page. This should be the same as the <code>page_title</code> in most circumstances.</p></dd>
   <dt>link_title</dt>
-  <dd><p>Not currently used.</p></dd>
+  <dd><p>To indicate how to title links for this page. Not currently used.</p></dd>
   <dt>main_content</dt>
   <dd><p>The body of the page.</p></dd>
   <dt>pagemenu</dt>
@@ -67,6 +69,15 @@ ob_start();
   <dd><p>Separator for <b>title</b> elements. Not part of the final component array.</p></dd>
   <dt>site_abbr</dt>
   <dd><p>An abbreviation for the name of the site. Useful for namespacing and the like.</p></dd>
+  <dt>site_base</dt>
+  <dd>
+    <p>The path to the root of the current site. This should resolve to one of the following:</p>
+    <ul>
+      <li>(empty string for root)</li>
+      <li><code>/sites</code></li>
+      <li><code>/_templates/<var>template name</var>/pages</code></li>
+    </ul>
+  </dd>
   <dt>site_name</dt>
   <dd><p>The name of the site. Should appear in the masthead and be the last item in the <b>title</b> attribute.</p></dd>
   <dt>template</dt>

@@ -13,7 +13,7 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 $mpo_parts->h1_title          = 'Naming Conventions';
 $mpo_parts->link_title        = 'Naming Conventions';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
-$mpo_parts->section_name      = 'Documentation: Developer Notes';
+$mpo_parts->section_name      = 'Documentation: CMS Developer Notes';
 // $mpo_parts->section_base      = $mpo_parts->site_base .'/docs'
 $mpo_parts->section_base      = $mpo_paths->docs;
 $mpo_parts->accessibility     = 'standard';

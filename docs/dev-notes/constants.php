@@ -1,5 +1,5 @@
 <?php
-/* === Style Guide ============================================================ *
+/* === Developer Notes ======================================================== *
  * Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md
  * --- Revision History ------------------------------------------------------- *
  * 2018-05-09 | Copied over from test page.
@@ -10,10 +10,10 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Classes: mpc_paths';
-$mpo_parts->link_title        = 'mpc_paths';
+$mpo_parts->h1_title          = 'Constants';
+$mpo_parts->link_title        = 'Constants';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
-$mpo_parts->section_name      = 'Documentation: Class Library';
+$mpo_parts->section_name      = 'Documentation: CMS Developer Notes';
 // $mpo_parts->section_base      = $mpo_parts->site_base .'/docs'
 $mpo_parts->section_base      = $mpo_paths->docs;
 $mpo_parts->accessibility     = 'standard';
@@ -27,50 +27,52 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
+<p>This is a list of the contants that are defined in the CMS.</p>
 
-<p>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies.</p>
-
-<p>If a path is hard-coded in the process code instead of being defined in the config or init files, you did something wrong.</p>
-
-<p>It uses magic functions to generate properties as needed. The properties defined on initialization and/or instantiation are:</p>
-
-<ul>
-  <li>core</li>
-  <li>php_widgets</li>
-  <li>mp_classlib</li>
-  <li>template</li>
-  <li>tp_classlib</li>
-  <li>vendor</li>
-</ul>
-
-<h3>Methods</h3>
-
-<dl class="clamshell">
-
-  <dt>Constructor</dt>
+<dl class="inline-terms">
+  <dt id="dfn-currpath"><code>CURR_PATH</code></dt>
   <dd>
-    <pre>$mpo_paths = new $mpc_paths( [bool $is_locked=false] );</pre>
-
-    <p>On instantiation, can be passed boolean to determine whether to protect existing values. When protected, you can add new paths, but not overwrite old.</p>
+    <p>The current path as taken from <code> dirname($_SERVER['PHP_SELF'])</code>.</p>
   </dd>
-
-  <dt>Store or update a path</dt>
+  <dt id="dfn-defclasslib"><code>DEF_CLASSLIB</code></dt>
   <dd>
-    <pre>$mpo_paths-&gt;<var>path</var> = <var>value</var>;</pre>
-
-    <p>Uses magic functions to generate properties as needed.</p>
+    <p>The path to the tempalte class library for back-end processing.</p>
   </dd>
-
-  <dt>Return a path</dt>
+  <dt id="dfn-defhome"><code>DEF_HOME</code></dt>
   <dd>
-    <pre>$result = $mpo_paths-&gt;<var>path</var>;</pre>
+    <p>If the home page for this site is someplace other than root, this specifies the correct directory path.</p>
   </dd>
-
-  <dt>Return all paths in an array</dt>
+  <dt id="dfn-defprefix"><code>DEF_PREFIX</code></dt>
   <dd>
-    <pre>$result = $mpo_paths-&gt;build_list();</pre>
+    <p>The template prefix that defines the template family or client name.</p>
+  </dd>
+  <dt id="dfn-defroot"><code>DEF_ROOT</code></dt>
+  <dd>
+    <p>The root of the site for templating processes. By default, this is an empty string.</p>
+  </dd>
+  <dt id="dfn-deftemplate"><code>DEF_TEMPLATE</code></dt>
+  <dd>
+    <p>The template name. This is prefixed by the <code>DEF_PREFIX</code> to define the template path: <code><var>prefix</var>_<var>name</var></code>.</p>
+  </dd>
+  <dt id="dfn-mpclasslib"><code>MP_CLASSLIB</code></dt>
+  <dd>
+    <p>The path to the main class library for back-end processing.</p>
+  </dd>
+  <dt id="dfn-mppsep"><code>MP_PSEP</code></dt>
+  <dd>
+    <p>The path separator ro use in building paths. The default is <code>/</code>.</p>
+  </dd>
+  <dt id="dfn-mproot"><code>MP_ROOT</code></dt>
+  <dd>
+    <p>The site root for back-end processes. Takes the value of <code>$_SERVER['DOCUMENT_ROOT']</code>.</p>
+    <p>There should be no reason to change this value.</p>
+  </dd>
+  <dt id="dfn-permtemplate"><code>PERM_TEMPLATE</code></dt>
+  <dd>
+    <p>The fallback template in case there are template issues. The default is <code>mp_basic</code>. This does not gurantee pages using different templates will work with the fall back.</p>
   </dd>
 </dl>
+
 <!-- *** end contents ********************************************************* -->
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

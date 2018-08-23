@@ -58,6 +58,7 @@
     $mpo_parts->site_base   = '';
   }
   $mpo_paths->docs          = $mpo_parts->site_base .'/docs';
+                    # path t otemplate class libs
   if (defined('DEF_CLASSLIB')) {
     $mpo_paths->tp_classlib = MP_ROOT . DEF_CLASSLIB;
   } else {

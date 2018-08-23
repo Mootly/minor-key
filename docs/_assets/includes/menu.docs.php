@@ -22,12 +22,13 @@ ob_start();
           <li><a href="<?= $mpo_parts->section_base; ?>/styles/forms.php">Forms</a></li>
         </ul>
       </li>
-      <li class="collapse-header closed"><a href="#">Developer Notes</a>
+      <li class="collapse-header closed"><a href="#">CMS Developer Notes</a>
         <ul class="page-nav-sublist collapse-list hidden">
-          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/">Developer Notes</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/">CMS Dev Notes Home</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/organization.php">Code Organization</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/naming.php">Naming Conventions</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/comments.php">Comments</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/constants.php">Constants</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/naming.php">Naming Conventions</a></li>
         </ul>
       </li>
       <li class="collapse-header closed"><a href="#">Class Library</a>
