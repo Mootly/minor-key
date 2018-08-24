@@ -36,7 +36,7 @@ ob_start();
   </dd>
   <dt id="dfn-defclasslib"><code>DEF_CLASSLIB</code></dt>
   <dd>
-    <p>The path to the tempalte class library for back-end processing.</p>
+    <p>The path to the template class library for back-end processing.</p>
   </dd>
   <dt id="dfn-defhome"><code>DEF_HOME</code></dt>
   <dd>
