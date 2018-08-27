@@ -32,6 +32,10 @@ ob_start();
 ?>
 
 <div id="contents">
+  <pre>
+  <?php var_dump($mpo_parts); ?>
+  </pre>
+
   <section>
     <figure>
       <!-- <video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="640" height="360" data-setup='{}'> -->

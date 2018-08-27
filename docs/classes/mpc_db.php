@@ -10,8 +10,8 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Classes: mpc_cookies';
-$mpo_parts->link_title        = 'mpc_cookies';
+$mpo_parts->h1_title          = 'Classes: mpc_db';
+$mpo_parts->link_title        = 'mpc_db';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation: Class Library';
 // $mpo_parts->section_base      = $mpo_parts->site_base .'/docs'

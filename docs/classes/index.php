@@ -44,6 +44,14 @@ ob_start();
       <th colspan="2">List of Objects</th>
     </tr>
     <tr>
+      <td><a href="<?=CURR_PATH?>/mpc_cookies.php">mpc_cookies</a></td>
+      <td>The <cite>cookie</cite> object manages cookie handling.</td>
+    </tr>
+    <tr>
+      <td><a href="<?=CURR_PATH?>/mpc_db.php">mpc_db</a></td>
+      <td>The <cite>db</cite> object abstracts and manages database calls.</td>
+    </tr>
+    <tr>
       <td><a href="<?=CURR_PATH?>/mpc_menus.php">mpc_menus</a></td>
       <td>The <cite>menu</cite> object stores the menu sets for a page.</td>
     </tr>
@@ -54,6 +62,10 @@ ob_start();
     <tr>
       <td><a href="<?=CURR_PATH?>/mpc_paths.php">mpc_paths</a></td>
       <td>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies.</td>
+    </tr>
+    <tr>
+      <td><a href="<?=CURR_PATH?>/mpc_sessions.php">mpc_sessions</a></td>
+      <td>The <cite>session</cite> object stores the menu sets for a page.</td>
     </tr>
   </tbody>
 </table>

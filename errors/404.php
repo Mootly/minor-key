@@ -9,58 +9,94 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Build the page ------------------------------------------ *
                     # Content developers shouldn't touch anything above here.
 # *** Do our search setup ----------------------------------------------------- *
-$mpv_findStatus     = 'not found';
+$mpv_404_status     = 'not found';
                     # if some clever hacker is looking for the 404 page         *
                     # let them know they found it                               *
-if ($_SERVER['REQUEST_URI'] == $_SERVER['PHP_SELF']) { $mpv_findStatus = '404 success'; }
+if ($_SERVER['REQUEST_URI'] == $_SERVER['PHP_SELF']) {
+  $mpv_404_redirect_status    = '404 success';
+} else {
                     # allow file types to search for                            *
                     # broken out for readability                                *
                     # this was built while migrating a site off .Net            *
                     # you may want to extend this list if doing the same        *
-$mpv_validExt                 = array();
-$mpv_validExt['webpage']      = 'asp,aspx,cfm,htm,html,php';
-$mpv_validExt['document']     = 'doc,docx,dot,dotx,pdf,rtf';
-$mpv_validExt['slideshow']    = 'pps,ppt,pptx';
-$mpv_validExt['spreadsheet']  = 'xls,xlsx';
-$mpv_validExt['images']       = 'jpg,jpeg,gif,png,svg';
-$mpv_validExt['movie']        = 'avi,asx,flv,mov,mp4,mpg,mpeg,rm,wmv,wvx';
-$mpv_validExt['subtitles']    = 'sbv,srt,sub,vtt';
-$mpv_validExtString           = implode(',',$mpv_validExt);
-                    # grab what we are looking for                              *
-$mpv_requestedURI   = $_SERVER['REQUEST_URI'];
-$mpv_queryString    = $_SERVER['QUERY_STRING'];
-
-// ADD TEST FOR THESE STEPS
-                    # returns array: 0 - error code, 1 - url                    *
+  $mpv_404_vExt               = array();
+  $mpv_404_vExt['webpage']    = 'asp,aspx,cfm,htm,html,php';
+  $mpv_404_vExt['document']   = 'doc,docx,dot,dotx,rtf';        # odt,ott,
+  $mpv_404_vExt['pdf']        = 'pdf';
+  $mpv_404_vExt['slideshow']  = 'pps,ppt,pptx';                 # odp,odt,
+  $mpv_404_vExt['spreadsheet']= 'xls,xlsm,xlsx,xlt,xltm,xltx';  # ods,ots,
+  $mpv_404_vExt['images']     = 'jpg,jpeg,gif,png,svg';
+  $mpv_404_vExt['movie']      = 'avi,mov,mp4,mpg,mpeg,wmv';     # asx,flv,wvx,
+  $mpv_404_vExt['subtitles']  = 'sbv,srt,sub,vtt';
+  $mpv_404_vExtString         = implode(',',$mpv_404_vExt);
+  # *** URL breakout ---------------------------------------------------------- *
+  # break out the URL in steps so all values are easily available               *
+                    # Order of operations:                                      *
+                    # - 2 - try $_SERVER['REQUEST_URI']                         *
+                    # - 3 - if both empty, redirect to root                     *
+                    # - 1 - try $_SERVER['QUERY_STRING']                        *
+  if (empty($_SERVER['QUERY_STRING'])) {
+    if (empty($_SERVER['REQUEST_URI'])) {
+      $mpv_404_reqURI = parse_url($_SERVER['REQUEST_URI']);
+    } else {
+                    # *** REDIRECT to homepage -------------------------------- #
+      header('Location: '.MP_PSEP.$mpo_parts->site_base);                       #
+                    # *** REDIRECT to homepage -------------------------------- #
+    }
+  } else {
+                    # return array of query string components                   *
+                    #   0 - error code, 1 - url                                 *
                     # only return two in case there are semicolons in url       *
-$mpv_qsArray        = explode( ';', $mpv_queryString, 2 );
-                    # returns array: scheme, host, port, path                   *
-$mpv_urlArray       = parse_url($mpv_qsArray[1]);
-                    # returns array: dirname, basename, extension, filename     *
-$mpv_pathArray      = pathinfo($mpv_urlArray['path']);
-$mpv_pathArray['dirname'] = ltrim($mpv_pathArray['dirname'],'\\');
-                    # searching for                                             *
-$mpv_targetPath     = $mpv_pathArray['dirname'].MP_PSEP.$mpv_pathArray['filename'];
-# *** our first test - did they just get the extension wrong? ----------------- *
+    $mpv_404_qsArr                      = explode( ';', $_SERVER['QUERY_STRING'], 2 );
+                    # return array of URL components                            *
+                    #   scheme, host, port, path                                *
+    $mpv_404_reqURI                     = parse_url($mpv_404_qsArr[1]);
+  }
+                    # return array of filename components                       *
+                    # dirname, basename, extension, filename                    *
+  $mpv_404_pathArr                      = pathinfo($mpv_404_reqURI['path']);
+  $mpv_404_pathArr['dirname']           = ltrim($mpv_404_pathArr['dirname'],'\\');
+                    # get the category of our file extension                    *
+                    # directory, invalid, one of the $mpv_404_vExt keys         *
+  if ($mpv_404_pathArr['extension'] == '') {
+    $mpv_404_pathArr['src_cat']         = 'directory';
+  } else {
+    $mpv_404_pathArr['src_cat']         = preg_grep(
+      '/(^|\W)'.$mpv_404_pathArr['extension'].'($|\W)/',
+      $mpv_404_vExt
+    );
+    if (is_array($mpv_404_pathArr['src_cat'])) {
+      reset($mpv_404_pathArr['src_cat']);
+      $mpv_404_pathArr['src_cat']       = key($mpv_404_pathArr['src_cat']);
+    } else {
+      $mpv_404_pathArr['src_cat']       = 'invalid';
+    }
+  }
+                    # our base search string                                    *
+  $mpv_404_tPath    = $mpv_404_pathArr['dirname'].MP_PSEP.$mpv_404_pathArr['filename'];
+# *** TEST ONE - did they just get the extension wrong? ----------------------- *
+                    # build filename set to look for                            *
+                    # special case for index files                              *
+  if (($mpv_404_pathArr['filename'] == 'default') || ($mpv_404_pathArr['filename'] == 'index')) {
+    $mpv_404_globTarget = ltrim($mpv_404_pathArr['dirname'], '/').MP_PSEP.'{default,index}';
+  } else {
+    $mpv_404_globTarget = ltrim($mpv_404_tPath, '/');
+  }
                     # check directory for file matches with allowed suffixes    *
-                    # special cases for URLs with no file and for index files   *
-if (($mpv_pathArray['filename'] == 'default') || ($mpv_pathArray['filename'] == 'index')) {
-  $mpv_globTargetPath = ltrim($mpv_pathArray['dirname'], '/').MP_PSEP.'{default,index}';
-} elseif ($mpv_pathArray['filename'] == $mpv_pathArray['basename']) {
-  $mpv_globTargetPath = ltrim($mpv_targetPath, '/').MP_PSEP.'{default,index}';
-} else {
-  $mpv_globTargetPath = ltrim($mpv_targetPath, '/');
-}
-$mpv_globPath       = MP_ROOT.$mpv_globTargetPath.'.{'.$mpv_validExtString.'}';
-$mpv_resultset      = glob ( $mpv_globPath, GLOB_BRACE );
-if (count($mpv_resultset) == 0) {       # still not found
-  $mpv_findStatus   = 'search';
-} elseif (count($mpv_resultset) == 1) { # only one match, redirect to it
-  $mpv_findStatus   = 'success';
-  $mpv_redirectPath = str_replace(MP_ROOT,'',$mpv_resultset[0]);
-  header('Location: '.MP_PSEP.$mpv_redirectPath);
-} else {                                # multi-matches
-  $mpv_findStatus   = 'multiple';
+  $mpv_404_globPath = MP_ROOT.$mpv_404_globTarget.'.{'.$mpv_404_vExtString.'}';
+  $mpv_404_results  = glob ( $mpv_404_globPath, GLOB_BRACE );
+                    # review our results                             *
+  if (!$mpv_404_results || (count($mpv_404_results) == 0 )) {   # still not found
+    $mpv_404_status = 'search';
+  } elseif (count($mpv_404_results) == 1) {                   # only one match
+    $mpv_404_status = 'success';
+    $mpv_404_redPath= str_replace(MP_ROOT,'',$mpv_404_results[0]);
+                    # *** REDIRECT to found page ------------------------------ #
+    header('Location: '.MP_PSEP.$mpv_404_redPath);                              #
+                    # *** REDIRECT to found page ------------------------------ #
+  } else {                                                  # multi-matches
+    $mpv_404_status = 'multiple';
+  }
 }
 # *** our second test - check database for redirect --------------------------- *
                     # if not success, check the database                        *
@@ -81,20 +117,33 @@ ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
 <div id="contents">
+<?php if ($mpv_404_status == '404 success') {
+  $mpo_parts->h1_title          = '404: The page you requested is this one';
+?>
+<div class="center">
+<h2>Congratulations!</h2>
+
+<h3>You have found the 404 page!</h3>
+
+<p>No idea why people would want to intentionally look at a 404 page, but here it is.</p>
+
+<p>If this is not what you were looking for, try the <a href="/search/">search page</a> or the search bar above.</p>
+</div>
+<?php } /* endif */ ?>
 <pre>
-$mpv_redirectPath: <?php var_dump($mpv_redirectPath); ?>
+$mpv_404_redPath: <?php var_dump($mpv_404_redPath); ?>
 *****
-$mpv_qsArray: <?php var_dump($mpv_qsArray); ?>
+$mpv_404_qsArr: <?php var_dump($mpv_404_qaArr); ?>
 *****
-$mpv_urlArray: <?php var_dump($mpv_urlArray); ?>
+$mpv_404_reqURI: <?php var_dump($mpv_404_reqURI); ?>
 *****
-$mpv_pathArray: <?php var_dump($mpv_pathArray); ?>
+$mpv_404_pathArr: <?php var_dump($mpv_404_pathArr); ?>
 *****
-$mpv_targetPath: <?php var_dump($mpv_targetPath); ?>
+$mpv_404_tPath: <?php var_dump($mpv_404_tPath); ?>
 *****
-$mpv_globPath: <?php var_dump($mpv_globPath); ?>
+$mpv_404_globPath: <?php var_dump($mpv_404_globPath); ?>
 *****
-$mpv_resultset: <?php var_dump($mpv_resultset); ?>
+$mpv_404_results: <?php var_dump($mpv_404_results); ?>
 *****
 $_SESSION: <?php var_dump($_SESSION); ?>
 </pre>
