@@ -18,45 +18,9 @@
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-$mpo_404 = new mpc_redirects();
-                    # get the category of our file extension                    *
-                    # directory, invalid, one of the $mpv_404_vExt keys         *
-if ($mpv_404_pathArr['extension'] == '') {
-$mpv_404_pathArr['src_cat']         = 'directory';
-} else {
-$mpv_404_pathArr['src_cat']         = preg_grep(
-'/(^|\W)'.$mpv_404_pathArr['extension'].'($|\W)/',
-$mpv_404_vExt
-);
-if (is_array($mpv_404_pathArr['src_cat'])) {
-reset($mpv_404_pathArr['src_cat']);
-$mpv_404_pathArr['src_cat']       = key($mpv_404_pathArr['src_cat']);
-} else {
-$mpv_404_pathArr['src_cat']       = 'invalid';
-}
-}
+
 
 # *** Do our search setup ----------------------------------------------------- *
-$mpv_404_status     = 'not found';
-                    # if some clever hacker is looking for the 404 page         *
-                    # let them know they found it                               *
-if ($_SERVER['REQUEST_URI'] == $_SERVER['PHP_SELF']) {
-  $mpv_404_redirect_status    = '404 success';
-} else {
-                    # allow file types to search for                            *
-                    # broken out for readability                                *
-                    # this was built while migrating a site off .Net            *
-                    # you may want to extend this list if doing the same        *
-  $mpv_404_vExt               = array();
-  $mpv_404_vExt['webpage']    = 'asp,aspx,cfm,htm,html,php';
-  $mpv_404_vExt['document']   = 'doc,docx,dot,dotx,rtf';        # odt,ott,
-  $mpv_404_vExt['pdf']        = 'pdf';
-  $mpv_404_vExt['slideshow']  = 'pps,ppt,pptx';                 # odp,odt,
-  $mpv_404_vExt['spreadsheet']= 'xls,xlsm,xlsx,xlt,xltm,xltx';  # ods,ots,
-  $mpv_404_vExt['images']     = 'jpg,jpeg,gif,png,svg';
-  $mpv_404_vExt['movie']      = 'avi,mov,mp4,mpg,mpeg,wmv';     # asx,flv,wvx,
-  $mpv_404_vExt['subtitles']  = 'sbv,srt,sub,vtt';
-  $mpv_404_vExtString         = implode(',',$mpv_404_vExt);
   # *** URL breakout ---------------------------------------------------------- *
   # break out the URL in steps so all values are easily available               *
                     # Order of operations:                                      *
