@@ -22,48 +22,6 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 
 # *** Do our search setup ----------------------------------------------------- *
   # *** URL breakout ---------------------------------------------------------- *
-  # break out the URL in steps so all values are easily available               *
-                    # Order of operations:                                      *
-                    # - 2 - try $_SERVER['REQUEST_URI']                         *
-                    # - 3 - if both empty, redirect to root                     *
-                    # - 1 - try $_SERVER['QUERY_STRING']                        *
-  if (empty($_SERVER['QUERY_STRING'])) {
-    if (empty($_SERVER['REQUEST_URI'])) {
-      $mpv_404_reqURI = parse_url($_SERVER['REQUEST_URI']);
-    } else {
-                    # *** REDIRECT to homepage -------------------------------- #
-      header('Location: '.MP_PSEP.$mpo_parts->site_base);                       #
-                    # *** REDIRECT to homepage -------------------------------- #
-    }
-  } else {
-                    # return array of query string components                   *
-                    #   0 - error code, 1 - url                                 *
-                    # only return two in case there are semicolons in url       *
-    $mpv_404_qsArr                      = explode( ';', $_SERVER['QUERY_STRING'], 2 );
-                    # return array of URL components                            *
-                    #   scheme, host, port, path                                *
-    $mpv_404_reqURI                     = parse_url($mpv_404_qsArr[1]);
-  }
-                    # return array of filename components                       *
-                    # dirname, basename, extension, filename                    *
-  $mpv_404_pathArr                      = pathinfo($mpv_404_reqURI['path']);
-  $mpv_404_pathArr['dirname']           = ltrim($mpv_404_pathArr['dirname'],'\\');
-                    # get the category of our file extension                    *
-                    # directory, invalid, one of the $mpv_404_vExt keys         *
-  if ($mpv_404_pathArr['extension'] == '') {
-    $mpv_404_pathArr['src_cat']         = 'directory';
-  } else {
-    $mpv_404_pathArr['src_cat']         = preg_grep(
-      '/(^|\W)'.$mpv_404_pathArr['extension'].'($|\W)/',
-      $mpv_404_vExt
-    );
-    if (is_array($mpv_404_pathArr['src_cat'])) {
-      reset($mpv_404_pathArr['src_cat']);
-      $mpv_404_pathArr['src_cat']       = key($mpv_404_pathArr['src_cat']);
-    } else {
-      $mpv_404_pathArr['src_cat']       = 'invalid';
-    }
-  }
                     # our base search string                                    *
   $mpv_404_tPath    = $mpv_404_pathArr['dirname'].MP_PSEP.$mpv_404_pathArr['filename'];
 # *** TEST ONE - did they just get the extension wrong? ----------------------- *

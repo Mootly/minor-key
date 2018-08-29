@@ -18,7 +18,7 @@
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-$mpo_404 = new mpc_redirects();
+$mpo_404 = new mpc_filefinder();
                     # get the category of our file extension                    *
                     # directory, invalid, one of the $mpv_404_vExt keys         *
 if ($mpv_404_pathArr['extension'] == '') {
@@ -163,21 +163,13 @@ if ($mpv_404_status == '404 success') {
 </div>
 <?php } /* endif */ ?>
 <pre>
-$mpv_404_redPath: <?php var_dump($mpv_404_redPath); ?>
-*****
-$mpv_404_qsArr: <?php var_dump($mpv_404_qaArr); ?>
-*****
-$mpv_404_reqURI: <?php var_dump($mpv_404_reqURI); ?>
-*****
-$mpv_404_pathArr: <?php var_dump($mpv_404_pathArr); ?>
-*****
-$mpv_404_tPath: <?php var_dump($mpv_404_tPath); ?>
-*****
-$mpv_404_globPath: <?php var_dump($mpv_404_globPath); ?>
-*****
-$mpv_404_results: <?php var_dump($mpv_404_results); ?>
-*****
-$_SESSION: <?php var_dump($_SESSION); ?>
+$mpo_404->status: <?php var_dump($mpo_404->status); ?>
+$mpo_404->targetURI: <?php var_dump($mpo_404->targetURI); ?>
+$mpo_404->targetPath: <?php var_dump($mpo_404->targetPath); ?>
+$mpo_404->targetCategory: <?php var_dump($mpo_404->targetCategory); ?>
+$_SERVER['QUERY_STRING']: <?php var_dump($_SERVER['QUERY_STRING']); ?>
+$_SERVER['REQUEST_URI']: <?php var_dump($_SERVER['REQUEST_URI']); ?>
+$_SERVER: <?php var_dump($_SERVER); ?>
 </pre>
 </div>
 <!-- *** END CONTENT ********************************************************** -->

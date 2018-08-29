@@ -1,5 +1,5 @@
 <?php
-/* === Class Library ========================================================== *
+/* === mpc_sessions =========================================================== *
  * Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md
  * --- Revision History ------------------------------------------------------- *
  * 2018-05-09 | Copied over from test page.
@@ -10,8 +10,8 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Class Library';
-$mpo_parts->link_title        = 'Class Library';
+$mpo_parts->h1_title          = 'Classes: mpc_filefinder';
+$mpo_parts->link_title        = 'mpc_filefinder';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation: Class Library';
 // $mpo_parts->section_base      = $mpo_parts->site_base .'/docs'
@@ -28,51 +28,6 @@ ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
 
-<p>MoosePress uses objects for tracking various page components and some of the site settings. This is to make the code easier to use and to allow for automated validation of various elements.</p>
-
-<h3>What's Here</h3>
-
-<table class="list-table" title="List of section contents">
-  <thead>
-    <tr>
-      <th scope="col">Page</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th colspan="2">List of Objects</th>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/mpc_cookies.php">mpc_cookies</a></td>
-      <td>The <cite>cookie</cite> object manages cookie handling.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/mpc_db.php">mpc_db</a></td>
-      <td>The <cite>db</cite> object abstracts and manages database calls.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/mpc_filefinder.php">mpc_filefinder</a></td>
-      <td>The <cite>filefinder</cite> automates certain find processes in the case of 404 and other simple searches.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/mpc_menus.php">mpc_menus</a></td>
-      <td>The <cite>menu</cite> object stores the menu sets for a page.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/mpc_parts.php">mpc_parts</a></td>
-      <td>The <cite>parts</cite> object contains information fields for a page as well as a content blob.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/mpc_paths.php">mpc_paths</a></td>
-      <td>The <cite>paths</cite> object stores internal paths for PHP use. This is to allow paths to be defined up front and then called from the object. This reduces typos and inconsistencies.</td>
-    </tr>
-    <tr>
-      <td><a href="<?=CURR_PATH?>/mpc_sessions.php">mpc_sessions</a></td>
-      <td>The <cite>session</cite> object stores the menu sets for a page.</td>
-    </tr>
-  </tbody>
-</table>
 <!-- *** end contents ********************************************************* -->
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
