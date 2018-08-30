@@ -32,7 +32,7 @@ ob_start();
 
 <p>It can also be used recursively for page components.</p>
 
-<h3>Properties</h3>
+<h2>Properties</h2>
 
 <p>It uses magic functions to generate properties as needed. The properties defined on initialization, instantiation or otherwise used by the default page templates are:</p>
 
@@ -86,27 +86,27 @@ ob_start();
   <dd><p>Pattern for generating page title. Not part of the final component array.</p></dd>
 </dl>
 
-<h3>Methods</h3>
+<h2>Methods</h2>
 
 <dl class="clamshell">
 
   <dt>Constructor</dt>
   <dd>
-    <pre>$mpo_parts = new $mpc_parts( [bool $is_locked=false] );</pre>
+    <pre><var>obj</var> = new mpc_parts( [<var>bool</var> is_locked=false] );</pre>
 
     <p>On instantiation, can be passed boolean to determine whether to protect existing values. When protected, you can add new page components, but not overwrite old.</p>
   </dd>
 
   <dt>Store or update a page component</dt>
   <dd>
-    <pre>$mpo_parts-&gt;<var>component</var> = <var>value</var>;</pre>
+    <pre>$mpo_instance-&gt;<var>token</var> = <var>mixed</var>;</pre>
 
-    <p>Uses magic functions to generate properties as needed.</p>
+    <p>Where <b>token</b> is a label for identifying the path. This is a magic function to generate properties as needed.</p>
   </dd>
 
   <dt>Return a page component</dt>
   <dd>
-    <pre>$result = $mpo_parts-&gt;<var>component</var>;</pre>
+    <pre><var>mixed</var> = $mpo_instance-&gt;<var>token</var>;</pre>
   </dd>
 
   <dt>Set the page title</dt>
@@ -118,24 +118,26 @@ ob_start();
     </ul>
     <p>The format consists of an array of the names of the property to be concatenated, in order of appearance, and the separator to use between them, including spaces.</p>
     <p>The default format and values are as follows:</p>
-    <pre>
+<pre>
 // set the structure
-$mpo_parts-&gt;title_struct  = ['page_name','section_name','site_name'];
-$mpo_parts-&gt;separator     = ' | ';
+$mpo_instance-&gt;title_struct  = ['page_name','section_name','site_name'];
+$mpo_instance-&gt;separator     = ' | ';
 // set the parts
-$mpo_parts-&gt;page_name     = <var>value</var>;
-$mpo_parts-&gt;section_name  = <var>value</var>;
-$mpo_parts-&gt;site_name     = <var>value</var>;</pre>
-  <p>A simple title including just the page name would be formatted as follows:</p>
-  <pre>
-$mpo_parts-&gt;title_struct  = ['page_name'];
-$mpo_parts-&gt;separator     = '';
-$mpo_parts-&gt;page_name     = <var>value</var>;</pre>
+$mpo_instance-&gt;page_name     = <var>str</var>;
+$mpo_instance-&gt;section_name  = <var>str</var>;
+$mpo_instance-&gt;site_name     = <var>str</var>;
+</pre>
+    <p>A simple title including just the page name would be formatted as follows:</p>
+<pre>
+$mpo_instance-&gt;title_struct  = ['page_name'];
+$mpo_instance-&gt;separator     = '';
+$mpo_instance-&gt;page_name     = <var>str</var>;
+</pre>
   </dd>
 
   <dt>Return the complete page title for the title bar</dt>
   <dd>
-    <pre>$result = $mpo_parts-&gt;build_title();</pre>
+    <pre><var>str</var> = $mpo_instance-&gt;build_title();</pre>
 
     <p>This action is performed automatically when you build the page.</p>
     <p>The default title has the format of: <b><var>page name</var> | <var>section name</var> | <var>site name</var></b>. Empty components will be omitted from the string.</p>
@@ -143,7 +145,7 @@ $mpo_parts-&gt;page_name     = <var>value</var>;</pre>
 
   <dt>Return an array of all page components</dt>
   <dd>
-    <pre>$result = $mpo_parts-&gt;build_page();</pre>
+    <pre><var>array</var> = $mpo_instance-&gt;build_page();</pre>
 
     <p>The results include an arry of all page components added by the name of the property to which they were assigned.</p>
   </dd>

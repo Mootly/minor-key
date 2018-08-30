@@ -28,6 +28,188 @@ ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
 
+<p>The <cite>filefinder</cite> object does 404 searches and other simple file finds.</p>
+
+<p>It does not do database searches, since these are application specific. However, all non-public variables are <code>protected</code> to make it easy to extend.</p>
+
+<h2>Public Properties</h2>
+
+<dl class="clamshell">
+
+<dt><code>$status</code></dt>
+  <dd>
+    <p>The current status of the query. It can have the following values.</p>
+
+    <h3>Process States</h3>
+    <p>These results indicate searching is still in process.</p>
+    <dl class="inline-terms">
+    <dt>not found</dt>
+      <dd>
+        <p>The requested page, document, or asset was not found. Check for redirect.</p>
+        <p>This is the default value and should never be returned as a final status except by the constructor.</p>
+      </dd>
+    <dt>mismatch</dt>
+      <dd>
+        <p>A possible match was found but the file types are not consistent.</p>
+        <p>The application should check the database or other resource for clarifying matches.</p>
+      </dd>
+    <dt>multiple</dt>
+      <dd>
+        <p>Multiple possible file matches were found.</p>
+        <p>The application should check the database or other resource for refining matches.</p>
+      </dd>
+    <dt>search</dt>
+      <dd>
+        <p>No matches found in the directory containing the target URL.</p>
+        <p>The application should check the database or other resource for matches.</p>
+      </dd>
+    </dl>
+
+    <h3>Final States</h3>
+    <p>These results indicate that searching is completed.</p>
+    <dl class="inline-terms">
+    <dt>404 success</dt>
+      <dd>
+        <p>The address being searched for matches the current URL.</p>
+        <p>If it is the 404 page, let the user know they successfully found the 404 page.</p>
+      </dd>
+    <dt>confirm</dt>
+      <dd>
+        <p>A potentional match was found, but there were problems that could not be programmatically resolved, for instance a file type mismatch or multiple results.</p>
+        <p>Ask the user to confirm the result.</p>
+      </dd>
+    <dt>no match</dt>
+      <dd>
+        <p>No matches were found.</p>
+        <p>Refer user to a search page or other search resource.</p>
+      </dd>
+    <dt>no search</dt>
+      <dd>
+        <p>No information was provided to search against.</p>
+        <p>If this is a 404 page, redirect to root.</p>
+      </dd>
+    <dt>success</dt>
+      <dd>
+        <p>Successful match found.</p>
+        <p>Redirect user.</p>
+      </dd>
+    </dl>
+
+    <h3>Error States</h3>
+    <p>These are errors that may prevclude further operations.</p>
+    <dl class="inline-terms">
+      <dt>invalid status</dt>
+      <dd>
+        <p>The status code provided does not exists.</p>
+        <p>Run explain with no argument for a complete list of status codes.</p>
+      </dd>
+    </dl>
+  </dd>
+  <dt><code>$targetCategory</code></dt>
+  <dd>
+    <p>The target category is the asset type as defined by the file suffix. It can have one of the following values.</p>
+    <dl class="inline-terms">
+      <dt>webpage</dt>
+      <dd>
+        <p>Has a suffix of: asp | aspx | cfm | htm | html | php</p>
+      </dd>
+      <dt>document</dt>
+      <dd>
+        <p>Has a suffix of: doc | docx | dot | dotx | rtf</p>
+      </dd>
+      <dt>pdf</dt>
+      <dd>
+        <p>Has a suffix of: pdf</p>
+      </dd>
+      <dt>slideshow</dt>
+      <dd>
+        <p>Has a suffix of: pps | ppt | pptx</p>
+      </dd>
+      <dt>spreadsheet</dt>
+      <dd>
+        <p>Has a suffix of: xls | xlsm | xlsx | xlt | xltm | xltx</p>
+      </dd>
+      <dt>images</dt>
+      <dd>
+        <p>Has a suffix of: jpg | jpeg | gif | png | svg</p>
+      </dd>
+      <dt>video</dt>
+      <dd>
+        <p>Has a suffix of: avi | mov | mp4 | mpg | mpeg | wmv</p>
+      </dd>
+      <dt>subtitles</dt>
+      <dd>
+        <p>Has a suffix of: sbv | srt | sub | vtt</p>
+      </dd>
+    </dl>
+    <div class="note">
+      <p><span class="title">Note:</span> The function being used to search the directories for matches (<code>glob()</code>) appears to have an upper limit for complexity of wild-cards. If adding suffixes you do need, remove those you don't. These were only chosen because they addressed a migration project at the time.</p>
+    </div>
+
+  </dd>
+</dl>
+
+<h2>Methods</h2>
+
+<dl class="clamshell">
+<dt>Constructor</dt>
+  <dd>
+<pre>
+<var>obj</var> = new mpc_filefinder(
+  [  <var>bool</var> auto_mode  = false
+  [, <var>str</var>  find_type  = '404'
+  [, <var>str</var>  page_query = ''    ]]]
+);
+</pre>
+    <dl class="inline-terms">
+      <dt><code>auto_mode</code></dt>
+      <dd>
+        <p>Whether to allow the class to automate redirects on 1:1 matches or merely confirm that one has been found.</p>
+        <p>Default is <b>false</b>.</p>
+      </dd>
+      <dt><code>find_type</code></dt>
+      <dd>
+        <p>The type of search to be performed. This allows special events to be added to each category by extending the class.</p>
+        <p>Default is <b>404</b>. 404 has some built in special handling.</p>
+      </dd>
+      <dt><code>page_query</code></dt>
+      <dd>
+        <p>Pass the URI to be looked for. If one is not provided, the script will try, in order, <code>$_SERVER['QUERY_STRING']</code> and <code>$_SERVER['REQUEST_URI']</code>.</p>
+        <p>Default is (<i>empty string</i>).</p>
+      </dd>
+    </dl>
+  </dd>
+<dt>Explain the status codes</dt>
+  <dd>
+    <pre><var>array</var> = $mpo_instance-&gt;explainStatus( <var>str</var> status_code = '' );</pre>
+    <p>Omitting the argument will return an array detailing all the status codes. Otherwise an array detailing the requested status code will be returned.</p>
+  </dd>
+<dt>Get the target URI</dt>
+  <dd>
+    <pre><var>str</var> = $mpo_instance-&gt;getTarget( <var>str</var> version = 'path' );</pre>
+    <p>Return the path being searched for as string.</p>
+    <ul>
+      <li><b>url</b> or <b>uri</b> will return the raw path as submitted.</li>
+      <li><b>path</b> or any other value wil return a cleaned up path for using in searches.</p>
+    </ul>
+  </dd>
+<dt>Get the target URI</dt>
+  <dd>
+    <pre><var>str</var> = $mpo_instance-&gt;getTarget( <var>str</var> version = 'path' );</pre>
+    <p>Return the path being searched for as string.</p>
+    <ul>
+      <li><b>url</b> or <b>uri</b> will return the raw path as submitted.</li>
+      <li><b>path</b> or any other value wil return a cleaned up path for using in searches.</p>
+    </ul>
+  </dd>
+<dt>List valid extensions</dt>
+  <dd>
+    <pre><var>mixed</var> = $mpo_instance-&gt;listValidExtensions( <var>str</var> category = '' );</pre>
+    <p>Return a list of extensions for a specified category of file as a string.</p>
+    <p>If no category is provided, return the entire extenion list as an array keyed by category.</p>
+  </dd>
+</dl>
+
 <!-- *** end contents ********************************************************* -->
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

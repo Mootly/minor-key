@@ -51,15 +51,15 @@ ob_start();
 
 <p>These are beyond the scope of the minimum viable product.</p>
 
-<h3>Methods</h3>
+<h2>Methods</h2>
 
 <dl class="clamshell">
 
 <dt>Constructor</dt>
   <dd>
-    <pre>$mpo_menus = new $mpc_menus( [bool $is_locked=true] );</pre>
+    <pre><var>obj</var> = new mpc_menus( [<var>bool</var> is_locked=true] );</pre>
 
-    <p>Use <code>$is_locked</code> to specify existing values as immutable. This allows later scripts to add new menus and add new links to menus, but not change the attributes of existing links or menus.</p>
+    <p>Use <code>is_locked</code> to specify existing values as immutable. This allows later scripts to add new menus and add new links to menus, but not change the attributes of existing links or menus.</p>
 
     <p>It is set to <code>true</code> by default.</p>
   </dd>
@@ -67,14 +67,14 @@ ob_start();
   <dd>
     <p>If a menu and its menu set is not locked, this method can be used to reset a menu.</p>
 
-    <pre>$mpo_menus-&gt;setmenu( str $name  [, array $settings] );</pre>
+    <pre>$mpo_instance-&gt;setmenu( <var>str</var> name  [, <var>array</var> settings] );</pre>
 
     <p>Settings:</p>
 
     <dl>
-    <dt><code>$settings['is_locked'] bool = false</code></dt>
+    <dt><code>$settings['is_locked'] <var>bool</var> = false</code></dt>
       <dd><p>A menu can be locked spearately from the menu set. Setting this to false will not override a parent setting of true.</p></dd>
-    <dt><code>$settings['permissions'] string = 'public'</code></dt>
+    <dt><code>$settings['permissions'] <var>str</var> = 'public'</code></dt>
       <dd>
         <p>A space separated string of permission levels for this menu. These are restrictive values. The string must be provided when generating the menu or the menu is blocked. The value of 'public' is a placeholder and is ignored by the code. Current permission levels are:</p>
         <ul>
@@ -85,11 +85,11 @@ ob_start();
           <li>admin</li>
         </ul>
       </dd>
-    <dt><code>$settings['type'] string = 'left-sidebar'</code></dt>
+    <dt><code>$settings['type'] <var>str</var> = 'left-sidebar'</code></dt>
       <dd>
         <p>A template specific description of the function this menu serves. Most commonly, its location on the page.</p>
       </dd>
-    <dt><code>$settings['classes'] string = ''</code></dt>
+    <dt><code>$settings['classes'] <var>str</var> = ''</code></dt>
       <dd>
         <p>A space separated list of classes to be added to the container element when generating the menu.</p>
       </dd>
@@ -97,23 +97,15 @@ ob_start();
   </dd>
 <dt>Create or edit a link</dt>
   <dd>
-    <pre>$mpo_menus-&gt;setlink( str $menu, string $text, str $url [, array $settings] );</pre>
+    <pre>$mpo_instance-&gt;setlink( str $menu, string $text, str $url [, array $settings] );</pre>
   </dd>
 <dt>Return a menu as an HTML list</dt>
   <dd>
-    <pre>$result = $mpo_menus-&gt;getmenu( str $name [, array $settings ] );</pre>
+    <pre><var>str</var> = $mpo_menus-&gt;getmenu( str $name [, array $settings ] );</pre>
   </dd>
 <dt>Return a menu as an array</dt>
   <dd>
-    <pre>$result = $mpo_menus-&gt;getlist( str $name [, array $settings ] );</pre>
-  </dd>
-<dt>Return the properties of a menu</dt>
-  <dd>
-    <pre>$result = $mpo_menus-&gt;getmenuprop( str $menu, str $property );</pre>
-  </dd>
-<dt>Return the properties of a link</dt>
-  <dd>
-    <pre>$result = $mpo_menus-&gt;getlink( str $menu, str $text [, array $settings] );</pre>
+    <pre><var>array</var> = $mpo_menus-&gt;getlist( str $name [, array $settings ] );</pre>
   </dd>
 </dl>
 

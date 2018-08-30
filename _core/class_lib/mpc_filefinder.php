@@ -18,12 +18,15 @@ class mpc_filefinder {
   * @package   moosepress
   * --------------------------------------------------------------------------- */
   public    $targetCategory;  # The category of the file.
-  public    $targetURI;       # The url to find.
-  public    $targetPath;      # The cleaned up verson of the url to find.
   public    $status;          # Current search status (see $statusTypes).
+  protected $mode = '';       # Whether to automate redirects.
   protected $seachType;       # The type of search to be performed.
+  protected $targetURI;       # The raw url to find.
   protected $uriArray;        # The url to find exploded.
   protected $pathArray;       # The path to find exploded.
+  protected $targetPath;      # The cleaned up verson of the url to find.
+  protected $globTarget;      # The url as being served to PHP glob().
+  protected $globResult;      # The result of a PHP glob search.
                     # $statusTypes includes descriptions and suggestions.       *
                     # There are three types of status: process, final, error.   *
                     # When a process status is returned, keep looking.          *
@@ -33,29 +36,29 @@ class mpc_filefinder {
   protected $statusTypes = array(
                     # Process states                                            *
     'not found'     => [ 'not found', 'process',
-      'The requested page, document, or asset was not found. Check for redirect. This is the default value and should enver be returned as a status'
+      'The requested page, document, or asset was not found. Check for redirect. This is the default value and should never be returned as a final status except by the constructor.'
       ],
     'mismatch'      => [ 'mismatch', 'process',
-      'A possible match was found but the file types are not consistent. Check the database or other resource for matches.'
+      'A possible match was found but the file types are not consistent. The application should check the database or other resource for clarifying matches.'
       ],
     'multiple'      => [ 'multiple', 'process',
-      'Multiple possible files were found. Ask user to confirm the result.'
+      'Multiple possible file matches were found. The application should check the database or other resource for refining matches.'
       ],
     'search'        => [ 'search', 'process',
-      'No simple matches found in the directory containing the target URL. Check the database or other resource for matches.'
+      'No simple matches found in the directory containing the target URL. The application should check the database or other resource for matches.'
       ],
                     # Final states                                              *
     '404 success'   => [ '404 success', 'final',
-      'The address being searched for matches the current URL. IF it is the 404 page, let the user know they successfully found the 404 page.'
+      'The address being searched for matches the current URL. If it is the 404 page, let the user know they successfully found the 404 page.'
       ],
     'confirm'       => [ 'confirm', 'final',
-      'A potentional match was found, but there were problems that could not be programmatically resolved. Ask user to confirm the result.'
+      'A potentional match was found, but there were problems that could not be programmatically resolved, for instance a file type mismatch or multiple results. Ask the user to confirm the result.'
       ],
     'no match'      => [ 'no match', 'final',
       'No matches were found. Refer user to a search page or other search resource.'
       ],
     'no search'     => [ 'no search', 'final',
-      'No information was provided to search against. IF this ia 404 page, redirect to root.'
+      'No information was provided to search against. fF this is a 404 page, redirect to root.'
       ],
     'success'       => ['success', 'final',
       'Successful match found. Redirect user.'
@@ -78,7 +81,7 @@ class mpc_filefinder {
     'slideshow'     => 'pps,ppt,pptx',                      # odp,odt,
     'spreadsheet'   => 'xls,xlsm,xlsx,xlt,xltm,xltx',       # ods,ots,
     'images'        => 'jpg,jpeg,gif,png,svg',
-    'movie'         => 'avi,mov,mp4,mpg,mpeg,wmv',          # asx,flv,wvx,
+    'video'         => 'avi,mov,mp4,mpg,mpeg,wmv',          # asx,flv,wvx,
     'subtitles'     => 'sbv,srt,sub,vtt',
   );
 # *** END - property declarations --------------------------------------------- *
@@ -99,11 +102,12 @@ class mpc_filefinder {
   * @param  string  $page_query         A string representing the URL to be processed.
   * @return string
   */
-  public function __construct($find_type='404', $page_query='') {
+  public function __construct($auto_mode=false, $find_type='404', $page_query='') {
                     # init our properties
-    $this->status                       = $this->statusTypes['not found'][0];
-    $this->seachType                    = $find_type;
-    $this->validExtStr                  = implode(',', $this->validExtTypes);
+    if ($auto_mode) { $this->mode = 'auto'; }
+    $this->status                 = $this->statusTypes['not found'][0];
+    $this->seachType              = $find_type;
+    $this->validExtStr            = implode(',', $this->validExtTypes);
                     # *** get our search URL ---------------------------------- *
                     # cascade order:                                            *
                     # - 1 - $page_query                                         *
@@ -121,7 +125,7 @@ class mpc_filefinder {
     } elseif (!empty($_SERVER['REQUEST_URI'])) {
       $this->targetURI                  = $_SERVER['REQUEST_URI'];
     } else {
-      $this->status                     = $this->statusTypes['no search'];
+      $this->status                     = $this->statusTypes['no search'][0];
     }
                     # return array of URL components                            *
                     #   scheme, host, port, path                                *
@@ -151,10 +155,14 @@ class mpc_filefinder {
 
                     # *** SPECIAL CASE ---------------------------------------- *
                     # if looking for current page on 404 call, abort now
-    if (($this->seachType == '404') && ($_SERVER['REQUEST_URI'] == $_SERVER['PHP_SELF'])) {
-      $this->status                     = $this->statusTypes['404 success'][0];
-    }
+    if ($_SERVER['REQUEST_URI'] == $_SERVER['PHP_SELF']) {
+      if ($this->seachType == '404') {
+        $this->status                   = $this->statusTypes['404 success'][0];
+      } else {
 
+        $this->status                   = $this->statusTypes['no search'][0];
+      }
+    }
   }
 # *** END - __construct ------------------------------------------------------- *
 #
@@ -180,6 +188,40 @@ class mpc_filefinder {
   }
 # *** END - explainStatus ----------------------------------------------------- *
 #
+# *** BEGIN getMatches -------------------------------------------------------- *
+/**
+  * Returns result set from a PHP glob()..
+  *
+  * Using a get to ensure these values are only set through the constructor.
+  *
+  * Parameters
+  * @return array
+  */
+  public function getMatches() {
+    return $this->globResult;
+  }
+# *** END - getMatches -------------------------------------------------------- *
+#
+# *** BEGIN getTarget --------------------------------------------------------- *
+/**
+  * Returns the string being searched for.
+  *
+  * Using a get to ensure these values are only set through the constructor.
+  * Defaults to the cleaned up path, but can also return the raw URI.
+  *
+  * Parameters
+  * @param  string  $version            The value to be returned (path | url).
+  * @return string
+  */
+  public function getTarget($version='path') {
+    if (($version == 'url') || ($version == 'uri')) {
+      return $this->targetURI;
+    } else {
+      return $this->targetPath;
+    }
+  }
+# *** END - getTarget --------------------------------------------------------- *
+#
 # *** BEGIN listValidExtensions ----------------------------------------------- *
 /**
   * List valid extensions allowed in search by category.
@@ -199,6 +241,42 @@ class mpc_filefinder {
     } else {
       return 'The extension requested is not a valid extension to search on.';
     }
+  }
+# *** END - listValidExtensions ----------------------------------------------- *
+#
+# *** BEGIN try_suffixMismatch ------------------------------------------------ *
+/**
+  * Test whether the problem is jsut a suffix mismatch.
+  *
+  * If auto, redirect.
+  * If none requested, returns the entire extension array.
+  *
+  * Parameters
+  * @param  string  $ext_cat            The extention category to be listed.
+  * @return mixed
+  */
+  public function try_suffixMistmatch() {
+                    # special case for index files                              *
+    if (($this->pathArray['filename'] == 'default') || ($this->pathArray['filename'] == 'index')) {
+      $this->globTarget = ltrim($this->pathArray['dirname'], '/').MP_PSEP.'{default,index}';
+    } else {
+      $this->globTarget = ltrim($this->targetPath, '/');
+    }
+                    # check directory for file matches with allowed suffixes    *
+    $this->globTarget  = MP_ROOT.$this->globTarget .'.{'.$this->validExtStr.'}';
+    $this->globResult  = glob( $this->globTarget, GLOB_BRACE );
+                    # review our results                             *
+    // if (!$mpv_404_results || (count($mpv_404_results) == 0 )) {   # still not found
+    //   $mpv_404_status = 'search';
+    // } elseif (count($mpv_404_results) == 1) {                   # only one match
+    //   $mpv_404_status = 'success';
+    //   $mpv_404_redPath= str_replace(MP_ROOT,'',$mpv_404_results[0]);
+    //                   # *** REDIRECT to found page ------------------------------ #
+    //   header('Location: '.MP_PSEP.$mpv_404_redPath);                              #
+    //                   # *** REDIRECT to found page ------------------------------ #
+    // } else {                                                  # multi-matches
+    //   $mpv_404_status = 'multiple';
+    // }
   }
 # *** END - listValidExtensions ----------------------------------------------- *
 }

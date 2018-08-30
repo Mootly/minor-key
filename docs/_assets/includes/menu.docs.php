@@ -34,9 +34,13 @@ ob_start();
       <li class="collapse-header closed"><a href="#">Class Library</a>
         <ul class="page-nav-sublist collapse-list hidden">
           <li><a href="<?= $mpo_parts->section_base; ?>/classes/">Class List</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_cookies.php">mpc_cookies</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_db.php">mpc_db</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_db.php">mpc_db</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_menus.php">mpc_menus</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_parts.php">mpc_parts</a></li>
           <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_paths.php">mpc_paths</a></li>
+          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_sessions.php">mpc_sessions</a></li>
         </ul>
       </li>
     </ul>

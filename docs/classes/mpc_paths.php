@@ -43,32 +43,33 @@ ob_start();
   <li>vendor</li>
 </ul>
 
-<h3>Methods</h3>
+<h2>Methods</h2>
 
 <dl class="clamshell">
 
   <dt>Constructor</dt>
   <dd>
-    <pre>$mpo_paths = new $mpc_paths( [bool $is_locked=false] );</pre>
+    <pre><var>obj</var> = new mpc_paths( [<var>bool</var> is_locked=false] );</pre>
 
     <p>On instantiation, can be passed boolean to determine whether to protect existing values. When protected, you can add new paths, but not overwrite old.</p>
   </dd>
 
   <dt>Store or update a path</dt>
   <dd>
-    <pre>$mpo_paths-&gt;<var>path</var> = <var>value</var>;</pre>
+    <pre>$mpo_instance-&gt;<var>token</var> = <var>str</var>;</pre>
 
-    <p>Uses magic functions to generate properties as needed.</p>
+    <p>Where <b>token</b> is a label for identifying the path. This is a magic function to generate properties as needed.</p>
   </dd>
 
   <dt>Return a path</dt>
   <dd>
-    <pre>$result = $mpo_paths-&gt;<var>path</var>;</pre>
+    <pre><var>str</var> = $mpo_instance-&gt;<var>token</var>;</pre>
+    <p>Where <b>token</b> is a label for identifying the path.</p>
   </dd>
 
   <dt>Return all paths in an array</dt>
   <dd>
-    <pre>$result = $mpo_paths-&gt;build_list();</pre>
+    <pre><var>array</var> = $mpo_instance-&gt;build_list();</pre>
   </dd>
 </dl>
 <!-- *** end contents ********************************************************* -->

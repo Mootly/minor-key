@@ -114,7 +114,7 @@
       }
     }
 /**
-* Create a or edit a link
+* Create or edit a link
 * If a menu or link is locked, only allow new links.
 * @param  string  $name   The name of the menu to be created.
 * @param  array   $params A hash of properties to be set.
@@ -137,19 +137,6 @@
         $this->menu[$name]['links']  = array();
       }
       return true;
-    }
-/**
-  * Return an array of menu items.
-  * @param  string  $name   The pseudoproperty name.
-  * @param  array   $params A hash of the output properties.
-  *         permissions     string - view rights categories used by page.
-  *         sort            string - sort order of the results.
-  * @return array
-  *         success         bool    - was the call successful.
-  *         content         string  - results or error message.
-  */
-    public function getlink($name, $params) {
-      return $this->menu[$name]['links'];
     }
   }
 // End mpc_parts -------------------------------------------------------------- *

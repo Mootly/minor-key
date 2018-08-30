@@ -24,23 +24,21 @@
     }
   }
                     // Generate borders between DL elements for collapser       ***
-  dl {
-    &.clamshell {
-      @include set-blended-border($c-base-text, bottom, 0.25, 0.25em, solid, $c-base-bg);
-      dt {
-        clear         : right;
-        padding       : 0.5em 0.25em;
-        font-weight   : bold;
-        @include set-blended-border($c-base-text, top, 0.25, 1px, solid, $c-base-bg);
-        &.list-header {
-          background-color: inherit;
-          border      : 0;
-          height      : 1.25em;
-        }
+  dl.clamshell {
+    @include set-blended-border($c-base-text, bottom, 0.25, 0.25em, solid, $c-base-bg);
+    > dt {
+      clear         : right;
+      padding       : 0.5em 0.25em;
+      font-weight   : bold;
+      @include set-blended-border($c-base-text, top, 0.25, 1px, solid, $c-base-bg);
+      &.list-header {
+        background-color: inherit;
+        border      : 0;
+        height      : 1.25em;
       }
-      dt:first-of-type {
-        @include set-blended-border($c-base-text, top, 0.25, 0.25em, solid, $c-base-bg);
-      }
+    }
+    > dt:first-of-type {
+      @include set-blended-border($c-base-text, top, 0.25, 0.25em, solid, $c-base-bg);
     }
   }
                     // Layout fix for list-header class when used in DIV        ***
