@@ -19,7 +19,7 @@ class mpc_filefinder {
   * --------------------------------------------------------------------------- */
   public    $targetCategory;  # The category of the file.
   public    $status;          # Current search status (see $statusTypes).
-  protected $mode = '';       # Whether to automate redirects.
+  protected $automode;        # Whether to automate redirects.
   protected $seachType;       # The type of search to be performed.
   protected $targetURI;       # The raw url to find.
   protected $uriArray;        # The url to find exploded.
@@ -104,10 +104,10 @@ class mpc_filefinder {
   */
   public function __construct($auto_mode=false, $find_type='404', $page_query='') {
                     # init our properties
-    if ($auto_mode) { $this->mode = 'auto'; }
-    $this->status                 = $this->statusTypes['not found'][0];
-    $this->seachType              = $find_type;
-    $this->validExtStr            = implode(',', $this->validExtTypes);
+    $this->automode           = $auto_mode;
+    $this->status             = $this->statusTypes['not found'][0];
+    $this->seachType          = $find_type;
+    $this->validExtStr        = implode(',', $this->validExtTypes);
                     # *** get our search URL ---------------------------------- *
                     # cascade order:                                            *
                     # - 1 - $page_query                                         *
@@ -144,7 +144,7 @@ class mpc_filefinder {
         '/(^|\W)'.$this->pathArray['extension'].'($|\W)/',
         $this->validExtTypes
       );
-      if (is_array($this->pathArray['category'])) {
+      if (!empty($this->pathArray['category'])) {
         reset($this->pathArray['category']);
         $this->pathArray['category']    = key($this->pathArray['category']);
       } else {
@@ -244,7 +244,7 @@ class mpc_filefinder {
   }
 # *** END - listValidExtensions ----------------------------------------------- *
 #
-# *** BEGIN try_suffixMismatch ------------------------------------------------ *
+# *** BEGIN try_extensionMismatch --------------------------------------------- *
 /**
   * Test whether the problem is jsut a suffix mismatch.
   *
@@ -255,29 +255,51 @@ class mpc_filefinder {
   * @param  string  $ext_cat            The extention category to be listed.
   * @return mixed
   */
-  public function try_suffixMistmatch() {
+  public function try_extensionMismatch() {
                     # special case for index files                              *
     if (($this->pathArray['filename'] == 'default') || ($this->pathArray['filename'] == 'index')) {
-      $this->globTarget = ltrim($this->pathArray['dirname'], '/').MP_PSEP.'{default,index}';
+      $this->pathArray['category'] = 'directory';
+      $this->globTarget       = ltrim($this->pathArray['dirname'], '/').MP_PSEP.'{default,index}';
     } else {
-      $this->globTarget = ltrim($this->targetPath, '/');
+      $this->globTarget       = ltrim($this->targetPath, '/');
     }
                     # check directory for file matches with allowed suffixes    *
-    $this->globTarget  = MP_ROOT.$this->globTarget .'.{'.$this->validExtStr.'}';
-    $this->globResult  = glob( $this->globTarget, GLOB_BRACE );
-                    # review our results                             *
-    // if (!$mpv_404_results || (count($mpv_404_results) == 0 )) {   # still not found
-    //   $mpv_404_status = 'search';
-    // } elseif (count($mpv_404_results) == 1) {                   # only one match
-    //   $mpv_404_status = 'success';
-    //   $mpv_404_redPath= str_replace(MP_ROOT,'',$mpv_404_results[0]);
-    //                   # *** REDIRECT to found page ------------------------------ #
-    //   header('Location: '.MP_PSEP.$mpv_404_redPath);                              #
-    //                   # *** REDIRECT to found page ------------------------------ #
-    // } else {                                                  # multi-matches
-    //   $mpv_404_status = 'multiple';
-    // }
+    $this->globTarget         = MP_ROOT.$this->globTarget .'.{'.$this->validExtStr.'}';
+    $this->globResult         = glob( $this->globTarget, GLOB_BRACE );
+                    # review our results                                        *
+    if (!$this->globResult || (count($this->globResult) == 0 )) { $this->status = 'search'; }
+                    # this is our success condition                             *
+    elseif (count($this->globResult) == 1) { $this->status = 'success'; }
+    else { $this->status = 'multiple'; }
+                    # if success run again with just the matched category       *
+    if ( ($this->status == 'success')
+    && ($this->pathArray['category'] != 'invalid')
+    && ($this->pathArray['category'] != 'directory')) {
+      $this->globTarget     = ltrim($this->targetPath, '/');
+      $this->globTarget     = MP_ROOT.$this->globTarget .'.{'.$this->validExtTypes[$this->pathArray['category']].'}';
+      array_push($this->globResult, glob( $this->globTarget, GLOB_BRACE ));
+      if (empty($this->globResult[1])) { $this->status = 'confirm'; }
+    }
+                    # if auto and success, redirect                             *
+    if ($this->automode && ($this->status == 'success')) {
+                    # this is now a scrap variable, so overwrite it             *
+                    # for directory/index file , correct to canonical           *
+      if ($this->pathArray['category'] == 'directory') {
+        $this->targetURI = $this->pathArray['dirname'];
+      } else {
+        $this->targetURI = MP_PSEP.str_replace(MP_ROOT,'',$this->globResult[0]);
+      }
+                    # *** REDIRECT to found page ------------------------------ #
+      header('Location: '.$this->targetURI);                            #
+                    # *** REDIRECT to found page ------------------------------ #
+    }
+    foreach($this->globResult as $t_key=>$t_item) {
+      if (!empty($t_item)) {
+        $this->globResult[$t_key] = MP_PSEP.str_replace(MP_ROOT,'',$t_item);
+      }
+    }
+    return $this->globResult;
   }
-# *** END - listValidExtensions ----------------------------------------------- *
+# *** END - try_extensionMismatch --------------------------------------------- *
 }
 // End mpc_filefinder --------------------------------------------------------- *

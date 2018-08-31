@@ -179,34 +179,36 @@ ob_start();
       </dd>
     </dl>
   </dd>
+<dt>Get the target URI</dt>
+  <dd>
+    <pre><var>str</var> = $mpo_instance-&gt;getTarget( <var>str</var> version = 'path' );</pre>
+    <p>Return the path being searched for as string.</p>
+    <ul>
+      <li><b>url</b> or <b>uri</b> will return the raw path as submitted.</li>
+      <li><b>path</b> or any other value wil return a cleaned up path for using in searches.</li>
+    </ul>
+  </dd>
 <dt>Explain the status codes</dt>
   <dd>
     <pre><var>array</var> = $mpo_instance-&gt;explainStatus( <var>str</var> status_code = '' );</pre>
     <p>Omitting the argument will return an array detailing all the status codes. Otherwise an array detailing the requested status code will be returned.</p>
-  </dd>
-<dt>Get the target URI</dt>
-  <dd>
-    <pre><var>str</var> = $mpo_instance-&gt;getTarget( <var>str</var> version = 'path' );</pre>
-    <p>Return the path being searched for as string.</p>
-    <ul>
-      <li><b>url</b> or <b>uri</b> will return the raw path as submitted.</li>
-      <li><b>path</b> or any other value wil return a cleaned up path for using in searches.</p>
-    </ul>
-  </dd>
-<dt>Get the target URI</dt>
-  <dd>
-    <pre><var>str</var> = $mpo_instance-&gt;getTarget( <var>str</var> version = 'path' );</pre>
-    <p>Return the path being searched for as string.</p>
-    <ul>
-      <li><b>url</b> or <b>uri</b> will return the raw path as submitted.</li>
-      <li><b>path</b> or any other value wil return a cleaned up path for using in searches.</p>
-    </ul>
   </dd>
 <dt>List valid extensions</dt>
   <dd>
     <pre><var>mixed</var> = $mpo_instance-&gt;listValidExtensions( <var>str</var> category = '' );</pre>
     <p>Return a list of extensions for a specified category of file as a string.</p>
     <p>If no category is provided, return the entire extenion list as an array keyed by category.</p>
+  </dd>
+<dt>Check for: Extension mismatch</dt>
+  <dd>
+    <pre><var>array</var> = $mpo_instance-&gt;try_extensionMismatch();</pre>
+    <p>Return an array of file paths that share the same path as the target URI except for the file extension.</p>
+    <ul>
+      <li>Set status to <b>search</b> on no matches.</li>
+      <li>Set status to <b>success</b> on a single match.</li>
+      <li>Set status to <b>multiple</b> on a multiple matches.</li>
+      <li>Set status to <b>confirm</b> if success but the file categories don't match.</li>
+    </ul>
   </dd>
 </dl>
 

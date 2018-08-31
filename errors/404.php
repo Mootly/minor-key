@@ -20,7 +20,7 @@
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 $mpo_404 = new mpc_filefinder(false);
 if ($mpo_404->status == 'not found') {
-  $mpo_404->try_suffixMistmatch();
+  $t_matchedURIList = $mpo_404->try_extensionMismatch();
 }
 
 # *** BEGIN EDITABLE VALUES --------------------------------------------------- *
@@ -46,7 +46,7 @@ ob_start();
 if ($mpo_404->status == '404 success') {
   $mpo_parts->h1_title          = '404: The page you requested is this one.';
 ?>
-<div class="center">
+<div>
 <h2>Congratulations!</h2>
 
 <h3>You have found the 404 page!</h3>
@@ -56,14 +56,32 @@ if ($mpo_404->status == '404 success') {
 <p>If this is not what you were looking for, try the <a href="/search/">search page</a> or the search bar above.</p>
 </div>
 <?php } /* endif */
-# *** 404 for when users try to go to 404 page -------------------------------- *
+# *** 404 for when users the redirect page can't find its target -------------- *
 if ($mpo_404->status == 'no search') { ?>
-<div class="center">
+<div>
 <h2>No redirect information found.</h2>
 
 <p>You have hit a redirect page without any information on where to be redirected.</p>
 
 <p>Try the <a href="/search/">search page</a> or the search bar above.</p>
+</div>
+<?php } /* endif */
+# *** results found that need user confirmation ------------------------------- *
+if (($mpo_404->status == 'confirm') || ($mpo_404->status == 'multiple')) { ?>
+<div>
+
+  <h2>Not Found</h2>
+
+<p>We didn't find anything at that address, but we did find some matches that might be what you were looking for.</p>
+
+<ul>
+<?php foreach($t_matchedURIList as $t_item) {
+  if(!empty($t_item)) { ?>
+  <li><a href="<?= $t_item; ?>"><?= $t_item; ?></a></li>
+<?php } } ?>
+</ul>
+
+<p>Otherwise, try the <a href="/search/">search page</a> or the search bar above.</p>
 </div>
 <?php } /* endif */ ?>
 <pre>
