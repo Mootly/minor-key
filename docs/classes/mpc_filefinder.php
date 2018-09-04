@@ -199,6 +199,12 @@ ob_start();
     <p>Return a list of extensions for a specified category of file as a string.</p>
     <p>If no category is provided, return the entire extenion list as an array keyed by category.</p>
   </dd>
+<dt>Check for: Redirect record</dt>
+  <dd>
+    <pre><var>array</var> = $mpo_instance-&gt;try_redirects();</pre>
+    <p>This is only a stub to be redefined for your database in a child of this class. Returns <code>NULL</code>.</p>
+    <p>If there is a redirects table, check it for a redirect record. You may also want to check any appropriate assets tables. If not found, flag the target URL for review.</p>
+  </dd>
 <dt>Check for: Extension mismatch</dt>
   <dd>
     <pre><var>array</var> = $mpo_instance-&gt;try_extensionMismatch();</pre>
@@ -213,14 +219,19 @@ ob_start();
   </dd>
 <dt>Check for: Formatting mismatch</dt>
   <dd>
-    <pre><var>array</var> = $mpo_instance-&gt;try_formatMismatch();</pre>
-    <p>Wildcard all special characters (dash, dot, underscore, blank and %20). Then invoke <code>try_extensionMismatch()</code>.</p>
+    <pre><var>mixed</var> = $mpo_instance-&gt;try_formatMismatch( <var>bool</var> execute = true );</pre>
+    <p>Wildcard all special characters (dash, dot, underscore, blank and %20). Since prepping for PHP glob(), it will be replacing special characters with asterisks. The pattern is:</p>
+    <pre>/((%\d{2})|(\s)|_|\-|\.)/g</pre>
+    <p>If <b>execute</b> set to true, pass control to <code>try_extensionMismatch()</code> and return the results array. Otherwise return the cleaned up string.</p>
+    <p>This approach can increase false positives.</p>
   </dd>
 <dt>Check for: Date mismatch</dt>
   <dd>
     <pre><var>array</var> = $mpo_instance-&gt;try_dateMismatch();</pre>
-    <p>If the end of the filename is formatted like a date, return an array of file paths that share the same path as the target URI except for the date and file extension.</p>
-    <p>This method assumes <code>try_extensionMismatch()</code> has already been attempted and returned <b>search</b>. It does repeat the safety checks from that method.</p>
+    <p>If the end of the filename is formatted like a simple date, return an array of file paths that share the same path as the target URI except for the date and file extension.</p>
+    <p>If the returned date string beings with a percent sign, the method will assume it is an escaped character and remove the first three characters.  The date pattern is:</p>
+    <pre>/(%\d{2})?\d{1,4}\D\d{1,2}\D\d{1,4}$/</pre>
+    <p>This method assumes <code>try_extensionMismatch()</code> has already been attempted and returned <b>search</b>. It does not repeat the checks from that method.</p>
     <ul>
       <li>Set status to <b>search</b> on no matches.</li>
       <li>Set status to <b>confirm</b> on a single match.</li>
@@ -228,6 +239,12 @@ ob_start();
     </ul>
     <p>Automode is ignored by this method to prevent auto-serving of older copies of a document.</p>
   </dd>
+  <dt>Flag broken links</dt>
+    <dd>
+      <pre><var>bool</var> = $mpo_instance-&gt;flag_brokenlink();</pre>
+      <p>This is only a stub to be redefined for your database in a child of this class. Returns <code>false</code>.</p>
+      <p>If no match was found, before writing out the 404 page, flag the requested URL for review in an appropriate table or other record.</p>
+    </dd>
 </dl>
 
 <!-- *** end contents ********************************************************* -->

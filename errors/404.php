@@ -19,9 +19,25 @@
                     # Call config to init the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 $mpo_404 = new mpc_filefinder(false);
+                    # Check 1 - check database -------------------------------- *
+                    # if you have a database, check for a redirect record first *
 if ($mpo_404->status == 'not found') {
+  $t_matchedURIList = $mpo_404->try_redirects();
+}
+
+                    # Check 2 - suffix mismatch ------------------------------- *
+if (empty($t_matchedURIList)) {
   $t_matchedURIList = $mpo_404->try_extensionMismatch();
 }
+                    # Check 3 - space character mistmatch --------------------- *
+if (empty($t_matchedURIList)) {
+  $t_matchedURIList = $mpo_404->try_formattingMismatch();
+}
+                    # Check 4 - date in string -------------------------------- *
+
+                    # Flag for a redirect if not success ---------------------- *
+                    # If we've gotten to here, no redirect happened. Flag it.   *
+$t_matchedURIList = $mpo_404->flag_brokenlink();
 
 # *** BEGIN EDITABLE VALUES --------------------------------------------------- *
                     # Build the page ------------------------------------------ *
@@ -89,6 +105,7 @@ $mpo_404->status: <?php var_dump($mpo_404->status); ?>
 $mpo_404->targetURI: <?php var_dump($mpo_404->getTarget('url')); ?>
 $mpo_404->targetPath: <?php var_dump($mpo_404->getTarget('path')); ?>
 $mpo_404->targetCategory: <?php var_dump($mpo_404->targetCategory); ?>
+$mpo_404->try_formattingMismatch(): <?php var_dump($mpo_404->try_formattingMismatch()); ?>
 $mpo_404->getMatches(): <?php var_dump($mpo_404->getMatches()); ?>
 $_SERVER['QUERY_STRING']: <?php var_dump($_SERVER['QUERY_STRING']); ?>
 $_SERVER['REQUEST_URI']: <?php var_dump($_SERVER['REQUEST_URI']); ?>

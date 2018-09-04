@@ -27,6 +27,29 @@ class mpc_filefinder {
   protected $targetPath;      # The cleaned up verson of the url to find.
   protected $globTarget;      # The url as being served to PHP glob().
   protected $globResult;      # The result of a PHP glob search.
+                    # our list of regexes                                       *
+                    # ones using variables set at invocation time not included  *
+  protected $regexPattern = array(
+    'date'          => '/(%\d{2})?\d{1,4}\D\d{1,2}\D\d{1,4}$/',
+    'nonchars'      => '/((%\d{2})|(\s)|_|\-|\.)/',
+  );
+
+                    # our list of valid extensions                              *
+                    # redirects only allowed to these types                     *
+                    # this was built while migrating a site off .Net            *
+                    # you may want to extend this list                          *
+                    # note that glob() stops working with too many              *
+  protected $validExtStr;
+  protected $validExtTypes = array(
+    'webpage'       => 'asp,aspx,cfm,htm,html,php',
+    'document'      => 'doc,docx,dot,dotx,rtf',             # odt,ott,
+    'pdf'           => 'pdf',
+    'slideshow'     => 'pps,ppt,pptx',                      # odp,odt,
+    'spreadsheet'   => 'xls,xlsm,xlsx,xlt,xltm,xltx',       # ods,ots,
+    'images'        => 'jpg,jpeg,gif,png,svg',
+    'video'         => 'avi,mov,mp4,mpg,mpeg,wmv',          # asx,flv,wvx,
+    'subtitles'     => 'sbv,srt,sub,vtt',
+  );
                     # $statusTypes includes descriptions and suggestions.       *
                     # There are three types of status: process, final, error.   *
                     # When a process status is returned, keep looking.          *
@@ -67,22 +90,6 @@ class mpc_filefinder {
     'invalid status'=> [ 'invalid status', 'error',
       'The status code provided does not exists. Run explain with no argument for a complete list of status codes.'
       ],
-  );
-                    # our list of valid extensions                              *
-                    # redirects only allowed to these types                     *
-                    # this was built while migrating a site off .Net            *
-                    # you may want to extend this list                          *
-                    # note that glob() stops working with too many              *
-  protected $validExtStr;
-  protected $validExtTypes = array(
-    'webpage'       => 'asp,aspx,cfm,htm,html,php',
-    'document'      => 'doc,docx,dot,dotx,rtf',             # odt,ott,
-    'pdf'           => 'pdf',
-    'slideshow'     => 'pps,ppt,pptx',                      # odp,odt,
-    'spreadsheet'   => 'xls,xlsm,xlsx,xlt,xltm,xltx',       # ods,ots,
-    'images'        => 'jpg,jpeg,gif,png,svg',
-    'video'         => 'avi,mov,mp4,mpg,mpeg,wmv',          # asx,flv,wvx,
-    'subtitles'     => 'sbv,srt,sub,vtt',
   );
 # *** END - property declarations --------------------------------------------- *
 #
@@ -244,24 +251,51 @@ class mpc_filefinder {
   }
 # *** END - listValidExtensions ----------------------------------------------- *
 #
+# *** BEGIN try_formattingMismatch --------------------------------------------- *
+/**
+  * Clean up as many special characters in the string as reasonable.
+  * Convert dash, dot, underscore, blank and %\d{2} to asterisk.
+  *
+  * If execute, pass to try_extensionMismatch().
+  *
+  * Parameters
+  * @param  bool    $execute            on true: pass to try_extensionMismatch().
+  * @return mixed
+  */
+  public function try_formattingMismatch($execute = true) {
+    $this->pathArray['globFilename'] = preg_replace(
+      $this->regexPattern['nonchars'],
+      '*',
+      $this->pathArray['filename']
+    );
+    if ($execute) {
+      return $this->try_extensionMismatch();
+    } else {
+      return $this->pathArray['globFilename'];
+    }
+  }
+# *** END - listValidExtensions ----------------------------------------------- *
+#
 # *** BEGIN try_extensionMismatch --------------------------------------------- *
 /**
-  * Test whether the problem is jsut a suffix mismatch.
+  * Test whether the problem is just a suffix mismatch.
   *
   * If auto, redirect.
   * If none requested, returns the entire extension array.
   *
   * Parameters
   * @param  string  $ext_cat            The extention category to be listed.
-  * @return mixed
+  * @return array
   */
   public function try_extensionMismatch() {
                     # special case for index files                              *
     if (($this->pathArray['filename'] == 'default') || ($this->pathArray['filename'] == 'index')) {
       $this->pathArray['category'] = 'directory';
       $this->globTarget       = ltrim($this->pathArray['dirname'], '/').MP_PSEP.'{default,index}';
-    } else {
+    } elseif (empty($this->pathArray['globFilename'])) {
       $this->globTarget       = ltrim($this->targetPath, '/');
+    } else {
+      $this->globTarget       = ltrim($this->pathArray['dirname'], '/').MP_PSEP.$this->pathArray['globFilename'];
     }
                     # check directory for file matches with allowed suffixes    *
     $this->globTarget         = MP_ROOT.$this->globTarget .'.{'.$this->validExtStr.'}';
