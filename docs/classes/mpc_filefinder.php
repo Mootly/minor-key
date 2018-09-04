@@ -209,6 +209,24 @@ ob_start();
       <li>Set status to <b>multiple</b> on a multiple matches.</li>
       <li>Set status to <b>confirm</b> if success but the file categories don't match.</li>
     </ul>
+    <p>If automode, redirect on success. Change default file names to directory path as canonical.</p>
+  </dd>
+<dt>Check for: Formatting mismatch</dt>
+  <dd>
+    <pre><var>array</var> = $mpo_instance-&gt;try_formatMismatch();</pre>
+    <p>Wildcard all special characters (dash, dot, underscore, blank and %20). Then invoke <code>try_extensionMismatch()</code>.</p>
+  </dd>
+<dt>Check for: Date mismatch</dt>
+  <dd>
+    <pre><var>array</var> = $mpo_instance-&gt;try_dateMismatch();</pre>
+    <p>If the end of the filename is formatted like a date, return an array of file paths that share the same path as the target URI except for the date and file extension.</p>
+    <p>This method assumes <code>try_extensionMismatch()</code> has already been attempted and returned <b>search</b>. It does repeat the safety checks from that method.</p>
+    <ul>
+      <li>Set status to <b>search</b> on no matches.</li>
+      <li>Set status to <b>confirm</b> on a single match.</li>
+      <li>Set status to <b>multiple</b> on a multiple matches.</li>
+    </ul>
+    <p>Automode is ignored by this method to prevent auto-serving of older copies of a document.</p>
   </dd>
 </dl>
 
