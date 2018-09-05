@@ -8,8 +8,6 @@
   *
   * Public Properties:
   * @var    array   $status             The status of the redirect with longdesc.
-  * @var    string  $queryStr           The value of the query string.
-  * @var    string  $requestStr         The value of the requesting URL.
   * Methods:
   * @method string  __construct()       Returns current state of redirect from $status
   * @method array   explainStatus()     Returns a description of status codes.
@@ -19,13 +17,13 @@
 class mpc_filefinder {
   public    $status;          # Current search status (see $statusTypes).
   protected $automode;        # Whether to automate redirects.
+  protected $globResult;      # The result of a PHP glob search.
+  protected $globTarget;      # The url as being served to PHP glob().
+  protected $pathArray;       # The path to find exploded.
   protected $seachType;       # The type of search to be performed.
   protected $targetURI;       # The raw url to find.
-  protected $uriArray;        # The url to find exploded.
-  protected $pathArray;       # The path to find exploded.
   protected $targetPath;      # The cleaned up verson of the url to find.
-  protected $globTarget;      # The url as being served to PHP glob().
-  protected $globResult;      # The result of a PHP glob search.
+  protected $uriArray;        # The url to find exploded.
                     # our list of regexes                                       *
                     # ones using variables set at invocation time not included  *
   protected $regexPattern = array(
@@ -343,7 +341,7 @@ class mpc_filefinder {
         }
       }
       if (($this->pathArray['category'] != 'directory') &&
-           ($t_globArray['category']      != 'invalid')) {
+          ($t_globArray['category']     != 'invalid')) {
         if ($t_globArray['category'] != $this->pathArray['category']) {
           $this->status = 'confirm';
         }

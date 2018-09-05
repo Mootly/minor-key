@@ -18,7 +18,7 @@
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-$mpo_404 = new ocfs_filefinder();
+$mpo_404 = new mpc_filefinder();
                     # Check 1 - check database -------------------------------- *
                     # if you have a database, check for a redirect record first *
 if ($mpo_404->status == 'not found') {
