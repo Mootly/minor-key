@@ -4589,6 +4589,10 @@ div.element-size {
   margin: 1.0em 2.0em 2.0em 20.0em;
 }
 
+#content-main.no-menu #content-box {
+  margin-left: 2.0em;
+}
+
 #content-box.full-width #content-box {
   margin: 1.0em auto 2.0em auto;
   max-width: 100%;

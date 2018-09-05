@@ -1,5 +1,4 @@
 <?php
-class mpc_filefinder {
 /**
   * A library of file finding tools for redirects and 404s.
   *
@@ -17,7 +16,7 @@ class mpc_filefinder {
   * @copyright 2018 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
-  public    $targetCategory;  # The category of the file.
+class mpc_filefinder {
   public    $status;          # Current search status (see $statusTypes).
   protected $automode;        # Whether to automate redirects.
   protected $seachType;       # The type of search to be performed.
@@ -30,10 +29,17 @@ class mpc_filefinder {
                     # our list of regexes                                       *
                     # ones using variables set at invocation time not included  *
   protected $regexPattern = array(
-    'date'          => '/(%\d{2})?\d{1,4}\D\d{1,2}\D\d{1,4}$/',
+    'date'          => '/(%\d{2})?\d{1,4}\D\d{1,2}\D\d{1,4}/',
     'nonchars'      => '/((%\d{2})|(\s)|_|\-|\.)/',
+    'compact'       => '/\*+/',
   );
-
+                    # protected paths                                           *
+                    # these automatically fail                                  *
+  protected $blockedPaths = array(
+    'core'          => '/^\/_core/',
+    'templates'     => '/^\/_templates/',
+    'vendors'       => '/^\/_vendors/',
+  );
                     # our list of valid extensions                              *
                     # redirects only allowed to these types                     *
                     # this was built while migrating a site off .Net            *
@@ -141,10 +147,16 @@ class mpc_filefinder {
                     # dirname, basename, extension, filename                    *
     $this->pathArray                    = pathinfo($this->uriArray['path']);
     $this->pathArray['dirname']         = ltrim($this->pathArray['dirname'],'\\');
+    $this->pathArray['globFilename']    = $this->pathArray['filename'];
     $this->targetPath = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
                     # get the category of our file extension                    *
                     # directory, invalid, one of the $mpv_404_vExt keys         *
     if ($this->pathArray['extension'] == '') {
+      $this->pathArray['category']      = 'directory';
+      $this->pathArray['dirname']       = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
+      $this->pathArray['filename']      = '';
+    } elseif (($this->pathArray['filename'] == 'index') ||
+      ($this->pathArray['filename'] == 'default')) {
       $this->pathArray['category']      = 'directory';
     } else {
       $this->pathArray['category']      = preg_grep(
@@ -158,7 +170,6 @@ class mpc_filefinder {
         $this->pathArray['category']    = 'invalid';
       }
     }
-    $this->targetCategory               = $this->pathArray['category'];
 
                     # *** SPECIAL CASE ---------------------------------------- *
                     # if looking for current page on 404 call, abort now
@@ -197,7 +208,7 @@ class mpc_filefinder {
 #
 # *** BEGIN getMatches -------------------------------------------------------- *
 /**
-  * Returns result set from a PHP glob()..
+  * Return result set from a PHP glob().
   *
   * Using a get to ensure these values are only set through the constructor.
   *
@@ -251,55 +262,53 @@ class mpc_filefinder {
   }
 # *** END - listValidExtensions ----------------------------------------------- *
 #
-# *** BEGIN try_formattingMismatch --------------------------------------------- *
+# *** BEGIN try_nameMismatch -------------------------------------------------- *
 /**
-  * Clean up as many special characters in the string as reasonable.
-  * Convert dash, dot, underscore, blank and %\d{2} to asterisk.
-  *
-  * If execute, pass to try_extensionMismatch().
-  *
-  * Parameters
-  * @param  bool    $execute            on true: pass to try_extensionMismatch().
-  * @return mixed
-  */
-  public function try_formattingMismatch($execute = true) {
-    $this->pathArray['globFilename'] = preg_replace(
-      $this->regexPattern['nonchars'],
-      '*',
-      $this->pathArray['filename']
-    );
-    if ($execute) {
-      return $this->try_extensionMismatch();
-    } else {
-      return $this->pathArray['globFilename'];
-    }
-  }
-# *** END - listValidExtensions ----------------------------------------------- *
-#
-# *** BEGIN try_extensionMismatch --------------------------------------------- *
-/**
-  * Test whether the problem is just a suffix mismatch.
+  * Check for simple filename mismatches.
   *
   * If auto, redirect.
-  * If none requested, returns the entire extension array.
+  * If clean includes date, autoredirect will be ignored.
   *
   * Parameters
-  * @param  string  $ext_cat            The extention category to be listed.
+  * @param  string  $clean              Comma spearated list of what to clean.
   * @return array
   */
-  public function try_extensionMismatch() {
-                    # special case for index files                              *
-    if (($this->pathArray['filename'] == 'default') || ($this->pathArray['filename'] == 'index')) {
-      $this->pathArray['category'] = 'directory';
-      $this->globTarget       = ltrim($this->pathArray['dirname'], '/').MP_PSEP.'{default,index}';
-    } elseif (empty($this->pathArray['globFilename'])) {
-      $this->globTarget       = ltrim($this->targetPath, '/');
-    } else {
-      $this->globTarget       = ltrim($this->pathArray['dirname'], '/').MP_PSEP.$this->pathArray['globFilename'];
+  public function try_nameMismatch($ignore='suffix') {
+                    # if path is flagged as a directory file, try that first    *
+    if ($this->pathArray['category'] == 'directory') {
+      $this->globTarget = ltrim($this->pathArray['dirname'], '/').MP_PSEP.'{default,index}';
+      $this->globTarget = MP_ROOT.$this->globTarget .'.{'.$this->validExtTypes['webpage'].'}';
+      $this->globResult = glob( $this->globTarget, GLOB_BRACE );
+      if (!$this->globResult || (count($this->globResult) == 0 )) {
+        $this->pathArray['category']      = 'invalid';
+      }
     }
-                    # check directory for file matches with allowed suffixes    *
-    $this->globTarget         = MP_ROOT.$this->globTarget .'.{'.$this->validExtStr.'}';
-    $this->globResult         = glob( $this->globTarget, GLOB_BRACE );
+    if (!$this->globResult || (count($this->globResult) == 0 )) {
+      $this->pathArray['globFilename']  = $this->pathArray['filename'];
+                    # clean up space characters                                 *
+      if (strpos($ignore, 'spaces') !== false) {
+        $this->pathArray['globFilename'] = preg_replace(
+          $this->regexPattern['nonchars'],
+          '*',
+          $this->pathArray['globFilename']
+        );
+      }
+                    # clean up dates                                            *
+      if (strpos($ignore, 'dates') !== false) {
+        $this->pathArray['globFilename'] = preg_replace(
+          $this->regexPattern['date'],
+          '*',
+          $this->pathArray['globFilename']
+        );
+      }
+      $this->globTarget = ltrim($this->pathArray['dirname'], '/').MP_PSEP.$this->pathArray['globFilename'];
+      if ((strpos($ignore, 'suffix') !== false) || ($this->pathArray['extension'] == '')) {
+        $this->globTarget = MP_ROOT.$this->globTarget .'.{'.$this->validExtStr.'}';
+      } else {
+        $this->globTarget = MP_ROOT.$this->globTarget .'.'.$this->pathArray['extension'];
+      }
+      $this->globResult   = glob( $this->globTarget, GLOB_BRACE );
+    }
                     # review our results                                        *
     if (!$this->globResult || (count($this->globResult) == 0 )) { $this->status = 'search'; }
                     # this is our success condition                             *
@@ -313,6 +322,32 @@ class mpc_filefinder {
       $this->globTarget     = MP_ROOT.$this->globTarget .'.{'.$this->validExtTypes[$this->pathArray['category']].'}';
       array_push($this->globResult, glob( $this->globTarget, GLOB_BRACE ));
       if (empty($this->globResult[1])) { $this->status = 'confirm'; }
+    }
+                    # success overrides                                         *
+    if ($this->status == 'success') {
+      if (strpos($ignore, 'dates') !== false) { $this->status = 'confirm'; }
+      $t_globArray = pathinfo($this->globResult[0]);
+                    # get the category of our file extension                    *
+      if ($t_globArray['extension'] == '') {
+        $t_globArray['category']        = 'directory';
+      } else {
+        $t_globArray['category']        = preg_grep(
+          '/(^|\W)'.$t_globArray['extension'].'($|\W)/',
+          $this->validExtTypes
+        );
+        if (!empty($t_globArray['category'])) {
+          reset($t_globArray['category']);
+          $t_globArray['category']      = key($t_globArray['category']);
+        } else {
+          $t_globArray['category']      = 'invalid';
+        }
+      }
+      if (($this->pathArray['category'] != 'directory') &&
+           ($t_globArray['category']      != 'invalid')) {
+        if ($t_globArray['category'] != $this->pathArray['category']) {
+          $this->status = 'confirm';
+        }
+      }
     }
                     # if auto and success, redirect                             *
     if ($this->automode && ($this->status == 'success')) {
@@ -329,11 +364,30 @@ class mpc_filefinder {
     }
     foreach($this->globResult as $t_key=>$t_item) {
       if (!empty($t_item)) {
+        // $this->globResult[$t_key] = MP_PSEP.ltrim(str_replace(MP_ROOT,'',$t_item), '/');
         $this->globResult[$t_key] = MP_PSEP.str_replace(MP_ROOT,'',$t_item);
       }
     }
     return $this->globResult;
   }
-# *** END - try_extensionMismatch --------------------------------------------- *
+# *** END - try_nameMismatch -------------------------------------------------- *
+#
+# *** BEGIN try_redirects ----------------------------------------------------- *
+/**
+  * Check the database for redirect information.
+  *
+  * This is a placeholder stub for use in an extends.
+  */
+  public function try_redirects() { return NULL; }
+# *** END - try_redirects --------------------------------------------------- *
+#
+# *** BEGIN flag_brokenlink --------------------------------------------------- *
+/**
+  * Flag broken links for review.
+  *
+  * This is placeholder stub for extends.
+  */
+  public function flag_brokenlink() { return false; }
+# *** END - flag_brokenlink --------------------------------------------------- *
 }
 // End mpc_filefinder --------------------------------------------------------- *

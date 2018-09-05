@@ -18,27 +18,22 @@
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-$mpo_404 = new mpc_filefinder(false);
+$mpo_404 = new ocfs_filefinder();
                     # Check 1 - check database -------------------------------- *
                     # if you have a database, check for a redirect record first *
 if ($mpo_404->status == 'not found') {
   $t_matchedURIList = $mpo_404->try_redirects();
 }
-
-                    # Check 2 - suffix mismatch ------------------------------- *
+                    # Check 2 - simple name mismatch -------------------------- *
 if (empty($t_matchedURIList)) {
-  $t_matchedURIList = $mpo_404->try_extensionMismatch();
+  $t_matchedURIList = $mpo_404->try_nameMismatch('suffix spaces');
 }
-                    # Check 3 - space character mistmatch --------------------- *
+                    # Check 3 - check again with date wildcarding ------------- *
 if (empty($t_matchedURIList)) {
-  $t_matchedURIList = $mpo_404->try_formattingMismatch();
+  $t_matchedURIList = $mpo_404->try_nameMismatch('suffix spaces dates');
+                    # no redirect in the database. Flag it.                     *
+  $t_updatecheck    = $mpo_404->flag_brokenlink();
 }
-                    # Check 4 - date in string -------------------------------- *
-
-                    # Flag for a redirect if not success ---------------------- *
-                    # If we've gotten to here, no redirect happened. Flag it.   *
-$t_matchedURIList = $mpo_404->flag_brokenlink();
-
 # *** BEGIN EDITABLE VALUES --------------------------------------------------- *
                     # Build the page ------------------------------------------ *
                     # Content developers shouldn't touch anything above here.
@@ -47,7 +42,7 @@ $t_matchedURIList = $mpo_404->flag_brokenlink();
 $mpo_parts->h1_title          = '404: The page you requested could not be found';
 $mpo_parts->link_title        = '404';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
-$mpo_parts->section_name      = 'Errors';
+$mpo_parts->section_name      = 'Errors: 404';
 $mpo_parts->section_base      = $mpo_parts->site_base .'/errors';
 $mpo_parts->accessibility     = 'standard';
                     # The main content body of the page is developed here.
@@ -56,7 +51,7 @@ $mpo_parts->accessibility     = 'standard';
 ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
-<div id="contents">
+<div id="contents" style="margin-bottom: 5.0em;">
 <?php
 # *** 404 for when users try to go to 404 page -------------------------------- *
 if ($mpo_404->status == '404 success') {
@@ -86,9 +81,9 @@ if ($mpo_404->status == 'no search') { ?>
 if (($mpo_404->status == 'confirm') || ($mpo_404->status == 'multiple')) { ?>
 <div>
 
-  <h2>Not Found</h2>
+  <h2>Something's missing!</h2>
 
-<p>We didn't find anything at that address, but we did find some matches that might be what you were looking for.</p>
+<p>We didn't find anything at this address, but we did find some matches that might be what you were looking for.</p>
 
 <ul>
 <?php foreach($t_matchedURIList as $t_item) {
@@ -99,18 +94,23 @@ if (($mpo_404->status == 'confirm') || ($mpo_404->status == 'multiple')) { ?>
 
 <p>Otherwise, try the <a href="/search/">search page</a> or the search bar above.</p>
 </div>
+<?php } /* endif */
+# *** results found that need user confirmation ------------------------------- *
+if ($mpo_404->status == 'search') { ?>
+<div>
+
+  <h2>Something's missing!</h2>
+
+  <p>Sorry, we didn't find anything at this address.</p>
+
+  <p>Things you can do:</p>
+  <ul>
+    <li>Check the address for typos.</li>
+    <li>Enter a search in the search bar above.</li>
+    <li>Go to the <a href="/search/">search page</a>.</li>
+  </ul>
+</div>
 <?php } /* endif */ ?>
-<pre>
-$mpo_404->status: <?php var_dump($mpo_404->status); ?>
-$mpo_404->targetURI: <?php var_dump($mpo_404->getTarget('url')); ?>
-$mpo_404->targetPath: <?php var_dump($mpo_404->getTarget('path')); ?>
-$mpo_404->targetCategory: <?php var_dump($mpo_404->targetCategory); ?>
-$mpo_404->try_formattingMismatch(): <?php var_dump($mpo_404->try_formattingMismatch()); ?>
-$mpo_404->getMatches(): <?php var_dump($mpo_404->getMatches()); ?>
-$_SERVER['QUERY_STRING']: <?php var_dump($_SERVER['QUERY_STRING']); ?>
-$_SERVER['REQUEST_URI']: <?php var_dump($_SERVER['REQUEST_URI']); ?>
-$_SERVER['PHP_SELF']: <?php var_dump($_SERVER['PHP_SELF']); ?>
-</pre>
 </div>
 <!-- *** END CONTENT ********************************************************** -->
 <?php
@@ -120,5 +120,5 @@ $_SERVER['PHP_SELF']: <?php var_dump($_SERVER['PHP_SELF']); ?>
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
 $page_elements = $mpo_parts->build_page();
-echo ($twig->render($mpo_parts->template.$mpt_form_template, array('page'=>$page_elements['content'])));
+echo ($twig->render($mpo_parts->template.$mpt_home_template, array('page'=>$page_elements['content'])));
 ?>

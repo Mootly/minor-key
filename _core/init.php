@@ -66,11 +66,11 @@
   }
                     # init autoloader
   spl_autoload_register(function ($classname) {
+    global $mpo_paths;
     if(preg_match('/^mpc_/', $classname)) {
-      global $mpo_paths;
-      require_once $mpo_paths->mp_classlib . MP_PSEP . strtolower($classname) . '.php';
+      require_once $mpo_paths->mp_classlib . strtolower($classname) . '.php';
     } else {
-      require_once $mpo_paths->tp_classlib . MP_PSEP . strtolower($classname) . '.php';
+      require_once $mpo_paths->tp_classlib . strtolower($classname) . '.php';
     }
   });
                     # Load registered components needed by third party modules

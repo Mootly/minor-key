@@ -205,10 +205,20 @@ ob_start();
     <p>This is only a stub to be redefined for your database in a child of this class. Returns <code>NULL</code>.</p>
     <p>If there is a redirects table, check it for a redirect record. You may also want to check any appropriate assets tables. If not found, flag the target URL for review.</p>
   </dd>
-<dt>Check for: Extension mismatch</dt>
+<dt>Check for: Name mismatch</dt>
   <dd>
-    <pre><var>array</var> = $mpo_instance-&gt;try_extensionMismatch();</pre>
-    <p>Return an array of file paths that share the same path as the target URI except for the file extension.</p>
+    <pre><var>array</var> = $mpo_instance-&gt;try_nameMismatch(<var>str</var> ignore = 'suffix');</pre>
+    <p>Return an array of file paths that share a similar path as the target URI. The following elements can be wildcarded using a comma/space separated list in the <code>ignore</code> argument.</p>
+    <ul>
+      <li><b>dates</b>: numeric dates. The regex includes leading escaped characrers to avoid misreadings, and is as follows:
+        <pre>/(%\d{2})?\d{1,4}\D\d{1,2}\D\d{1,4}$/</pre>
+      </li>
+      <li><b>spaces</b>: spaces and spacers ( %20, -, _, . ). The regex is as follows:
+        <pre>/((%\d{2})|(\s)|_|\-|\.)/g</pre>
+      </li>
+      <li><b>suffix</b>: file suffix (default). If there is no suffix on the file, the method will run as if <code>ignore</code> suffix was specified.</li>
+    </ul>
+    <p>The following status values can be set by this method.</p>
     <ul>
       <li>Set status to <b>search</b> on no matches.</li>
       <li>Set status to <b>success</b> on a single match.</li>
@@ -216,28 +226,7 @@ ob_start();
       <li>Set status to <b>confirm</b> if success but the file categories don't match.</li>
     </ul>
     <p>If automode, redirect on success. Change default file names to directory path as canonical.</p>
-  </dd>
-<dt>Check for: Formatting mismatch</dt>
-  <dd>
-    <pre><var>mixed</var> = $mpo_instance-&gt;try_formatMismatch( <var>bool</var> execute = true );</pre>
-    <p>Wildcard all special characters (dash, dot, underscore, blank and %20). Since prepping for PHP glob(), it will be replacing special characters with asterisks. The pattern is:</p>
-    <pre>/((%\d{2})|(\s)|_|\-|\.)/g</pre>
-    <p>If <b>execute</b> set to true, pass control to <code>try_extensionMismatch()</code> and return the results array. Otherwise return the cleaned up string.</p>
-    <p>This approach can increase false positives.</p>
-  </dd>
-<dt>Check for: Date mismatch</dt>
-  <dd>
-    <pre><var>array</var> = $mpo_instance-&gt;try_dateMismatch();</pre>
-    <p>If the end of the filename is formatted like a simple date, return an array of file paths that share the same path as the target URI except for the date and file extension.</p>
-    <p>If the returned date string beings with a percent sign, the method will assume it is an escaped character and remove the first three characters.  The date pattern is:</p>
-    <pre>/(%\d{2})?\d{1,4}\D\d{1,2}\D\d{1,4}$/</pre>
-    <p>This method assumes <code>try_extensionMismatch()</code> has already been attempted and returned <b>search</b>. It does not repeat the checks from that method.</p>
-    <ul>
-      <li>Set status to <b>search</b> on no matches.</li>
-      <li>Set status to <b>confirm</b> on a single match.</li>
-      <li>Set status to <b>multiple</b> on a multiple matches.</li>
-    </ul>
-    <p>Automode is ignored by this method to prevent auto-serving of older copies of a document.</p>
+    <p>Telling the method to <code>ignore</code> dates will override <code>automode</code> and change success to confirm. This is to avoid the wrong version of dated files from being served. If you want to ignore dates and  still auto-direct in all thoer cases, run method once without ignoring dates then again with.</p>
   </dd>
   <dt>Flag broken links</dt>
     <dd>

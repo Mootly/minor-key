@@ -9,9 +9,13 @@
   max-width         : $max-content-width;
   margin            : 1.0em 2.0em 2.0em 20.0em;
 }
-#content-box.full-width #content-box {
-  margin            : 1.0em auto 2.0em auto;
-  max-width         : $max-full-page-width;
+#content-main.full-width,
+#content-main.no-menu {
+  padding           : 0 2.0em;
+  #content-box {
+    margin          : auto;
+    max-width       : $max-full-page-width;
+  }
 }
 // *** Media rules for small screens ------------------------------------------ ***
 @media (max-width: $break-1024-desktop) {
