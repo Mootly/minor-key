@@ -18,7 +18,7 @@
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-$mpo_404 = new mpc_filefinder();
+$mpo_404 = new mpc_filefinder(true);
                     # Check 1 - check database -------------------------------- *
                     # if you have a database, check for a redirect record first *
 if ($mpo_404->status == 'not found') {
@@ -34,6 +34,19 @@ if (empty($t_matchedURIList)) {
                     # no redirect in the database. Flag it.                     *
   $t_updatecheck    = $mpo_404->flag_brokenlink();
 }
+                    # customize our error message.                              *
+switch ($mpo_404->targetCategory) {
+  case 'webpage':     $t_type_message = 'a webpage';        break;
+  case 'document':    $t_type_message = 'a document';       break;
+  case 'pdf':         $t_type_message = 'a PDF';            break;
+  case 'slideshow':   $t_type_message = 'a presentation';   break;
+  case 'spreadsheet': $t_type_message = 'a spreadsheet';    break;
+  case 'images':      $t_type_message = 'an image';         break;
+  case 'video':       $t_type_message = 'a video';          break;
+  case 'subtitles':   $t_type_message = 'a subtitle file';  break;
+  default:            $t_type_message = 'anything';         break;
+}
+
 # *** BEGIN EDITABLE VALUES --------------------------------------------------- *
                     # Build the page ------------------------------------------ *
                     # Content developers shouldn't touch anything above here.
@@ -78,12 +91,12 @@ if ($mpo_404->status == 'no search') { ?>
 </div>
 <?php } /* endif */
 # *** results found that need user confirmation ------------------------------- *
-if (($mpo_404->status == 'confirm') || ($mpo_404->status == 'multiple')) { ?>
+if (in_array($mpo_404->status, ['confirm','multiple'])) { ?>
 <div>
 
   <h2>Something's missing!</h2>
 
-<p>We didn't find anything at this address, but we did find some matches that might be what you were looking for.</p>
+<p>We didn't find <?= $t_type_message; ?> at this address, but we did find some matches that might be what you were looking for.</p>
 
 <ul>
 <?php foreach($t_matchedURIList as $t_item) {
@@ -96,12 +109,12 @@ if (($mpo_404->status == 'confirm') || ($mpo_404->status == 'multiple')) { ?>
 </div>
 <?php } /* endif */
 # *** results found that need user confirmation ------------------------------- *
-if ($mpo_404->status == 'search') { ?>
+if (in_array($mpo_404->status, ['search','not found','no match'])) { ?>
 <div>
 
   <h2>Something's missing!</h2>
 
-  <p>Sorry, we didn't find anything at this address.</p>
+  <p>Sorry, we didn't find <?= $t_type_message; ?> at this address.</p>
 
   <p>Things you can do:</p>
   <ul>

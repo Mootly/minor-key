@@ -23,21 +23,24 @@
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
-  class mpc_menus {
-    protected $is_locked;
-    public $menu        = array();
-    protected $response = array();
-    protected $temp     = array();
-    protected $error    = array(
-      'current'   => 'none',
-      'none'      => 'Success.',
-      'data01'    => 'Invalid menu name.',
-      'data02'    => 'Invalid link name.',
-      'data03'    => 'Invalid URL.',
-      'data04'    => 'Invalid parameter.',
-      'lock01'    => 'Menu is locked.',
-      'lock02'    => 'Link is locked.',
-    );
+class mpc_menus {
+  protected $is_locked;
+  public $menu        = array();
+  protected $response = array();
+  protected $temp     = array();
+  protected $error    = array(
+    'current'   => 'none',
+    'none'      => 'Success.',
+    'data01'    => 'Invalid menu name.',
+    'data02'    => 'Invalid link name.',
+    'data03'    => 'Invalid URL.',
+    'data04'    => 'Invalid parameter.',
+    'lock01'    => 'Menu is locked.',
+    'lock02'    => 'Link is locked.',
+  );
+# *** END - property assignments ---------------------------------------------- *
+#
+# *** BEGIN constructor ------------------------------------------------------- *
 /**
   * Constructor
   * If we lock the instance, values can be added but not changed.
@@ -45,14 +48,17 @@
   * @param  bool $prot Are items locked from updating.
   * @return bool
   */
-    public function __construct($prot=true) {
-      $this->is_locked = $prot;
-      $error['current'] = 'lock01';
-      $this->response['success'] = true;
-      $this->response['errorcode'] = $error['current'];
-      $this->response['content'] = $error[$error['current']];
-      return true;
-    }
+  public function __construct($prot=true) {
+    $this->is_locked              = $prot;
+    $error['current']             = 'lock01';
+    $this->response['success']    = true;
+    $this->response['errorcode']  = $error['current'];
+    $this->response['content']    = $error[$error['current']];
+    return true;
+  }
+# *** END - constructor ------------------------------------------------------- *
+#
+# *** BEGIN setmenu ----------------------------------------------------------- *
 /**
   * Create or reset a menu
   * If instance is locked, only allow new menus.
@@ -66,38 +72,41 @@
   *         success         bool    - was the call successful.
   *         content         string  - results or error message.
   */
-    public function setmenu($name, $params) {
-      if ( (array_key_exists($name, $this->menu)) ) {
-        $this->temp['action'] = 'update';
-                    # if locked, block the update
-        if ( ($this->is_locked) or ($this->menu[$name]['is_locked']) ) {
-          $this->response['success']    = false;
-          $this->response['content']    = $error[$error['lock01']];
-          return $this->response;
-        }
-      } else {
-        $this->temp['action'] = 'create';
+  public function setmenu($name, $params) {
+    if ( (array_key_exists($name, $this->menu)) ) {
+      $this->temp['action'] = 'update';
+                  # if locked, block the update
+      if ( ($this->is_locked) or ($this->menu[$name]['is_locked']) ) {
+        $this->response['success']    = false;
+        $this->response['content']    = $error[$error['lock01']];
+        return $this->response;
       }
-                    # make sure we have values to work with
-                    # is_locked - set default: true, but menu default: false
-                    # because children should default to parent setting
-      $this->temp['perms']    = $params['permissions']  ? : 'public';
-      $this->temp['type']     = $params['type']         ? : 'left sidebar';
-      $this->temp['classes']  = $params['classes']      ? : '';
-      $this->temp['lock']     = $params['is_locked']    ? : false;
-                    # create / reset menu
-      $this->menu[$name]              = array();
-      $this->menu[$name]['perms']     = $this->temp['perms'];
-      $this->menu[$name]['type']      = $this->temp['type'];
-      $this->menu[$name]['classes']   = $this->temp['classes'];
-      $this->menu[$name]['is_locked'] = $this->temp['lock'];
-      $this->menu[$name]['links']     = array();
-                    # return success
-      $this->response['success'] = true;
-      $this->response['content'] = 'The menu '.$name.' hase been '.$temp_action.'d.';
-      $this->temp = array();            # clean up after yourself
-      return $this->response;
+    } else {
+      $this->temp['action'] = 'create';
     }
+                    # make sure we have values to work with                     *
+                    # is_locked - set default: true, but menu default: false    *
+                    # because children should default to parent setting         *
+    $this->temp['perms']    = $params['permissions']  ? : 'public';
+    $this->temp['type']     = $params['type']         ? : 'left sidebar';
+    $this->temp['classes']  = $params['classes']      ? : '';
+    $this->temp['lock']     = $params['is_locked']    ? : false;
+                  # create / reset menu
+    $this->menu[$name]              = array();
+    $this->menu[$name]['perms']     = $this->temp['perms'];
+    $this->menu[$name]['type']      = $this->temp['type'];
+    $this->menu[$name]['classes']   = $this->temp['classes'];
+    $this->menu[$name]['is_locked'] = $this->temp['lock'];
+    $this->menu[$name]['links']     = array();
+                  # return success
+    $this->response['success'] = true;
+    $this->response['content'] = 'The menu '.$name.' hase been '.$temp_action.'d.';
+    $this->temp = array();            # clean up after yourself
+    return $this->response;
+  }
+# *** END - setmenu ----------------------------------------------------------- *
+#
+# *** BEGIN getlist ----------------------------------------------------------- *
 /**
   * Return an array of menu items.
   * @param  string  $name   The pseudoproperty name.
@@ -108,11 +117,14 @@
   *         success         bool    - was the call successful.
   *         content         string  - results or error message.
   */
-    public function getlist($name, $params) {
-      if ( array_key_exists($name, $this->menu) ) {
-        return $this->menu[$name]['links'];
-      }
+  public function getlist($name, $params) {
+    if ( array_key_exists($name, $this->menu) ) {
+      return $this->menu[$name]['links'];
     }
+  }
+# *** END - getlist ----------------------------------------------------------- *
+#
+# *** BEGIN setlink ----------------------------------------------------------- *
 /**
 * Create or edit a link
 * If a menu or link is locked, only allow new links.
@@ -125,18 +137,19 @@
 *         success         bool    - was the call successful.
 *         content         string  - results or error message.
 */
-    public function setlink($name, $params) {
-      $temp_perms   = $params['permissions'] ? : 'public';
-      $temp_type    = $params['type'] ? : 'left sidebar';
-      if (($this->is_locked) and (array_key_exists($name, $this->menu))) {
-        return false;
-      }else {
-        $this->menu[$name]           = array();
-        $this->menu[$name]['perms']  = $temp_perms;
-        $this->menu[$name]['type']   = $temp_type;
-        $this->menu[$name]['links']  = array();
-      }
-      return true;
+  public function setlink($name, $params) {
+    $temp_perms     = $params['permissions'] ? : 'public';
+    $temp_type      = $params['type'] ? : 'left sidebar';
+    if (($this->is_locked) and (array_key_exists($name, $this->menu))) {
+      return false;
+    }else {
+      $this->menu[$name]           = array();
+      $this->menu[$name]['perms']  = $temp_perms;
+      $this->menu[$name]['type']   = $temp_type;
+      $this->menu[$name]['links']  = array();
     }
+    return true;
   }
+# *** END - setlink ----------------------------------------------------------- *
+}
 // End mpc_parts -------------------------------------------------------------- *

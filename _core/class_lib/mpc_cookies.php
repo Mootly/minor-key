@@ -23,50 +23,82 @@
   * @copyright 2018 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
-  class mpc_paths {
-    protected $is_locked;
-    protected $cookieset = array();
-                    /**
-                      * Constructor
-                      * If we lock the instance, values can be added but not changed.
-                      * To lock a path set, instantiate with true.
-                      * @param  bool $prot Are items locked from updating.
-                      * @return bool
-                      */
-    public function __construct($prot=false) {
-      $this->is_locked = $prot;
-      return true;
-    }
-                    /**
-                      * Return the value of asset path.
-                      * @param  string $property The pseudoproperty name.
-                      * @return string
-                      */
-    public function __get($property) {
-      return $this->cookieset[$property];
-    }
-                    /**
-                      * Set a pseudo property to a value.
-                      * If instance is locked, only allow new properties.
-                      * @param  string $property  The pseudoproperty name.
-                      * @param  string $value     The value to be assigned.
-                      * @return bool
-                      */
-    public function __set($property, $value) {
-      if ($this->is_locked) {
-        $this->cookieset[$property] = $this->cookieset[$property] ?? $value;
-      }else {
-        $this->cookieset[$property] = $value;
-      }
-      return true;
-    }
-                    /**
-                      * Returns an associative array of paths.
-                      * @return hash
-                      */
-    public function read() {
-      return $this->cookieset;
-    }
-
+class mpc_paths {
+  protected $is_locked;
+  protected $cookieset = array();
+# *** END - property assignments ---------------------------------------------- *
+#
+# *** BEGIN constructor ------------------------------------------------------- *
+/**
+  * Constructor
+  * If we lock the instance, values can be added but not changed.
+  * To lock a path set, instantiate with true.
+  * @param  bool $prot Are items locked from updating.
+  * @return bool
+  */
+  public function __construct($prot=false) {
+    $this->is_locked = $prot;
+    return true;
   }
-// End mpc_paths -------------------------------------------------------------- *
+# *** END - constructor ------------------------------------------------------- *
+#
+# *** BEGIN __get ------------------------------------------------------------- *
+/**
+  * Return the value of asset path.
+  * @param  string $property The pseudoproperty name.
+  * @return string
+  */
+  public function __get($property) {
+    return $this->cookieset[$property];
+  }
+# *** END - __get ------------------------------------------------------------- *
+#
+# *** BEGIN __set ------------------------------------------------------------- *
+/**
+  * Set a pseudo property to a value.
+  * If instance is locked, only allow new properties.
+  * @param  string $property  The pseudoproperty name.
+  * @param  string $value     The value to be assigned.
+  * @return bool
+  */
+  public function __set($property, $value) {
+    if ($this->is_locked) {
+      $this->cookieset[$property] = $this->cookieset[$property] ?? $value;
+    }else {
+      $this->cookieset[$property] = $value;
+    }
+    return true;
+  }
+# *** END - __set ------------------------------------------------------------- *
+#
+# *** BEGIN read -------------------------------------------------------------- *
+/**
+  * Returns an associative array of paths.
+  * @return hash
+  */
+  public function read() {
+    return $this->cookieset;
+  }
+# *** END - read -------------------------------------------------------------- *
+#
+# *** BEGIN build ------------------------------------------------------------- *
+/**
+  * Build our cookie string.
+  * @return
+  */
+  public function build() {
+    return true;
+  }
+# *** END - build ------------------------------------------------------------- *
+#
+# *** BEGIN write ------------------------------------------------------------- *
+/**
+  * Write our cookie string.
+  * @return
+  */
+  public function write() {
+    return true;
+  }
+# *** END - write ------------------------------------------------------------- *
+}
+// End mpc_cookies ------------------------------------------------------------ *

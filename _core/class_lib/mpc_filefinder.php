@@ -8,6 +8,7 @@
   *
   * Public Properties:
   * @var    array   $status             The status of the redirect with longdesc.
+  * @var    string  $targetCategory     The category of the target URI.
   * Methods:
   * @method string  __construct()       Returns current state of redirect from $status
   * @method array   explainStatus()     Returns a description of status codes.
@@ -16,6 +17,7 @@
   * --------------------------------------------------------------------------- */
 class mpc_filefinder {
   public    $status;          # Current search status (see $statusTypes).
+  public    $targetCategory;  # The category of the target URI.
   protected $automode;        # Whether to automate redirects.
   protected $globResult;      # The result of a PHP glob search.
   protected $globTarget;      # The url as being served to PHP glob().
@@ -33,10 +35,11 @@ class mpc_filefinder {
   );
                     # protected paths                                           *
                     # these automatically fail                                  *
-  protected $blockedPaths = array(
-    'core'          => '/^\/_core/',
-    'templates'     => '/^\/_templates/',
-    'vendors'       => '/^\/_vendors/',
+  protected $blockedPaths;
+  protected $blockedPathArray = array(
+    'core'          => '^\/_core',
+    'templates'     => '^\/_templates',
+    'vendors'       => '^\/_vendors',
   );
                     # our list of valid extensions                              *
                     # redirects only allowed to these types                     *
@@ -119,6 +122,7 @@ class mpc_filefinder {
     $this->status             = $this->statusTypes['not found'][0];
     $this->seachType          = $find_type;
     $this->validExtStr        = implode(',', $this->validExtTypes);
+    $this->blockedPaths       = '/('.implode(')|(', $this->blockedPathArray).')/';
                     # *** get our search URL ---------------------------------- *
                     # cascade order:                                            *
                     # - 1 - $page_query                                         *
@@ -149,12 +153,11 @@ class mpc_filefinder {
     $this->targetPath = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
                     # get the category of our file extension                    *
                     # directory, invalid, one of the $mpv_404_vExt keys         *
-    if ($this->pathArray['extension'] == '') {
+    if (($this->pathArray['filename'] == 'index') ||
+        ($this->pathArray['filename'] == 'default')) {
       $this->pathArray['category']      = 'directory';
-      $this->pathArray['dirname']       = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
       $this->pathArray['filename']      = '';
-    } elseif (($this->pathArray['filename'] == 'index') ||
-      ($this->pathArray['filename'] == 'default')) {
+    } elseif ($this->pathArray['extension'] == '') {
       $this->pathArray['category']      = 'directory';
     } else {
       $this->pathArray['category']      = preg_grep(
@@ -168,8 +171,13 @@ class mpc_filefinder {
         $this->pathArray['category']    = 'invalid';
       }
     }
-
-                    # *** SPECIAL CASE ---------------------------------------- *
+    $this->targetCategory               = $this->pathArray['category'];
+                    # *** SPECIAL CASES --------------------------------------- *
+                    # check for system paths                                    *
+    if (preg_match($this->blockedPaths,$this->targetPath)) {
+      $this->pathArray['category']      = 'system';
+      $this->status                     = $this->statusTypes['no search'][0];
+    }
                     # if looking for current page on 404 call, abort now
     if ($_SERVER['REQUEST_URI'] == $_SERVER['PHP_SELF']) {
       if ($this->seachType == '404') {
@@ -272,13 +280,16 @@ class mpc_filefinder {
   * @return array
   */
   public function try_nameMismatch($ignore='suffix') {
+    if ($this->pathArray['category'] == 'system') { return false; }
                     # if path is flagged as a directory file, try that first    *
     if ($this->pathArray['category'] == 'directory') {
-      $this->globTarget = ltrim($this->pathArray['dirname'], '/').MP_PSEP.'{default,index}';
-      $this->globTarget = MP_ROOT.$this->globTarget .'.{'.$this->validExtTypes['webpage'].'}';
-      $this->globResult = glob( $this->globTarget, GLOB_BRACE );
+      if ($this->pathArray['filename'] == '') {
+        $this->globTarget = ltrim($this->pathArray['dirname'], '/').MP_PSEP.'{default,index}';
+        $this->globTarget = MP_ROOT.$this->globTarget .'.{'.$this->validExtTypes['webpage'].'}';
+        $this->globResult = glob( $this->globTarget, GLOB_BRACE );
+      }
       if (!$this->globResult || (count($this->globResult) == 0 )) {
-        $this->pathArray['category']      = 'invalid';
+        $this->pathArray['category']    = 'invalid';
       }
     }
     if (!$this->globResult || (count($this->globResult) == 0 )) {
@@ -299,7 +310,7 @@ class mpc_filefinder {
           $this->pathArray['globFilename']
         );
       }
-      $this->globTarget = ltrim($this->pathArray['dirname'], '/').MP_PSEP.$this->pathArray['globFilename'];
+      $this->globTarget   = ltrim($this->pathArray['dirname'], '/').MP_PSEP.$this->pathArray['globFilename'];
       if ((strpos($ignore, 'suffix') !== false) || ($this->pathArray['extension'] == '')) {
         $this->globTarget = MP_ROOT.$this->globTarget .'.{'.$this->validExtStr.'}';
       } else {
@@ -313,9 +324,8 @@ class mpc_filefinder {
     elseif (count($this->globResult) == 1) { $this->status = 'success'; }
     else { $this->status = 'multiple'; }
                     # if success run again with just the matched category       *
-    if ( ($this->status == 'success')
-    && ($this->pathArray['category'] != 'invalid')
-    && ($this->pathArray['category'] != 'directory')) {
+    if (($this->status == 'success')
+    && (!(in_array($this->pathArray['category'], ['directory','invalid'])))) {
       $this->globTarget     = ltrim($this->targetPath, '/');
       $this->globTarget     = MP_ROOT.$this->globTarget .'.{'.$this->validExtTypes[$this->pathArray['category']].'}';
       array_push($this->globResult, glob( $this->globTarget, GLOB_BRACE ));
@@ -340,8 +350,7 @@ class mpc_filefinder {
           $t_globArray['category']      = 'invalid';
         }
       }
-      if (($this->pathArray['category'] != 'directory') &&
-          ($t_globArray['category']     != 'invalid')) {
+      if (!(in_array($this->pathArray['category'], ['directory','invalid']))) {
         if ($t_globArray['category'] != $this->pathArray['category']) {
           $this->status = 'confirm';
         }
@@ -377,7 +386,7 @@ class mpc_filefinder {
   * This is a placeholder stub for use in an extends.
   */
   public function try_redirects() { return NULL; }
-# *** END - try_redirects --------------------------------------------------- *
+# *** END - try_redirects ----------------------------------------------------- *
 #
 # *** BEGIN flag_brokenlink --------------------------------------------------- *
 /**
