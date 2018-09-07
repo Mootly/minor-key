@@ -178,12 +178,12 @@ class mpc_filefinder {
       $this->pathArray['category']      = 'system';
       $this->status                     = $this->statusTypes['no search'][0];
     }
-                    # if looking for current page on 404 call, abort now
+                    # if looking for current page on 404 call, abort now        *
+                    # 404 success will (or should) block try methods            *
     if ($_SERVER['REQUEST_URI'] == $_SERVER['PHP_SELF']) {
       if ($this->seachType == '404') {
         $this->status                   = $this->statusTypes['404 success'][0];
       } else {
-
         $this->status                   = $this->statusTypes['no search'][0];
       }
     }
@@ -268,6 +268,20 @@ class mpc_filefinder {
   }
 # *** END - listValidExtensions ----------------------------------------------- *
 #
+# *** BEGIN search_blocked ---------------------------------------------------- *
+/**
+  * Check for whether this search should not be done.                           *
+  * @return bool
+  */
+  protected function search_blocked() {
+                    # reasons to not be here                                    *
+                    # status is public, so also check category for system files *
+    if (in_array($this->status, ['no search','404 success'])) { return true; }
+    if ($this->pathArray['category'] == 'system') { return true; }
+    return false;
+  }
+# *** END - search_blocked ---------------------------------------------------- *
+#
 # *** BEGIN try_nameMismatch -------------------------------------------------- *
 /**
   * Check for simple filename mismatches.
@@ -280,6 +294,7 @@ class mpc_filefinder {
   * @return array
   */
   public function try_nameMismatch($ignore='suffix') {
+    if ($this->search_blocked()) { return NULL; }
     if ($this->pathArray['category'] == 'system') { return false; }
                     # if path is flagged as a directory file, try that first    *
     if ($this->pathArray['category'] == 'directory') {
@@ -366,7 +381,7 @@ class mpc_filefinder {
         $this->targetURI = MP_PSEP.str_replace(MP_ROOT,'',$this->globResult[0]);
       }
                     # *** REDIRECT to found page ------------------------------ #
-      header('Location: '.$this->targetURI);                            #
+      header('Location: '.$this->targetURI);                                    #
                     # *** REDIRECT to found page ------------------------------ #
     }
     foreach($this->globResult as $t_key=>$t_item) {

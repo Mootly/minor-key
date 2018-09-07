@@ -18,12 +18,16 @@
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-$mpo_404 = new mpc_filefinder(true);
+$mp_edit_right = 'CMS';
+require_once( $mpo_paths->template.$mpo_parts->template.'/db_config.php' );
+$mpo_404 = new ocfs_filefinder(true);
                     # Check 1 - check database -------------------------------- *
                     # if you have a database, check for a redirect record first *
 if ($mpo_404->status == 'not found') {
   $t_matchedURIList = $mpo_404->try_redirects();
 }
+                    # no redirect in the database. Flag it.                     *
+if (empty($t_matchedURIList)) { $t_updatecheck = $mpo_404->flag_brokenlink(); }
                     # Check 2 - simple name mismatch -------------------------- *
 if (empty($t_matchedURIList)) {
   $t_matchedURIList = $mpo_404->try_nameMismatch('suffix spaces');
@@ -31,8 +35,6 @@ if (empty($t_matchedURIList)) {
                     # Check 3 - check again with date wildcarding ------------- *
 if (empty($t_matchedURIList)) {
   $t_matchedURIList = $mpo_404->try_nameMismatch('suffix spaces dates');
-                    # no redirect in the database. Flag it.                     *
-  $t_updatecheck    = $mpo_404->flag_brokenlink();
 }
                     # customize our error message.                              *
 switch ($mpo_404->targetCategory) {
