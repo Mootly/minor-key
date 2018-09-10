@@ -18,7 +18,7 @@
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-$mp_edit_right = 'CMS';
+$mp_edit_right      = 'CMS';
 require_once( $mpo_paths->template.$mpo_parts->template.'/db_config.php' );
 $mpo_404 = new ocfs_filefinder(true);
                     # Check 1 - check database -------------------------------- *
