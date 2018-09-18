@@ -1,5 +1,5 @@
 /* --- Basic AJAX Form Processor ---------------------------------------------- ***
- * This script submits a form via Ajax using JDON and then writes the returned
+ * This script submits a form via Ajax using JSON and then writes the returned
  * results to a division with an ID of #testfield.
  * It returns error messsages for:
  * - Missing required fields.
@@ -47,13 +47,13 @@ $('#fld_submit_btn').click(function(e) {
   }
                     // Submit the form data                                     ***
   if ( tOkay )  {
-      var formData = $(tForm).serializeArray();
+    var formData = $(tForm).serializeArray();
     var tSubmits = JSON.stringify( $(tForm).serializeArray(), null, 2 );
     tResult = tResult + '<pre>'+tSubmits+'</pre>';
-     $('#fld_submit_btn').prop('value','Processing...');
-    // $('#testField').html(tResult);
-
-    var tReply = $.post( './post.php', formData )
+    $('#fld_submit_btn').prop('value','Processing...');
+    var tPostPath = './post.php';
+    if ($('#fld_postpath').val()) { tPostPath = $('#fld_postpath').val(); }
+    var tReply = $.post( tPostPath, formData )
     .done(function(data) {
        $('#fld_submit_btn').prop('value','Submit Form');
        $('#fs_submitForm').get(0).scrollIntoView();
