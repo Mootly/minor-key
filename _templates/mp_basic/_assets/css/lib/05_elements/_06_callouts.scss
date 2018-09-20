@@ -122,7 +122,7 @@ li.wrong-flag, li.right-flag {
 .fa-question { color: $c-default-red; } // red
 .fa-check { color: $c-default-green; }  // green
 .muted { color: $c-gray-dark ; }        // gray
-[class^='aud-']::after {
+[class*='aud-']::after {
   margin-left       : 0.5em;
   font-family       : 'FontAwesome';
   font-weight       : normal;

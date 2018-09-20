@@ -20,7 +20,7 @@ code {
 }
                     // make sure vars are italicized                            ***
 pre var, code var, kbd var, samp var {
-  color             : rgb(136,139,141);
+  color             : $c-gray-text;
   font-style        : italic;
 }
                     // color coding of code elements                            ***
