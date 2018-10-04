@@ -1,3 +1,5 @@
+# MIT LICENSE
+
 # moosepress license
 
 Copyright (c) 2017-2018 Mootly Obviate
