@@ -1,4 +1,4 @@
-# MIT LICENSE
+MIT LICENSE
 
 # moosepress license
 
