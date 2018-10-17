@@ -17,10 +17,10 @@ $(window).on( 'load', function () {
   if ($('#toc-links').length) {
     $('#toc-links').show();
     var mpv_toc_menuList  = '';
-                    // TOC starts with this heagding                            ***
-    var mpv_toc_tier1     = 'h2';
+                    // TOC starts with this heading                             ***
+    var mpv_toc_tier1     = (typeof toc_tier1 === 'undefined') ? 'h2' : toc_tier1;
                     // To catch DTs, specify parent DL                          ***
-    var mpv_toc_tier2     = 'h3, dl';
+    var mpv_toc_tier2     = (typeof toc_tier2 === 'undefined') ? 'h3, dl' : toc_tier2;
                     // Comma separated list of content section IDs to use       ***
     var mpv_toc_container = '#content-main, #right_content';
                     // Varaibles to generate links back to the top of the page  ***

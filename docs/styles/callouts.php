@@ -62,14 +62,22 @@ ob_start();
 
 <p>Text can be called out with <span class="red">red</span> or <span class="green">green</span>.</p>
 
-<p>Text can also be highlighted in <span class="hilite-red">red</span>, <span class="hilite-yellow">yellow</span>, or <span class="hilite-green">green</span>.</p>
+<h2>Highlights</h2>
+
+<p>Not all highlights will be equally effective with all backgrounds.</p>
+
+<p>Text can be highlighted in <span class="hilite-red">red</span>, <span class="hilite-yellow">yellow</span>, <span class="hilite-green">green</span>, or <span class="hilite-purple">purple</span>.</p>
 
 <div class="pull-box-dark">
-  <p>Text can also be highlighted in <span class="hilite-red">red</span>, <span class="hilite-yellow">yellow</span>, or <span class="hilite-green">green</span>.</p>
+  <p>Text can be highlighted in <span class="hilite-red">red</span>, <span class="hilite-yellow">yellow</span>, <span class="hilite-green">green</span>, or <span class="hilite-purple">purple</span>.</p>
 </div>
 
 <div class="pull-box">
-  <p>Text can also be highlighted in <span class="hilite-red">red</span>, <span class="hilite-yellow">yellow</span>, or <span class="hilite-green">green</span>.</p>
+  <p>Text can be highlighted in <span class="hilite-red">red</span>, <span class="hilite-yellow">yellow</span>, <span class="hilite-green">green</span>, or <span class="hilite-purple">purple</span>.</p>
+</div>
+
+<div class="pull-box-alt">
+  <p>Text can be highlighted in <span class="hilite-red">red</span>, <span class="hilite-yellow">yellow</span>, <span class="hilite-green">green</span>, or <span class="hilite-purple">purple</span>.</p>
 </div>
 
 <h2>Icons</h2>

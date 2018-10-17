@@ -13,9 +13,18 @@
 .red, .green { font-weight: bold; }
 .red { color: $c-default-red; }
 .green { color: $c-default-green; }
-.hilite-red { @include set-blended-text-simple($c-red, 0.25, $c-base-bg); }
-.hilite-yellow { @include set-blended-text-simple($c-yellow, 0.25, $c-base-bg); }
-.hilite-green { @include set-blended-text-simple($c-default-green, 0.25, $c-base-bg); }
+[class*=hilite] { display: inline-block; padding-left: 0.125em; padding-right: 0.125em; }
+.hilite-yellow { @include set-blended-background($c-yellow, 0.15, $c-base-bg); }
+.hilite-red { @include set-blended-background($c-default-red, 0.15, $c-base-bg); }
+.hilite-green { @include set-blended-background($c-default-green, 0.15, $c-base-bg); }
+.hilite-purple { @include set-blended-background($c-base-plum, 0.15, $c-base-bg); }
+.pull-box-dark {
+  .hilite-yellow { @include set-blended-background-simple($c-yellow, 0.25, $c-dark-box-bg); }
+  .hilite-red { @include set-blended-background-simple($c-default-red, 0.5, $c-dark-box-bg); }
+  .hilite-green { @include set-blended-background-simple($c-default-green, 0.5, $c-dark-box-bg); }
+  .hilite-purple { @include set-blended-background-simple($c-base-plum, 0.75, $c-base-bg); }
+}
+
 // *** Semantic Block Highlights ---------------------------------------------- ***
 .warning, .note {
   margin            : 1.0em 1.0em auto -0.5em;
