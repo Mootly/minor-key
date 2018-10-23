@@ -43,11 +43,11 @@ ob_start();
     </tr>
     <tr>
       <td><a href="<?=CURR_PATH?>/styles/">Style Guide</a></td>
-      <td>The <cite>menu</cite> object stores the menu sets for a page.</td>
+      <td>Examples of most of the content style fules for the site.</td>
     </tr>
     <tr>
-      <td><a href="<?=CURR_PATH?>/dev-notes/">Developer Notes</a></td>
-      <td>The <cite>parts</cite> object contains information fields for a page as well as a content blob.</td>
+      <td><a href="<?=CURR_PATH?>/dev-notes/">CMS Developer Notes</a></td>
+      <td>Details on the site and code structure.</td>
     </tr>
     <tr>
       <td><a href="<?=CURR_PATH?>/classes/">Class Library</a></td>

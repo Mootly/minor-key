@@ -56,6 +56,10 @@ ob_start();
       <td><a href="<?=CURR_PATH?>/naming.php">Naming Conventions</a></td>
       <td>Naming conventions used throughout the project.</td>
     </tr>
+    <tr>
+      <td><a href="<?=CURR_PATH?>/ckeditor.php">CKEditor Configuration</a></td>
+      <td>Configuration information for CKEditor and the location of related scripts.</td>
+    </tr>
   </tbody>
 </table>
 <!-- *** end contents ********************************************************* -->
