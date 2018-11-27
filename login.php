@@ -25,7 +25,7 @@ $mpo_parts->login_message     = '<p>Please login to access online fillable forms
 
                     # Check for form data, process. --------------------------- *
 if ($mpo_parts->status == 'verified') {
-  $mpo_parts->login_path    = 'success';
+  $mpo_parts->login_path    = 'exists';
   $mpo_parts->login_message = '<p class="center">You are already logged in as <b>'.$_SESSION['group'].'</b>. If this is not you, please <a href="/logout.php">logout</a>.</p>';
 } else if (!empty($_POST)) {
   $mpo_user         = new mpc_db('sqlsrv', $db_login);
@@ -40,7 +40,7 @@ if ($mpo_parts->status == 'verified') {
     $mpo_parts->login_path    = 'success';
     $mpo_parts->status        = 'verified';
     if (!empty($_SESSION['return_page'])) {
-      $mpo_parts->login_message = '<p class="center">Return to your <a href="'.$_SESSION['return_page'].'">previous page</a>.</p>';
+      $mpo_parts->login_message = '<p class="center"><a class="button" href="'.$_SESSION['return_page'].'">Continue <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></p>';
       unset($_SESSION['return_page']);
   } else {
       $mpo_parts->login_message = '';

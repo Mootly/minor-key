@@ -41,6 +41,7 @@ if ($mpo_parts->status == 'public') {
     <legend>Logout</legend>
     <div class="form_directions directions">
       <p class="center"><strong>You are not logged in.</strong></p>
+      <p class="center">Use the <a href="/login.php">login page</a> if you want to log in.</p>
     </div>
   </fieldset>
 </form>
@@ -55,6 +56,7 @@ if ($mpo_parts->status == 'public') {
     <legend>Success!</legend>
     <div class="form_directions directions">
       <p class="center"><strong>You have successfully logged out.</strong></p>
+      <p class="center">Please close this browser window to close this session.</p>
     </div>
   </fieldset>
 </form>
