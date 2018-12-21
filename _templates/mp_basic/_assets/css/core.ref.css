@@ -3111,8 +3111,8 @@ body {
   background-color: #f1f0f2;
   font: normal normal 400 1em "Muli", "Arial", sans-serif;
   line-height: 1.75em;
-  bacgkround-color: #f1f0f2;
-  background: linear-gradient(to bottom, #f1f0f2 10%, rgba(99, 68, 100, 0.35) 100%) fixed;
+  bacgkround-color: #634464;
+  background: linear-gradient(to bottom, #634464 0%, rgba(241, 240, 242, 0.35) 100%) fixed;
 }
 
 * {
@@ -4656,7 +4656,7 @@ div.element-size {
   z-index: 30;
   clear: both;
   margin: 0;
-  background-color: #f1f0f2;
+  background-color: transparent;
   font-family: "Prompt", "Arial", sans-serif;
   font-weight: bold;
   letter-spacing: 0.05em;
@@ -4678,7 +4678,7 @@ div.element-size {
   margin: 0;
   padding: 0.5em 1.0em;
   background-color: #634464;
-  background: linear-gradient(to right, rgba(99, 68, 100, 0.75) 25%, #634464 100%);
+  background: rgba(241, 240, 242, 0.2);
   color: #f1f0f2;
   font-family: "Prompt", "Arial Black", sans-serif;
   font-size: 1.5em;
@@ -4692,7 +4692,7 @@ div.element-size {
 @media (min-width: 50em) {
   #header-title {
     width: 50%;
-    margin: 1.0em auto 0 0;
+    margin: 1.0em auto 0.5em 0;
     padding: 0.625em 1.5em;
     background-clip: padding-box;
     border-top-right-radius: 2em;
@@ -4705,8 +4705,7 @@ div.element-size {
 
 #page-header #header-nav {
   clear: both;
-  background-color: #634464;
-  background-color: rgba(99, 68, 100, 0.75);
+  background-color: transparent;
 }
 
 #page-header #header-nav ul {
@@ -5309,9 +5308,8 @@ h1#first-el {
   position: relative;
   width: 100%;
   margin: 0;
-  padding: 0.5em 0.4375em 0.5em 0;
-  background-color: #634464;
-  background: linear-gradient(to right, rgba(99, 68, 100, 0.75) 25%, #634464 100%);
+  padding: 0.75em 0.4375em 0.75em 0;
+  background-color: transparent;
 }
 
 #page-header #navigation-search input {
@@ -5330,17 +5328,19 @@ h1#first-el {
 #page-header #navigation-search input:focus {
   background-color: white;
   outline: none;
+  box-shadow: none;
+  border-color: transparent;
 }
 
 #page-header #navigation-search button {
   position: absolute;
-  top: 0.25em;
-  right: 0.25em;
+  top: 0.625em;
+  right: 0.4375em;
   box-sizing: border-box;
-  height: 1.875em;
-  width: 2.25em;
+  height: 1.5em;
+  width: 1.5em;
   margin: 0 auto 0 0;
-  padding: 0.0625em 0.125em 0.125em 0.125em;
+  padding: 0.0625em 0 0.125em 0;
   border: 0;
   background-color: transparent;
   color: #4c404c;
@@ -5356,15 +5356,19 @@ h1#first-el {
 
 @media (min-width: 50em) {
   #page-header #navigation-search {
-    width: 75%;
+    width: 50%;
     background-clip: padding-box;
     border-top-right-radius: 2em;
     border-bottom-right-radius: 2em;
   }
-  #page-header #navigation-search input, #page-header #navigation-search button {
+  #page-header #navigation-search input {
     background-clip: padding-box;
     border-top-right-radius: 2em;
     border-bottom-right-radius: 2em;
+  }
+  #page-header #navigation-search button {
+    background-clip: padding-box;
+    border-radius: 1em;
   }
 }
 

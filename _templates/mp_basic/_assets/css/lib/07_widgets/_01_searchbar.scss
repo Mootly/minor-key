@@ -4,9 +4,8 @@
     position        : relative;
     width           : 100%;
     margin          : 0;
-    padding         : 0.5em 0.4375em 0.5em 0;
-    background-color: $c-banner-bg;
-    background      : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
+    padding         : 0.75em 0.4375em 0.75em 0;
+    background-color: transparent;
     input {
       box-sizing    : border-box;       // not inheriting from *
       padding       : 0.125em 1.0em;
@@ -21,17 +20,19 @@
     }
     input:focus {
       background-color: $c-white;
-      outline: none;    
+      outline: none;
+      box-shadow:none;
+      border-color:transparent;
     }
     button {
       position      : absolute;
-      top           : 0.25em;
-      right         : 0.25em;
+      top           : 0.625em;
+      right         : 0.4375em;
       box-sizing    : border-box;
-      height        : 1.875em;
-      width         : 2.25em;
+      height        : 1.5em;
+      width         : 1.5em;
       margin        : 0 auto 0 0;
-      padding       : 0.0625em 0.125em 0.125em 0.125em;
+      padding       : 0.0625em 0 0.125em 0;
       border        : 0;
       background-color: transparent;
       color         : $c-gray-text;
@@ -45,10 +46,13 @@
                     // for large screens flip our search button to the left     ***
 @media (min-width: $break-800-tablet) {
   #page-header #navigation-search {
-    width: 75%;
+    width: 50%;
     @include set-border-radius(right, 2.0em)
-    input,  button {
+    input {
       @include set-border-radius(right, 2.0em)
+    }
+    button {
+      @include set-border-radius(all, 1.0em)
     }
   }
 }

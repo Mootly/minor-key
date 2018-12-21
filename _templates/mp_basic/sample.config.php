@@ -27,14 +27,15 @@
   if (!defined('CURR_PATH'))    { define( 'CURR_PATH', dirname($_SERVER['PHP_SELF']) ); }
                     # Where does the home page live (if not root?
   if (!defined('DEF_HOME'))     { define( 'DEF_HOME', '/' ); }
-                # Specify our template name
+                    # Specify our template name
                     # Template names have the following format:
                     # {prefix}_{name}
   if (!defined('DEF_PREFIX'))   { define( 'DEF_PREFIX', 'mp' ); }
   if (!defined('DEF_TEMPLATE')) { define( 'DEF_TEMPLATE', 'basic' ); }
                     # If the templates being used have a class library,
                     # specify it here.
-// if (!defined('DEF_CLASSLIB'))  { define( 'DEF_CLASSLIB', '/mp_core/class_lib/' ); }
+  if (!defined('DEF_CLASSLIB')) { define( 'DEF_CLASSLIB', '/mp_core/class_lib/' ); }
+// if (!defined('DEF_CLASSLIB')) { define( 'DEF_CLASSLIB', '_templates/mp_basic/class_lib/' ); }
 # Initialize the Site --------------------------------------------------------- *
   require_once( MP_ROOT.'_core/init.php' );
 
@@ -44,11 +45,12 @@
   $mpo_parts->site_abbr     = '[mp]';
                     # Template formatting rules ------------------------------- *
   $mpt_full_template        = 'page_master.html.twig';     # for generating complete pages
+  $mpt_home_template        = 'home_master.html.twig';     # for the home pages
+  $mpt_form_template        = 'form_master.html.twig';     # for form pages
   $mpt_header_template      = 'page_header.html.twig';     # header include for flat file content
   $mpt_footer_template      = 'page_footer.html.twig';     # footer include for flat file content
   $mpo_parts->title_struct  = ['page_name','section_name','site_name'];
   $mpo_parts->separator     = ' | ';
 # Invoke Twig ----------------------------------------------------------------- *
-require_once( MP_ROOT.'_core/prep.php' );
-
-// end config ----------------------------------------------------------------- *
+  require_once( MP_ROOT.'_core/prep.php' );
+# end config ------------------------------------------------------------------ *

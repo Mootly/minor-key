@@ -3,8 +3,7 @@
 #page-header {
   #header-nav {
     clear           : both;
-    background-color: $c-banner-bg;
-    background-color: rgba($c-banner-bg, 0.75);
+    background-color: transparent;
     ul {
       list-style-type: none;
       padding       : 0;

@@ -3,7 +3,7 @@
   margin            : 0;
   padding           : 0.5em 1.0em;
   background-color  : $c-banner-bg;
-  background        : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
+  background        : rgba($c-base-bg, 0.2);
   color             : $c-banner-text;
   font-family       : $f-title;
   font-size         : $hb-size;
@@ -13,7 +13,7 @@
 @media (min-width: $break-800-tablet) {
   #header-title {
     width           : 50%;
-    margin          : 1.0em auto 0 0;
+    margin          : 1.0em auto 0.5em 0;
     padding         : 0.625em 1.5em;
     @include set-border-radius(right, 2.0em)
     a { display: inline-block; }
