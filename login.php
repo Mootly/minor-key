@@ -51,6 +51,7 @@ if ($mpo_parts->status == 'verified') {
     $mpo_parts->login_message = '<p class="wrong-box center">The user ID or password was not correct.</p>';
   }
 }
+
 ob_start();
                     # The notices in the left bar go here.--------------------- *
 ?>
@@ -63,6 +64,7 @@ ob_start();
 <?php
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
+
 $page_elements = $mpo_parts->build_page();
 echo ($twig->render($mpo_parts->template.$mpt_form_template, array('page'=>$page_elements['content'])));
 ?>
