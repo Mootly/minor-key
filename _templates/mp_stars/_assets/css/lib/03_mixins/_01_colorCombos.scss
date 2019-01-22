@@ -1,0 +1,120 @@
+// *** 03 Mixins - 01 Color Combinations ====================================== ***
+// For consistency, all internal variables are prefixed with "mx"               ***
+// ----------------                                                             ***
+// This file should contain only mixin calls.                                   ***
+// Any CSS here may be overriden in the resets.                                 ***
+//----------------------------------------------------------------------------- ***
+                    // These are frequently used color combintations,           ***
+                    // to allow speedier rebranding                             ***
+                    // The default color set for content pages                  ***
+@mixin set-default-colors {
+  color             : $c-base-text;
+  background-color  : $c-base-bg;
+}
+                    // Banner colors - so we can match things to them           ***
+@mixin set-banner-colors {
+  color              :$c-inverse-text;
+  background-color  : $c-banner-bg ;
+}
+@mixin set-footer-colors {
+  color             : $c-base-text;
+  background-color  : $c-purple-web-2;
+}
+                    // The inverted color set for the admin bar                 ***
+@mixin set-inverted-colors {
+  color             : $c-inverse-text;
+  background-color  : $c-inverse-bg;
+}
+// Blended color rules ******************************************************** ***
+// Each returns two color rules in this order:                                  ***
+// 1) a flat blended color rule for browsers that do not understand rgba()      ***
+// 2) an rgba() for browsers that understand rgba()                             ***
+// The two color rules will not be a perfect match but will be close.           ***
+// Each defaults to doing nothing but repeating the provided color.             ***
+
+                    // Blended color rules for text                             ***
+                    // $mx-fg:          foreground color, only required value   ***
+                    // $mx-alpha:       0.0 - 1.0                               ***
+                    // $mx-bg:          background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+@mixin set-blended-text($mx-fg, $mx-alpha: 1.0, $mx-bg: $mx-fg) {
+  $mx-wt            : 100*$mx-alpha;
+  color             : mix($mx-fg, $mx-bg, $mx-wt);
+  color             : rgba($mx-fg, $mx-alpha);
+}
+                    // Same as above without RBGA, useful to overcome nesting   ***
+@mixin set-blended-text-simple($mx-fg, $mx-alpha: 1.0, $mx-bg: $mx-fg) {
+  $mx-wt            : 100*$mx-alpha;
+  color             : mix($mx-fg, $mx-bg, $mx-wt);
+}
+                    // Blended color rules for backgrounds                      ***
+                    // $mx-fg:          base color, only required value         ***
+                    // $mx-alpha:       0.0 - 1.0                               ***
+                    // $mx-bg:          background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+@mixin set-blended-background($mx-fg, $mx-alpha: 1.0, $mx-bg: $mx-fg) {
+  $mx-wt            : 100*$mx-alpha;
+  background-color  : mix($mx-fg, $mx-bg, $mx-wt);
+  background-color  : rgba($mx-fg, $mx-alpha);
+}
+                    // Same as above without RBGA, useful to overcome nesting   ***
+@mixin set-blended-background-simple($mx-fg, $mx-alpha: 1.0, $mx-bg: $mx-fg) {
+  $mx-wt            : 100*$mx-alpha;
+  background-color  : mix($mx-fg, $mx-bg, $mx-wt);
+}
+                    // Blended color rule for borders                           ***
+                    // Default is       border: 1px solid color                 ***
+                    // $mx-fg:          border color, only required value       ***
+                    // $mx-side:        all, left, right, top, bottom           ***
+                    // $mx-alpha:       0.0 - 1.0                               ***
+                    // $mxsize:         any valid width unit                    ***
+                    // $mxtype:         as per CSS                              ***
+                    // $mx-bg:          background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+@mixin set-blended-border($mx-fg, $mx-side: all, $mx-alpha: 1.0, $mxsize: 1px, $mxtype: solid, $mx-bg: $mx-fg) {
+  $mx-wt            : 100*$mx-alpha;
+  @if $mx-side == all {
+    border: $mxsize $mxtype mix($mx-fg, $mx-bg, $mx-wt);
+    @if $mx-alpha != 1.0 { border: $mxsize $mxtype rgba($mx-fg, $mx-alpha); }
+  } @else {
+    border-#{$mx-side}: $mxsize $mxtype mix($mx-fg, $mx-bg, $mx-wt);
+    @if $mx-alpha != 1.0 { border-#{$mx-side}: $mxsize $mxtype rgba($mx-fg, $mx-alpha); }
+  }
+}
+                    // Blended color rules for text drop shadows                ***
+                    // $mx-x:           horizontal offset of the shadow         ***
+                    // $mx-y:           vertical offset of the shadow           ***
+                    // $mx-fg:          base color of shadow                    ***
+                    // $mx-alpha:       0.0 - 1.0                               ***
+                    // $mx-bg:          background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+                    // $mx-blur:        blur radius of the shadow               ***
+@mixin set-blended-text-shadow($mx-x, $mx-y, $mx-fg, $mx-alpha: 1.0, $mx-bg: $mx-fg, $mx-blur: 0) {
+  $mx-wt            : 100*$mx-alpha;
+  text-shadow       : $mx-x $mx-y $mx-blur mix($mx-fg, $mx-bg, $mx-wt);
+  text-shadow       : $mx-x $mx-y $mx-blur rgba($mx-fg, $mx-alpha);
+}
+                    // Same as above without RBGA, useful to overcome nesting   ***
+@mixin set-blended-text-shadow-simple($mx-x, $mx-y, $mx-fg, $mx-alpha: 1.0, $mx-bg: $mx-fg, $mx-blur: 0) {
+$mx-wt              : 100*$mx-alpha;
+text-shadow         : $mx-x $mx-y $mx-blur mix($mx-fg, $mx-bg, $mx-wt);
+}
+                    // Blended color rules for backgrounds                      ***
+                    // $mx-x:           horizontal offset of the shadow         ***
+                    // $mx-y:           vertical offset of the shadow           ***
+                    // $mx-fg:          base color for shadow                   ***
+                    // $mx-alpha:       0.0 - 1.0                               ***
+                    // $mx-bgcolor:     background color to create mix          ***
+                    //                  for browsers that don't support rgba    ***
+                    // $mx-blur:        blur radius of the shadow               ***
+@mixin set-blended-box-shadow($mx-x, $mx-y, $mx-fg, $mx-alpha: 1.0, $mx-bg: $mx-fg, $mx-blur: 0) {
+  $mx-wt            : 100*$mx-alpha;
+  box-shadow        : $mx-x $mx-y $mx-blur mix($mx-fg, $mx-bg, $mx-wt);
+  box-shadow        : $mx-x $mx-y $mx-blur rgba($mx-fg, $mx-alpha);
+}
+                    // Same as above without RBGA, useful to overcome nesting   ***
+@mixin set-blended-box-shadow-simple($mx-x, $mx-y, $mx-fg, $mx-alpha: 1.0, $mx-bg: $mx-fg, $mx-blur: 0) {
+  $mx-wt            : 100*$mx-alpha;
+  box-shadow        : $mx-x  $mx-y $mx-blur mix($mx-fg, $mx-bg, $mx-wt);
+}
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

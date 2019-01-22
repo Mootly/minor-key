@@ -1,0 +1,26 @@
+// *** 04 Reset Rules - 01 Base resets ======================================== ***
+// Most resets are now integrated directly with related rules.                  ***
+//----------------------------------------------------------------------------- ***
+                    // Block and format fixes for various browsers              ***
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary { display: block; }
+audio,
+canvas,
+progress,
+video { display: inline-block; }
+                    // Old browser tweaks for new media components              ***
+audio:not([controls]) { display: none; height: 0; }
+progress { vertical-align: baseline; }
+template, [hidden] { display: none; }
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

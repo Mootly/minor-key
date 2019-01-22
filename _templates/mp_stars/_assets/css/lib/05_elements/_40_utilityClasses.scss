@@ -1,0 +1,58 @@
+// === 05 Elements- 40 Utiity Classes ========================================= ***
+                    // standard floats                                          ***
+.center { text-align: center; margin-lef: auto; margin-right: auto; }
+.fleft  { float: left; margin-right: 1.0em; }
+.fright { float: right; margin-left: 1.0em; }
+                    // clear fixes                                              ***
+.clear-fix   { clear: both; }
+.clear-left  { clear: left; }
+.clear-right { clear: right; }
+                    // elements fixed to the top and bottom of the page         ***
+.fixed-top, .fixed-bottom { position: fixed; left: 0; width: 100%; }
+.fixed-top    { top: 0; }
+.fixed-bottom { bottom: 0; }
+                    // labels and hilites                                       ***
+.title       { font-weight: bold; }
+.flagged     { font-weight: bold; font-variant: small-caps; }
+.embiggen    { font-size: 1.125em; font-weight: bold; }
+.label-runin { display: inline-block; }
+                    // script-free tweak for jump link scroll height            ***
+div.anchor, div.anchor:focus { outline: none; }
+.anchor:before {
+  display           : block;
+  position          : relative;
+  width             : 0;
+  height            : 2.5em;
+  margin-top        : -2.5em;
+  content           : '';
+}
+                    // used by sizing script to mark img heights in demos       ***
+                    // should be usable by any block                            ***
+.size-img { position: relative; }
+div.element-size {
+  position          : absolute;
+  top               : 0;
+  left              : 0;
+  padding           : 0.25em 0.5em;
+  color             : $c-inverse-text;
+  font-weight       : bold;
+  font-size         : 0.875em;
+  @include set-blended-background($c-footer-bg, 0.75);
+}
+                    // For creating impromtu columns                            ***
+.multi-col {
+  .cols2 { width: 49.5%; }
+  .cols3 { width: 33.0%; }
+  .cols4 { width: 24.5%; }
+  .cols5 { width: 19.5%; }
+  .cols6 { width: 19.5%; }
+  span.col, div.col { display: inline-block; }
+}
+// *** Hidden element rules --------------------------------------------------- ***
+.mobile-only, .hide { display: none; }
+                    // this ensure collapsers only collase on screens           ***
+@media screen { .hidden { @include hidden-element-rules; } }
+                    // make sure toggles toggle                                 ***
+.toggleHide { display: none !important; }
+.toggleShow { display: block !important; }
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

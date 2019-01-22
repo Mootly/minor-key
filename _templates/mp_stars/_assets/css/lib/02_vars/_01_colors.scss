@@ -1,0 +1,119 @@
+// *** 01 Variables - 01 Colors ============================= Namespace: c- === ***
+// All colors should be defined in and referenced from this file.               ***
+// The important bits are at the bottom.                                        ***
+// ----------------                                                             ***
+// This file should contain only variable assignments.                          ***
+// Any CSS here may be overriden in the resets.                                 ***
+// ---------------------------------------------------------------------------- ***
+
+// *** BASIC COLORS =========================================================== ***
+// Just some basic colors so they are predefined                                ***
+                    // *** Primaries ------------------------------------------ ***
+$c-white            : rgb(255,255,255);                     // #ffffff
+$c-black            : rgb(0,0,0);                           // #000000
+$c-red              : rgb(255,0,0);                         // #ff0000
+$c-green            : rgb(0,255,0);                         // #00ff00
+$c-blue             : rgb(0,0,255);                         // #0000ff
+$c-yellow           : rgb(255,255,0);                       // #ffff00
+$c-cyan             : rgb(0,255,255);                       // #00ffff
+$c-magenta          : rgb(255,0,255);                       // #ff00ff
+                    // *** Grays ---------------------------------------------- ***
+$c-gray-charcoal    : rgb(32,36,37);                        // #202425
+$c-gray-dark        : rgb(70,74,75);                        // #464a4b
+$c-gray-medium      : rgb(140,145,147);                     // #8c9193
+$c-offwhite         : rgb(241,240,242);                     //
+                    // *** Common Colors -------------------------------------- ***
+$c-default-red      : darken($c-red, 20%);                  // #990000
+$c-default-green    : darken($c-green, 20%);                // #009900
+// *** TEMPLATE COLORS ======================================================== ***
+                    // This is where you set your base colors ----------------- ***
+$c-base-black       : rgb(15,16,17);                        // #0f1011
+$c-base-dkgray      : rgb(40,40,43);                        // #28282b
+$c-base-medgray     : rgb(64,64,76);                        // #40404c
+$c-base-ltgray      : rgb(148,148,162);                     // #9494a2
+$c-base-plumwash    : rgb(241,234,241);                     // #f1eaf1
+$c-base-graywash    : rgb(240,240,238);                     // #f0f0ee
+$c-base-limewash    : rgb(238,255,238);                     // #eeffee
+$c-base-bluewash    : rgb(238,238,255);                     // #eeffee
+// ***
+$c-sunset           : rgb(223,85,28);
+$c-base-dkred       : rgb(34,0,0);                          // #220000
+$c-base-medred      : rgb(78,16,16);                        // #4e1010
+$c-base-red         : rgb(153,34,34);                       // #992222
+$c-base-pink        : rgb(242,121,121);                     // #f27979
+$c-base-palerose    : rgb(216,173,173);                     // #d8adad
+$c-base-tan         : rgb(242,242,218);                     // #f2f2da
+// ***
+$c-base-dkteal      : rgb(0,32,32);                         // #002020
+$c-base-medteal     : rgb(0,64,64);                         // #004040
+$c-base-teal        : rgb(0,128,128);                       // #008080
+$c-base-tealwash    : rgb(218,242,242);                     // #daf2f2
+// ***
+$c-base-midnight    : rgb(11,11,33);                        // #0b0b2b
+$c-base-nightsky    : rgb(11,11,43);                        // #0b0b2b
+$c-base-blue        : rgb(32,17,136);                       // #201188
+$c-base-slate       : rgb(85,84,121);                       // #555479
+$c-base-ltslate     : rgb(196,195,214);                     // #c4c3d6
+// ***
+$c-base-plum        : rgb(112,61,116);                      // #703d74
+$c-base-dkplum      : rgb(67,37,70);                        // #432546
+$c-base-medplum     : rgb(90,49,93);                        // #5a315d
+$c-base-flatplum    : rgb(99,68,100);                       // #644564
+$c-purple-dusk      : rgb(70,35,69);                        // #462345
+$c-purple-dusk      : rgb(58,31,90);                        // #3a1f5a
+// $c-purple-dusk      : rgb(147,140,155);                     // #938C9B
+// *** COMPONENT COLORS ------------------------------------------------------- ***
+                    // Base                                                     ***
+$c-base-text        : $c-base-black;
+$c-base-bg          : $c-offwhite;
+$c-inverse-text     : $c-offwhite;
+$c-inverse-bg       : $c-base-black;
+                    // Header and Footer                                        ***
+$c-banner-text      : $c-base-ltslate;
+$c-banner-bg        : $c-base-flatplum;
+$c-banner-hilite    : $c-base-plumwash;
+$c-footer-text      : $c-offwhite;
+$c-footer-bg        : $c-base-dkplum;
+$c-footer-hilite    : $c-base-medplum;
+$c-subbanner-bg     : $c-base-medplum;
+$c-subbanner-hilite : $c-base-flatplum;
+                    // Boxes                                                    ***
+$c-box-text         : $c-base-black;
+$c-box-bg           : $c-base-graywash;
+$c-box-alt-bg       : $c-base-plumwash;
+$c-dark-box-text    : $c-offwhite;
+$c-dark-box-bg      : $c-gray-dark;
+$c-gray-border      : $c-gray-dark;
+$c-ltgray-border    : $c-base-medgray;
+$c-plum-border      : $c-base-flatplum;
+                    // Text                                                     ***
+$c-gray-text        : $c-base-medgray;
+$c-code             : $c-base-dkplum;
+$c-code-hilite-1    : $c-base-plum;
+$c-code-hilite-2    : $c-base-medteal;
+                    // Buttons and links                                        ***
+$c-button-text      : $c-offwhite;
+$c-button-bg        : $c-base-flatplum;
+$c-button-active-bg : lighten($c-base-flatplum, 10);
+$c-link-icons       : $c-base-flatplum;
+$c-link-text        : $c-base-medteal;
+$c-link-header-txt  : $c-base-plumwash;
+$c-hover-text       : $c-base-blue;
+$c-visited-text     : $c-base-flatplum;
+$c-h1-text          : mix($c-offwhite, $c-base-black, 95);
+$c-h2-text          : mix($c-offwhite, $c-base-black, 85);
+$c-h3-text          : mix($c-offwhite, $c-base-black, 75);
+$c-h4-text          : mix($c-offwhite, $c-base-black, 65);
+$c-h5-text          : mix($c-offwhite, $c-base-black, 55);
+$c-h6-text          : mix($c-offwhite, $c-base-black, 45);
+
+$c-ppt-orange       : rgb(183,66,21);                       // #b74215
+$c-word-blue        : $c-base-blue;
+                    // Callouts                                                 ***
+$c-hilite-yellow    : rgba($c-yellow,0.8);
+$c-hilite-gray      : rgba($c-base-ltgray,0.5);
+$c-tip-border       : $c-base-plum;
+$c-alert-red        : $c-base-red;
+$c-response-no      : $c-default-red;
+$c-response-yes     : $c-default-green;
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

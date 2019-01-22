@@ -1,0 +1,38 @@
+// *** 06 Parts- 00 Root ====================================================== ***
+                    // prevent adjustments of font size after orientation       *
+                    // changes in IE and iOS.                                   *
+html {
+  height            : 100%;
+  font-size         : 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  box-sizing        : border-box;
+  position          : relative;
+  height            : 100%;
+  min-width         : $break-min-width;
+  margin            : 0;
+  padding           : 0;
+  @include set-default-colors;
+  font              : normal normal 400 1.0em $f-default;
+  line-height       : $ht-line-tall;
+  background        : $c-base-midnight url('/_templates/mp_basic/_assets/img/stars.png') repeat top center fixed;
+}
+.sunset {
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index: -1;
+  background        : linear-gradient(to bottom, rgba($c-base-midnight, 0) 25%, rgba($c-base-nightsky, 0.75) 70%, rgba($c-purple-dusk, 0.85) 87%, rgba($c-base-plum, 1.0) 99%) fixed;
+}
+
+                    // force border box so everything works the same may        *
+                    // notinherited by forms field in some browsers             *
+* { box-sizing        : border-box; }
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

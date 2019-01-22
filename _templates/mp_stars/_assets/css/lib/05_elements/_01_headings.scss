@@ -1,0 +1,50 @@
+// *** 06 Parts- 00 Root ====================================================== ***
+                    // set headers                                              ***
+h1, h2, h3, h4, h5, h6 {
+  margin            : 0;
+  padding           : 1.25em 0 0.5em 0;
+  font-family       : $f-title;
+  line-height       : $ht-line-compact;
+}
+h1 {
+  color             : $c-h1-text;
+  font-size         : $h1-size;
+  font-weight       : 900;
+  letter-spacing    : 1px;
+}
+h2 {
+  color             : $c-h2-text;
+  font-size         : $h2-size;
+  font-weight       : 900;
+  letter-spacing    : 1px;
+}
+h3 {
+  color             : $c-h3-text;
+  font-size         : $h3-size;
+  font-weight       : 700;
+}
+h4 {
+  color             : $c-h4-text;
+  font-size         : $h4-size;
+  font-weight       : 700;
+}
+h5 {
+  color             : $c-h5-text;
+  font-size         : $h5-size;
+  font-weight       : 600;
+}
+h6 {
+  color             : $c-h6-text;
+  font-size         : $h6-size;
+  font-weight       : 600;
+}
+                    // borders to call out headers for section breaks           *
+h1, h2, h3, h4, h5, h6 {
+  &.section {
+    @include set-blended-border($c-banner-bg, top, 0.25, 1px, solid, $c-base-bg);
+    @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg);
+    margin-top      : 1.0em;
+    padding-top     : 0.5em;
+  }
+}
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

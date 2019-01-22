@@ -17,25 +17,31 @@
           padding   : 0.5em 0.75em;
           font-size : 0.875em;
         }
-        a:hover, a:focus {
-          background-color: $c-white;
-        }
       }
+    }
+    #header-nav-body {
+      @include set-banner-colors;
+      padding       : 0;
+      margin        : 0 0 0 auto;
+    }
+  }
+}
+@media (in-width: $break-800-tablet) {
+  #page-header {
+    #header-nav {
       li:first-of-type a, li:first-of-type a {
         @include set-border-radius(left, 2.0em);
         padding-left: 1.5em;
       }
     }
     #header-nav-body {
-      padding       : 0;
-      background-color: $c-base-bg;
-      margin        : 0 0 0 auto;
-      width         : 90%;
       @include set-border-radius(left, 2.0em);
+      width         : 90%;
     }
   }
 }
-// *** The page header - OLD MOBILE VIEW ************************************** ***
+
+// *** The page header - MOBILE VIEW ****************************************** ***
 @media (max-width: $break-800-tablet) {
   #page-header {
     #header-nav-toggle {
@@ -53,7 +59,7 @@
         display     : inline-block;
         padding     : 0.25em 0.5em 0.375em 0.25em;
         color       : $c-banner-text;
-        @include set-blended-border($c-base-bg, right, 0.75, 2px, solid, $c-banner-bg);
+        border-right: 2px solid $c-base-bg;
       }
     }
     #header-nav {
@@ -77,7 +83,7 @@
         font-size   : 1.5em;
         a {
           width     : 100%;
-          border-bottom: 1px solid $c-ltgray-border;
+          border-bottom: 1px solid $c-base-bg;
           padding-left: 2.0em;
          }
         a:hover, a:focus { text-decoration: none; background-color: $c-banner-hilite; }

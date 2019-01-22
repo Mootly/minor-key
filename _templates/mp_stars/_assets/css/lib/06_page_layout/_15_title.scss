@@ -1,0 +1,44 @@
+// === 06 Layout - 03 Title formatting ======================================= ***
+// Accessibility haxie for header                                               ***
+                    // Hide real H1 from sighted users,                         ***
+                    // use title-box to replace it further down                 ***
+h1#first-el {
+  position          : absolute;
+  clip              : rect(0 0 0 0);
+  width             : 1px;
+  height            : 1px;
+  overflow          : hidden;
+  margin            : -1px;
+  border            : 0;
+  padding           : 0;
+}
+// Our display title                                        *
+#title-box {
+  clear             : both;
+  margin            : 0;
+                    // Cover our bases for possible ways of placing header      ***
+  h1, h2.page-title, p.page-title {
+    margin          : 0;
+    padding         : 0.25em 0.5em 0.125em 0.5em;
+    background      : rgba($c-base-dkgray, 0.75);
+    font-family     : $f-title;
+    font-weight     : 900;
+    font-size       : $h1-mob-size;
+    line-height     : $ht-line-compact;
+    color           : $c-h1-text;
+//    @include set-blended-text-shadow(2px, 2px, $c-h1-text, 0.25, $c-base-bg, 2px);
+  }
+}
+                    // Waypoints used to fix title at top of page on scroll.    ***
+#title-box.fixed-top { z-index: 100; }
+                    // Fix to elements below fixed title to avoid page jump     ***
+                    // under on element collapse. Height overwritten by script. ***
+.fixed-above { margin-top: 4.0em; }
+// --- Media rules for small screens ------------------------------------------ ***
+@media (min-width: $break-800-tablet) {
+  #title-box {
+    padding-bottom  : 0.25em;
+    h1, h2.page-title, p.page-title { font-size: $h1-size; }
+  }
+}
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

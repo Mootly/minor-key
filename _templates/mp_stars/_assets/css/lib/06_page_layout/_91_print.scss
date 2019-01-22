@@ -1,0 +1,17 @@
+// *** 04 Reset Rules - 91 Print media resets ================================= ***
+@media print {
+  a, a:visited { text-decoration: underline; }
+                    // Show URLs for links                                      ***
+  a[href]:after { content: ' (' attr(href) ')'; }
+  abbr[title]:after { content: ' (' attr(title) ')'; }
+                    // Don't show links for images, or js/internal links        ***
+  a[href^='javascript:']:after,
+  a[href^='#']:after { content: ''; }
+  thead { display: table-header-group; }
+  blockquote, img, pre tr { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.25in; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3, h4, h5, h6 { page-break-after: avoid; }
+}
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

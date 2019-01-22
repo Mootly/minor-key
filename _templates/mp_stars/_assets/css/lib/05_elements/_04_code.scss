@@ -1,0 +1,32 @@
+// === 05 Elements- 04 Code =================================================== ***
+                    // Correct inheritance and scaling of font size.            ***
+                    // Correct odd `em` font sizing.                            ***
+code, kbd, pre, samp {
+  font-family       : monospace, monospace;
+  font-family       : $f-code;
+  font-size         : 1.0em;
+}
+pre {
+  @include set-blended-background($c-inverse-bg, 0.0625, $c-base-bg);
+  @include set-blended-border($c-inverse-bg, left, 0.25, 0.5em, solid, $c-base-bg);
+  overflow          : auto;
+  padding           : 0.75em;
+  font-size         : 0.875em;
+  line-height       : $ht-line-tall;
+}
+code {
+  padding           : 0 0.25em;
+  @include set-blended-background($c-inverse-bg, 0.025, $c-base-bg);
+}
+                    // make sure vars are italicized                            ***
+pre var, code var, kbd var, samp var {
+  color             : $c-gray-text;
+  font-style        : italic;
+}
+                    // color coding of code elements                            ***
+code, pre, span {
+  &.cc-html { color: $c-code-hilite-1; }
+  &.cc-js   { color: $c-code-hilite-2; }
+  &.cc-php  { color: $c-code-hilite-2; }
+}
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

@@ -13,14 +13,18 @@
 }
                     // Banner colors - so we can match things to them           ***
 @mixin set-banner-colors {
-  color              :$c-inverse-text;
+  color              :$c-banner-text;
   background-color  : $c-banner-bg ;
+}
+@mixin set-banner-hilite {
+  color              :$c-banner-hitext;
+  background-color  : $c-banner-hilite;
 }
 @mixin set-footer-colors {
   color             : $c-base-text;
   background-color  : $c-purple-web-2;
 }
-                    // The inverted color set for the admin bar                 ***
+                    // The inverted color set                                   ***
 @mixin set-inverted-colors {
   color             : $c-inverse-text;
   background-color  : $c-inverse-bg;

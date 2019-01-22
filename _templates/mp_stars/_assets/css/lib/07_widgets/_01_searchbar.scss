@@ -1,0 +1,83 @@
+// *** 07 Widgets - 01 Search Bar ============================================= ***
+#page-header {
+  #navigation-search {
+    position        : relative;
+    width           : 100%;
+    margin          : 0;
+    padding         : 0.75em 0.4375em 0.75em 0;
+    background-color: transparent;
+    input {
+      box-sizing    : border-box;       // not inheriting from *
+      padding       : 0.125em 1.0em;
+      width         : 100%;
+      height        : 2.25em;
+      margin        : 0;
+      border        : 0;
+      color         : $c-gray-dark;
+      background      : rgba($c-base-dkgray, 0.75);
+      font-family   : $f-default;
+      font-size     : 1.125em;
+    }
+    input:focus {
+      background-color: $c-white;
+      outline: none;
+      box-shadow:none;
+      border-color:transparent;
+    }
+    button {
+      position      : absolute;
+      top           : 0.625em;
+      right         : 0.4375em;
+      box-sizing    : border-box;
+      height        : 1.5em;
+      width         : 1.5em;
+      margin        : 0 auto 0 0;
+      padding       : 0.0625em 0 0.125em 0;
+      border        : 0;
+      background-color: transparent;
+      color         : $c-gray-text;
+      font-family   : $f-default;
+      font-weight   : bold;
+      font-size     : 1.5em;
+      &:hover, &:focus { background-color: $c-banner-bg; color: $c-banner-text; }
+    }
+  }
+}
+                    // for large screens flip our search button to the left     ***
+@media (min-width: $break-800-tablet) {
+  #page-header #navigation-search {
+    width: 50%;
+    @include set-border-radius(right, 2.0em)
+    input {
+      @include set-border-radius(right, 2.0em)
+    }
+    button {
+      @include set-border-radius(all, 1.0em)
+    }
+  }
+}
+// *** The page header - OLD MOBILE VIEW ****************************************** ***
+@media (max-width: $break-800-tablet) {
+  #page-header {
+    #navigation-search  {
+      box-sizing    : border-box;
+      border-top    : 2px solid $c-base-bg;
+      margin        : 0;
+      font-size     : 1.5em;
+      padding-right: 0;
+      &.mobile-hidden {
+        position    : absolute;
+        top: 0; left: -1000em;
+      }
+      input { width: 100%; height: 2.25em; }
+      button {
+        height: 2.0em;
+        width: 1.75em;
+        top: 0.1875em;
+        right: 0;
+      }
+    }
+  }
+}
+
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

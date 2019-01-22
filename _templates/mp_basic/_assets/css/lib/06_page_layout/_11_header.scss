@@ -14,16 +14,15 @@
   font-family       : $f-nav;
   font-weight       : bold;
   letter-spacing    : 0.05em;
-                    // set our links to match our header font color             ***
-a, a:active, a:hover, a:link, a:visited {
-  text-decoration   : none;
-  color             : $c-banner-bg;
-  border            : 0;
-}
-a:hover,
-a:focus {
-  text-decoration   : none;
-  color             : $c-banner-hilite;
-}
+                    // in case we have any links outside nav                    ***
+  a, a:active, a:hover, a:link, a:visited {
+    @include set-banner-colors;
+    text-decoration   : none;
+    border            : 0;
+  }
+  a:hover,a:focus {
+    @include set-banner-hilite;
+    text-decoration   : none;
+  }
 }
 // --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

@@ -1,0 +1,97 @@
+// === 05 Elements - 05 Lists ================================================= ***
+                    // margin fixes                                             ***
+p + ul, p + ol { margin-top: 0; }
+ul li, ol li, dl dd {
+  line-height       : $ht-line-default;
+  margin-bottom     : 0.5em;
+}
+
+ul, ol {
+  padding-left: 1.75em;
+  ul, ol {
+    padding-left: 1.375em;
+  }
+}
+// --- class for fake list items ---------------------------------------------- ***
+.fake-li {
+  display           : list-item;
+  margin-left       : 0.5em;
+  list-style-type   : none;
+  &:before {
+    font-family     : 'FontAwesome';
+    content         : $fa-var-circle;
+    margin          : 0 1.5em 0 0;
+    font-size       : 0.5em;
+    position        : relative;
+    top             : -0.25em;
+    @include set-blended-text($c-banner-bg, 0.75, $c-base-bg);
+  }
+}
+// *** Tables of Contents ----------------------------------------------------- ***
+#toc-links {                            // hide unless script runs
+  display           : none;
+  padding-top       : 0.375em;
+}
+ul#jumpto {
+  margin-top        : 0.5em;
+  margin-left       : 0;
+  padding-left      : 1.75em;
+  padding-bottom    : 1.0em;
+  @include set-blended-border($c-banner-bg, bottom, 0.25, 1px, solid, $c-base-bg);
+  li {
+    margin-bottom   : 0.5em;
+    color           : #000099;
+    list-style-type : none;
+    ul {
+      margin-left   : 0.75em;
+      padding-left  : 0.75em;
+      li {
+        font-weight : normal;
+        margin-bottom: 0.125em;
+      }
+    }
+    a { text-decoration: none; }
+    &:before {
+      content       : $fa-var-level-down;
+      margin        : 0 0.5em 0 -1.5em;
+      font-size     : inherit;
+      font-family   : 'FontAwesome';
+      @include set-blended-text($c-link-icons, 0.5, $c-base-bg);
+    }
+  }
+}
+
+// *** Definition Lists ------------------------------------------------------- ***
+dt { font-weight    : bold; }
+dd { margin-bottom  : 1.0em; }
+dd p { margin-top   : 0; }
+dl {
+  &.inline-terms {
+    @include set-blended-border($c-base-text, top, 0.125, 1px, solid, $c-base-bg);
+    @include set-blended-border($c-base-text, bottom, 0.125, 1px, solid, $c-base-bg);
+    dt {
+      float         : left;
+      width         : 8.5em;
+      padding-top   : 0.325em;
+      padding-right : 0.5em;
+      padding-bottom: 0.375em;
+      text-align    : right;
+      line-height   : $ht-line-default;
+    }
+    dd {
+      margin-left   : 10.0em;
+      padding-top   : 0.375em;
+      padding-bottom: 0.375em;
+      line-height   : $ht-line-default;
+      @include set-blended-border($c-base-text, top, 0.125, 1px, solid, $c-base-bg);
+      &:first-of-type { border-top : none; }
+    }
+                    // just in clase we don't want the lines between elements
+    &.clean {
+      border-top    : 0;
+      border-bottom : 0;
+      dd { border-top: 0; }
+    }
+  }
+}
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

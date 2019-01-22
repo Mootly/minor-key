@@ -1,0 +1,64 @@
+// === 05 Elements - 31 Buttonizer ============================================ ***
+// Convert labels to buttons in forms                                           ***
+body:not(.ie8) input[type=checkbox].makeButton,
+body:not(.ie8) input[type=radio].makeButton { display: none; }
+body:not(.ie8) input[type=checkbox].makeButton+label,
+body:not(.ie8) input[type=radio].makeButton+label {
+  display           : inline-block;
+  width             : 32%;
+  min-width         : 12em;
+  margin-bottom     : 0.5em;
+  margin-right      : 0.3em;
+  border            : 0.125em solid rgba($c-banner-bg, 0.5);
+  @include set-border-radius(all, 0.25em)
+  background-color  : inherit;
+  padding           : 0.375em 1.0em;
+  text-align        : center;
+}
+body:not(.ie8) input[type=checkbox].makeButton:checked+label,
+body:not(.ie8) input[type=radio].makeButton:checked+label {
+  border            : 0.125em solid rgba($c-banner-bg, 0.65);
+  background-color  : $c-box-alt-bg;
+  font-weight       : bold;
+}
+body:not(.ie8) input[type=checkbox].makeButton+label:hover,
+body:not(.ie8) input[type=radio].makeButton+label:hover {
+  box-shadow        : 1px 1px 3px $c-banner-bg inset;
+  span { position: relative; top: 1px; left: 1px; }
+}
+// --- A DELETE TAB FOR BUTTONIZED CHECKBOXES --------------------------------- ***
+body:not(.ie8) div.field_container p.clickable_box {
+  display           : inline-block;
+  width             : 32%;
+  min-width         : 12em;
+  position          : relative;
+  text-align        : left;
+  margin        : 0.5em 0.5em 1.5em 0;
+  label {
+    margin-bottom   : 0;
+    width           : 100%;
+    min-width       : 12em;
+  }
+}
+.bottom-tab-box {
+  position          : absolute;
+  bottom            : -1.625em;
+  left              : 0.75em;
+  font-size         : 0.75em;
+  a,
+  a:active,
+  a:hover,
+  a:link,
+  a:visited {
+    display         : inline-block;
+    width           : 5.0em;
+    height          : 2.0em;
+    border-bottom   : 0;
+    line-height     : 2.0em;
+    text-align      : center;
+    text-decoration : none;
+    font-size       : 0.875em;
+  }
+}
+p.border-box .bottom-tab-box { bottom: -2.25em; }
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

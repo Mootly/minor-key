@@ -1,0 +1,107 @@
+// *** BEGIN CORE CSS FILE ==================================================== ***
+// NOTE: This file should contain nothing but import statements.                ***
+// GENERAL USE NOTES                                                            ***
+// ============================================================================ ***
+// These general rules are to keep the overall CSS and SCSS clean. They are     ***
+// ony included in the top level style sheet for thie site.                     ***
+// ---------------------------------------------------------------------------- ***
+// The purpose of each file:                                                    ***
+// A file should be either an aggregator or a collection of rules, not both.    ***
+// If a partial includes rules from another partial,                            ***
+// make sure the source appears first in the parent aggregator.                 ***
+//                                                                              ***
+// Order of operations:                                                         ***
+// - extend (shouldn't use, but it comes first if you do)                       ***
+// - include                                                                    ***
+// - simple selectors                                                           ***
+// - & selectors                                                                ***
+// - nested selectors                                                           ***
+//                                                                              ***
+// Comment usage:                                                               ***
+// - /*!  - Always included in compile.                                         ***
+// - /**  - Include in any system generated docs and verbose CSS compiles.      ***
+//          We don't generate CSS docs, this is just here from completeness.    ***
+// - /*   - Included in verbose CSS compiles.                                   ***
+// - //   - Exclude from everything but source.                                 ***
+// For example, this block uses the double slash single line comment because    ***
+// there is no reason for it to appear anywhere but in this file.               ***
+// ============================================================================ ***
+// *** font-awesome imports --------------------------------------------------- ***
+$fa-font-path       : '/_vendors/fa/fonts';
+@import "../../../../../_vendors/fa/scss/font-awesome.scss";
+// *** 01 Functions ----------------------------------------------------------- ***
+@import "01_funcs/01_sizing";
+// *** 02 Variables ----------------------------------------------------------- ***
+@import "02_vars/01_colors";
+@import "02_vars/02_fonts";
+
+@import "02_vars/03_sizes";
+@import "02_vars/05_zIndices";
+@import "02_vars/11_mediaQueries";
+// *** 03 Mixins *------------------------------------------------------------- ***
+@import "03_mixins/01_colorCombos";
+@import "03_mixins/02_commonElements";
+@import "03_mixins/03_boxProperties";
+// *** 04 Resets -------------------------------------------------------------- ***
+/*!
+--- begin resets ---
+--- should be nothing but font definitions above this point ---
+*/
+@import "04_resets/01_legacyFixes";
+// *** 05 Elements ------------------------------------------------------------ ***
+@import "05_elements/00_root";
+/*!
+--- begin elements ---
+*/
+@import "05_elements/01_headings";
+@import "05_elements/02_blocks";
+@import "05_elements/03_inline";
+@import "05_elements/04_code";
+/*!
+--- begin lists ---
+*/
+@import "05_elements/05_lists";
+/*!
+--- begin collouts ---
+*/
+@import "05_elements/06_callouts";
+/*!
+--- begin links ---
+*/
+@import "05_elements/10_links";
+@import "05_elements/11_embeds";
+/*!
+ --- begin tables ---
+ */
+@import "05_elements/20_tables";
+/*!
+ --- begin forms ---
+ */
+@import "05_elements/30_forms";
+@import "05_elements/31_buttonizer";
+/*! --- begin utility classes --- */
+@import "05_elements/40_utilityClasses";
+// *** 06 Layout -------------------------------------------------------------- ***
+/*! --- begin accessibility --- */
+@import "06_page_layout/00_accessibility";
+/*! --- begin page layout --- */
+@import "06_page_layout/01_core";
+/*! --- begin header and title --- */
+@import "06_page_layout/11_header";
+@import "06_page_layout/12_header_title";
+@import "06_page_layout/13_header_nav";
+@import "06_page_layout/15_title";
+@import "06_page_layout/21_footer";
+/*! --- begin nvigation --- */
+@import "06_page_layout/31_sidebar_left";
+@import "06_page_layout/32_menu_left";
+@import "06_page_layout/33_announce_left";
+// *** 07 Widgets ------------------------------------------------------------- ***
+/*! --- begin widgets --- */
+@import "07_widgets/01_searchbar";
+@import "07_widgets/02_breadcrumb";
+@import "07_widgets/03_google_trans";
+@import "07_widgets/32_clamshell";
+// *** 11 Custom -------------------------------------------------------------- ***
+@import "11_custom/01_altDraft";
+/*! *** Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md ------------- */

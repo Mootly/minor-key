@@ -1,10 +1,8 @@
 // *** 05 Layout - 12 Page Header - Title ===================================== ***
 #header-title {
+  @include set-banner-colors;
   margin            : 0;
   padding           : 0.5em 1.0em;
-  background-color  : $c-banner-bg;
-  background        : rgba($c-base-bg, 0.2);
-  color             : $c-banner-text;
   font-family       : $f-title;
   font-size         : $hb-size;
   text-align        : right;
@@ -12,10 +10,10 @@
 }
 @media (min-width: $break-800-tablet) {
   #header-title {
+    @include set-border-radius(right, 2.0em)
     width           : 50%;
     margin          : 1.0em auto 0.5em 0;
     padding         : 0.625em 1.5em;
-    @include set-border-radius(right, 2.0em)
     a { display: inline-block; }
   }
 }

@@ -1,0 +1,11 @@
+// *** 06 Layout - 00 Accessibility =========================================== ***
+// Define our core accessible navigation block                                  ***
+#access-nav {
+  width             : 100%;
+  margin            : 0;
+  padding           : 0;
+  h1, h2, p, ol, li, a { @include hidden-element-rules; }
+}
+                    // elements only text readers should see                    ***
+.reader-only { @include offscreen-element-rules; }
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

@@ -1,0 +1,24 @@
+{# === Page Meta Content ====================================================== #}
+{# *** Use 'meta_' prefix to uniquely identify all header template blocks. ***  #}
+{# *** Currently in use:                                                   ***  #}
+{# *** - meta_title           : inner HTML of page title                   ***  #}
+{# *** - meta_tags            : page specfic meta content                  ***  #}
+{# *** - meta_styles          : all style sheets                           ***  #}
+{# *** - meta_scripts         : all top of document scripts                ***  #}
+<head>
+  <meta charset="UTF-8">
+  <title>{% block meta_title %}{{page.page_title|raw}}{% endblock meta_title %}</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block meta_tags %}{% endblock meta_tags %}
+{% block meta_styles %}
+  <link rel="stylesheet" type="text/css" href="/_templates/{{page.template}}/_assets/css/core.min.css" media="all" />
+  <!-- <link rel="stylesheet" type="text/css" href="/_vendors/fa/css/font-awesome.min.css" media="all"> -->
+{% for tKey, tPath in styles %}
+  <link rel="stylesheet" type="text/css" href="{{tPath|raw}}" media="all">
+{% endfor %}
+{% endblock meta_styles %}
+{% block meta_scripts %}
+{% endblock meta_scripts %}
+</head>
+{# --- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- #}

@@ -16,13 +16,14 @@ h1#first-el {
 #title-box {
   clear             : both;
   margin            : 0;
-  background-color  : $c-banner-bg;
-  background        : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
                     // Cover our bases for possible ways of placing header      ***
   h1, h2.page-title, p.page-title {
     margin          : 0;
-    padding         : 0.25em 0.5em 0.125em 0.5em;
-    background-color: $c-base-bg;
+    padding         : 0.375em 0.5em 0.25em 0.5em;
+    background-color: $c-banner-bg;
+    // border-top: 2px solid $c-base-bg;
+    // border-bottom: 2px solid $c-base-bg;
+
     font-family     : $f-title;
     font-weight     : 900;
     font-size       : $h1-mob-size;
@@ -32,16 +33,17 @@ h1#first-el {
   }
 }
                     // Waypoints used to fix title at top of page on scroll.    ***
-#title-box.fixed-top { z-index: 100; }
+#title-box.fixed-top {
+  z-index: 100;
+  box-shadow: 0 1px 2px 1px rgba(32,36,37, 0.15);
+}
                     // Fix to elements below fixed title to avoid page jump     ***
                     // under on element collapse. Height overwritten by script. ***
 .fixed-above { margin-top: 4.0em; }
 // --- Media rules for small screens ------------------------------------------ ***
 @media (min-width: $break-800-tablet) {
   #title-box {
-    padding-bottom  : 0.25em;
-    background      : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
-    @include set-blended-box-shadow(0.0625em, 0.0625em, $c-h1-text, 0.5, $c-base-bg, 0.125em);
+    margin-bottom  : 0.25em;
     h1, h2.page-title, p.page-title { font-size: $h1-size; }
   }
 }

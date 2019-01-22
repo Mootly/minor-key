@@ -1,0 +1,23 @@
+// 11 Custome - 01 Alt style overrides for body class 'draft' ================= ***
+body.draft {
+  font-family: $f-draft-default;
+  #page-header {
+    font-family     : $f-draft-nav;
+    #header-title {
+      font-family     : $f-draft-title;
+    }
+  }
+  #title-box {
+    h1, h2.page-title { font-family: $f-draft-title; }
+  }
+  #content-main {
+    #breadcrumb-box {
+      a { font-family: $f-draft-nav; }
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: $f-draft-title; }
+  }
+  pre, code {
+    font-family: $f-draft-code;
+  }
+}
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

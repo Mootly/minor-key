@@ -1,0 +1,52 @@
+// *** 03 Widgets - 03 Google Translate ======================================= ***
+#google-translate-box {
+  position          : fixed;
+  top               : 0;
+  right             : 0;
+  z-index           : 200;
+  height            : 0.375em;
+  overflow          : hidden;
+  padding           : 0.25em 0.25em 0.25em 0.375em;
+  background-color  : $c-banner-bg;
+  @include set-border-radius('bottom-left', 1.0em)
+  .goog-te-gadget { color: $c-banner-text; }
+  a,
+  a:active,
+  a:hover,
+  a:link,
+  a:visited {
+    text-decoration : none;
+    color           : $c-banner-text;
+  }
+  select {
+    color: $c-base-text;
+    @include set-border-radius('bottom-left', 0.625em)
+  }
+}
+#google-translate-box:hover,
+#google-translate-box:focus {
+  height            : auto;
+  overflow          : auto;
+}
+@media (max-width: $break-800-tablet) {
+  // #page-header {
+  //   #google-translate-box {
+  //     height        : auto;
+  //     overflow      : auto;
+  //     position      : static;
+  //     width         : 100%;
+  //     padding       : 0 0.5em 0.125em 0.75em;
+  //     background-color: $c-base-bg;
+  //     border-radius : none;
+  //     a,
+  //     a:active,
+  //     a:hover,
+  //     a:link,
+  //     a:visited {
+  //       color           : $c-base-text;
+  //     }
+  //   }
+  // }
+}
+
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

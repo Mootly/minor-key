@@ -1,0 +1,72 @@
+// === 05 Layout - 33 left sidebar content ==================================== ***
+#announce-left {
+  clear             : left;
+  box-sizing        : border-box;
+  width             : 18.0em;
+  font-family       : $f-default;
+  margin            : 0;
+  .item {
+    margin          : 0;
+    @include set-blended-background($c-box-bg, 0.25, $c-base-bg);
+    @include set-blended-border($c-base-text, top, 0.15, 1px, solid, $c-box-bg);
+    padding-bottom  : 0.0625em;         // padding fix
+   }
+   .item:last-of-type {
+     @include set-blended-border($c-base-text, bottom, 0.15, 1px, solid, $c-box-bg);
+   }
+  h2 {
+     background-color: $c-banner-bg;
+     color: $c-banner-text;
+     margin         : 0;
+     font-size      : 1.25em;
+     padding        : 0.25em 0.5em;
+  }
+  p { margin: 0.5em; }
+  h2+p { margin-top: 0.25em; }
+  h3+p, h4+p, h5+p, h6+p { margin-top: 0.125em; }
+  a {
+    color           : $c-link-text;
+    text-decoration : none;
+    @include set-blended-border($c-link-text, bottom, 0.15, 1px, solid, $c-base-bg);
+  }
+  a:visited { color: $c-visited-text; }
+  a:hover {
+    @include set-blended-border($c-link-text, bottom, 0.85, 1px, solid, $c-base-bg);
+    @include set-blended-background($c-button-bg, 0.025, $c-base-bg)
+  }
+}
+@media (max-width: $break-1024-desktop) {
+  #announce-left {
+    position        : relative;
+    width           : 100%;
+    line-height     : $ht-line-default;
+    padding-top     : 0;
+    #notices-toggle {
+      display       : block;
+      margin        : 0;
+      border-bottom : 1px solid $c-plum-border;
+      padding       : 0;
+      background-color: $c-banner-bg;
+      font-size     : px2ems(23);
+      font-family       : $f-nav;
+      text-decoration: none;
+      a {
+        display     : inline-block;
+        padding     : 0.375em 0.5em 0.375em 0;
+        color       : $c-banner-text;
+        text-decoration: none;
+        i.fa {
+          padding   : 0 0.375em 0 0.5em;
+          font-size : px2ems(22);
+        }
+      }
+    }
+    #notices-body.mobile-hidden {
+      position      : absolute;
+      top           : 0;
+      left          : -1000em;
+    }
+  }
+
+}
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

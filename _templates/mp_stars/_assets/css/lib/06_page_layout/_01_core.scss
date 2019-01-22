@@ -1,0 +1,32 @@
+// *** 06 Layout - 01 Basic formatting for the document ======================= ***
+// *** Main body of the page is #content-main --------------------------------- ***
+#content-main {
+  width            : 100%;
+}
+                    // #content-box is our inner wrapper                        ***
+                    // it normally contains everything but breadcrumbs          ***
+#content-box {
+  max-width         : $max-content-width;
+  margin            : 1.0em 2.0em 2.0em 20.0em;
+}
+#content-main.full-width,
+#content-main.no-menu {
+  padding           : 0 2.0em;
+  #content-box {
+    margin          : auto;
+    max-width       : $max-full-page-width;
+  }
+}
+// *** Media rules for small screens ------------------------------------------ ***
+@media (max-width: $break-1024-desktop) {
+  .no-mobile { display: none; }
+  #content-main {
+    clear           : both;
+    #content-box { margin: 2.0em; }
+  }
+}
+@media (max-width: $break-800-tablet) {
+  div.mobile-only { display: block; }
+  span.mobile-only { display: inline; }
+}
+// *** Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***

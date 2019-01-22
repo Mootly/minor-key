@@ -1,0 +1,99 @@
+// === 05 Elements - 06 Tables ================================================ ***
+                    // Remove most spacing between table cells.                 ***
+table { border-collapse: collapse; border-spacing: 0; }
+td, th { padding    : 0; }
+// --- smaller rules up tp, where we can find them ---------------------------- ***
+                    // prevent large gaps at top of cells                       ***
+td :first-child, th :first-child { margin-top: 0; }
+                    // set base cell color                                      ***
+tr.callout td, tr.callout th { background-color: rgb(212,213,227); }
+                    // class to buff headers when needed                        ***
+th.emph {
+  padding           : 0.125em 0 0.125em 0.5em;
+  font-size         : $h6-size;
+  font-weight       : bold;
+}
+                    // caption formatting                                       ***
+caption {
+  margin            : 0 0.25em 1.0em 0.25em;
+  text-align        : left;
+  font-size         : 0.875em;
+  caption-side      : bottom;
+  .title { font-weight: bold; }
+}
+// --- Accounting table - just some extra rules on the list table ------------- ***
+                    // totals cells                                             ***
+tbody.totals th, tbody.totals td  { font-weight: bold; }
+                    // right aligned numeric column                             ***
+table.accounting tr {
+  th:last-child, td:last-child { text-align: right; }
+}
+// *** List-style table ------------------------------------------------------- ***
+table.list-table {
+  width             : 100%;
+  margin            : 1.0em 0;
+  border-bottom     : 0.25em solid $c-ltgray-border;
+  thead, tfoot {
+    background-color: $c-ltgray-border;
+    color           : $c-white;
+    font-weight     : bold;
+  }
+  thead { font-size : 1.125em; }
+  td, th {
+    padding         : 0.5em 1.0em;
+    text-align      : left;
+    vertical-align  : top;
+    line-height     : $ht-line-default;
+  }
+                    // borders on non-thead cells                               ***
+  tbody td, tbody th, tfoot th, tfoot td {
+    @include set-blended-border($c-ltgray-border, bottom, 0.125, 1px, solid, $c-base-bg);
+  }
+                    // keep footer border from conflicting with table border    ***
+  tfoot tr:last-child th, tfoot tr:last-child td { border-bottom: 0; }
+                    // separators for tbody elements                            ***
+  tbody + tbody {
+    @include set-blended-border($c-ltgray-border, top, 0.25, 0.25em, solid, $c-base-bg);
+  }
+}
+// --- Directory table (faux) ------------------------------------------------- ***
+// Used for directory listings with labels to the left of information           ***
+div.directory-table {
+  width             : 100%;
+  margin-bottom     : 2.0em;
+  @include set-blended-border($c-gray-border, bottom, 0.25, 0.25em, solid, $c-base-bg);
+                    // grouping separator                                       ***
+  h3.listing-head, h4.listing-head, h5.listing-head {
+    width           : 100%;
+    margin          : 0.5em 0;
+    padding         : 0.5em 1.0em 0.5em 1.0em;
+    background-color: $c-banner-bg;
+    color           : $c-banner-text;
+    font-weight     : bold;
+    font-size       : 1.25em;
+  }
+                    // headings for individual listings                         ***
+  h4.name, h5.name, h6.name {
+    width         : 100%;
+    margin        : 0.25em 0;
+    padding       : 0.5em 1.0em 0.5em 1.125em;
+    font-weight   : bold;
+    font-size     : 1.125em;
+    text-align    : left;
+    @include set-blended-background($c-gray-border, 0.0625, $c-base-bg);
+  }
+                    // our containing "row"                                     ***
+  div.listing {
+    width           : 100%;
+    p { margin-left : 1.25em; }
+    span.label-runin {
+      display       : inline-block;
+      width         : 8.0em;
+    }
+  }
+                    // separator between listing categories                     ***
+  div.listing + div.listing {
+    @include set-blended-border($c-gray-border, top, 0.25, 0.125em, solid, $c-base-bg);
+  }
+}
+/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

@@ -14,12 +14,12 @@
       margin        : 0;
       border        : 0;
       color         : $c-gray-dark;
-      background-color: $c-base-bg;
+      background    : $c-banner-bg;
       font-family   : $f-default;
       font-size     : 1.125em;
     }
     input:focus {
-      background-color: $c-white;
+      background-color: $c-banner-hilite;
       outline: none;
       box-shadow:none;
       border-color:transparent;

@@ -1,0 +1,29 @@
+// *** 05 Layout - 11 Page Header ============================================= ***
+// Page header elements contained in #page-header                               ***
+// Default page header contains the following components:                       ***
+//  - #header-title         | The site title / logo                             ***
+//  - #nav-search           | The site search bar                               ***
+//  - #header-nav           | The top menu                                      ***
+//  - #google-translate-box | Google translate box                              ***
+// ---------------------------------------------------------------------------- ***
+#page-header {
+  z-index           : $zidx-page-header;
+  clear             : both;
+  margin            : 0;
+  background-color  : transparent;
+  font-family       : $f-nav;
+  font-weight       : bold;
+  letter-spacing    : 0.05em;
+                    // set our links to match our header font color             ***
+a, a:active, a:hover, a:link, a:visited {
+  text-decoration   : none;
+  color             : $c-banner-text;
+  border            : 0;
+}
+a:hover,
+a:focus {
+  text-decoration   : none;
+  color             : $c-banner-hilite;
+}
+}
+// --- Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md --------------- ***
