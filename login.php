@@ -8,7 +8,6 @@
                     # Call config to inti the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 require_once( $mpo_paths->template.$mpo_parts->template.'/db_config.php' );
-require_once( $mpo_paths->template.$mpo_parts->template.'/_assets/php_widgets/login/check.php' );
                     # Build the page ------------------------------------------ *
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -23,34 +22,7 @@ $mpo_parts->pagemenu          = 'home.left';
 $mpo_parts->login_path        = './login.php';
 $mpo_parts->login_message     = '<p>Please login to access online fillable forms.</p>';
 
-                    # Check for form data, process. --------------------------- *
-if ($mpo_parts->status == 'verified') {
-  $mpo_parts->login_path    = 'exists';
-  $mpo_parts->login_message = '<p class="center">You are already logged in as <b>'.$_SESSION['group'].'</b>. If this is not you, please <a href="/logout.php">logout</a>.</p>';
-} else if (!empty($_POST)) {
-  $mpo_user         = new mpc_db('sqlsrv', $db_login);
-  $p_user           = htmlspecialchars($_POST['userid']);
-  $p_pass           = htmlspecialchars($_POST['password']);
-  $sql              = 'select password from dbo.ref_audience where audience_key = ? collate Latin1_General_BIN';
-  $params           = array($p_user);
-  $options          = array('Scrollable' => SQLSRV_CURSOR_KEYSET);
-  $results          = $mpo_user->runquery($sql, $params, $options);
-  $tCheck           = password_verify($p_pass, $results[0]['password']);
-  if($tCheck == true) {
-    $mpo_parts->login_path    = 'success';
-    $mpo_parts->status        = 'verified';
-    if (!empty($_SESSION['return_page'])) {
-      $mpo_parts->login_message = '<p class="center"><a class="button" href="'.$_SESSION['return_page'].'">Continue <i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></p>';
-      unset($_SESSION['return_page']);
-  } else {
-      $mpo_parts->login_message = '';
-    }
-    $_SESSION['group'] = $p_user;
-    $_SESSION['last_activity'] = $tTime;
-  } else {
-    $mpo_parts->login_message = '<p class="wrong-box center">The user ID or password was not correct.</p>';
-  }
-}
+require_once( $mpo_paths->template.$mpo_parts->template.'/_assets/php_widgets/login/check.php' );
 
 ob_start();
                     # The notices in the left bar go here.--------------------- *

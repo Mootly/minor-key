@@ -48,14 +48,11 @@ if ($mpo_parts->status == 'public') {
 <?php
                     # If log out successful ----------------------------------- *
 } elseif ((!empty($_POST)) and ($_POST['logout'] == 'Log Out')) {
-  $mpo_parts->status = 'public';
-  $_SESSION = array();
-  session_unset();
-  session_destroy();
+  require_once( $mpo_paths->template.$mpo_parts->template.'/_assets/php_widgets/login/logout.php' );
 ?>
     <legend>Success!</legend>
     <div class="form_directions directions">
-      <p class="center"><strong>You have successfully logged out.</strong></p>
+      <p class="center"><strong>You have successfully logged out!!!</strong></p>
       <p class="center">Please close this browser window to close this session.</p>
     </div>
   </fieldset>
