@@ -19,7 +19,7 @@ $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Forms';
 $mpo_parts->accessibility     = 'standard';
 $mpo_parts->pagemenu          = 'home.left';
-$mpo_parts->login_path        = './login.php';
+$mpo_parts->login_path        = '/login.php';
 $mpo_parts->login_message     = '<p>Please login to access online fillable forms.</p>';
 
 require_once( $mpo_paths->template.$mpo_parts->template.'/_assets/php_widgets/login/check.php' );

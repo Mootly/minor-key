@@ -20,6 +20,7 @@ $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Home';
 $mpo_parts->accessibility     = 'standard';
 $mpo_parts->pagemenu          = 'home.left';
+$mpo_parts->login_path        = '/login.php';
 $mpo_session                  = new mpc_sessions();
 
                     # The notices in the left bar go here.--------------------- *
@@ -53,7 +54,7 @@ if ($mpo_parts->status == 'public') {
     <legend>Success!</legend>
     <div class="form_directions directions">
       <p class="center"><strong>You have successfully logged out!!!</strong></p>
-      <p class="center">Please close this browser window to close this session.</p>
+      <p class="center">Please close this browser window to close this session or <a href="<?= $mpo_parts->login_path; ?>">log in</a> again.</p>
     </div>
   </fieldset>
 </form>
