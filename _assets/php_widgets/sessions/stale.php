@@ -23,15 +23,15 @@ function stale_session($status, $reason = 'form', $session = NULL) {
   ?>
   <div id="reply-notice">
     <div class="notice">
-      <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>" name="unstale" id="form_unstale">
+      <form method="get" action="<?= $_SERVER['PHP_SELF']; ?>" name="unstale" id="form_unstale">
         <fieldset form="form_unstale" name="unstale_btn" id="form_unstale_btn">
           <legend>This form is stale.</legend>
           <div class="form_directions directions">
-            <p>This may be because a previous form submission was not completed properly or the page was accidentally reloaded. For security and submission tracking purposes, this form cannot be edited when stale.</p>
+            <p>This may be because the system needs to flush data from a previous form submission, a previous form submission was not completed properly, or the page was accidentally reloaded. For security and submission tracking purposes, this form cannot be edited when stale.</p>
             <p>To clear this form so it can be used, please reset the form.</p>
           </div>
           <div class="field_container">
-            <input form="form_unstale" type="hidden" value="clear" name="session_status" class="bigBtn" id="form_unstale_btn">
+            <input form="form_unstale" type="hidden" value="clear" name="clear_session" id="form_unstale_text">
             <p class="center fullWidth"><input form="form_unstale" type="submit" value="Reset Form" class="bigBtn" id="form_unstale_btn"></p>
           </div>
         </fieldset>
@@ -76,6 +76,9 @@ function stale_session($status, $reason = 'form', $session = NULL) {
     } elseif (is_array($session)) {
       foreach ($session as $key => $tElem) { unset($_SESSION[$tElem]); }
     }
+    unset($_SESSION['session_status']);
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit();
   }
 }
 
