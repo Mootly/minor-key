@@ -10,14 +10,20 @@
   * @method bool    __construct(bool)
   *   On instantiation, can be passed boolean to determine whether
   *   to protect initial values.
-  * @method array   makebar(integer, array)
+  * @method array   setposition(integer, array)
+  *   Create a new pagination dataset.
+  * @method array   makebar(string)
   *   Create a new pagination bar.
-  * @method array   getbar(string)
+  * @method array   makeselect(string)
+  *   Create a new pagination drop down selector.
+  * @method array   getposition()
+  *   Return the the current page number and record number.
+  * @method array   getbar()
   *   Return the pagination bar.
-  * @method array   getselect(string)
+  * @method array   getselect()
   *   Return the pagination dropdown select menu.
   * @method array   checkerr()
-  *   Return any processing errors.
+  *   Return any processing errors (returns the last response data set).
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
@@ -28,8 +34,10 @@ class mpc_paginate_bar {
   protected $response = array();
   protected $error  = array(
     'current'       => 'none',
-    'none'          => 'Success.',
+    'success01'     => 'Success.',
+    'success02'     => 'Instantiated.',
     'data01'        => 'Invalid parameter.',
+    'data02'        => 'Number of records to paginate not provided.',
     'lock01'        => 'Toolbar is is locked.',
     'proc01'        => 'There was an error processing tihs request.',
   );
@@ -45,36 +53,105 @@ class mpc_paginate_bar {
   */
   public function __construct() {
     $this->response['success']          = true;
-    $this->response['content']    = 'Instantiated.';
+    $this->response['content']          = $this->error['success02'];
     return true;
   }
 # *** END - constructor ------------------------------------------------------- *
 #
-# *** BEGIN setmenu ----------------------------------------------------------- *
+# *** BEGIN setposition ------------------------------------------------------- *
 /**
-  * Create or reset a menu
-  * If instance is locked, only allow new menus.
-  * @param  string  $count  The number of elements to break in into pages.
-  * @param  array   $params A hash of properties to be set.
-  *         type            string  - how to paginate: get, post, script.
-  *         per_page        integer - number included per page.
-  *         overlap         integer - overlap first and last records.
-  *         direction       integer - (asc)ending or (desc)ending.
-  *         classes         string  - space separated list of classes names
+  * Create a pagination dataset for making toolbars and drop downs.
+  * Broken otu so it isn't redone every time one is called.
+  * @param  string  $count    The number of elements to break in into pages.
+  * @param  array   $params   A hash of properties to be set.
+  *         type              string  - how to paginate: get, post, script.
+  *         per_page          integer - number included per page.
+  *         curr_page         integer - number of the page we are currently on.
+  *         direction         string  - (asc)ending or (desc)ending.
+  *         max_run           integer - maximum number of consecutive buttons in bar.
+  *         firstlast         boolean - whether to include first and last buttons.
+  *         compress          boolean - whether to serve up with ellipses.
+  *         overlap           boolean - overlap first and last records.
   * @return array
-  *         success         bool    - was the call successful.
-  *         content         string  - results or error message.
+  *         success           bool    - was the call successful.
+  *         content           string  - results or error message.
   */
-  public function makebar($count, $params) {
+  public function setposition($count, $params) {
                     # make sure we have values to work with                     *
                     # because children should default to parent setting         *
+    $this->props['count']     = $count                ? : 0;
     $this->props['type']      = $params['type']       ? : 'get';
     $this->props['per_page']  = $params['per_page']   ? : 32;
-    $this->props['overlap']   = $params['overlap']    ? : 'true';
+    $this->props['curr_page'] = $params['curr_page']  ? : 1;
     $this->props['direction'] = $params['direction']  ? : 'asc';
-    $this->props['classes']   = $params['classes']    ? : '';
+    $this->props['max_run']   = $params['max_run']    ? : 5;
+    $this->props['firstlast'] = $params['firstlast']  ? : false;
+                    # for the above, okay to override thing that == false       *
+                    # for the below, false is a legal value                     *
+    $this->props['overlap']   = array_key_exists('overlap', $params)  ? $params['overlap'] : true;
+    $this->props['compress']  = array_key_exists('compress', $params) ? $params['compress'] : true;
+                    # Set our computed working variables ---------------------- *
+    $this->props['offset'] = $this->props['overlap'] ? 1 : 0;
+    $this->props['page_step'] = $this->props['overlap'] ? $params['per_page'] - 1 : $params['per_page'];
+    $this->props['page_ct']   = ceil($this->props['count'] / $this->props['page_step']);
+    $this->props['curr_rec']  = ($this->props['page_step'] * ($this->props['curr_page'] - 1)) + 1;
+    if ($this->props['page_ct'] <= ($this->props['max_run']+2)) {
+      $this->props['max_run']           = $this->props['page_ct'];
+      $this->props['compress']          = false;
+    }
+
+                    # error out now if bad values submitted
+    if ($this->props['count'] < 1) {
+      $this->response['success']        = false;
+      $this->response['content']        = $this->error['data02'];
+      return $this->response;
+    }
+  }
+# *** END - setposition ------------------------------------------------------- *
+#
+
+# *** BEGIN makebar ----------------------------------------------------------- *
+/**
+  * Create a pagination toolbar
+  * @param  string  $classes  Space separated list of classes names
+  * @return array
+  *         success           bool    - was the call successful.
+  *         content           string  - results or error message.
+  */
+  public function makebar($classes) {
+                    # make sure we have values to work with                     *
+                    # because children should default to parent setting         *
+    $this->props['classes']   = $classes ? : '';
+
     ob_start();
                     # === BEGIN BAR =========================================== #
+?>
+<div class="paginator <?= $this->props['classes']; ?>">
+<?php
+                    # first page button                                         *
+    if (($this->props['firstlast']) && ($this->props['compress'])) {
+      if ($this->props['curr_page'] == 1) { ?>
+  <div class="btn page-firstlast page-first nolink"><span>First</span></div>
+<?php } else { ?>
+  <div class="btn page-firstlast page-first"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$this->props['curr_page']; ?>"><span>First</span></a></div>
+<?php } }
+                    # prev page button                                          *
+?>
+<div class="btn page-prevnext page-prev"><a href="<?= $_SERVER['PHP_SELF'].'?page='.($this->props['curr_page']-1); ?>"><span>Prev</span></a></div>
+<?php
+                    # next page button                                          *
+?>
+<div class="btn page-prevnext page-prev"><a href="<?= $_SERVER['PHP_SELF'].'?page='.($this->props['curr_page']+1); ?>"><span>Next</span></a></div>
+<?php
+                    # last page button                                         *
+    if (($this->props['firstlast']) && ($this->props['compress'])) {
+      if ($this->props['curr_page'] == $this->props['page_ct']) { ?>
+    <div class="btn page-firstlast page-last nolink"><span>Last</span></div>
+  <?php } else { ?>
+  <div class="btn page-firstlast page-last"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$this->props['page_ct']; ?>"><span>Last</span></a></div>
+<?php } }?>
+</div>
+<?php
                     # === END BAR ============================================= #
     $this->bar      = ob_get_clean();
     ob_end_clean();
@@ -84,52 +161,7 @@ class mpc_paginate_bar {
     $this->response['content']          = $this->bar;
     return $this->response;
   }
-# *** END - setmenu ----------------------------------------------------------- *
+# *** END - makebar ----------------------------------------------------------- *
 #
-# *** BEGIN getlist ----------------------------------------------------------- *
-/**
-  * Return an array of menu items.
-  * @param  string  $name   The pseudoproperty name.
-  * @param  array   $params A hash of the output properties.
-  *         permissions     string - view rights categories used by page.
-  *         sort            string - sort order of the results.
-  * @return array
-  *         success         bool    - was the call successful.
-  *         content         string  - results or error message.
-  */
-  public function getlist($name, $params) {
-    if ( array_key_exists($name, $this->menu) ) {
-      return $this->menu[$name]['links'];
-    }
-  }
-# *** END - getlist ----------------------------------------------------------- *
-#
-# *** BEGIN setlink ----------------------------------------------------------- *
-/**
-* Create or edit a link
-* If a menu or link is locked, only allow new links.
-* @param  string  $name   The name of the menu to be created.
-* @param  array   $params A hash of properties to be set.
-*         permissions     string - view rights categories used by page.
-*         type            string - menu category.
-*         is_locked       bool    - whether to lock this menu.
-* @return array
-*         success         bool    - was the call successful.
-*         content         string  - results or error message.
-*/
-  public function setlink($name, $params) {
-    $temp_perms     = $params['permissions'] ? : 'public';
-    $temp_type      = $params['type'] ? : 'left sidebar';
-    if (($this->is_locked) and (array_key_exists($name, $this->menu))) {
-      return false;
-    }else {
-      $this->menu[$name]           = array();
-      $this->menu[$name]['perms']  = $temp_perms;
-      $this->menu[$name]['type']   = $temp_type;
-      $this->menu[$name]['links']  = array();
-    }
-    return true;
-  }
-# *** END - setlink ----------------------------------------------------------- *
 }
-// End mpc_parts -------------------------------------------------------------- *
+// End mpc_paginate_bar ------------------------------------------------------- *
