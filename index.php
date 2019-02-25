@@ -8,19 +8,18 @@
                     # Call config to inti the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 $mpo_paginator = new mpc_paginate_bar();
-$t_count = 170;
+$t_count = 700;
 $t_params['type']       = 'get';
 $t_params['per_page']   = 32;
-$t_params['curr_page']  = 1;
-$t_params['direction']  = 'asc';
+$t_params['curr_page']  = 5;
+$t_params['direction']  = 'desc';
 $t_params['max_run']    = 5;
-$t_params['firstlast']  = false;
-$t_params['overlap']  = true;
-$t_params['compress']  = true;
+$t_params['firstlast']  = true;
+$t_params['overlap']    = true;
+$t_params['compress']   = true;
 $t_result = $mpo_paginator->setposition($t_count, $t_params);
-                  # make sure we have values to work with                     *
-                  # because children should default to parent setting         *
-
+$t_result = $mpo_paginator->makebar();
+$t_result = $mpo_paginator->getbar();
                     # Build the page ------------------------------------------ *
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT VARIABLES BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -49,8 +48,10 @@ ob_start();
 
 <div id="contents">
   <pre>
-  <?php var_dump($mpo_parts); ?>
+  <?php var_dump(htmlspecialchars($t_result)); ?>
   </pre>
+
+  <?php echo($t_result); ?>
 
   <section>
     <figure>

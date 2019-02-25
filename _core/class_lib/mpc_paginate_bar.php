@@ -61,7 +61,12 @@ class mpc_paginate_bar {
 # *** BEGIN setposition ------------------------------------------------------- *
 /**
   * Create a pagination dataset for making toolbars and drop downs.
-  * Broken otu so it isn't redone every time one is called.
+  * Broken out so it isn't redone every time one is called.
+  * max_run is not the full bar. The maximum number of pages lists is n+2.
+  * Max spaces is n+8: first prev 1 ... 4 5 _6_ 7 8 ... n next last
+  * Recommend responsive styling
+  * Tablet: remove 4 to cap bar at n+4: first prev 4 5 _6_ 7 8 next last
+  * Phone: remove all number links to cap bar at 5: first prev _6_ next last
   * @param  string  $count    The number of elements to break in into pages.
   * @param  array   $params   A hash of properties to be set.
   *         type              string  - how to paginate: get, post, script.
@@ -70,6 +75,7 @@ class mpc_paginate_bar {
   *         direction         string  - (asc)ending or (desc)ending.
   *         max_run           integer - maximum number of consecutive buttons in bar.
   *         firstlast         boolean - whether to include first and last buttons.
+  *         userecnum         boolean - use record numbers instead of page numbers.
   *         compress          boolean - whether to serve up with ellipses.
   *         overlap           boolean - overlap first and last records.
   * @return array
@@ -79,13 +85,14 @@ class mpc_paginate_bar {
   public function setposition($count, $params) {
                     # make sure we have values to work with                     *
                     # because children should default to parent setting         *
-    $this->props['count']     = $count                ? : 0;
-    $this->props['type']      = $params['type']       ? : 'get';
-    $this->props['per_page']  = $params['per_page']   ? : 32;
-    $this->props['curr_page'] = $params['curr_page']  ? : 1;
-    $this->props['direction'] = $params['direction']  ? : 'asc';
-    $this->props['max_run']   = $params['max_run']    ? : 5;
-    $this->props['firstlast'] = $params['firstlast']  ? : false;
+    $this->props['count']     = (int)$count                 ? : 0;
+    $this->props['type']      = $params['type']             ? : 'get';
+    $this->props['per_page']  = (int)$params['per_page']    ? : 32;
+    $this->props['curr_page'] = (int)$params['curr_page']   ? : 1;
+    $this->props['direction'] = $params['direction']        ? : 'asc';
+    $this->props['max_run']   = (int)$params['max_run']     ? : 5;
+    $this->props['firstlast'] = $params['firstlast']        ? : false;
+    $this->props['userrecnum']= $params['userrecnum']       ? : false;
                     # for the above, okay to override thing that == false       *
                     # for the below, false is a legal value                     *
     $this->props['overlap']   = array_key_exists('overlap', $params)  ? $params['overlap'] : true;
@@ -93,14 +100,31 @@ class mpc_paginate_bar {
                     # Set our computed working variables ---------------------- *
     $this->props['offset'] = $this->props['overlap'] ? 1 : 0;
     $this->props['page_step'] = $this->props['overlap'] ? $params['per_page'] - 1 : $params['per_page'];
+                    # If there are not enought pages, disable ellipses -------- *
     $this->props['page_ct']   = ceil($this->props['count'] / $this->props['page_step']);
-    $this->props['curr_rec']  = ($this->props['page_step'] * ($this->props['curr_page'] - 1)) + 1;
     if ($this->props['page_ct'] <= ($this->props['max_run']+2)) {
-      $this->props['max_run']           = $this->props['page_ct'];
-      $this->props['compress']          = false;
+      $this->props['max_run'] = (int)$this->props['page_ct'];
+      $this->props['compress']= false;
+      $this->props['low_run'] = 1;
+      $this->props['high_run']= (int)$this->props['page_ct'];
+    } else {
+      $this->props['low_run'] = $this->props['curr_page']-floor($this->props['max_run']/2);
+      $this->props['high_run']= $this->props['curr_page']+floor($this->props['max_run']/2);
+      if ($this->props['low_run'] < 1) {
+        $this->props['low_run'] = 1;
+        $this->props['high_run'] = $this->props['low_run'] + $this->props['max_run'] -1;
+      }
+      if ($this->props['max_run'] % 2 == 0) { $this->props['high_run'] -= 1; }
+      if ($this->props['high_run'] > $this->props['page_ct']) {
+        $this->props['high_run'] = $this->props['page_ct'];
+        $this->props['low_run'] = $this->props['high_run'] - $this->props['max_run'] + 1; 
+      }
     }
-
-                    # error out now if bad values submitted
+                    # If using record numbers, compute these ------------------ *
+    if ($this->props['userrecnum']) {
+      $this->props['curr_rec'] = ($this->props['page_step'] * ($this->props['curr_page'] - 1)) + 1;
+    }
+                    # error out now if bad values submitted ------------------- *
     if ($this->props['count'] < 1) {
       $this->response['success']        = false;
       $this->response['content']        = $this->error['data02'];
@@ -113,6 +137,11 @@ class mpc_paginate_bar {
 # *** BEGIN makebar ----------------------------------------------------------- *
 /**
   * Create a pagination toolbar
+  * Classes:
+  *  - div.paginator
+  *    - div.btn page-firstlast page-first page-last nolink
+  *    - div.btn page-prevnext page-prev page-next nolink
+  *    - div.btn page-link page-first page-last current nolink
   * @param  string  $classes  Space separated list of classes names
   * @return array
   *         success           bool    - was the call successful.
@@ -126,31 +155,55 @@ class mpc_paginate_bar {
     ob_start();
                     # === BEGIN BAR =========================================== #
 ?>
-<div class="paginator <?= $this->props['classes']; ?>">
-<?php
-                    # first page button                                         *
+    <div class="paginator <?= $this->props['classes']; ?>">
+<?php               # first page button --------------------------------------- *
     if (($this->props['firstlast']) && ($this->props['compress'])) {
       if ($this->props['curr_page'] == 1) { ?>
-  <div class="btn page-firstlast page-first nolink"><span>First</span></div>
+      <div class="btn page-firstlast page-first nolink"><span>First</span></div>
 <?php } else { ?>
-  <div class="btn page-firstlast page-first"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$this->props['curr_page']; ?>"><span>First</span></a></div>
-<?php } }
-                    # prev page button                                          *
-?>
-<div class="btn page-prevnext page-prev"><a href="<?= $_SERVER['PHP_SELF'].'?page='.($this->props['curr_page']-1); ?>"><span>Prev</span></a></div>
-<?php
-                    # next page button                                          *
-?>
-<div class="btn page-prevnext page-prev"><a href="<?= $_SERVER['PHP_SELF'].'?page='.($this->props['curr_page']+1); ?>"><span>Next</span></a></div>
-<?php
-                    # last page button                                         *
+      <div class="btn page-firstlast page-first"><a href="<?= $_SERVER['PHP_SELF'].'?page=1'; ?>"><span>First</span></a></div>
+<?php } }           # prev page button ---------------------------------------- *
+      if ($this->props['curr_page'] == 1) { ?>
+      <div class="btn page-prevnext page-prev nolink"><span>Prev</span></div>
+<?php } else { ?>
+      <div class="btn page-prevnext page-prev"><a href="<?= $_SERVER['PHP_SELF'].'?page='.($this->props['curr_page']-1); ?>"><span>Prev</span></a></div>
+<?php }             # page 1 button  ------------------------------------------ *
+    if ($this->props['low_run'] > 1) {
+      if ($this->props['curr_page'] == 1) { ?>
+      <div class="btn page-link page-first current nolink"><span>1</span></div>
+<?php } else { ?>
+      <div class="btn page-link page-first"><a href="<?= $_SERVER['PHP_SELF'].'?page=1'; ?>"><span>1</span></a></div>
+<?php }  }           # ellipses check ------------------------------------------ *
+    if (($this->props['compress']) && ($this->props['low_run'] > 2)) { ?>
+      <div class="btn ellipses nolink"><span>&hellip;</span></div>
+<?php }             # page numbers -------------------------------------------- *
+    for ($i=$this->props['low_run']; $i<=$this->props['high_run']; $i++) {
+      if ($this->props['curr_page'] == $i) { ?>
+      <div class="btn page-link page-first current nolink"><span><?= $i ?></span></div>
+<?php } else { ?>
+      <div class="btn page-link page-first"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$i; ?>"><span><?= $i ?></span></a></div>
+<?php } }             # ellipses check ------------------------------------------ *
+    if (($this->props['compress']) && ($this->props['high_run'] < $this->props['page_ct']-1)) { ?>
+      <div class="btn ellipses nolink"><span>&hellip;</span></div>
+<?php }             # page n:max button --------------------------------------- *
+    if ($this->props['high_run'] < $this->props['page_ct']) {
+      if ($this->props['curr_page'] == $this->props['page_ct']) { ?>
+      <div class="btn page-link page-first current nolink"><span><?= $this->props['page_ct']; ?></span></div>
+<?php } else { ?>
+      <div class="btn page-link page-last"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$this->props['page_ct']; ?>"><span><?= $this->props['page_ct']; ?></span></a></div>
+<?php } }           # page next button                                         *
+      if ($this->props['curr_page'] == $this->props['page_ct']) { ?>
+      <div class="btn page-prevnext page-next nolink"><span>Prev</span></div>
+<?php } else { ?>
+      <div class="btn page-prevnext page-next"><a href="<?= $_SERVER['PHP_SELF'].'?page='.($this->props['curr_page']+1); ?>"><span>Next</span></a></div>
+<?php }             # last page button                                          *
     if (($this->props['firstlast']) && ($this->props['compress'])) {
       if ($this->props['curr_page'] == $this->props['page_ct']) { ?>
-    <div class="btn page-firstlast page-last nolink"><span>Last</span></div>
-  <?php } else { ?>
-  <div class="btn page-firstlast page-last"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$this->props['page_ct']; ?>"><span>Last</span></a></div>
+      <div class="btn page-firstlast page-last nolink"><span>Last</span></div>
+<?php } else { ?>
+      <div class="btn page-firstlast page-last"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$this->props['page_ct']; ?>"><span>Last</span></a></div>
 <?php } }?>
-</div>
+    </div>
 <?php
                     # === END BAR ============================================= #
     $this->bar      = ob_get_clean();
@@ -163,5 +216,22 @@ class mpc_paginate_bar {
   }
 # *** END - makebar ----------------------------------------------------------- *
 #
+# *** BEGIN getbar ----------------------------------------------------------- *
+/**
+  * Create a pagination toolbar
+  * Classes:
+  *  - div.paginator
+  *    - div.btn page-firstlast page-first page-last nolink
+  *    - div.btn page-prevnext page-prev page-next nolink
+  *    - div.btn page-link page-first page-last current nolink
+  * @param  string  $classes  Space separated list of classes names
+  * @return array
+  *         success           bool    - was the call successful.
+  *         content           string  - results or error message.
+  */
+  public function getbar() {
+    return $this->bar;
+  }
+
 }
 // End mpc_paginate_bar ------------------------------------------------------- *
