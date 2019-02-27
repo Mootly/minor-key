@@ -101,7 +101,9 @@ class mpc_paginate_bar {
     $this->props['offset'] = $this->props['overlap'] ? 1 : 0;
     $this->props['page_step'] = $this->props['overlap'] ? $params['per_page'] - 1 : $params['per_page'];
                     # If there are not enought pages, disable ellipses -------- *
+                    # Remember to test for zero ------------------------------- *
     $this->props['page_ct']   = ceil($this->props['count'] / $this->props['page_step']);
+    $this->props['page_ct']   = $this->props['page_ct'] ? $this->props['page_ct'] : 1;
     if ($this->props['page_ct'] <= ($this->props['max_run']+2)) {
       $this->props['max_run'] = (int)$this->props['page_ct'];
       $this->props['compress']= false;
