@@ -27,7 +27,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
         <fieldset form="form_unstale" name="unstale_btn" id="form_unstale_btn">
           <legend>This form is stale.</legend>
           <div class="form_directions directions">
-            <p>This may be because the system needs to flush data from a previous form submission, a previous form submission was not completed properly, or the page was accidentally reloaded. For security and submission tracking purposes, this form cannot be edited when stale.</p>
+            <p>This may be because you didn't log out of a previous session, a previous form submission was not completed properly, or the page was accidentally reloaded. For security and submission tracking purposes, this form cannot be edited when stale.</p>
             <p>To clear this form so it can be used, please reset the form.</p>
           </div>
           <div class="field_container">
