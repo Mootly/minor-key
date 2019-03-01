@@ -23,7 +23,7 @@
   * @copyright 2018 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
-class mpc_paths {
+class mpc_cookies {
   protected $is_locked;
   protected $cookieset = array();
 # *** END - property assignments ---------------------------------------------- *

@@ -6,6 +6,16 @@
   * @package   moosepress
   * --------------------------------------------------------------------------- */
 
+# Security -------------------------------------------------------------------- *
+# make sure our pages are more secure than the server *might* be                *
+  ini_set('session.cookie_httponly', 1 );
+  ini_set('session.use_only_cookies', 1);
+  if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == "on")) {
+    ini_set('session.cookie_secure', 1);
+  }
+# These are, unfortunately, dependent on the browser to respond correctly.      *
+  header('X-XSS-Protection: 1; mode=block');
+  header('X-Frame-Options: SAMEORIGIN');
 # Constants ------------------------------------------------------------------- *
 # Values are repeated in case there was no config file.                         *
                     # Core file paths                                           *
