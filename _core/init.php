@@ -60,6 +60,8 @@
   $mpo_parts->template      = $temp_string ;
   $mpo_parts->perm_template = PERM_TEMPLATE.MP_PSEP;
   $mpo_paths->template      = MP_ROOT . '_templates/';
+  $mpo_paths->assets        = '/_templates/' . $mpo_parts->template . '_assets/';
+  $mpo_paths->images        = '/_templates/' . $mpo_parts->template . '_assets/images/';
   $mpo_paths->php_widgets   = MP_ROOT . '_assets/php_widgets/';
                     # If we are in a test copy of pages,                        *
                     # set site base path accordingly                            *
