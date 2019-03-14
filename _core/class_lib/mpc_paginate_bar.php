@@ -149,7 +149,7 @@ class mpc_paginate_bar {
   *         success           bool    - was the call successful.
   *         content           string  - results or error message.
   */
-  public function makebar($classes) {
+  public function makebar($classes = '') {
                     # make sure we have values to work with                     *
                     # because children should default to parent setting         *
     $this->props['classes']   = $classes ? : '';

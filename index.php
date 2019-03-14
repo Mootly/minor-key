@@ -53,21 +53,6 @@ ob_start();
 
   <?php echo($t_result); ?>
 
-  <section>
-    <figure>
-      <!-- <video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="640" height="360" data-setup='{}'> -->
-      <video controls="controls" style="width: 100%;" preload="metadata" aria-describedby="full-descript">
-        <source type="video/mp4" src="/sites/vidtest/best-of-cb.mp4" />
-        <track src="/sites/vidtest/best-of-cb.srt" kind="subtitles" srclang="en" label="English" />
-      </video>
-      <figcaption>
-        <p>Having trouble viewing the video in your browser?<br />
-        <a href="/sites/vidtest/best-of-cb.mp4">Open the video directly in your media player</a>.</p>
-      </figcaption>
-    </figure>
-  </section>
-</div>
-
 <?php
                     # ↑↑↑ EDIT CONTENT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ ***
 $mpo_parts->accessibility = 'standard';

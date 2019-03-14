@@ -5432,42 +5432,109 @@ h1#first-el {
   }
 }
 
-#google-translate-box {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 200;
-  height: 0.375em;
-  overflow: hidden;
-  padding: 0.25em 0.25em 0.25em 0.375em;
-  background-color: white;
-  background-clip: padding-box;
-  border-bottom-left-radius: 1em;
+#content-main div.paginator {
+  width: 100%;
+  text-align: right;
+  margin: 0.25em 0 0.25em auto;
 }
 
-#google-translate-box .goog-te-gadget {
-  color: #28282b;
+#content-main div.paginator div, #content-main div.paginator .btn, #content-main div.paginator a {
+  display: inline-block;
 }
 
-#google-translate-box a,
-#google-translate-box a:active,
-#google-translate-box a:hover,
-#google-translate-box a:link,
-#google-translate-box a:visited {
+#content-main div.paginator a, #content-main div.paginator div.nolink {
+  height: 2.25em;
+  width: 2.25em;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  text-align: center;
+  line-height: 2.25em;
+  border: 1px solid #9492a0;
+  border: 1px solid rgba(147, 140, 155, 0.25);
+}
+
+#content-main div.paginator div.nolink.ellipses {
+  border: 0;
+  width: 0.5em;
+}
+
+#content-main div.paginator div.nolink.ellipses::before {
+  content: "";
+}
+
+#content-main div.paginator div.nolink, #content-main div.paginator div.nolink::before {
+  color: #52525a;
+  color: rgba(15, 16, 17, 0.5);
+}
+
+#content-main div.paginator div.nolink.current {
+  background-color: #938c9b;
+  color: #f1f0f2;
+  font-weight: bold;
+}
+
+#content-main div.paginator a:link {
   text-decoration: none;
-  color: #28282b;
+  font-weight: bold;
 }
 
-#google-translate-box select {
-  color: #0f1011;
-  background-clip: padding-box;
-  border-bottom-left-radius: 0.625em;
+#content-main div.paginator a:hover, #content-main div.paginator a:focus {
+  background-color: #9493a1;
+  background-color: rgba(147, 140, 155, 0.1);
+  border: 1px solid #938e9d;
+  border: 1px solid rgba(147, 140, 155, 0.75);
 }
 
-#google-translate-box:hover,
-#google-translate-box:focus {
-  height: auto;
-  overflow: auto;
+#content-main div.paginator div.page-firstlast a::before, #content-main div.paginator div.page-prevnext a::before, #content-main div.paginator div.ellipses a::before {
+  font-family: 'FontAwesome';
+  font-weight: bold;
+}
+
+#content-main div.paginator div.page-firstlast.nolink::before, #content-main div.paginator div.page-prevnext.nolink::before, #content-main div.paginator div.ellipses.nolink::before {
+  font-family: 'FontAwesome';
+}
+
+#content-main div.paginator div.page-firstlast span, #content-main div.paginator div.page-prevnext span, #content-main div.paginator div.ellipses span {
+  display: block;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+}
+
+#content-main div.paginator div.page-first a::before, #content-main div.paginator div.page-first.nolink::before {
+  content: "";
+}
+
+#content-main div.paginator div.page-last a::before, #content-main div.paginator div.page-last.nolink::before {
+  content: "";
+}
+
+#content-main div.paginator div.page-prev a::before, #content-main div.paginator div.page-prev.nolink::before {
+  content: "";
+}
+
+#content-main div.paginator div.page-next a::before, #content-main div.paginator div.page-next.nolink::before {
+  content: "";
+}
+
+@media (max-width: break-1280-desktop) {
+  #content-main div.paginator div.page-link.first, #content-main div.paginator div.page-link.last, #content-main div.paginator div.ellipses {
+    display: none;
+  }
+}
+
+@media (max-width: 35em) {
+  #content-main div.paginator div.page-link {
+    display: none;
+  }
+  #content-main div.paginator a, #content-main div.paginator div.nolink {
+    font-size: 1.25em;
+  }
 }
 
 #content-main .clamshell .more-link .fa {
@@ -5525,6 +5592,44 @@ h1#first-el {
 
 #content-main div.list-header .right-link {
   float: none;
+}
+
+#google-translate-box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200;
+  height: 0.375em;
+  overflow: hidden;
+  padding: 0.25em 0.25em 0.25em 0.375em;
+  background-color: white;
+  background-clip: padding-box;
+  border-bottom-left-radius: 1em;
+}
+
+#google-translate-box .goog-te-gadget {
+  color: #28282b;
+}
+
+#google-translate-box a,
+#google-translate-box a:active,
+#google-translate-box a:hover,
+#google-translate-box a:link,
+#google-translate-box a:visited {
+  text-decoration: none;
+  color: #28282b;
+}
+
+#google-translate-box select {
+  color: #0f1011;
+  background-clip: padding-box;
+  border-bottom-left-radius: 0.625em;
+}
+
+#google-translate-box:hover,
+#google-translate-box:focus {
+  height: auto;
+  overflow: auto;
 }
 
 body.draft {

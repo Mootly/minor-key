@@ -1,0 +1,61 @@
+// === 07 Widgets - 03 Pagination Bar ===================-===================== *
+#content-main div.paginator {
+  width             : 100%;
+  text-align        : right;
+  margin            : 0.25em 0 0.25em auto;
+                    // It is all inline-blocks because formatting               *
+  div, .btn, a { display: inline-block; }
+  a, div.nolink {
+    height          : 2.25em;
+    width           : 2.25em;
+    margin          : 0;
+    padding         : 0;
+    vertical-align  : top;
+    text-align      : center;
+    line-height     : 2.25em;
+    @include set-blended-border($c-purple-pale-dusk, all, 0.25, 1px, solid, $c-base-bg);
+  }
+                    // No link formatting                                       *
+  div.nolink.ellipses {
+    border          : 0;
+    width           : 0.5em;
+    &::before { content: $fa-var-ellipsis-v; }
+  }
+  div.nolink, div.nolink::before { @include set-blended-text($c-base-text, 0.5, $c-base-bg); }
+  div.nolink.current {
+    background-color: $c-purple-pale-dusk;
+    color           : $c-inverse-text;
+    font-weight     : bold;
+  }
+                    // Link formatting                                          *
+  a:link { text-decoration: none; font-weight: bold; }
+  a:hover, a:focus {
+    @include set-blended-background($c-purple-pale-dusk, 0.1, $c-base-bg);
+    @include set-blended-border($c-purple-pale-dusk, all, 0.75, 1px, solid, $c-base-bg);
+  }
+                    // Icon placement depends on whether there are links        *
+  div.page-firstlast, div.page-prevnext, div.ellipses {
+    a::before { font-family: 'FontAwesome'; font-weight: bold; }
+    &.nolink::before { font-family: 'FontAwesome'; }
+    span { @include hidden-element-rules; }
+  }
+  div.page-first  { a::before, &.nolink::before { content: $fa-var-angle-double-left; }   }
+  div.page-last   { a::before, &.nolink::before { content: $fa-var-angle-double-right; }  }
+  div.page-prev   { a::before, &.nolink::before { content: $fa-var-angle-left; }          }
+  div.page-next   { a::before, &.nolink::before { content: $fa-var-angle-right; }         }
+}
+// Media rules for small screens ---------------------------------------------- *
+// Drop links outside ellipses first, then drop all numbers                     *
+// Current page and arrow buttons will always display                           *
+@media (max-width: break-1280-desktop) {
+  #content-main div.paginator {
+    div.page-link.first, div.page-link.last, div.ellipses { display: none; }
+  }
+}
+@media (max-width: $break-560-phone) {
+  #content-main div.paginator {
+    div.page-link { display: none; }
+    a, div.nolink { font-size: 1.25em; }
+  }
+}
+// ============================================================================ *
