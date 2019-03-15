@@ -135,5 +135,5 @@ if (in_array($mpo_404->status, ['search','not found','no match'])) { ?>
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
 $page_elements = $mpo_parts->build_page();
-echo ($twig->render($mpo_parts->template.$mpt_home_template, array('page'=>$page_elements['content'])));
+echo ($twig->render($mpo_parts->template.$mpt_form_template, array('page'=>$page_elements['content'])));
 ?>
