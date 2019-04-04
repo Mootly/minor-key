@@ -83,6 +83,19 @@ class mpc_paginate_bar {
   *         content           string  - results or error message.
   */
   public function setposition($count, $params) {
+    $this->props['url_path']  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $this->props['url_query'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
+    parse_str($this->props['url_query'], $t_url_query);
+    unset($t_url_query['page']);
+    $this->props['url_query'] = http_build_query($t_url_query);
+    if (strlen($this->props['url_query'])) {
+      $this->props['url_query'] = $this->props['url_query'].'&';
+    }
+    $this->props['url']       = $this->props['url_path'].'?'.$this->props['url_query'];
+    $this->props['url_frag']  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_FRAGMENT);
+    if (strlen($this->props['url_frag'])) {
+      $this->props['url_frag'] = '#'.$this->props['url_frag'];
+    }
                     # make sure we have values to work with                     *
                     # because children should default to parent setting         *
     $this->props['count']     = $count                      ? : 0;
@@ -131,6 +144,8 @@ class mpc_paginate_bar {
       $this->response['success']        = false;
       $this->response['content']        = $this->error['data02'];
       return $this->response;
+    } else {
+      return $this->props;
     }
   }
 # *** END - setposition ------------------------------------------------------- *
@@ -163,18 +178,18 @@ class mpc_paginate_bar {
       if ($this->props['curr_page'] == 1) { ?>
       <div class="btn page-firstlast page-first nolink"><span>First</span></div>
 <?php } else { ?>
-      <div class="btn page-firstlast page-first"><a href="<?= $_SERVER['PHP_SELF'].'?page=1'; ?>"><span>First</span></a></div>
+      <div class="btn page-firstlast page-first"><a href="<?= $this->props['url'].'page=1'; ?>"><span>First</span></a></div>
 <?php } }           # prev page button ---------------------------------------- *
       if ($this->props['curr_page'] == 1) { ?>
       <div class="btn page-prevnext page-prev nolink"><span>Prev</span></div>
 <?php } else { ?>
-      <div class="btn page-prevnext page-prev"><a href="<?= $_SERVER['PHP_SELF'].'?page='.($this->props['curr_page']-1); ?>"><span>Prev</span></a></div>
+      <div class="btn page-prevnext page-prev"><a href="<?= $this->props['url'].'page='.($this->props['curr_page']-1); ?>"><span>Prev</span></a></div>
 <?php }             # page 1 button  ------------------------------------------ *
     if ($this->props['low_run'] > 1) {
       if ($this->props['curr_page'] == 1) { ?>
       <div class="btn page-link first current nolink"><span>1</span></div>
 <?php } else { ?>
-      <div class="btn page-link first"><a href="<?= $_SERVER['PHP_SELF'].'?page=1'; ?>"><span>1</span></a></div>
+      <div class="btn page-link first"><a href="<?= $this->props['url'].'page=1'; ?>"><span>1</span></a></div>
 <?php }  }           # ellipses check ------------------------------------------ *
     if (($this->props['compress']) && ($this->props['low_run'] > 2)) { ?>
       <div class="btn ellipses nolink"><span>&hellip;</span></div>
@@ -183,7 +198,7 @@ class mpc_paginate_bar {
       if ($this->props['curr_page'] == $i) { ?>
       <div class="btn current nolink"><span><?= $i ?></span></div>
 <?php } else { ?>
-      <div class="btn page-link"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$i; ?>"><span><?= $i ?></span></a></div>
+      <div class="btn page-link"><a href="<?= $this->props['url'].'page='.$i; ?>"><span><?= $i ?></span></a></div>
 <?php } }             # ellipses check ------------------------------------------ *
     if (($this->props['compress']) && ($this->props['high_run'] < $this->props['page_ct']-1)) { ?>
       <div class="btn ellipses nolink"><span>&hellip;</span></div>
@@ -192,18 +207,18 @@ class mpc_paginate_bar {
       if ($this->props['curr_page'] == $this->props['page_ct']) { ?>
       <div class="btn page-link last current nolink"><span><?= $this->props['page_ct']; ?></span></div>
 <?php } else { ?>
-      <div class="btn page-link last"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$this->props['page_ct']; ?>"><span><?= $this->props['page_ct']; ?></span></a></div>
+      <div class="btn page-link last"><a href="<?= $this->props['url'].'page='.$this->props['page_ct']; ?>"><span><?= $this->props['page_ct']; ?></span></a></div>
 <?php } }           # page next button                                         *
       if ($this->props['curr_page'] == $this->props['page_ct']) { ?>
       <div class="btn page-prevnext page-next nolink"><span>Next</span></div>
 <?php } else { ?>
-      <div class="btn page-prevnext page-next"><a href="<?= $_SERVER['PHP_SELF'].'?page='.($this->props['curr_page']+1); ?>"><span>Next</span></a></div>
+      <div class="btn page-prevnext page-next"><a href="<?= $this->props['url'].'page='.($this->props['curr_page']+1); ?>"><span>Next</span></a></div>
 <?php }             # last page button                                          *
     if (($this->props['firstlast']) && ($this->props['compress'])) {
       if ($this->props['curr_page'] == $this->props['page_ct']) { ?>
       <div class="btn page-firstlast page-last nolink"><span>Last</span></div>
 <?php } else { ?>
-      <div class="btn page-firstlast page-last"><a href="<?= $_SERVER['PHP_SELF'].'?page='.$this->props['page_ct']; ?>"><span>Last</span></a></div>
+      <div class="btn page-firstlast page-last"><a href="<?= $this->props['url'].'page='.$this->props['page_ct']; ?>"><span>Last</span></a></div>
 <?php } }?>
     </div>
 <?php

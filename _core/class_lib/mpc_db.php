@@ -65,9 +65,10 @@ class mpc_db {
       switch ($callby) {
       case 'sqlsrv':
         $this->mp_conn = sqlsrv_connect( $args['host'], array(
-          "Database"=> $args['dbname'],
-          "UID"     => $args['user'],
-          "PWD"     => $args['pwd']
+          "Database"     => $args['dbname'],
+          "UID"          => $args['user'],
+          "PWD"          => $args['pwd'],
+          "CharacterSet" => "UTF-8"
         ));
 
         if( $this->mp_conn ) {
