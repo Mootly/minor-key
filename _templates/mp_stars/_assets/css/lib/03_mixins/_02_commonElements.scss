@@ -21,6 +21,13 @@
   top               : 0;
   left              : -1000em;
 }
+@mixin hidden-radio-rules {
+  clip              : rect(0 0 0 0);
+  height            : 0;
+  width             : 1px;
+  overflow          : hidden;
+  margin            : -2px !important;
+}
                     // Hidden spans                                             ***
 @mixin span-hidden {
   span { @include hidden-element-rules; }
