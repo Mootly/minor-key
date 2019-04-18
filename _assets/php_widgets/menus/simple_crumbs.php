@@ -39,6 +39,8 @@
           (!(file_exists($tf_phppath) or file_exists($tf_vbspath) or file_exists($tf_htmpath)))) {
         $_include_this = false;
       }
+      if (($t_currpath == DEF_HOME) OR ($t_currpath.'/' == DEF_HOME))
+      { $_include_this = false; }
     }
                     # clean up garbage characters in display string             *
     if ($_include_this) {
