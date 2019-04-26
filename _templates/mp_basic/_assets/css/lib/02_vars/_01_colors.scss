@@ -61,10 +61,11 @@ $c-base-medplum     : rgb(90,49,93);                        // #5a315d
 $c-base-flatplum    : rgb(99,68,100);                       // #644564
 $c-purple-dusk      : rgb(58,31,90);                        // #3a1f5a
 $c-purple-pale-dusk : rgb(147,140,155);                     // #938C9B
+$c-purple-dusk-bg   : rgb(197,190,205);                     // #938C9B
 // *** COMPONENT COLORS ------------------------------------------------------- ***
                     // Base                                                     ***
 $c-base-text        : $c-base-black;
-$c-base-bg          : $c-base-ltgray;
+$c-base-bg          : $c-purple-dusk-bg;
 $c-inverse-text     : $c-offwhite;
 $c-inverse-bg       : $c-base-black;
                     // Header and Footer                                        ***
