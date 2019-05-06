@@ -40,6 +40,12 @@ class mpc_filefinder {
     'core'          => '^\/_core',
     'templates'     => '^\/_templates',
     'vendors'       => '^\/_vendors',
+    'admin'         => '\/admin\/',
+    'phishing'      => '^\/niet\d+',
+    'wordpress'     => 'wp-(include|login|content)',
+    'cgi'           => 'cgi(_|-)bin',
+    'executables'   => '\.(cgi|exe)$',
+    'phptools'      => 'phpMy',
   );
                     # our list of valid extensions                              *
                     # redirects only allowed to these types                     *
