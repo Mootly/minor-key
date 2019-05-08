@@ -37,15 +37,16 @@ class mpc_filefinder {
                     # these automatically fail                                  *
   protected $blockedPaths;
   protected $blockedPathArray = array(
-    'core'          => '^\/_core',
-    'templates'     => '^\/_templates',
-    'vendors'       => '^\/_vendors',
-    'admin'         => '\/admin\/',
-    'phishing'      => '^\/niet\d+',
-    'wordpress'     => 'wp-(include|login|content)',
-    'cgi'           => 'cgi(_|-)bin',
-    'executables'   => '\.(cgi|exe)$',
-    'phptools'      => 'phpMy',
+    'admin'         => '/\/admin\//i',
+    'core'          => '/^\/_core/i',
+    'cgi'           => '/cgi(_|-)?bin/i',
+    'executables'   => '/\.(cgi|exe)$/i',
+    'phishing'      => '/^\/niet\d+/i',
+    'phptools'      => '/phpmy/i',
+    'sql'           => '/\/(my)?sql\//i',
+    'templates'     => '/^\/_templates/i',
+    'vendors'       => '/^\/_vendors/i',
+    'wordpress'     => '/wp-(include|login|content|admin)/i',
   );
                     # our list of valid extensions                              *
                     # redirects only allowed to these types                     *

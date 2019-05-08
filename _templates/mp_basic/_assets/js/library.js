@@ -1,7 +1,7 @@
 /** --------------------------------------------------------------------------- *
   * JS Libary.
   *
-  * This file contains all core JS operatations for the ocfs_master template.
+  * This file contains all core JS operatations for the mp_basic template.
   * @copyright 2017-2018 - Mootly Obviate
   *   MIT license - https://opensource.org/licenses/MIT
   */
