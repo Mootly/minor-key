@@ -155,23 +155,19 @@ class mpc_filefinder {
     $this->uriArray                     = parse_url($this->targetURI);
                     # return array of filename components                       *
                     # dirname, basename, extension, filename                    *
-                    # so we can test suffixes
     $this->pathArray                    = pathinfo($this->uriArray['path']);
-                    # if no extension, fix pathing for pathinfo bug             *
-    if (!isset($this->pathArray['extension'])) {
-      $this->pathArray['dirname']       = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
-      $this->pathArray['filename']      = '';
+    $this->pathArray['dirname']         = ltrim($this->pathArray['dirname'],'\\');
+    $this->pathArray['globFilename']    = $this->pathArray['filename'];
+    $this->targetPath = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
+                    # get the category of our file extension                    *
+                    # directory, invalid, one of the $mpv_404_vExt keys         *
+    if (($this->pathArray['filename'] == 'index') ||
+        ($this->pathArray['filename'] == 'default')) {
       $this->pathArray['category']      = 'directory';
-      $this->targetPath                 = $this->pathArray['dirname'];
-                    # if looking for default page                               *
-    } elseif (in_array(strtolower($this->pathArray['filename']), array('default', 'index'))) {
-      $this->pathArray['category']      = 'directory';
       $this->pathArray['filename']      = '';
-      $this->targetPath                 = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
-                    # if looking for named page                                 *
+    } elseif ($this->pathArray['extension'] == '') {
+      $this->pathArray['category']      = 'directory';
     } else {
-      $this->targetPath                 = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
-                    # returning an array, so make sure to string it             *
       $this->pathArray['category']      = preg_grep(
         '/(^|\W)'.$this->pathArray['extension'].'($|\W)/',
         $this->validExtTypes
@@ -183,9 +179,6 @@ class mpc_filefinder {
         $this->pathArray['category']    = 'invalid';
       }
     }
-                      # these are going to get rewritten for glob()               *
-    $this->pathArray['globFilename']    = $this->pathArray['filename'];
-    $this->pathArray['globDirname']     = $this->pathArray['dirname'];
     $this->targetCategory               = $this->pathArray['category'];
                     # *** SPECIAL CASES --------------------------------------- *
                     # check for system paths                                    *
@@ -310,10 +303,7 @@ class mpc_filefinder {
   */
   public function try_nameMismatch($ignore='suffix') {
     if ($this->search_blocked()) { return NULL; }
-    // echo('<pre>');
-    // var_dump($this->pathArray);
-    // echo('<pre>');
-    // die();
+    if ($this->pathArray['category'] == 'system') { return false; }
                     # if path is flagged as a directory file, try that first    *
     if ($this->pathArray['category'] == 'directory') {
       if ($this->pathArray['filename'] == '') {
@@ -335,6 +325,10 @@ class mpc_filefinder {
           $this->pathArray['globFilename']
         );
       }
+      echo('<pre>');
+      var_dump($this->pathArray);
+      echo('</pre>');
+      die();
                     # clean up dates                                            *
       if (strpos($ignore, 'dates') !== false) {
         $this->pathArray['globFilename'] = preg_replace(
