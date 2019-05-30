@@ -57,20 +57,25 @@
                     # If the template contains classlib, declare in config.php  *
                     # Otherwise it will assume:                                 *
                     # /_templates/template_name/classlib                        *
-  $mpo_parts->template      = $temp_string ;
-  $mpo_parts->perm_template = PERM_TEMPLATE.MP_PSEP;
-  $mpo_paths->template      = MP_ROOT . '_templates/';
-  $mpo_paths->assets        = '/_templates/' . $mpo_parts->template . '_assets/';
-  $mpo_paths->images        = '/_templates/' . $mpo_parts->template . '_assets/images/';
-  $mpo_paths->php_widgets   = MP_ROOT . '_assets/php_widgets/';
+  $mpo_parts->template        = $temp_string ;
+  $mpo_parts->perm_template   = PERM_TEMPLATE.MP_PSEP;
+  $mpo_paths->template        = MP_ROOT . '_templates/';
+                    # root assets - server-side only - root included            *
+  $mpo_paths->widgets         = MP_ROOT . '_assets/widgets/';
+  $mpo_paths->php_widgets     = MP_ROOT . '_assets/php_widgets/';
+                    # template assets - server or client - root not included    *
+  $mpo_paths->assets          = '/_templates/' . $mpo_parts->template . '_assets/';
+  $mpo_paths->images          = '/_templates/' . $mpo_parts->template . '_assets/images/';
+  $mpo_paths->tp_widgets      = '/_templates/' . $mpo_parts->template . '_assets/widgets/';
+  $mpo_paths->tp_php_widgets  = '/_templates/' . $mpo_parts->template . '_assets/php_widgets/';
                     # If we are in a test copy of pages,                        *
                     # set site base path accordingly                            *
   if (strpos($mpo_parts->page_path,'_templates') !== false) {
-    $mpo_parts->site_base   = MP_PSEP . '_templates/'.$mpo_parts->template.'pages';
+    $mpo_parts->site_base     = MP_PSEP . '_templates/'.$mpo_parts->template.'pages';
   } elseif (strpos($mpo_parts->page_path,'/sites/') !== false) {
-    $mpo_parts->site_base   = MP_PSEP . 'sites';
+    $mpo_parts->site_base     = MP_PSEP . 'sites';
   } else {
-    $mpo_parts->site_base   = '';
+    $mpo_parts->site_base     = '';
   }
                     # Specify preset paths for standard resources               *
   $mpo_paths->docs          = $mpo_parts->site_base .'/docs';

@@ -16,12 +16,32 @@
   *   Add pseudo-properties to array with assigned values.
   * @method hash    build_list()
   *   Returns an associative array of paths.
+  * @method hash    get_asset()
+  *   Returns a string with the correct path for the target asset.
+  * @method hash    get_widget()
+  *   Returns a string containing the widget to be included.
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
   * --------------------------------------------------------------------------- */
 class mpc_paths {
   protected $is_locked;
   protected $path = array();
+                    # our list of valid extensions                              *
+                    # redirects only allowed to these types                     *
+                    # this was built while migrating a site off .Net            *
+                    # you may want to extend this list                          *
+                    # note that glob() stops working with too many              *
+  protected $validExtStr;
+  protected $validExtTypes = array(
+    'content'       => 'htm,html,inc,php,txt',
+    'document'      => 'doc,docx,dot,dotx,rtf,pdf,pps,ppt,pptx,xls,xlsm,xlsx,xlt,xltm,xltx',
+    'image'         => 'jpg,jpeg,gif,png,svg',
+    'style'         => 'css',
+    'script'        => 'js',
+    'video'         => 'avi,mov,mp4,mpg,mpeg,wmv,sbv,srt,sub,vtt',
+    'widget'        => 'inc,php,asp,aspx,cfm,cfml',
+  );
+
 # *** END - property assignments ---------------------------------------------- *
 #
 # *** BEGIN constructor ------------------------------------------------------- *
@@ -76,5 +96,27 @@ class mpc_paths {
     return $this->path;
   }
 # *** END - build_list -------------------------------------------------------- *
+#
+# *** BEGIN get_asset --------------------------------------------------------- *
+/**
+  * Returns a URI as a string.
+  * @return string
+  */
+  public function get_asset($type, $name, $embed=false) {
+    $t_found        = false;
+    $t_target_path  = './';
+    return $this->path;
+  }
+# *** END - get_asset --------------------------------------------------------- *
+#
+# *** BEGIN get_widget -------------------------------------------------------- *
+/**
+  * Returns ablock of content as a string.
+  * @return string
+  */
+  public function get_widget($name) {
+    return $this->path;
+  }
+# *** END - get_widget -------------------------------------------------------- *
 }
 // End mpc_paths -------------------------------------------------------------- *
