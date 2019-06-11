@@ -2,7 +2,7 @@
  * Converts old WYSIWYG code for images with new CSS-managed layout.            *
  * ---------------------------------------------------------------------------- */
 $('document').ready( function() {
-  $('img[align="middle"]').each ( function() {
+  $('img[hspace]').each ( function() {
     $(this).removeAttr('hspace').attr('style','margin: auto;');
     $(this).parent().attr('style','text-align: center;');
   });
