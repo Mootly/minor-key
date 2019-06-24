@@ -19,22 +19,27 @@
   * @package   moosepress
   * --------------------------------------------------------------------------- */
 class mpc_db {
-  protected $mp_conn;
-  protected $_status          = '';
-  protected $querynum         = -1;
-  protected $querylist        = array();
-  protected $paramlist        = array();
-  protected $optionlist       = array();
-  protected $errorlist        = array();
-  protected $resultset        = array();
-  protected $result           = array();
-  protected $error            = array(
+  protected         $mp_conn;
+  protected         $_status            = '';
+  protected         $querynum           = -1;
+  protected         $querylist          = array();
+  protected         $paramlist          = array();
+  protected         $optionlist         = array();
+  protected         $errorlist          = array();
+  protected         $resultset          = array();
+  protected         $result             = array();
+  protected         $error              = array(
     'current'       => 'none',
     'connected'     => 'Connected.',
     'noerrors'      => 'No errors reported.',
     'conn01'        => 'Connection type not valid or not specified. Currently supported: sqlsrv',
     'conn02'        => 'Missing arguments: ',
     'result1'       => 'No results returned for ',
+  );
+  protected         $feedback           = array(
+    'success'       => 'There were no errors processing this request',
+    'nodata'        => 'There was nothing found for this search.',
+    'unknown'       => 'An unidentified error has occured while retrieving content for this page.',
   );
 # *** END - property assignments ---------------------------------------------- *
 #
