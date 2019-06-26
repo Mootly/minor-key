@@ -157,6 +157,7 @@ class mpc_filefinder {
                     # dirname, basename, extension, filename                    *
                     # so we can test suffixes
     $this->pathArray                    = pathinfo($this->uriArray['path']);
+    if ($this->pathArray['dirname'] == '\\') { $this->pathArray['dirname'] = ''; }
                     # if no extension, fix pathing for pathinfo bug             *
     if (!isset($this->pathArray['extension'])) {
       $this->pathArray['dirname']       = $this->pathArray['dirname'].MP_PSEP.$this->pathArray['filename'];
@@ -404,8 +405,7 @@ class mpc_filefinder {
     }
     foreach($this->globResult as $t_key=>$t_item) {
       if (!empty($t_item)) {
-        // $this->globResult[$t_key] = MP_PSEP.ltrim(str_replace(MP_ROOT,'',$t_item), '/');
-        $this->globResult[$t_key] = MP_PSEP.str_replace(MP_ROOT,'',$t_item);
+        $this->globResult[$t_key] = MP_PSEP.ltrim(str_replace(MP_ROOT,'',$t_item), '/');
       }
     }
     return $this->globResult;
