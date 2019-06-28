@@ -1,49 +1,73 @@
 /* --- Basic AJAX Form Processor ---------------------------------------------- *
- * This script submits a form via Ajax using JSON and then writes the returned
- * results to a division with an ID of #testfield.
- * It returns error messsages for:
+ * Submit a form via Ajax using JSON.
+ * This script returns content and changes the the DOM.
+ * Return error messsages for:
  * - Missing required fields.
+ * - Validation errors for fields requiring specific formats.
  * - Errors returned by AJAX.
- * See the code of field and element names used.
+ * Returned content and values:
+ * - DOM: div#feedbackOnForm - Feedback and results.
+ *   If not in page, will be appended immediately after closing form tag.
+ * - DOM: span.errorOnField  - Field-specific errors. See below.
+ * - Class: .missingValue - Flag for blank required field.
+ * - Class: .invalidValue - Flag for field with invalid data/format.
+ * Controls:
+ * Accept a global array mp_submitFlags
+ * Key                | Default Value | Function
+ * suppressErrors     | false         | don't check/report errors, just submit
+ - noSummary          | false         | supress error summary at end of form
+ - inlinePosition     | 'after'       | inline error before|after|suppress input field
+ - customReplyError   |               | HTML block to prepend to feedback on error
+ - customReplySuccess |               | HTML black to prepend to feedback on success
  * --- Revision History ------------------------------------------------------- *
  * 2019-06-24 | Added revision log
  * ---------------------------------------------------------------------------- */
 // *** Error Messages --------------------------------------------------------- *
-var errMsgs = {
-                    // missing data - inline errors ('per' field)               *
-  per_req_field     : 'This field is required.',
-  per_req_address   : 'Please provide an address.',
-  per_req_captcha   : 'Please complete the captcha.',
-  per_req_date      : 'Please provide a date.',
-  per_req_email     : 'Please provide an email address.',
-  per_req_name      : 'Please provide a name.',
-  per_req_phone     : 'Please provide a phone number.',
-                    // missing data - summary errors                             *
-  summ_req_field    : 'There are required fields that have not been completed.',
-  summ_req_address  : 'A required address is missing.',
-  summ_req_captcha  : 'Please complete the captcha.',
-  summ_req_date     : 'A required date is mssing.',
-  summ_req_email    : 'A required email address is missing.',
-  summ_req_name     : 'A required name is missing.',
-  summ_req_phone    : 'A required phone number is missing.',
+var mp_errMsgs = {
+                    // missing data - inline errors                             *
+  fieldRequired: {
+    general:        'This field is required.',
+    address:        'Please provide an address.',
+    captcha:        'Please complete the captcha.',
+    date:           'Please provide a date.',
+    email:          'Please provide an email address.',
+    name:           'Please provide a name.',
+    phone:          'Please provide a phone number.',
+  },
                     // validation errors -inline errors s ('per' field)         *
-  per_format_date   : 'Please provide a properly formatted date.',
-  per_format_email  : 'Please provide a properly formatted email address.',
-  per_format_phone  : 'Please provide a properly formatted 10-digit phone number.',
+  fieldFormat: {
+    date:           'Please provide a properly formatted date.',
+    mail:           'Please provide a properly formatted email address.',
+    phone:          'Please provide a properly formatted phone number.',
+  },
+                    // missing data - summary errors                            *
+  formRequired: {
+    general:        'There are required fields that have not been completed.',
+    address:        'Please complete the captcha.',
+    date:           'A required date is missing.',
+    email:          'A required email address is missing.',
+    name:           'A required name is missing.',
+    phone:          'A required phone number is missing.',
+  },
                     // validation errors - summary errors                       *
-  summ_format_date  : 'A date field is not properly formatted for submission.',
-  summ_format_email : 'An email address field is not properly formatted for submission.',
-  summ_format_phone : 'A phone number field is not properly formatted for submission.',
-};
+  formFormat: {
+    date:           'A date field is not properly formatted for submission.',
+    email:          'An email address field is not properly formatted for submission.',
+    phone:          'A phone number field is not properly formatted for submission.',
+  }
+}
 // *** Submit the form -------------------------------------------------------- *
 $('#fld_submit_btn').click(function(e) {
+                    // Stop propagation                                         *
   event.preventDefault();
-  var tResult = '';
-  var tOkay = true;
-  var tForm = '#' + $('form.primary')[0].id;
-                    // Clear error highlights                                   *
+                    // set state                                                *
+  var tResult       = '';
+  var tOkay         = true;
+  var tForm         = '#' + $('form.primary')[0].id;
+                    // Clear stale error highlights and information             *
   $('input, textarea').removeClass('missingValue').removeClass('invalidValue');
-  $('#testField').html(tResult);
+  $('.errorOnField').remove();
+  $('#feedbackOnForm').html(tResult);
                     // Check required fields                                    *
   // $('input, textarea').filter('[required]').each(function(i, r) {
   //   if($(r).val()=='') {
@@ -52,7 +76,7 @@ $('#fld_submit_btn').click(function(e) {
   //   }
   // });
   // if ( !tOkay )  {
-  //   tResult = tResult + errMsgs['req_field'];
+  //   tResult = tResult + mp_eMsgs['req_field'];
   //   $('#testField').html(tResult);
   // }
                     // Check for Google captcha                                 *
@@ -60,7 +84,7 @@ $('#fld_submit_btn').click(function(e) {
     if ($('#fld_captcha').length) {
       if (!$.trim($('#g-recaptcha-response').val())) {
         tOkay = false;
-        tResult = tResult + errMsgs['s_req_captcha'];
+        tResult = tResult + mp_eMsgs['s_req_captcha'];
         $('#testField').html(tResult);
       }
     }
