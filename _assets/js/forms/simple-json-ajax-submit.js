@@ -58,16 +58,19 @@ var mp_errMsgs = {
 }
 // *** Submit the form -------------------------------------------------------- *
 $('#fld_submit_btn').click(function(e) {
+                    // *** init our script ------------------------------------ *
                     // Stop propagation                                         *
   event.preventDefault();
-                    // set state                                                *
+                    // set initial state -  no results, no errors               *
   var tResult       = '';
   var tOkay         = true;
+                    // assign our form to a variable                            *
   var tForm         = '#' + $('form.primary')[0].id;
-                    // Clear stale error highlights and information             *
+                    // clear stale error highlights and information             *
   $('input, textarea').removeClass('missingValue').removeClass('invalidValue');
   $('.errorOnField').remove();
   $('#feedbackOnForm').html(tResult);
+                    // *** init our script ------------------------------------ *
                     // Check required fields                                    *
   // $('input, textarea').filter('[required]').each(function(i, r) {
   //   if($(r).val()=='') {
