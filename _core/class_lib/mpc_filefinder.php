@@ -6,14 +6,26 @@
   *
   * This library does not do database searches, but can be extended to do so.
   *
-  * Public Properties:
+  * Public properties:
   * @var    array   $status             The status of the redirect with longdesc.
   * @var    string  $targetCategory     The category of the target URI.
   * Methods:
   * @method string  __construct()       Returns current state of redirect from $status
   * @method array   explainStatus()     Returns a description of status codes.
+  * @method array   getMatches()        Return result set from a PHP glob().
+  * @method string  getTarget()         Return the string being searched for.
+  * @method mixed   listValidExtensions()
+  *                 List valid extensions allowed in search by category.
+  * @method bool    search_blocked()    Check for whether this search should not be done.
+  * @method bool    try_nameMismatch()  Check for simple filename mismatches.
+  * Placeholders for instance specific DB calls:
+  * @method NULL    try_redirects()     Check database for redirects.
+  * @method false   flag_brokenlink()   Flag broken links for review.
+  *
   * @copyright 2018 Mootly Obviate
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_filefinder {
   public    $status;          # Current search status (see $statusTypes).
@@ -244,7 +256,7 @@ class mpc_filefinder {
 #
 # *** BEGIN getTarget --------------------------------------------------------- *
 /**
-  * Returns the string being searched for.
+  * Return the string being searched for.
   *
   * Using a get to ensure these values are only set through the constructor.
   * Defaults to the cleaned up path, but can also return the raw URI.

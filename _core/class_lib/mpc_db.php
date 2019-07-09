@@ -7,14 +7,19 @@
   * Public Properties:
   *   None.
   * Methods:
-  * @method bool    __construct(mixed)
+  * @method bool    __construct(string, array)
   *   Connection type as string followed by array of parameters.
-  * @method string  __get(string)
-  *   Return values from an array of pseudoproperties.
-  * @method bool    __set(string, string)
-  *   Add pseudo-properties to array with assigned values.
-  * @method hash    build_list()
-  *   Returns an associative array of paths.
+  * @method mixed   getstatus()
+  *   The database will return a status array.
+  *   The object will return an error string if there is no db return,
+  * @method int     getqueryidx()
+  *   Return the index position of the last query.
+  *   Return -1 if no queries run
+  * @method bool    close()
+  *   Close the current database connection.
+  * @method mixed   runquery(string, array, array)
+  *   The database will return a results array.
+  *   The object will return an error string if there is no db return,
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
   * --- Revision History ------------------------------------------------------ *
@@ -130,6 +135,9 @@ class mpc_db {
 # *** BEGIN runquery ---------------------------------------------------------- *
 /**
   * Return the results of a query.
+  * @param  string  $query    The parameterized query string.
+  * @param  array   $params   An array of parameters.
+  * @param  array   $options  An array of options.
   * @return multiple
   *   the object will return a string
   *   the database will return an array

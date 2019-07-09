@@ -20,8 +20,11 @@
   *   The URL of a specific link.
   * @method array    setlink(string, string, string, array)
   *   Create a new menu item.
+  *
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_menus {
   protected $is_locked;
