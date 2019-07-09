@@ -14,11 +14,13 @@
   *
   * @copyright 2019 Mootly Obviate - See /LICENSE.md
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------- *
+  * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 
 function stale_session($status, $reason = 'form', $session = NULL) {
                     # --------------------------------------------------------- *
-                    # Stale form ---------------------------------------------- *
+                    # Stale form notice --------------------------------------- *
   ob_start();
   ?>
   <div id="reply-notice">
@@ -42,7 +44,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
   $msgStaleForm     = ob_get_clean();
   ob_end_clean();
                     # --------------------------------------------------------- *
-                    # Stale session ------------------------------------------- *
+                    # Stale session notice ------------------------------------ *
   ob_start();
   ?>
   <div id="reply-notice">
@@ -62,6 +64,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
   <?php
   $msgStaleSession  = ob_get_clean();
   ob_end_clean();
+                    # --------------------------------------------------------- *
                     # replies for stale sessions                                *
   if ($status == 'stale') {
     if ($reason == 'form') {
@@ -69,6 +72,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
     } elseif ($reason == 'session') {
       return ($msgStaleSEssion);
   }
+                    # --------------------------------------------------------- *
                     # clear specifid session variables                          *
   } else if ($status == 'clear') {
     if ($session == 'all') {
@@ -81,5 +85,4 @@ function stale_session($status, $reason = 'form', $session = NULL) {
     exit();
   }
 }
-
 ?>

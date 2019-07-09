@@ -7,9 +7,13 @@
   *
   * @copyright 2018 Mootly Obviate
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
   /*
+  Some of these are borrowed from:
   http://xregexp.com/
+  https://emailregex.com/
   */
                     # These aren't always meant to be particularly robust,
                     # just good enough.
@@ -17,6 +21,21 @@
                     # Yes, I had to code a form where it could be either
                     # allows number, yyyy-mm-dd, mm-dd-yyyy, dd-mm-yyyy
   $regextocheck['age_or_bday'] = '(\d{1,4}[\/|\-]\d{1,2}[\/|\-])?\d{1,4}';
+                    # Checks for valid emails, should be run with /iD
+  $regextocheck['email'] = '^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)'.
+  '|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)'.
+  '|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)'.
+  '|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22))'.
+  '(?:\.(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)'.
+  '|(?:\x22(?:[\x01-\x08\x0B\x0C\x0E-\x1F\x21\x23-\x5B\x5D-\x7F]|(?:\x5C[\x00-\x7F]))*\x22)))*'.
+  '@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\.){1,126}){1,}'.
+  '(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)'.
+  '|(?:\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\]]){7,})'.
+  '(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))'.
+  '|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})'.
+  '(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?'.
+  '(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\.(?:(?:25[0-5])'.
+  '|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\]))$';
                     # Checks for every alphabetic character in the Unicode set
                     # also some basic punctuation that may occur in proper names
   $regextocheck['every_alpha'] = '['.

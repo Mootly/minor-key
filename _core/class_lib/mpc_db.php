@@ -17,6 +17,8 @@
   *   Returns an associative array of paths.
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_db {
   protected         $mp_conn;

@@ -1,18 +1,11 @@
 <?php
 /**
-  * Create a simple directory-based breadcrumb trail.
-  *
-  * Invoke after config and setting variables. Will build $mpo_parts->crumbs.
-  * <div id="breadcrumb-box">
-  *   <a href="link">label</a>
-  *   <i class="fa fa-iconname"></i>
-  *   ...
-  *   <i class="fa fa-iconname"></i>
-  *   <span class="position">Current Page</span>
-  * </div>
+  * List of components for vidoe includes so we just need one in the page.
   *
   * @copyright 2018 Mootly Obviate - See /LICENSE.md
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
   if (!isset($mpo_styles))  { $mpo_styles = new mpc_paths(); }
   $mpo_styles->mediashim    = '/_vendors/ghinda/shim.css';

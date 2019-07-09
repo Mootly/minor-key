@@ -22,6 +22,8 @@
   *   Writes the cookie to standard IO.
   * @copyright 2018 Mootly Obviate
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_cookies {
   protected $is_locked;

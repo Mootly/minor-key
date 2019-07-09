@@ -14,6 +14,8 @@
   *
   * @copyright 2018 Mootly Obviate - See /LICENSE.md
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
   $t_path = explode('/',$_SERVER['PHP_SELF']);
   $crumbstring = '<span class="position">' . $mpo_parts->link_title . '</span>';
