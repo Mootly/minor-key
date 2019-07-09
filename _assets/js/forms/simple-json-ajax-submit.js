@@ -13,7 +13,7 @@
  * - Class: .invalidValue - Flag for field with invalid data/format.
  * ---------------------------------------------------------------------------- *
  * Controls:
- * Accept a global array mp_submitFlags
+ * Accept a global array mpv_submitFlags
  * Key              | Default Value     | Function
  * noErrorCheck     | false             | don't check/report errors, just submit
  * noSummary        | false             | supress error summary at end of form
@@ -22,14 +22,14 @@
  * replyOnSuccess   |                   | HTML black to prepend to feedback on success
  * ---
  * Accept a class to define field type or a data attribute of data-ftype
- * class=ftype_<type>
  * <type> = address | captcha | name | user | any valid HTML <input /> type
- * Cascade: data-ftype, class, type
+ * data-ftype takes precendence over type
  * --- Revision History ------------------------------------------------------- *
+ * 2019-07-09 | Added server-side validations for non-HTML5 browsers
  * 2019-06-24 | Added revision log
  * ---------------------------------------------------------------------------- */
 // *** Error Messages --------------------------------------------------------- *
-var mp_errMsgs = {
+var mpv_errMsgs = {
                     // missing data - inline errors                             *
   fieldRequired: {
     general:        'This field is required.',
@@ -50,6 +50,7 @@ var mp_errMsgs = {
     mail:           'Please provide a properly formatted email address.',
     phone:          'Please provide a properly formatted phone number.',
     url:            'Please provide a properly formatted URL/URI.',
+    general:        'Please see the form directions for formatting information for this field.',
   },
                     // missing data - summary errors                            *
   formRequired: {
@@ -71,161 +72,260 @@ var mp_errMsgs = {
     email:          'An email address field is not properly formatted for submission.',
     phone:          'A phone number field is not properly formatted for submission.',
     url:            'A URL/URI field is not properly formatted for submission.',
+    general:        'There is an improperly formatted field. Please see the form directions.',
   }
 }
 // *** ------------------------------------------------------------------------ *
-// *** Submit the form -------------------------------------------------------- *
+// *** BEGIN Main function ---------------------------------------------------- *
 $('#fld_submit_btn').click(function(e) {
                     // *** init our script ------------------------------------ *
                     // Stop propagation                                         *
   event.preventDefault();
                     // set initial state -  no results, no errors               *
-  var summaryReport = $('<div>').addClass('submit_summary');
-  var inlineMsg     = '';
-  var reportMsg     = '';
   var isOkay        = true;
-  var fldID         = '';
-  var fldType       = 'text';
+  var fprop_ID      = '';
+  var fprop_type    = 'text';
+                    // create our error report elements                         *
+  var $_inlineMsg   = $('<span />', {'class': 'errorOnField'});
+  var $_reportMsg   = $('<li />');
+  var $_summaryRpt  = $('<div />', {id: 'submit_summary', 'class': 'warning'});
+  $('<h3 />', {id: 'h3_submit_summary'}).text('This form appears to have errors and is not ready to submit:').appendTo($_summaryRpt);
+  $('<ul />', {'id': 'ul_submit_summary'}).appendTo($_summaryRpt);
                     // assign our form to a variable                            *
-  var formData      = '#' + $('form.primary')[0].id;
+  var form_ID       = '#' + $('form.primary')[0].id;
   var targetField   = '';
                     // assign our flags to variables                            *
-  var checkErrors   = mp_submitFlags['noErrorCheck']
+  if (typeof mpv_submitFlags === 'undefined') { mpv_submitFlags = ['']; }
+  var checkErrors   = mpv_submitFlags['noErrorCheck']
                     ? false
                     : true;
-  var showSummary   = mp_submitFlags['noSummary']
-                    ? false
-                    : true;
-  var customErrMsg  = mp_submitFlags['replyOnError']
-                    ? mp_submitFlags['replyOnError']
+  var customErrMsg  = mpv_submitFlags['replyOnError']
+                    ? mpv_submitFlags['replyOnError']
                     : '';
-  var customPostMsg = mp_submitFlags['replyOnSuccess']
-                    ? mp_submitFlags['replyOnSuccess']
+                    $_summaryRpt.append(customErrMsg);
+  var customPostMsg = mpv_submitFlags['replyOnSuccess']
+                    ? mpv_submitFlags['replyOnSuccess']
                     : '';
-  var showSummary   = mp_submitFlags['noSummary']
+  var showSummary   = mpv_submitFlags['noSummary']
                     ? false
                     : true;
-  var showInline    = (mp_submitFlags['inlinePos'] == 'suppress')
+  var showInline    = (mpv_submitFlags['inlinePos'] == 'suppress')
                     ? false
                     : true;
-  var inlinePos     = (mp_submitFlags['inlinePos'] == 'before')
-                    ? 'before'
-                    : 'after';
+  var showBefore    = (mpv_submitFlags['inlinePos'] == 'before')
+                    ? true
+                    : false;
                     // clear stale error highlights and information             *
   $('input, textarea').removeClass('missingValue').removeClass('invalidValue');
   $('.errorOnField').remove();
-  $('#feedbackOnForm').html(tResult);
+  $('#feedbackOnForm').empty();
 // *** ------------------------------------------------------------------------ *
-// *** Begin Error Checking --------------------------------------------------- *
+// *** BEGIN Error Checking --------------------------------------------------- *
   if ( checkErrors ) {
-                    // *** Check required fields ------------------------------ *
+// *** BEGIN Check required fields -------------------------------------------- *
                     // if empty, generate error messages
     $('input, textarea').filter('.required, [required]').each(function() {
       if($(this).val() == '') {
         $(this).addClass('missingValue');
         isOkay      = false;
                     // determine field id/type is generating the error
-        fldID       = $(this).attr('id');
-        fldType     = $(this).attr('data-ftype')
+        fprop_ID    = $(this).attr('id');
+        fprop_type  = $(this).attr('data-ftype')
                     ? $(this).attr('data-ftype')
-                    : $(this).attr('class').match(/ftype_\w+/)[0]
-                    ? $(this).attr('class').match(/ftype_\w+/)[0]
                     : $(this).attr('type');
                     // assign our error messages
-        switch (fldType) {
+        switch (fprop_type) {
         case 'address':                       // class
-          inlineMsg = mp_errMsgs['fieldRequired']['address'];
-          inlineMsg = mp_errMsgs['formRequired']['address'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['address']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['address']);
           break;
         case 'captcha':                       // class
-          inlineMsg = mp_errMsgs['fieldRequired']['captcha'];
-          inlineMsg = mp_errMsgs['formRequired']['captcha'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['captcha']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['captcha']);
           break;
         case 'date':                          // type
         case 'datetime-local':                // type
-          inlineMsg = mp_errMsgs['fieldRequired']['date'];
-          inlineMsg = mp_errMsgs['formRequired']['date'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['date']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['date']);
           break;
         case 'email':                         // type
-          inlineMsg = mp_errMsgs['fieldRequired']['email'];
-          inlineMsg = mp_errMsgs['formRequired']['email'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['email']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['email']);
           break;
         case 'name':                          // class
-          inlineMsg = mp_errMsgs['fieldRequired']['name'];
-          inlineMsg = mp_errMsgs['formRequired']['name'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['name']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['name']);
           break;
         case 'password':                      // type
-          inlineMsg = mp_errMsgs['fieldRequired']['password'];
-          inlineMsg = mp_errMsgs['formRequired']['password'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['password']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['password']);
           break;
         case 'phone':                         // class
         case 'tel':                           // type
-          inlineMsg = mp_errMsgs['fieldRequired']['phone'];
-          inlineMsg = mp_errMsgs['formRequired']['phone'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['phone']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['phone']);
           break;
         case 'file':                          // type
         case 'image':                         // type
-          inlineMsg = mp_errMsgs['fieldRequired']['file'];
-          inlineMsg = mp_errMsgs['formRequired']['file'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['file']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['file']);
           break;
         case 'url':                           // type
-          inlineMsg = mp_errMsgs['fieldRequired']['url'];
-          inlineMsg = mp_errMsgs['formRequired']['url'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['url']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['url']);
           break;
         default:
-          inlineMsg = mp_errMsgs['fieldRequired']['general'];
-          inlineMsg = mp_errMsgs['formRequired']['general'];
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['general']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['general']);
           break;
+        }
+                    // generate inline errors --------------------------------- *
+                    // use clone to ensure pass by value, not by reference
+        if (showInline) {
+          if (showBefore) {
+            $(this).before($_inlineMsg.clone());
+          } else {
+            $(this).after($_inlineMsg.clone());
+          }
+        }
+                    // build summary report ----------------------------------- *
+                    // use clone to ensure pass by value, not by reference
+        if (showSummary) {
+          $_summaryRpt.find('#ul_submit_summary').append($_reportMsg.clone());
         }
       }
     });
-                    // *** Check fields needing validation -------------------- *
+// *** END Check required fields ---------------------------------------------- *
+// *** BEGIN Check fields needing validation ----------==============---------- *
                     // only checks fields that have a pattern attribute         *
                     // uses the pattern for validation                          *
-
-                    // *** Check for Google captcha --------------------------- *
+    $('input').filter('[pattern]').each(function() {
+      var test_string  = $(this).val();
+      var test_pattern = new RegExp($(this).attr('pattern'));
+      if((test_string.search(test_pattern) == -1) && test_string != '') {
+        $(this).addClass('invalidValue');
+        isOkay      = false;
+                    // determine field id/type is generating the error
+        fprop_ID    = $(this).attr('id');
+        fprop_type  = $(this).attr('data-ftype')
+                    ? $(this).attr('data-ftype')
+                    : $(this).attr('type');
+                    // assign our error messages
+        switch (fprop_type) {
+        case 'date':                          // type
+        case 'datetime-local':                // type
+          $_inlineMsg.html(mpv_errMsgs['fieldFormat']['date']);
+          $_reportMsg.html(mpv_errMsgs['formFormat']['date']);
+          break;
+        case 'email':                         // type
+          $_inlineMsg.html(mpv_errMsgs['fieldFormat']['email']);
+          $_reportMsg.html(mpv_errMsgs['formFormat']['email']);
+          break;
+        case 'phone':                         // class
+        case 'tel':                           // type
+          $_inlineMsg.html(mpv_errMsgs['fieldFormat']['phone']);
+          $_reportMsg.html(mpv_errMsgs['formFormat']['phone']);
+          break;
+        case 'url':                           // type
+          $_inlineMsg.html(mpv_errMsgs['fieldFormat']['url']);
+          $_reportMsg.html(mpv_errMsgs['formFormat']['url']);
+          break;
+        default:
+          $_inlineMsg.html(mpv_errMsgs['fieldFormat']['general']);
+          $_reportMsg.html(mpv_errMsgs['formFormat']['general']);
+          break;
+        }
+                    // generate inline errors --------------------------------- *
+                    // use clone to ensure pass by value, not by reference
+        if (showInline) {
+          if (showBefore) {
+            $(this).before($_inlineMsg.clone());
+          } else {
+            $(this).after($_inlineMsg.clone());
+          }
+        }
+                    // build summary report ----------------------------------- *
+                    // use clone to ensure pass by value, not by reference
+        if (showSummary) {
+          $_summaryRpt.find('#ul_submit_summary').append($_reportMsg.clone());
+        }
+      }
+    });
+// *** END Check fields needing validation ------------------------------------ *
+// *** BEGIN Check for Google captcha ----------------------------------------- *
                     // no need to bash them over head about captcha             *
                     // if the form has other problems                           *
     if ( isOkay ) {
       if ($('#fld_captcha').length) {
         if (!$.trim($('#g-recaptcha-response').val())) {
           isOkay = false;
+          $_inlineMsg.html(mpv_errMsgs['fieldRequired']['captcha']);
+          $_reportMsg.html(mpv_errMsgs['formRequired']['captcha']);
+                    // generate inline errors --------------------------------- *
+                    // use clone to ensure pass by value, not by reference
+          if (showInline) {
+            if (showBefore) {
+              $('#g-recaptcha-response').before($_inlineMsg.clone());
+            } else {
+              $('#g-recaptcha-response').after($_inlineMsg.clone());
+            }
+          }
+                    // build summary report ----------------------------------- *
+                    // use clone to ensure pass by value, not by reference
+          if (showSummary) {
+            $_summaryRpt.find('#ul_submit_summary').append($_reportMsg.clone());
+          }
         }
       }
     }
-    if ( !isOkay )  {
-      if ( showInline ) {
+// *** END Check for Google captcha ------------------------------------------- *
+// *** BEGIN Summary report generation ---------------------------------------- *
+    if ( !(isOkay) && (showSummary) ) {
+      var t_uniques = {};
+      $_summaryRpt.find('#ul_submit_summary li').each(function() {
+        var t_content = $(this).text();
+        if (t_uniques[t_content]) {
+          $(this).remove();
+        } else {
+          t_uniques[t_content] = true;
+        }
+      });
+      $('#feedbackOnForm').append($_summaryRpt);
 
-      }
-      if ( showSummary ) {
-
-      }
     }
-
+// *** END Summary report generation ------------------------------------------ *
   }
+// *** END Error Checking ----------------------------------------------------- *
+
+// }
 // *** End Error Checking ----------------------------------------------------- *
 // *** ------------------------------------------------------------------------ *
-// *** Submit the form data --------------------------------------------------- *
+// *** BEGIN Submit the form data --------------------------------------------- *
   if ( isOkay )  {
-    var formData = $(tForm).serializeArray();
-    var tSubmits = JSON.stringify( $(tForm).serializeArray(), null, 2 );
-    tResult = tResult + '<pre>'+tSubmits+'</pre>';
+    var json_fData  = $(form_ID).serializeArray();
+// var tSubmits      = JSON.stringify( $(form_ID).serializeArray(), null, 2 );
+// tResult           = tResult + '<pre>'+tSubmits+'</pre>';
     $('#fld_submit_btn').prop('value','Processing...');
-    var tPostPath = './post.php';
-    if ($('#fld_postpath').val()) { tPostPath = $('#fld_postpath').val(); }
-    var tReply = $.post( tPostPath, formData )
-    .done(function(data) {
-       $('#fld_submit_btn').prop('value','Submit Form');
-       $('#fs_submitForm').get(0).scrollIntoView();
-       $('#testField').html(data);
+    var post_path   = $('#fld_postpath').val()
+                    ? $('#fld_postpath').val()
+                    : $(form_ID).attr('action');
+
+    var post_path = './post.php';
+    if ($('#fld_postpath').val()) { post_path = $('#fld_postpath').val(); }
+    var post_status = $.post( post_path, json_fData )
+    .done(function(post_data) {
+      $('#fld_submit_btn').prop('value','Submit Form');
+      $('#fs_submitForm').get(0).scrollIntoView();
+      $('#feedbackOnForm').html(customPostMsg);
+      $('#feedbackOnForm').append(post_data);
       if (!($('.allow-retry').length)) {
-//        $('#fld_captcha, #fld_submit_btn, .noprint').hide();
+        $('#fld_captcha, #fld_submit_btn, .noprint').hide();
         $('#fs_submitForm legend').text('You may print a copy of this for your records.');
       }
     })
-    .fail(function() {
-      alert( 'There was an error with this request.' );
-    });
+    .fail(function() { alert( 'There was an error with this request.' ); });
   }
+
 });
+// *** END MAIN FUNCTION ------------------------------------------------------ *
 /*! -- Copyright (c) 2017-2019 Mootly Obviate -- See /LICENSE.md -------------- */

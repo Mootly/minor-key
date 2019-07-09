@@ -17,17 +17,21 @@
  * - Generates the following classes (arrows denote nesting):
  *   .list-header > .right-link > .all-link|.morelink
  *   .hidden
+ * --- Revision History ------------------------------------------------------- *
+ * 2019-07-09 | Added revision log, cleaned code
  * ---------------------------------------------------------------------------- */
-var icon_list_all   = 'fa-list';
-var icon_is_closed  = 'fa-caret-square-o-right';
-var icon_is_open    = 'fa-caret-square-o-down';
-var hidden_class    = 'hidden';
-                    // Determine what we are collapsing.                        ***
+                    // using font awesome icons                                 *
+var mpv_icon_list       = 'fa-list';
+var mpv_icon_clamClosed = 'fa-caret-square-o-right';
+var mpv_icon_clamOpen   = 'fa-caret-square-o-down';
+var mpv_class_hidden    = 'hidden';
+                    // Determine what we are collapsing.                        *
 var mpv_clam_class  = 'dl.clamshell, dl.example-box, div.clamshell';
 var mpv_clam_list   = $(mpv_clam_class);
 var mpv_clam_fold   = 'dd, .clamfold';
 var mpv_clam_head   = 'dt';
-                    // If using DIVs, find out what we are using for headings   ***
+                    // If using DIVs, find out what we are using for headings   *
+                    // class = use-h#                                           *
 var mpv_clam_block  = $('div.clamshell');
 if (mpv_clam_block.length > 0) {
   var mpv_tvar      = mpv_clam_block.attr('class').indexOf('use-');
@@ -35,47 +39,62 @@ if (mpv_clam_block.length > 0) {
       + mpv_clam_block.attr('class').substring(mpv_tvar+4, mpv_tvar+6);
 }
 /* --- EVENT Actions - user and synthetic ------------------------------------- */
-                    //  Open target fold                                        ***
+                    //  Open target fold                                        *
 $(window).on('hashchange', function(e){
   if (($(mpv_clam_list)) && (location.hash!='')) {
     var mpv_clam_target = location.hash;
     if ($(mpv_clam_target).length) {
-      $(mpv_clam_target).find('.more-link').find('i').addClass('fa '+icon_is_open).removeClass(icon_is_closed);
-      $(mpv_clam_target).find('.more-link').find('i span').text('[hide details]');
-      $(mpv_clam_target).closest(mpv_clam_head).next(mpv_clam_fold).toggleClass(hidden_class);
+      $(mpv_clam_target).find('.more-link').find('i')
+      .addClass('fa '+mpv_icon_clamOpen)
+      .removeClass(mpv_icon_clamClosed);
+      $(mpv_clam_target).find('.more-link').find('i span')
+      .text('[hide details]');
+      $(mpv_clam_target).closest(mpv_clam_head).next(mpv_clam_fold)
+      .toggleClass(mpv_class_hidden);
       if ( $(mpv_clam_target).parents(mpv_clam_fold) ) {
-        $(mpv_clam_target).parents(mpv_clam_fold).prev().find('.more-link').find('i').addClass('fa '+icon_is_open).removeClass(icon_is_closed).find('span').text('[hide details]');
-        $(mpv_clam_target).parents(mpv_clam_fold).toggleClass(hidden_class);
+        $(mpv_clam_target).parents(mpv_clam_fold).prev().find('.more-link').find('i')
+        .addClass('fa '+mpv_icon_clamOpen)
+        .removeClass(mpv_icon_clamClosed)
+        .find('span').text('[hide details]');
+        $(mpv_clam_target).parents(mpv_clam_fold)
+        .toggleClass(mpv_class_hidden);
       }
                     // Set page position
       $('html, body').scrollTop($(mpv_clam_target).offset().top-50);
     }
   }
 });
-                    // Open fold on direct select                               ***
+                    // Open fold on direct select                               *
 $(mpv_clam_list).on('click', '.item-toggle, item-toggle a.more-link', function(event) {
-  var tTogType      = ($(this).find('i span').text() == '[show details]') ? true : false;
-  $(this).find('i span').text(tTogType ? '[hide details]' : '[show details]');
-  $(this).find('i').toggleClass(icon_is_closed+' '+icon_is_open);
-  $(event.target).closest(mpv_clam_head).next(mpv_clam_fold).toggleClass(hidden_class);
+  var toggleType    = ($(this).find('i span').text() == '[show details]') ? true : false;
+  $(this).find('i span')
+  .text(toggleType ? '[hide details]' : '[show details]');
+  $(this).find('i')
+  .toggleClass(mpv_icon_clamClosed+' '+mpv_icon_clamOpen);
+  $(event.target).closest(mpv_clam_head).next(mpv_clam_fold)
+  .toggleClass(mpv_class_hidden);
   return false;
 });
-                    // Open all folds on direct select                          ***
+                    // Open all folds on direct select                          *
 $(mpv_clam_list).on('click', 'a.all-link', function(event) {
-  var tTogType = ($(this).find('span').text() == 'Show All') ? true : false;
-  if (tTogType) {
-    $(event.target).closest(mpv_clam_class).children(mpv_clam_fold).removeClass(hidden_class);
+  var toggleType = ($(this).find('span').text() == 'Show All') ? true : false;
+  if (toggleType) {
+    $(event.target).closest(mpv_clam_class).children(mpv_clam_fold)
+    .removeClass(mpv_class_hidden);
   } else {
-    $(event.target).closest(mpv_clam_class).children(mpv_clam_fold).addClass(hidden_class);
+    $(event.target).closest(mpv_clam_class).children(mpv_clam_fold)
+    .addClass(mpv_class_hidden);
   }
-  $(this).find('span').text(tTogType ? 'Hide All' : 'Show All');
-  $(event.target).closest(mpv_clam_class).children(mpv_clam_head).find('a.more-link i span').text(tTogType ? '[hide details]' : '[show details]');
-  $(event.target).closest(mpv_clam_class).children(mpv_clam_head).find('a.more-link i').attr('class', tTogType ? 'fa '+icon_is_open : 'fa '+icon_is_closed);
+  $(this).find('span').text(toggleType ? 'Hide All' : 'Show All');
+  $(event.target).closest(mpv_clam_class).children(mpv_clam_head).find('a.more-link i span')
+  .text(toggleType ? '[hide details]' : '[show details]');
+  $(event.target).closest(mpv_clam_class).children(mpv_clam_head).find('a.more-link i')
+  .attr('class', toggleType ? 'fa '+mpv_icon_clamOpen : 'fa '+mpv_icon_clamClosed);
   return false;
 });
 /* --- ONLOAD Actions --------------------------------------------------------- */
-                    // Add fold toggle links.                                   ***
-                    // Generate IDs if none provided (loops append counters).   ***
+                    // Add fold toggle links.                                   *
+                    // Generate IDs if none provided (loops append counters).   *
 mpv_clam_list.each(function (index1) {
   $(this).children(mpv_clam_head).each(function (index2) {
     $(this).addClass('item-toggle')
@@ -84,10 +103,10 @@ mpv_clam_list.each(function (index1) {
     }
     $(this).prepend('<span class="right-link"><a class="more-link" href="#'
     + $(this).attr('id')+'" title="'+$(this).text()+'"><i class="fa '
-    + icon_is_closed+'"><span>[show details]</span></i></a></span>');
+    + mpv_icon_clamClosed+'"><span>[show details]</span></i></a></span>');
   });
 });
-                    // Add list headers and hide/show all links                 ***
+                    // Add list headers and hide/show all links                 *
 $(mpv_clam_list).each(function () {
   if ($(this).children(mpv_clam_head).length > 1) {
     if ($(this).children(mpv_clam_head).first().is('dt')) {
@@ -102,8 +121,8 @@ $(mpv_clam_list).each(function () {
       + '</span></div>');
     }
   }
-  $(this).children(mpv_clam_fold).addClass(hidden_class);
+  $(this).children(mpv_clam_fold).addClass(mpv_class_hidden);
 });
-                    // Open list item on direct link to it in URL               ***
+                    // Open list item on direct link to it in URL               *
 if (($(mpv_clam_list)) && (location.hash!='')) { $(window).trigger('hashchange'); }
-/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */
+/*! -- Copyright (c) 2017-2019 Mootly Obviate -- See /LICENSE.md -------------- */

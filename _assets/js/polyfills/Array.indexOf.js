@@ -15,23 +15,23 @@ if (!Array.prototype.indexOf)
       return -1;
 
     if (searchValue === undefined)
-                                        // Because searchValue is undefined, keys that
-                                        // don't exist will have the same value as the
-                                        // searchValue, and thus do need to be checked.
+                    // Because searchValue is undefined, keys that
+                    // don't exist will have the same value as the
+                    // searchValue, and thus do need to be checked.
       do {
         if (index in this && this[index] === undefined)
           return index;
       } while (++index !== len)
     else
-                                        // Because searchValue is not undefined, there's no
-                                        // need to check if the current key is in the array
-                                        // because if the key isn't in the array, then it's
-                                        // undefined which is not equal to the searchValue.
+                    // Because searchValue is not undefined, there's no
+                    // need to check if the current key is in the array
+                    // because if the key isn't in the array, then it's
+                    // undefined which is not equal to the searchValue.
       do {
         if (this[index] === searchValue)
           return index;
       } while (++index !== len)
 
-                                        // if nothing was found, then simply return -1
+                    // if nothing was found, then simply return -1
     return -1;
   };

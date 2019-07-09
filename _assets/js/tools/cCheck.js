@@ -1,5 +1,7 @@
 /* --- cCheck.js -------------------------------------------------------------- *
  * cCheck takes a variable of any type and writes it the the browser console.   *
+ * --- Revision History ------------------------------------------------------- *
+ * 2019-06-24 | Added revision log, cleaned code
  * ---------------------------------------------------------------------------- */
 function cCheck(someData) {
   someJSON = JSON.stringify(someData);

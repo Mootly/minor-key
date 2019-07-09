@@ -5,21 +5,22 @@
  * - anchor   - .jumplink
  * mpv_JTTLastAction tracks which script fired off last to keep them from arguing
  * This was a one off for a project, but I thought it might be useful elsewhere.
+ * --- Revision History ------------------------------------------------------- *
+ * 2019-07-09 | Added revision log, cleaned code
  * ---------------------------------------------------------------------------- */
-                    // Get an array of anchors to to prior elements on up       ***
+                    // Get an array of anchors to to prior elements on up       *
 var mpv_JTTlinkset = $('.jumplink').toArray();
 for ( var i = 0; i < mpv_JTTlinkset.length; i++ ) {
   mpv_JTTlinkset[i] = ( mpv_JTTlinkset[i].id);
 }
-
 var mpv_JTTLastAction = '';
-                    // Onclick set                                              ***
+                    // Onclick set                                              *
 $('.navBar_item a').click(function () {
   $('.navBar_item a.active').removeClass('active');
   $(this).addClass('active');
   mpv_JTTLastAction = 'click';
 });
-                    // Page scroll set                                          ***
+                    // Page scroll set                                          *
 var waypoints = $('.jumplink').waypoint({
   handler: function(direction) {
     if (mpv_JTTLastAction != 'click') {
@@ -34,6 +35,6 @@ var waypoints = $('.jumplink').waypoint({
     }
     mpv_JTTLastAction = 'scroll';
   },
-  continuous: false // on jump, only trigger last event                         ***
+  continuous: false // on jump, only trigger last event                         *
 });
 /*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */

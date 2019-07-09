@@ -1,9 +1,11 @@
 /* --- Demo helper scripts ---------------------------------------------------- *
  * Scripts to help with demonstration pages to call out elements as needed.
+ * --- Revision History ------------------------------------------------------- *
+ * 2019-07-09 | Added revision log, cleaned code
  * ---------------------------------------------------------------------------- */
 
-/* --- Label sizes with an overlay -------------------------------------------- */
-                    // images block.size-img > img                              ***
+/* --- Label images sizes with an overlay ------------------------------------- */
+                    // images block.size-img > img                              *
 $(window).on( 'load', function () {
   var tTarget = $('.size-img');
   tTarget.each(function() {
