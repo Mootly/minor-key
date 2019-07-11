@@ -22,6 +22,8 @@
   *   Returns a string containing the widget to be included.
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-10 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_paths {
   protected $is_locked;
@@ -33,6 +35,7 @@ class mpc_paths {
                     # note that glob() stops working with too many              *
   protected $validExtStr;
   protected $validExtTypes = array(
+    'template'      => 'twig',
     'content'       => 'htm,html,inc,php,txt',
     'document'      => 'doc,docx,dot,dotx,rtf,pdf,pps,ppt,pptx,xls,xlsm,xlsx,xlt,xltm,xltx',
     'image'         => 'jpg,jpeg,gif,png,svg',
@@ -111,7 +114,7 @@ class mpc_paths {
 #
 # *** BEGIN get_widget -------------------------------------------------------- *
 /**
-  * Returns ablock of content as a string.
+  * Returns a block of content as a string.
   * @return string
   */
   public function get_widget($name) {

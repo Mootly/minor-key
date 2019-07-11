@@ -20,6 +20,8 @@
   *   Returns an array of all page components.
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-10 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_parts {
   protected $is_locked;

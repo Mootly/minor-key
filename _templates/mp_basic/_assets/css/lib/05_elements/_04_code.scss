@@ -4,15 +4,14 @@
 code, kbd, pre, samp {
   font-family       : monospace, monospace;
   font-family       : $f-code;
-  font-size         : 1.0em;
+  font-size         : 0.875em;
 }
 pre {
-  @include set-blended-background($c-inverse-bg, 0.0625, $c-base-bg);
-  @include set-blended-border($c-inverse-bg, left, 0.25, 0.5em, solid, $c-base-bg);
   overflow          : auto;
   padding           : 0.75em;
-  font-size         : 0.875em;
   line-height       : $ht-line-tall;
+  @include set-blended-background($c-inverse-bg, 0.0625, $c-base-bg);
+  @include set-blended-border($c-inverse-bg, left, 0.25, 0.5em, solid, $c-base-bg);
 }
 code {
   padding           : 0 0.25em;

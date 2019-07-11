@@ -12,13 +12,13 @@
   *   to protect existing values.
   * @method array   setmenu(string, array)
   *   Create a new menu.
-  * @method array  getmenu(string)
+  * @method array   getmenu(string)
   *   Return all links in an HTML menu using UL lists.
-  * @method array  getlist(string, array)
+  * @method array   getlist(string, array)
   *   Return all links in a menu as an associative array of array[title] = URL.
-  * @method array  getlink(string, string, array)
+  * @method array   getlink(string, string, array)
   *   The URL of a specific link.
-  * @method array    setlink(string, string, string, array)
+  * @method array   setlink(string, string, string, array)
   *   Create a new menu item.
   *
   * @copyright 2017 Mootly Obviate

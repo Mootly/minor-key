@@ -15,13 +15,15 @@
   * @method bool    __set(string, string)
   *   Add pseudo-properties to array with assigned values.
   * @method hash    read()
-  *   Returns an associative array of cookie values.
+  *   Returns an associative array of session values.
   * @method string  build()
   *   Returns a JSON string for the cookie.
   * @method bool    write()
   *   Writes the cookie to standard IO.
   * @copyright 2018 Mootly Obviate
   * @package   moosepress
+  * --- Revision History ------------------------------------------------------ *
+  * 2019-07-10 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_sessions {
   protected $cookieset = array();
