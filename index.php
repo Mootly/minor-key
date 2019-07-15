@@ -46,13 +46,11 @@ ob_start();
 
 <div class="sunset"></div>
 
-<div id="contents">
   <pre>
   <?php var_dump(htmlspecialchars($t_result)); ?>
   </pre>
 
   <?php echo($t_result); ?>
-
 <?php
                     # ↑↑↑ EDIT CONTENT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ ***
 $mpo_parts->accessibility = 'standard';

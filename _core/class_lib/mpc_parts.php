@@ -47,7 +47,7 @@ class mpc_parts {
   * @return bool
   */
   public function __construct($prot=false) {
-    $this->is_locked = $prot;
+    $this->is_locked    = $prot;
     return true;
   }
 # *** END - constructor ------------------------------------------------------- *
@@ -56,15 +56,24 @@ class mpc_parts {
 /**
   * Set a pseudo property to a value.
   * If instance is locked, only allow new properties.
+  * You can set this->is_multibody to create an array of main content elements
+  * this->tab_title     : adds tab blocks to each main_content for stacking
+  * this->main_content  : the content block
+  * these arrays are walked by twig in order of array elements
   * @param  string $property  The pseudoproperty name.
   * @param  string $value     The value to be assigned.
   * @return bool
   */
   public function __set($property, $value) {
     if ($this->is_locked) {
-      $this->component[$property] = $this->component[$property] ?? $value;
+      $tVal = $this->component[$property] ?? $value;
     }else {
-      $this->component[$property] = $value;
+      $tVal = $value;
+    }
+    if (($this->is_multibody) and (($property == 'main_content') or ($property == 'tab_title'))) {
+      $this->component[$property][] = $tVal;
+    } else {
+      $this->component[$property] = $tVal;
     }
     return true;
   }
