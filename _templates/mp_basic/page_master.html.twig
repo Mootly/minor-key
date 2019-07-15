@@ -91,9 +91,20 @@
     {% endif %}
     {% endblock body_breadcrumb %}
     {% block body_content_inner %}
+    {% if (page.is_multibody is defined) %}
+    {% for key,content_value in page.main_content %}
+    <div id="content-box-{{ key }}" class="content-box">
+    {% if (page.is_tabbed is defined) %}
+      {{ page.tab_title[key] | raw }}
+    {% endif %}
+      {{ content_value | raw }}
+    </div>
+    {% endfor %}
+    {% else %}
     <div id="content-box">
       {{ page.main_content | raw }}
     </div>
+    {% endif %}
     {% endblock body_content_inner %}
   </div>
   {% endblock body_content %}

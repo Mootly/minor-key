@@ -4,7 +4,7 @@
   *
   * We use an array masquerading as properties because cleaner code.
   *
-  * Public Properties:
+  * Public Properties (all are magick-properties):
   *   None.
   * Methods:
   * @method bool    __construct(bool)
@@ -56,9 +56,6 @@ class mpc_parts {
 /**
   * Set a pseudo property to a value.
   * If instance is locked, only allow new properties.
-  * You can set this->is_multibody to create an array of main content elements
-  * this->tab_title     : adds tab blocks to each main_content for stacking
-  * this->main_content  : the content block
   * these arrays are walked by twig in order of array elements
   * @param  string $property  The pseudoproperty name.
   * @param  string $value     The value to be assigned.

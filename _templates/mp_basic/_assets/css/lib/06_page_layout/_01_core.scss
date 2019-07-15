@@ -5,14 +5,14 @@
 }
                     // #content-box is our inner wrapper                        ***
                     // it normally contains everything but breadcrumbs          ***
-#content-box {
+[id^=content-box] {
   max-width         : $max-content-width;
   margin            : 1.0em 2.0em 2.0em 20.0em;
 }
 #content-main.full-width,
 #content-main.no-menu {
   padding           : 0 2.0em;
-  #content-box {
+  [id^=content-box] {
     margin          : auto;
     max-width       : $max-full-page-width;
   }
@@ -22,7 +22,7 @@
   .no-mobile { display: none; }
   #content-main {
     clear           : both;
-    #content-box { margin: 2.0em; }
+    [id^=content-box] { margin: 2.0em; }
   }
 }
 @media (max-width: $break-800-tablet) {

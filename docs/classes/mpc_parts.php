@@ -36,39 +36,60 @@ ob_start();
 
 <p>It uses magic functions to generate properties as needed. The properties defined on initialization, instantiation or otherwise used by the default page templates are:</p>
 
-<dl class="inline-terms">
-  <dt>accessibility</dt>
-  <dd><p>Flag to set accessibility features on the page.</p></dd>
-  <dt>alt_template</dt>
-  <dd><p>A template override. Should only be used if sharing between templates is allowed.</p></dd>
-  <dt>bodyclasses</dt>
-  <dd><p>Space separated list of classes to add to <b>body</b> element.</p></dd>
+<h3>Contents</h3>
+
+<dl class="clamshell">
   <dt>crumbs</dt>
   <dd><p>Used by the breadcrumb widget for a breadcrumb element.</p></dd>
   <dt>h1_title</dt>
   <dd><p>The title as it will appear in the H1 tag in the page. This should be the same as the <code>page_title</code> in most circumstances.</p></dd>
-  <dt>link_title</dt>
-  <dd><p>To indicate how to title links for this page. Not currently used.</p></dd>
   <dt>main_content</dt>
   <dd><p>The body of the page.</p></dd>
-  <dt>pagemenu</dt>
-  <dd><p>A flag or name indicating what menu to use for the primary local menu.</p></dd>
   <dt>page_name</dt>
   <dd><p>The name of the current page. Should equal the H1 title.</p></dd>
-  <dt>page_path</dt>
-  <dd><p>The path to the current page.</p></dd>
   <dt>page_title</dt>
   <dd><p>The title of the current page as it will appear in the title bar.</p></dd>
+  <dt>tab_title</dt>
+  <dd><p>Used if <code>is_tabbed</code> and <code>is_multibody</code> are set to assign tab titles to <code>main_content</code> elements. The format of the output tab element will be:</p>
+  <pre class="cc-html">&lt;span class="tab" id="tab-<var>#</var>"&gt;&lt;a href="#tab-<var>#</var>"&gt;<var>tab_title</var>&lt;/a&gt;&lt;/span&gt;</pre>
+  <p>It will be the first element in the <code>#content_box</code>.</p>
+  </dd>
+</dl>
+
+<h3>Flags and Settings</h3>
+
+<dl class="clamshell">
+  <dt>accessibility</dt>
+  <dd><p>Flag to set accessibility features on the page.</p></dd>
+  <dt>bodyclasses</dt>
+  <dd><p>Space separated list of classes to add to <b>body</b> element.</p></dd>
+  <dt>is_multibody</dt>
+  <dd><p>If set to true, assumes the <code>main_content</code> section will be submitted multiple times and will store it as an array. Good for creating blog pages and tabbed, stacked content.</p></dd>
+  <dt>is_tabbed</dt>
+  <dd><p>If set to true, assumes there will be a <code>tab_title</code> property for each <code>main_content</code> element.</p></dd>
+  <dt>pagemenu</dt>
+  <dd><p>A flag or name indicating what menu to use for the primary local menu.</p></dd>
   <dt>perm_template</dt>
-  <dd><p>A template override. Should always be <code>mp_basic</code>. Should only be used if sharing between templates is allowed.</p></dd>
-  <dt>section_base</dt>
-  <dd><p>The path to the root of the current site section.</p></dd>
+  <dd><p>A template override to use if the primary template fails to load. Set to <code>mp_basic</code> by default.</p></dd>
   <dt>section_name</dt>
   <dd><p>The name of the current site section.</p></dd>
   <dt>separator</dt>
   <dd><p>Separator for <b>title</b> elements. Not part of the final component array.</p></dd>
   <dt>site_abbr</dt>
   <dd><p>An abbreviation for the name of the site. Useful for namespacing and the like.</p></dd>
+  <dt>site_name</dt>
+  <dd><p>The name of the site. Should appear in the masthead and be the last item in the <b>title</b> attribute.</p></dd>
+  <dt>title_struct</dt>
+  <dd><p>Pattern for generating page title. Not part of the final component array.</p></dd>
+</dl>
+
+<h3>Paths</h3>
+
+<dl class="clamshell">
+  <dt>page_path</dt>
+  <dd><p>The path to the current page.</p></dd>
+  <dt>section_base</dt>
+  <dd><p>The path to the root of the current site section.</p></dd>
   <dt>site_base</dt>
   <dd>
     <p>The path to the root of the current site. This should resolve to one of the following:</p>
@@ -78,12 +99,17 @@ ob_start();
       <li><code>/_templates/<var>template name</var>/pages</code></li>
     </ul>
   </dd>
-  <dt>site_name</dt>
-  <dd><p>The name of the site. Should appear in the masthead and be the last item in the <b>title</b> attribute.</p></dd>
   <dt>template</dt>
   <dd><p>The path to the template to be used by this page. For shared templates, this should be <code>/_templates/</code>. Otherwise it should be <code>/_templates/<var>templatename</var>/</code></p></dd>
-  <dt>title_struct</dt>
-  <dd><p>Pattern for generating page title. Not part of the final component array.</p></dd>
+</dl>
+
+<h3>Planned (not yet in use)</h3>
+
+<dl class="clamshell">
+  <dt>alt_template</dt>
+  <dd><p>A template override. Should only be used if sharing between templates is allowed.</p></dd>
+  <dt>link_title</dt>
+  <dd><p>To indicate how to title links for this page. Not currently used.</p></dd>
 </dl>
 
 <h2>Methods</h2>

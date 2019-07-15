@@ -18,7 +18,7 @@
     @include set-blended-border($c-visited-text, bottom, 0.85, 1px, solid, $c-base-bg);
   }
 }
-#breadcrumb-box + #content-box { margin-top: 0; }
+#breadcrumb-box + [id^=content-box] { margin-top: 0; }
 // Media rules for small screens ---------------------------------------------- ***
 @media (max-width: $break-1024-desktop) {
   #content-main #breadcrumb-box {

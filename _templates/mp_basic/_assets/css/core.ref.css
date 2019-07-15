@@ -4618,7 +4618,7 @@ div.element-size {
   width: 100%;
 }
 
-#content-box {
+[id^=content-box] {
   max-width: 60em;
   margin: 1.0em 2.0em 2.0em 20.0em;
 }
@@ -4628,8 +4628,8 @@ div.element-size {
   padding: 0 2.0em;
 }
 
-#content-main.full-width #content-box,
-#content-main.no-menu #content-box {
+#content-main.full-width [id^=content-box],
+#content-main.no-menu [id^=content-box] {
   margin: auto;
   max-width: 100%;
 }
@@ -4641,7 +4641,7 @@ div.element-size {
   #content-main {
     clear: both;
   }
-  #content-main #content-box {
+  #content-main [id^=content-box] {
     margin: 2.0em;
   }
 }
@@ -5425,7 +5425,7 @@ h1#first-el {
   border-bottom: 1px solid rgba(99, 68, 100, 0.85);
 }
 
-#breadcrumb-box + #content-box {
+#breadcrumb-box + [id^=content-box] {
   margin-top: 0;
 }
 
