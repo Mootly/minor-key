@@ -1,4 +1,4 @@
-&lt;<?php
+<?php
 /* === Style Guide: Tables ==================================================== *
  * Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md
  * --- Revision History ------------------------------------------------------- *
