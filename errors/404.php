@@ -20,7 +20,7 @@
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 $mp_edit_rights     = 'CMS';
 require_once( $mpo_paths->template.$mpo_parts->template.'/db_config.php' );
-$mpo_404 = new mpc_filefinder(true);
+$mpo_404 = new ocfs_filefinder(true);
                     # Check 1 - check database -------------------------------- *
                     # if you have a database, check for a redirect record first *
 if ($mpo_404->status == 'not found') {
@@ -93,7 +93,7 @@ if ($mpo_404->status == 'no search') { ?>
 </div>
 <?php } /* endif */
 # *** results found that need user confirmation ------------------------------- *
-if (in_array($mpo_404->status, ['confirm','multiple'])) { ?>
+if (in_array($mpo_404->status, ['success','confirm','multiple'])) { ?>
 <div>
 
   <h2>Something's missing!</h2>

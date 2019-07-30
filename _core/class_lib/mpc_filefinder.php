@@ -25,6 +25,7 @@
   * @copyright 2018 Mootly Obviate
   * @package   moosepress
   * --- Revision History ------------------------------------------------------ *
+  * 2019-07-30 | Fixed root directory failing to redirect
   * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_filefinder {
@@ -411,6 +412,8 @@ class mpc_filefinder {
       } else {
         $this->targetURI = MP_PSEP.str_replace(MP_ROOT,'',$this->globResult[0]);
       }
+                    # fix empty string when root directory call                 *
+      if ($this->targetURI == '') { $this->targetURI = '/'; }
                     # *** REDIRECT to found page ------------------------------ #
       header('Location: '.$this->targetURI);                                    #
                     # *** REDIRECT to found page ------------------------------ #
