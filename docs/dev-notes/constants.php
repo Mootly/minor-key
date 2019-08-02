@@ -32,7 +32,7 @@ ob_start();
 <dl class="inline-terms">
   <dt id="dfn-currpath"><code>CURR_PATH</code></dt>
   <dd>
-    <p>The current path as taken from <code> dirname($_SERVER['PHP_SELF'])</code>.</p>
+    <p>The current path as taken from <code> dirname($_SERVER['SCRIPT_NAME'])</code>.</p>
   </dd>
   <dt id="dfn-defclasslib"><code>DEF_CLASSLIB</code></dt>
   <dd>

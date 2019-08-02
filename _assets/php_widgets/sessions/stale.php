@@ -25,7 +25,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
   ?>
   <div id="reply-notice">
     <div class="notice">
-      <form method="get" action="<?= $_SERVER['PHP_SELF']; ?>" name="unstale" id="form_unstale">
+      <form method="get" action="<?= $_SERVER['SCRIPT_NAME']; ?>" name="unstale" id="form_unstale">
         <fieldset form="form_unstale" name="unstale_btn" id="form_unstale_btn">
           <legend>This form is stale.</legend>
           <div class="form_directions directions">
@@ -49,7 +49,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
   ?>
   <div id="reply-notice">
     <div class="notice">
-      <form method="post" action="<?= $_SERVER['PHP_SELF']; ?>" name="unstale" id="form_unstale">
+      <form method="post" action="<?= $_SERVER['SCRIPT_NAME']; ?>" name="unstale" id="form_unstale">
         <fieldset form="form_unstale" name="unstale_btn" id="form_unstale_btn">
           <legend>Your current login session is stale.</legend>
           <div class="form_directions directions">
@@ -81,7 +81,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
       foreach ($session as $key => $tElem) { unset($_SESSION[$tElem]); }
     }
     unset($_SESSION['session_status']);
-    header("Location: ".$_SERVER['PHP_SELF']);
+    header("Location: ".$_SERVER['SCRIPT_NAME']);
     exit();
   }
 }

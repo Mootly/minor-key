@@ -17,7 +17,7 @@
   * --- Revision History ------------------------------------------------------ *
   * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
-  $t_path = explode('/',$_SERVER['PHP_SELF']);
+  $t_path = explode('/',$_SERVER['SCRIPT_NAME']);
   $crumbstring = '<span class="position">' . $mpo_parts->link_title . '</span>';
                     # array of overrides inserteed between this page and auto   *
   if (isset($t_crumbs_parent)) {

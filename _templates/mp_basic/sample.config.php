@@ -24,7 +24,7 @@
                     # For subfolders that are their own subdomains, adjust
                     # accordingly
   if (!defined('DEF_ROOT'))     { define( 'DEF_ROOT', '' ); }
-  if (!defined('CURR_PATH'))    { define( 'CURR_PATH', dirname($_SERVER['PHP_SELF']) ); }
+  if (!defined('CURR_PATH'))    { define( 'CURR_PATH', dirname($_SERVER['SCRIPT_NAME']) ); }
                     # Where does the home page live (if not root?
   if (!defined('DEF_HOME'))     { define( 'DEF_HOME', '/' ); }
                     # Specify our template name

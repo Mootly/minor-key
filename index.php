@@ -47,7 +47,12 @@ ob_start();
 <div class="sunset"></div>
 
   <pre>
-  <?php var_dump(htmlspecialchars($t_result)); ?>
+    <?php var_dump($_SERVER['ORIG_PATH_INFO']); ?>
+    <?php var_dump($_SERVER['PATH_INFO']); ?>
+    <?php var_dump($_SERVER['PHP_SELF']); ?>
+    <?php var_dump($_SERVER['SCRIPT_NAME']); ?>
+    <?php var_dump($_SERVER['URL']); ?>
+    <?php var_dump(htmlspecialchars($t_result)); ?>
   </pre>
 
   <?php echo($t_result); ?>

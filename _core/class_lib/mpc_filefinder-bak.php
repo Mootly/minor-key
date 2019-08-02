@@ -188,7 +188,7 @@ class mpc_filefinder {
     }
                     # if looking for current page on 404 call, abort now        *
                     # 404 success will (or should) block try methods            *
-    if ($_SERVER['REQUEST_URI'] == $_SERVER['PHP_SELF']) {
+    if ($_SERVER['REQUEST_URI'] == $_SERVER['SCRIPT_NAME']) {
       if ($this->seachType == '404') {
         $this->status                   = $this->statusTypes['404 success'][0];
       } else {

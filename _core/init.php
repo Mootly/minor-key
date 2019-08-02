@@ -22,6 +22,7 @@
   if (!defined('MP_PSEP'))       define( 'MP_PSEP', '/' );
   if (!defined('MP_ROOT'))       define( 'MP_ROOT', $_SERVER['DOCUMENT_ROOT'].'/' );
   if (!defined('MP_CLASSLIB'))   define( 'MP_CLASSLIB', MP_ROOT.'_core/class_lib/' );
+  if (!defined('MP_WIDGETLIB'))  define( 'MP_WIDGETLIB', MP_ROOT.'_core/widgets/' );
                     # Fail to default MP_basic template if none specified
   if (!defined('DEF_PREFIX'))    define( 'DEF_PREFIX', 'mp' );
   if (!defined('DEF_TEMPLATE'))  define( 'DEF_TEMPLATE', 'basic' );
@@ -32,7 +33,7 @@
                     # Page components                                           *
   require_once( MP_CLASSLIB . 'mpc_parts.php');
   if (!isset($mpo_parts)) $mpo_parts = new mpc_parts();
-  $mpo_parts->page_path     = dirname($_SERVER['PHP_SELF']);
+  $mpo_parts->page_path     = dirname($_SERVER['SCRIPT_NAME']);
 //  if (!isset($mpo_menus)) $mpo_menus = new mpc_parts(true);
                     # Set default paths for assets                              *
   require_once( MP_CLASSLIB . 'mpc_paths.php' );
