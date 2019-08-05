@@ -16,7 +16,7 @@
   *   Add pseudo-properties to array with assigned values.
   * @method string    get_as(string, string [, string])
   *   Returns values sanitized as specified.
-  * @method string    clean_url(string)
+  * @method string    clean_url(string, string [, string])
   *   Returns a santized copy of the current URL.
   * @method string    lock()
   *   Locks existing values from being overwritten. Lock is on by default.
@@ -27,7 +27,7 @@
   * --- Revision History ------------------------------------------------------ *
   * 2019-08-02 | Created.
   * --------------------------------------------------------------------------- */
-class mpc_datacleaer {
+class mpc_datacleaner {
   protected $is_locked;
   protected $value = array();
   protected $clean = array();
@@ -116,6 +116,17 @@ class mpc_datacleaer {
         $this->clean[$fname] = htmlspecialchars(strip_tags($this->value[$fname]), ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
     return $this->clean[$fname];
+  }
+# *** END - get_as ------------------------------------------------------------ *
+# *** BEGIN clean_url --------------------------------------------------------- *
+/**
+  * Returns a sanatized URl.
+  * Use suffix to determine where to break the string. Everything after that
+  * will be discarded.
+  * @return mixed
+  */
+  public function clean_url($url, $suffix, $store='') {
+    return false;
   }
 # *** END - get_as ------------------------------------------------------------ *
 }
