@@ -30,7 +30,7 @@
 class mpc_datacleaer {
   protected $is_locked;
   protected $value = array();
-
+  protected $clean = array();
 # *** END - property assignments ---------------------------------------------- *
 #
 # *** BEGIN constructor ------------------------------------------------------- *
@@ -42,8 +42,8 @@ class mpc_datacleaer {
   * @return bool
   */
   public function __construct($fields) {
-    $this->is_locked = true;
-
+    $this->is_locked= true;
+    foreach($fields as $key => $val) { $this->value[$key] = $val; }
     return true;
   }
 # *** END - constructor ------------------------------------------------------- *
@@ -101,11 +101,21 @@ class mpc_datacleaer {
 #
 # *** BEGIN get_as ------------------------------------------------------------ *
 /**
-  * Returns a URI as a string.
-  * @return string
+  * Returns a perform a specific sanitizing on a string.
+  * @return mixed
   */
-  public function get_as($fname, $type, $params='') {
-    return $this->path;
+  public function get_as($type, $fname, $params='') {
+    switch($type) {
+      case 'int':   # force to integer - no parameters                          *
+        $this->clean[$fname] = (int) $this->value[$fname];
+        break;
+      case 'float': # force to float - no parameters                            *
+        $this->clean[$fname] = (float) $this->value[$fname];
+        break;
+      default:      # same as __GET                                             *
+        $this->clean[$fname] = htmlspecialchars(strip_tags($this->value[$fname]), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    }
+    return $this->clean[$fname];
   }
 # *** END - get_as ------------------------------------------------------------ *
 }
