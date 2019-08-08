@@ -85,7 +85,7 @@ class mpc_paginate_bar {
   *         content           string  - results or error message.
   */
   public function setposition($count, $params) {
-    $this->props['url_path']  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $this->props['url_path']  = $_SERVER['SCRIPT_NAME'];
     $this->props['url_query'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
     parse_str($this->props['url_query'], $t_url_query);
     unset($t_url_query['page']);
