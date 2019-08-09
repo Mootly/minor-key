@@ -1,14 +1,13 @@
-// *** BEGIN CORE CSS FILE ==================================================== ***
-// NOTE: This file should contain nothing but import statements.                ***
+/// *** BEGIN CORE CSS FILE ==================================================== ***
+// NOTE: This file should only contain import statements.                       ***
 // GENERAL USE NOTES                                                            ***
 // ============================================================================ ***
-// These general rules are to keep the overall CSS and SCSS clean. They are     ***
-// ony included in the top level style sheet for thie site.                     ***
+// These rules are to keep the CSS and SCSS clean.                              ***
+// They are only included in this top level style sheet for this site.          ***
 // ---------------------------------------------------------------------------- ***
 // The purpose of each file:                                                    ***
-// A file should be either an aggregator or a collection of rules, not both.    ***
-// If a partial includes rules from another partial,                            ***
-// make sure the source appears first in the parent aggregator.                 ***
+// A file is either an aggregator or a collection of rules, not both.           ***
+// Order is important, define rules before you call them.                       ***
 //                                                                              ***
 // Order of operations:                                                         ***
 // - extend (shouldn't use, but it comes first if you do)                       ***
@@ -25,6 +24,10 @@
 // - //   - Exclude from everything but source.                                 ***
 // For example, this block uses the double slash single line comment because    ***
 // there is no reason for it to appear anywhere but in this file.               ***
+//                                                                              ***
+// A note on compiling:                                                         ***
+// Some SCSS/SASS compilers are more strict than others.                        ***
+// It is not safe to assume others will be able to compile your code as is.     ***
 // ============================================================================ ***
 // *** font-awesome imports --------------------------------------------------- ***
 $fa-font-path       : '/_vendors/fa/fonts';
