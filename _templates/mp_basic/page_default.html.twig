@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-{# *** Make sure our current path isdefined ------------------------------- *** #}
+{# *** TWIG TEMPLATE - DEFAULT CONTENT PAGE ----------------------------------- #}
+{# This is the standard page template for basic content pages.                  #}
+{# *** Revision History ------------------------------------------------------- #}
+{# 2019-08-10 | Added revision log, cleaned code                                #}
+{# *** ------------------------------------------------------------------------ #}
+{# *** Pass variables into template ------------------------------------------- #}
+{# *** All variables come in from these sources:                                #}
+{# *** page         = call to $page_elements['content'] in render call          #}
+{# *** scripts      = list of script paths in render call                       #}
+{# *** styles       = list of styles in render call                             #}
+{# *** <other>      = from PHP constants as below                               #}
+{# *** ------------------------------------------------------------------------ #}
+{# *** Make sure the current path is defined.                                   #}
 {% if constant('CURR_PATH') is defined %}
-{%   set curr_path = constant('CURR_PATH') %}
+  {% set curr_path = constant('CURR_PATH') %}
 {% else %}
-{%   set curr_path = '' %}
+  {% set curr_path = '' %}
 {% endif %}
+{# *** Make sure the home page path is defined.                                 #}
 {% if constant('DEF_HOME') is defined %}
-{%   set home_path = constant('DEF_HOME') %}
+  {% set home_path = constant('DEF_HOME') %}
 {% else %}
-{%   set home_path = '/' %}
+  {% set home_path = '/' %}
 {% endif %}
+{# *** Make sure the site root is defined.                                      #}
 {% if constant('MP_ROOT') is defined %}
-{%   set root_path = constant('MP_ROOT') %}
+  {% set root_path = constant('MP_ROOT') %}
 {% else %}
-{%   set root_path = '' %}
+  {% set root_path = '' %}
 {% endif %}
+{# *** Set classes for the body element.                                        #}
 {% if page.bodyclasses is defined %}
-{%   set bodyclasses = 'page ' ~ page.bodyclasses %}
+  {% set bodyclasses = 'page ' ~ page.bodyclasses %}
 {% else %}
-{%   set bodyclasses = 'page' %}
+  {% set bodyclasses = 'page' %}
 {% endif %}
-{# *** Begin HTML document ------------------------------------------------ *** #}
+{# *** Begin HTML document ---------------------------------------------------- #}
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 {% include page.template ~ '/_assets/includes/page_meta.html.twig' %}
-{# *** Begin body of document --------------------------------------------- *** #}
-{# *** Use 'body_' prefix to uniquely identify visibly template blocks.     *** #}
-{# *** Currently in use:                                                    *** #}
-{# *** - access_menu          : hidden accessibility help page              *** #}
-{# *** - body_header          : inher HTML of page header element           *** #}
-{# *** - body_title           : displayed page title block                  *** #}
-{# *** - body_sidebar_left    : left sidebar block                          *** #}
-{# ***   - body_menu_left     : left menu block                             *** #}
-{# ***   - body_announce_left : left announcement block                     *** #}
-{# *** - body_sidebar_right   : right sidebar block                         *** #}
-{# ***   - body_menu_right    : right menu block                            *** #}
-{# ***   - body_announce_right: right announcement block                    *** #}
-{# *** - body_content         : main content block                          *** #}
-{# ***   - body_breadcrumb    : breadcrumpb links block                     *** #}
-{# ***   - body_content_inner : inner content block                         *** #}
+{# *** Begin body of document ---------------------------------------------     #}
+{# *** Use 'body_' prefix to uniquely identify visibly template blocks.         #}
+{# *** Currently in use:                                                        #}
+{# *** - access_menu          : hidden accessibility help page                  #}
+{# *** - body_header          : inher HTML of page header element               #}
+{# *** - body_title           : displayed page title block                      #}
+{# *** - body_sidebar_left    : left sidebar block                              #}
+{# ***   - body_menu_left     : left menu block                                 #}
+{# ***   - body_announce_left : left announcement block                         #}
+{# *** - body_sidebar_right   : right sidebar block                             #}
+{# ***   - body_menu_right    : right menu block                                #}
+{# ***   - body_announce_right: right announcement block                        #}
+{# *** - body_content         : main content block                              #}
+{# ***   - body_breadcrumb    : breadcrumpb links block                         #}
+{# ***   - body_content_inner : inner content block                             #}
 <body id="page-body" class="{{ page.bodyclasses | raw }}">
-{# For accessibility, the H1 tag is place here, then hidden for view.       *** #}
-{# It is repeated as a display title below to label the top of the content. *** #}
+{# For accessibility, the H1 tag is place here, then hidden for view.           #}
+{# It is repeated as a display title below to label the top of the content.     #}
   <h1 id="first-el">{{ page.h1_title | raw }}</h1>
   {% block access_menu %}
   {% if (not page['accessibility'] is defined) or page.accessibility == 'standard' %}
