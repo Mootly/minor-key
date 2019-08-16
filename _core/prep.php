@@ -15,5 +15,5 @@
    // 'debug' => true
   ));
  // $twig->addExtension(new Twig_Extension_Debug());
-
+// https://stackoverflow.com/questions/18678522/how-can-i-minify-html-with-twig
 // end include file ----------------------------------------------------------- *

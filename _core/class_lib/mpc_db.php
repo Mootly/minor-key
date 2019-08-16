@@ -67,10 +67,10 @@ class mpc_db {
   public function __construct($callby, $args) {
     // http://php.net/manual/en/book.sqlsrv.php
     $this->_status  = '';
-    $this->_status  += array_key_exists('host', $args)   ? '' : ' host';
-    $this->_status  += array_key_exists('dbname', $args) ? '' : ' dbname';
-    $this->_status  += array_key_exists('user', $args)   ? '' : ' user';
-    $this->_status  += array_key_exists('pwd', $args)    ? '' : ' pass';
+    $this->_status  .= array_key_exists('host', $args)   ? '' : ' host';
+    $this->_status  .= array_key_exists('dbname', $args) ? '' : ' dbname';
+    $this->_status  .= array_key_exists('user', $args)   ? '' : ' user';
+    $this->_status  .= array_key_exists('pwd', $args)    ? '' : ' pass';
     if ($this->_status != '') {
       $this->_status= $error['conn02'].$this->_status;
     } else {
