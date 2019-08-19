@@ -105,7 +105,6 @@
                     # Load the mooseplum processing environment
   require_once( $mpo_paths->core   . 'grab.php' );
   require_once( $mpo_paths->core   . 'proc.php' );
-
                     # Load the master templating module
   if ( (isset($_REQUEST['async'])) AND ($_REQUEST['async'] == true) ) {
     require_once( $mpo_paths->core . 'async_prep.php' );
