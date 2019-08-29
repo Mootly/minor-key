@@ -47,6 +47,9 @@ ob_start();
 <div class="sunset"></div>
 
   <pre>
+    <?php var_dump(htmlspecialchars(strip_tags("https://ocfs.ny.gov/main/childcare/news/index.php?\"><script>_q_q=')('</script>&page=7"), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
+    <?php var_dump(htmlspecialchars(strip_tags("https://ocfs.ny.gov/main/childcare/news/index.php?\"><script>_q_q=')('</script>&page=7"), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
+    <?php var_dump(htmlspecialchars(strip_tags('https://ocfs.ny.gov/main/childcare/news/index.php?%22%3e%3cqss%3e=&page=7'), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
     <?php var_dump($_SERVER['ORIG_PATH_INFO']); ?>
     <?php var_dump($_SERVER['PATH_INFO']); ?>
     <?php var_dump($_SERVER['PHP_SELF']); ?>
