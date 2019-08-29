@@ -87,6 +87,7 @@ class mpc_paginate_bar {
   public function setposition($count, $params) {
     $this->props['url_path']  = $_SERVER['SCRIPT_NAME'];
     $this->props['url_query'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
+    $this->props['url_query'] = htmlspecialchars(strip_tags($this->props['url_query']), ENT_QUOTES | ENT_HTML5, 'UTF-8');
     parse_str($this->props['url_query'], $t_url_query);
     unset($t_url_query['page']);
     $this->props['url_query'] = http_build_query($t_url_query);
