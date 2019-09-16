@@ -67,5 +67,12 @@ ob_end_clean();
 $page_elements = $mpo_parts->build_page();
 $page_scripts  = $mpo_scripts->build_list();
 $page_styles   = $mpo_styles->build_list();
-echo ($twig->render($mpo_parts->template.$mpt_full_template, array('page'=>$page_elements['content'], 'scripts'=>$page_scripts, 'styles'=>$page_styles)));
+$page_template = $mpo_parts->template.$mpt_['default'].$mpt_['suffix'];
+echo ($twig->render($page_template,
+  array(
+    'page'=>$page_elements['content'],
+    'scripts'=>$page_scripts,
+    'styles'=>$page_styles
+  )
+));
 ?>
