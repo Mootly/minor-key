@@ -31,13 +31,16 @@ function mpf_showElementSize(tBox, tType='img') {
    tBox.insertBefore(tDiv, tBox.firstChild);
 }
 window.onload = function () {
-  const tTargetImg  = document.querySelectorAll('.show-size-img');
-  tTargetImg.forEach(function(tBox) { mpf_showElementSize(tBox, 'img'); });
-  const tTargetDiv  = document.querySelectorAll('.show-size-div');
-  tTargetDiv.forEach(function(tBox) { mpf_showElementSize(tBox, 'div'); });
+  let tShowSize     = document.querySelectorAll('.show-size-img');
+  tShowSize.forEach(function(tBox) { mpf_showElementSize(tBox, 'img'); });
+       tShowSize    = document.querySelectorAll('.show-size-div');
+  tShowSize.forEach(function(tBox) { mpf_showElementSize(tBox, 'div'); });
 };
 window.onresize = function () {
-  const tTarget     = document.querySelectorAll('.size-img');
+  let tShowSize     = document.querySelectorAll('.show-size-img');
+  tShowSize.forEach(function(tBox) { mpf_showElementSize(tBox, 'img'); });
+       tShowSize    = document.querySelectorAll('.show-size-div');
+  tShowSize.forEach(function(tBox) { mpf_showElementSize(tBox, 'div'); });
   tTarget.forEach(function(tTargetImgBox) {
     const tvH       = Math.round(tTargetImgBox.querySelector('img').height);
     const tvW       = Math.round(tTargetImgBox.querySelector('img').width);
