@@ -3,25 +3,25 @@
  * --- Revision History ------------------------------------------------------- *
  * 2019-07-09 | Added revision log, cleaned code
  * ---------------------------------------------------------------------------- */
-
+ 
 /* --- Label images sizes with an overlay ------------------------------------- */
                     // images block.size-img > img                              *
 window.onload = function () {
-  var tTarget = document.querySelectorAll('.size-img');
+  const tTarget     = document.querySelectorAll('.size-img');
   tTarget.forEach(function(tTargetImgBox) {
-    var tvH = Math.round(tTargetImgBox.querySelector('img').height);
-    var tvW = Math.round(tTargetImgBox.querySelector('img').width);
-    var tSizeBox =  document.createElement("div");
+    const tvH       = Math.round(tTargetImgBox.querySelector('img').height);
+    const tvW       = Math.round(tTargetImgBox.querySelector('img').width);
+    const tSizeBox  =  document.createElement("div");
     tSizeBox.className = "element-size";
     tSizeBox.innerText = tvH + ' x ' + tvW;
     tTargetImgBox.insertBefore(tSizeBox, tTargetImgBox.firstChild);
   });
 };
 window.onresize = function () {
-  var tTarget = document.querySelectorAll('.size-img');
+  const tTarget     = document.querySelectorAll('.size-img');
   tTarget.forEach(function(tTargetImgBox) {
-    var tvH = Math.round(tTargetImgBox.querySelector('img').height);
-    var tvW = Math.round(tTargetImgBox.querySelector('img').width);
+    const tvH       = Math.round(tTargetImgBox.querySelector('img').height);
+    const tvW       = Math.round(tTargetImgBox.querySelector('img').width);
     tTargetImgBox.querySelector('.element-size').innerText(tvH + ' x ' + tvW);
   });
 };
