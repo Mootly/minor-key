@@ -10,8 +10,8 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
                     # page_name should equal your H1 title.
-$mpo_parts->h1_title          = 'Links &amp; Images';
-$mpo_parts->link_title        = 'Links &amp; Images';
+$mpo_parts->h1_title          = 'Links & Images';
+$mpo_parts->link_title        = 'Links & Images';
 $mpo_parts->page_name         = $mpo_parts->h1_title;
 $mpo_parts->section_name      = 'Documentation: Style Guide';
 // $mpo_parts->section_base      = $mpo_parts->site_base .'/docs'
@@ -57,29 +57,29 @@ ob_start();
 
 <h2>Basic Image Box</h2>
 
-<figure class="figure size-img">
+<figure class="figure size-img show-size-img">
   <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 1:</span> Edo Women by Uehara Konen (1878-1940)</figcaption>
 </figure>
 
 <h2>Floated Image Box</h2>
 
-<figure class="figure left50 size-img">
+<figure class="figure left50 size-img show-size-img">
   <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 2:</span> Left half-screen float</figcaption>
 </figure>
 
-<figure class="figure right50 size-img">
+<figure class="figure right50 size-img show-size-img">
   <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 3:</span> Right half-screen float</figcaption>
 </figure>
 
-<figure class="figure left30 size-img">
+<figure class="figure left30 size-img show-size-img">
   <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 4:</span> Left third-screen float</figcaption>
 </figure>
 
-<figure class="figure right30 size-img">
+<figure class="figure right30 size-img show-size-img">
   <img src="<?= $mpo_parts->section_base ?>/_assets/images/edo-women.jpg" alt="" />
   <figcaption><span class="label">Figure 5:</span> Right third-screen float</figcaption>
 </figure>

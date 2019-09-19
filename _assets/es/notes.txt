@@ -16,3 +16,12 @@ $(function() {
     $(window).scroll(sticktothetop);
     sticktothetop();
 });
+
+JS Compilers
+https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler
+https://developers.google.com/closure/compiler
+
+Unrelated:
+https://tanukineirirecords.bandcamp.com/album/paranoia
+https://tanukineirirecords.bandcamp.com/album/tanukineiri-curry-sampler-coriander
+https://tanukineirirecords.bandcamp.com/album/oyasumi-time-capsule
