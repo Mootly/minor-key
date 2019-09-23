@@ -37,7 +37,7 @@ ob_start();
   <dt id="dfn-prefix-mp">mp_</dt><dd>General use to clarify files and directories as part of the  code base.</dd>
   <dt id="dfn-prefix-mpk">MP_</dt><dd>Constants defined by core.</dd>
   <dt id="dfn-prefix-mpc">mpc_</dt><dd>Class definitions. There may be a fourth letter to specify specific the nature of the class definition.</dd>
-  <dt id="dfn-prefix-mpf">mpf_</dt><dd>Functions. All public core functions are prefixed with <b>mkf_</b></dd>
+  <dt id="dfn-prefix-mpf">mpf_</dt><dd>Functions. All public core functions are prefixed with <b>mpf_</b></dd>
   <dt id="dfn-prefix-mpo">mpo_</dt><dd>Object instances. All instantiated core objects should be prefixed with <b>mpo_</b>.</dd>
   <dt id="dfn-prefix-mpt">mpt_</dt><dd>Template settings.</dd>
   <dt id="dfn-prefix-mpv">mpv_</dt><dd>Variables. Most public core variables are prefixed with <b>mpv_</b>.</dd>
@@ -47,13 +47,22 @@ ob_start();
   <dt id="dfn-prefix-mptp">tp_</dt><dd>Overrides from the current template.</dd>
   <dt id="dfn-prefix-mptpo">tpo_</dt><dd>Object instances. All instantiated objects from a template library should be prefixed with <b>mpo_</b>.</dd>
 </dl>
+
+<p>Some extra recommended ones for client-side scripts.</p>
+
+<dl class="inline-terms">
+  <dt id="dfn-prefix-mpsf">g_</dt><dd>Variables with global scope.</dd>
+  <dt id="dfn-prefix-mpsf">p_</dt><dd>Parameters with function scope.</dd>
+  <dt id="dfn-prefix-mpsf">f_</dt><dd>Variables with function scope.</dd>
+  <dt id="dfn-prefix-mptsb">b_</dt><dd>Variables with block scope.</dd>
+  <dt id="dfn-prefix-mptsc">CL_</dt><dd>Constants with function/block scope.</dd>
+</dl>
 <!-- *** end contents ********************************************************* -->
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
                     # Content developers shouldn't touch anything below here.
-                    # Invoke the template ------------------------------------- *
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
-$page_elements = $mpo_parts->build_page();
-echo ($twig->render($mpo_parts->template.$mpt_full_template, array('page'=>$page_elements['content'])));
+                    // Submit to template generator --------------------------- *
+mpf_renderPage($mpo_parts->template.$mpt_['default'].$mpt_['suffix'], $mpo_parts);
 ?>

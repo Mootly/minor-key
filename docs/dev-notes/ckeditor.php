@@ -102,9 +102,8 @@ config.resize_enabled = true;
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
                     # Content developers shouldn't touch anything below here.
-                    # Invoke the template ------------------------------------- *
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
-$page_elements = $mpo_parts->build_page();
-echo ($twig->render($mpo_parts->template.$mpt_full_template, array('page'=>$page_elements['content'])));
+                    // Submit to template generator --------------------------- *
+mpf_renderPage($mpo_parts->template.$mpt_['default'].$mpt_['suffix'], $mpo_parts);
 ?>

@@ -111,6 +111,8 @@
   } else {
     require_once( $mpo_paths->core . 'prep.php' );
   }
+  require_once( $mpo_paths->core . 'send.php' );
+
                     # Clean our output buffers to be safe
   if (ob_get_level()) ob_end_clean();
 

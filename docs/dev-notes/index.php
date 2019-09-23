@@ -27,7 +27,7 @@ require_once( $mpo_paths->php_widgets.'/menus/simple_crumbs.php' );
 ob_start();
 ?>
 <!-- *** BEGIN CONTENT ******************************************************** -->
-<h3>What's Here</h3>
+<h2>What's Here</h2>
 
 <table class="list-table" title="List of section contents">
   <thead>
@@ -66,9 +66,8 @@ ob_start();
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
                     # Content developers shouldn't touch anything below here.
-                    # Invoke the template ------------------------------------- *
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
-$page_elements = $mpo_parts->build_page();
-echo ($twig->render($mpo_parts->template.$mpt_full_template, array('page'=>$page_elements['content'])));
+                    // Submit to template generator --------------------------- *
+mpf_renderPage($mpo_parts->template.$mpt_['default'].$mpt_['suffix'], $mpo_parts);
 ?>
