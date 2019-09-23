@@ -63,5 +63,5 @@ ob_start();
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
                     // Submit to template generator --------------------------- *
-mpf_renderPage($mpo_parts->template.$mpt_['default'].$mpt_['suffix'], $mpo_parts);
+mpf_renderPage(MP_ROOT.$mpo_parts->template.$mpt_['default'].$mpt_['suffix'], $mpo_parts);
 ?>

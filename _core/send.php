@@ -20,6 +20,6 @@ function mpf_renderPage($page_template, $mpo_parts, $mpo_scripts = false, $mpo_s
   if (class_exists('mpo_styles', false)) {
     $template_array['styles'] = $mpo_style->build_list();
   }
-  echo ($twig->render($page_template, $template_array));
+  echo($twig->render($page_template, $template_array));
 }
 // end include file ----------------------------------------------------------- *

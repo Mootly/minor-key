@@ -58,21 +58,13 @@ ob_start();
     <?php var_dump(htmlspecialchars($t_result)); ?>
   </pre>
 
-  <?php echo($t_result); ?>
+<?php echo($t_result); ?>
+<!-- *** end contents ********************************************************* -->
 <?php
-                    # ↑↑↑ EDIT CONTENT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ ***
-$mpo_parts->accessibility = 'standard';
+                    # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+                    # Content developers shouldn't touch anything below here.
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
-$page_elements = $mpo_parts->build_page();
-$page_scripts  = $mpo_scripts->build_list();
-$page_styles   = $mpo_styles->build_list();
-$page_template = $mpo_parts->template.$mpt_['default'].$mpt_['suffix'];
-echo ($twig->render($page_template,
-  array(
-    'page'=>$page_elements['content'],
-    'scripts'=>$page_scripts,
-    'styles'=>$page_styles
-  )
-));
+                      // Submit to template generator --------------------------- *
+mpf_renderPage($mpo_parts->template.$mpt_['default'].$mpt_['suffix'], $mpo_parts);
 ?>
