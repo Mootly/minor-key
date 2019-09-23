@@ -93,9 +93,9 @@ function mpf_toc_generator() {
                                 : true;
                     // If no body ID, return to top at TOC instead.             *
     const c_toc_topID         = (document.body.id) ? document.body.id : 'toc-link' ;
-    var   f_topLinkDiv        =  document.createElement('div');
+    let   f_topLinkDiv        =  document.createElement('div');
           f_topLinkDiv.classname = 'top-link';
-    var   f_topLinkA          =  document.createElement('a');
+    let   f_topLinkA          =  document.createElement('a');
           f_topLinkA.title    = 'Back to Top';
           f_topLinkA.href     = '#'+c_toc_topID;
           f_topLinkA.innerHTML= '<span>[top]</span>';
