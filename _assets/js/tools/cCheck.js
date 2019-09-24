@@ -1,12 +1,11 @@
-/* --- cCheck.js -------------------------------------------------------------- *
- * cCheck takes a variable of any type and writes it the the browser console.   *
+/* --- checkOn.js ------------------------------------------------------------- *
+ * checkOn takes a variable of any type and writes it the the browser console.  *
+ * use mpf_checkOn(dataElement);
  * --- Revision History ------------------------------------------------------- *
- * 2019-06-24 | Added revision log, cleaned code
+ * 2019-09-24 | Coped to ECMAScript folder
  * ---------------------------------------------------------------------------- */
-function cCheck(someData) {
+function mpf_checkOn(someData) {
   someJSON = JSON.stringify(someData);
   console.dir(someData);
-//  console.dir(formJSON);
 }
-// cCheck(formData);
-/*! -- Copyright (c) 2017-2018 Mootly Obviate -- See /LICENSE.md -------------- */
+/*! -- Copyright (c) 2019 Mootly Obviate -- See /LICENSE.md ------------------- */
