@@ -2,29 +2,21 @@
  * Scripts to correct legacy code.
  * ---------------------------------------------------------------------------- *
  * Available Functions:
- * ** Show Element Size
- *    Creates overlay division to show current dimensions.
- *    Invokes on: onload, onresize
- *    Assumptions:
- *      A single image inside the containing element (e.g., figure).
- *    Calls:
- *      class="show-size-el"  : size the current block
- *      class="show-size-img" : size of image inside the current block
- *      class="show-size-vid" : size of video element inside the current block
+ * ** Clean Images
+ *    Cleans old HTML tags out of images and adds appropriate styling.
  *    Notes:
- *      Remember to position 'element-size' so it doesn't resize the div.
+ *      Fires immediately, so make sure it is at the end of the body.
  *
  * --- Revision History ------------------------------------------------------- *
- * 2019-09-17 | Genericize and remove jQuery calls
- * 2019-07-09 | Added revision log, cleaned code
+ * 2019-09-25 | Added revision log, cleaned code
  * ---------------------------------------------------------------------------- */
-// *** Show Element Size ------------------------------------------------------ *
-$('document').ready( function() {
-  $('img[hspace]').each ( function() {
-    $(this).removeAttr('hspace').attr('style','margin: auto;');
-    $(this).parent().attr('style','text-align: center;');
-  });
-});
+// *** Clean Images ----------------------------------------------------------- *
+                    // Fix image centering                                      *
+document.querySelectorAll('img[hspace]').forEach(function(p_box) {
+  p_box.removeAttr('hspace');
+  p_box.style.margin                    = 'auto';
+  p_box.parentElement.style.textAlign   = 'center';
+}
 // *** onload operations ------------------------------------------------------ *
-window.addEventListener('load', mpf_showElementSize);
+// window.addEventListener('load', mpf_);
 /*! -- Copyright (c) 2019 Mootly Obviate -- See /LICENSE.md ------------------ */

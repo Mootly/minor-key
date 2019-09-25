@@ -32,8 +32,8 @@ function mpf_showElementSize() {
     }
     f_vH            = Math.round(f_targ.height);
     f_vW            = Math.round(f_targ.width);
-    if (p_box.querySelector('element-size')) {
-      p_box.querySelector('element-size').innerText = f_vH + ' x ' + f_vW;
+    if (p_box.querySelector('.element-size')) {
+      p_box.querySelector('.element-size').innerText = f_vH + ' x ' + f_vW;
     } else {
       f_div           =  document.createElement('div');
       f_div.className = 'element-size';
