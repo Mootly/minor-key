@@ -415,7 +415,7 @@ class mpc_filefinder {
                     # fix empty string when root directory call                 *
       if ($this->targetURI == '') { $this->targetURI = '/'; }
                     # *** REDIRECT to found page ------------------------------ #
-      header('Location: '.$this->targetURI);                                    #
+      header('Location: '.$this->targetURI, true, 301);                                    #
                     # *** REDIRECT to found page ------------------------------ #
     }
     foreach($this->globResult as $t_key=>$t_item) {
