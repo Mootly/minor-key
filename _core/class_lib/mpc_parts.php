@@ -136,7 +136,7 @@ class mpc_parts {
 # *** BEGIN build_page -------------------------------------------------------- *
 /**
   * Returns an array of page parts.
-  * Builds the apge title if it is not already done.
+  * Builds the page title if it is not already done.
   * Beyond that, this is a no frills data dump of all page comonents stored in
   * the object, including potential interim values. See docs for a list of the
   * core components.
