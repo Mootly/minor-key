@@ -51,7 +51,7 @@ class mpc_filefinder {
                     # array is fragements merged into an OR'd regex on init     *
   protected $blockedPaths;
   protected $blockedPathArray = array(
-    'admin'         => '\/admin\/',
+    // 'admin'         => '\/admin\/',
     'core'          => '^\/_core',
     'cgi'           => 'cgi(_|-)?bin',
     'executables'   => '\.(cgi|exe)$',
