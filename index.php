@@ -59,6 +59,30 @@ ob_start();
   </pre>
 
 <?php echo($t_result); ?>
+
+<script type="text/javascript">
+let hashy = '#';
+for (x=1; x<=7; x++) {
+  console.log(hashy.repeat(x));
+}
+// for (x=1;x<=100;x++) console.log((x%3?'':'fizz')+(x%5?'':'buzz')||x);
+let sqsz = 11;
+let sqblock = 'X';
+let sqblank = ' ';
+let thiscol = sqblock;
+let thisset = '';
+for (x=0; x<sqsz; x++) {
+  let thisrow = thiscol;
+  thisset = '';
+  for (y=0; y<sqsz; y++) {
+    thisrow = thisrow == sqblock ? sqblank : sqblock;
+    thisset = thisset + thisrow;
+  }
+  console.log(thisset);
+  thiscol = thiscol == sqblock ? sqblank : sqblock;
+}
+
+</script>
 <!-- *** end contents ********************************************************* -->
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
