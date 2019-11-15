@@ -16,7 +16,7 @@ function mpf_renderPage($page_template, $mpo_parts, $mpo_scripts = false, $mpo_s
     $template_array['scripts'] = $mpo_scripts->build_list();
   }
   if ($mpo_styles) {
-    $template_array['styles'] = $mpo_style->build_list();
+    $template_array['styles'] = $mpo_styles->build_list();
   }
   echo($twig->render($page_template, $template_array));
 }
