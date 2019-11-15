@@ -35,7 +35,11 @@ ob_start();
   </thead>
   <tbody>
     <tr>
-      <th colspan="2">List of Objects</th>
+      <th colspan="2">List of Topics</th>
+    </tr>
+    <tr>
+      <td><a href="<?=CURR_PATH?>/blank.php">Blank Page</a></td>
+      <td>Blank page template for development use.</td>
     </tr>
     <tr>
       <td><a href="<?=CURR_PATH?>/styles/">Style Guide</a></td>
