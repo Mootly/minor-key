@@ -63,9 +63,11 @@ function mpf_stickybar() {
 // * - If a listed element does not have an ID, it assigns one.
 function mpf_toc_generator() {
                     // check for a TOC element, otherwise do nothing            *
-  const c_tocTarget = document.getElementById('toc-links');
-  if (c_tocTarget) {
-    c_tocTarget.style.display = 'block';
+  const el_tocTarget = document.getElementById('toc-links');
+  if (el_tocTarget) {
+                    // *** populate or configuration variables ---------------- *
+                    // Unhide TOC - TOC hidden in case script doesn't load      *
+    el_tocTarget.style.display = 'block';
                     // TOC starts with this heading                             *
     const c_toc_tier1         = (typeof toc_tier1       !== 'undefined')
                                 ? toc_tier1       : 'h2';
@@ -79,8 +81,8 @@ function mpf_toc_generator() {
                                 : ['page-body'];
                     // Array of headings to exclude                             *
     const c_toc_system        = (typeof toc_system      !== 'undefined')
-                                ? (c_tocTarget.innerText + ',' + toc_system).split(/,\s/)
-                                : [c_tocTarget.innerText];
+                                ? (el_tocTarget.innerText + ',' + toc_system).split(/,\s/)
+                                : [el_tocTarget.innerText];
                     // Variables to generate links back to the top of the page  *
     const c_toc_skipAll       = (typeof toc_skipAll     !== 'undefined')
                                 ? toc_skipAll
@@ -91,28 +93,37 @@ function mpf_toc_generator() {
     const c_toc_skipNested    = (typeof toc_skipNested  !== 'undefined')
                                 ? toc_skipNested
                                 : true;
+                    // *** Create our back to top link ------------------------ *
                     // If no body ID, return to top at TOC instead.             *
     const c_toc_topID         = (document.body.id) ? document.body.id : 'toc-link' ;
-    let   f_topLinkDiv        =  document.createElement('div');
-          f_topLinkDiv.classname = 'top-link';
-    let   f_topLinkA          =  document.createElement('a');
-          f_topLinkA.title    = 'Back to Top';
-          f_topLinkA.href     = '#'+c_toc_topID;
-          f_topLinkA.innerHTML= '<span>[top]</span>';
-          f_topLinkDiv.appendChild(f_topLinkA);
-                    // generate an array of all tier1 headings                  *
-    // let   b_tocList = document.querySelectorAll(c_toc_container).querySelectorAll(c_toc_tier1);
-  //   var h2Len = mpv_toc_list.length;
-  //   for (var i=0; i<h2Len; i++) {
-  //     var mpv_toc_this      = mpv_toc_list.eq(i);
-  //     var mpv_toc_thisText  = mpv_toc_this.text();
-  //     if (!(mpv_toc_this.hasClass('toc-skip'))) {
-  //       var subMenuList = '';
-  //       if (($.inArray(mpv_toc_thisText, mpv_toc_system) == -1) && mpv_toc_thisText) {
-  //                   // add id attribute to h2 if none                           *
-  //         if (!(mpv_toc_this.is('[id]'))) { mpv_toc_this.attr('id', 't1-'+mpv_toc_thisText.replace(/ /g,'-')); }
-  //                   // add link to toc                                          *
-  //         mpv_toc_menuList += '<li id="jumpto-'+mpv_toc_this.attr('id')+'"><a href="#'+mpv_toc_this.attr('id')+'">'+mpv_toc_thisText+'</a>';
+    let   el_topLinkDiv       =  document.createElement('div');
+          el_topLinkDiv.className = 'top-link';
+    let   el_topLinkA         =  document.createElement('a');
+          el_topLinkA.title   = 'Back to Top';
+          el_topLinkA.href    = '#'+c_toc_topID;
+          el_topLinkA.innerHTML = '<span>[top]</span>';
+          el_topLinkDiv.appendChild(el_topLinkA);
+                    // *** Generate our TOC block ----------------------------- *
+                    // place the container and repurpose the element            *
+    let   el_tocLinkList      = document.createElement('ul');
+          el_tocLinkList.className = 'jumpto';
+          el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
+          el_tocLinkList      = document.getElementById('jumpto');
+                    // *** Begin our element loop ----------------------------- *
+    let   nlist_tier1 = document.querySelectorAll(c_toc_tier1);
+    nlist_tier1.forEach ((el_current) => {
+      if (!(c_toc_system.includes(el_current.textContent)) &&
+          !(el_current.classList.contains('toc-skip'))) {
+        let v_linkText        = el_current.textContent;
+                    // add id attribute to target if none                       *
+        if (!(el_current.hasAttribute('id'))) {
+          el_current.id = 'goto-'+v_linkText.replace(/[`~!@#$%^&*()|+=?;'",<>\{\}\[\]\\\/]/gi,'').trim().replace(/ /g,'-');
+                    // add link to toc                                          *
+        }
+// *** TO HERE *** TO HERE *** TO HERE *** TO HERE *** TO HERE *** TO HERE ***  *
+          // mpv_toc_menuList += '<li id="jumpto-'+mpv_toc_this.attr('id')+'"><a href="#'+mpv_toc_this.attr('id')+'">'+mpv_toc_thisText+'</a>';
+      }
+    });
   //                   // add links for tier 2 elements                            *
   //         if (mpv_toc_skipFirst) { mpv_toc_skipFirst = false; } else { mpv_toc_this.before(mpv_toc_returnto); }
   //         var mpv_toc_flList = mpv_toc_this.nextUntil(mpv_toc_tier1,mpv_toc_tier2);
@@ -145,9 +156,10 @@ function mpf_toc_generator() {
   //       }
   //     }
   //   }
-  //                   // write the menu                                           *
-  //   $('#toc-links').after('<ul id="jumpto" />');
-  //   $('#jumpto').append(mpv_toc_menuList);
+                    // *** write the menu ------------------------------------- *
+    el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
+    // $('#toc-links').after('<ul id="jumpto" />');
+    // $('#jumpto').append(mpv_toc_menuList);
   }
 }
 // *** ------------------------------------------------------------------------ *

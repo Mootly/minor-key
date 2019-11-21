@@ -61,26 +61,23 @@ ob_start();
 <?php echo($t_result); ?>
 
 <script type="text/javascript">
-let hashy = '#';
-for (x=1; x<=7; x++) {
-  console.log(hashy.repeat(x));
-}
+// *** BRAIN CLEANING EXERCISES
+// *** FIZZBUZZ
 // for (x=1;x<=100;x++) console.log((x%3?'':'fizz')+(x%5?'':'buzz')||x);
-let sqsz = 11;
-let sqblock = 'X';
-let sqblank = ' ';
-let thiscol = sqblock;
-let thisset = '';
-for (x=0; x<sqsz; x++) {
-  let thisrow = thiscol;
-  thisset = '';
-  for (y=0; y<sqsz; y++) {
-    thisrow = thisrow == sqblock ? sqblank : sqblock;
-    thisset = thisset + thisrow;
-  }
-  console.log(thisset);
-  thiscol = thiscol == sqblock ? sqblank : sqblock;
-}
+
+let   el_topLinkDiv       =  document.createElement('div');
+      el_topLinkDiv.className = 'top-link';
+let   el_topLinkA         =  document.createElement('a');
+      el_topLinkA.title   = 'Back to Top';
+      el_topLinkA.href    = '#top';
+      el_topLinkA.innerHTML = '<span>[top]</span>';
+      el_topLinkDiv.appendChild(el_topLinkA);
+let   v_tocList = document.querySelector('.sunset');
+v_tocList.appendChild(el_topLinkDiv);
+let   el_tocLinkList       =  document.createElement('ul');
+      el_tocLinkList.className = 'jumpto';
+      // c_tocTarget.parentNode.insertBefore(el_topLinkDiv, c_tocTarget.nextSibling);
+      v_tocList.parentNode.insertBefore(el_tocLinkList, v_tocList.nextSibling);
 
 </script>
 <!-- *** end contents ********************************************************* -->
