@@ -87,7 +87,7 @@ function mpf_toc_generator() {
     const c_toc_skipAll       = (typeof toc_skipAll     !== 'undefined')
                                 ? toc_skipAll
                                 : false;
-    const c_toc_skipFirst     = (typeof toc_skipFirst   !== 'undefined')
+    let   v_toc_skipFirst     = (typeof toc_skipFirst   !== 'undefined')
                                 ? toc_skipFirst
                                 : true;
     const c_toc_skipNested    = (typeof toc_skipNested  !== 'undefined')
@@ -106,7 +106,7 @@ function mpf_toc_generator() {
                     // *** Generate our TOC block ----------------------------- *
                     // place the container and repurpose the element            *
     let   el_tocLinkList      = document.createElement('ul');
-          el_tocLinkList.className = 'jumpto';
+          el_tocLinkList.id   = 'jumpto';
           el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
           el_tocLinkList      = document.getElementById('jumpto');
                     // *** Begin our element loop ----------------------------- *
@@ -118,13 +118,28 @@ function mpf_toc_generator() {
                     // add id attribute to target if none                       *
         if (!(el_current.hasAttribute('id'))) {
           el_current.id = 'goto-'+v_linkText.replace(/[`~!@#$%^&*()|+=?;'",<>\{\}\[\]\\\/]/gi,'').trim().replace(/ /g,'-');
-                    // add link to toc                                          *
         }
+                    // add link to toc - note clone call                        *
+                    // check whether to skip first or skip all                  *
+        if (!c_toc_skipAll) {
+          if (v_toc_skipFirst) {
+            v_toc_skipFirst = false;
+          } else {
+            el_current.parentNode.insertBefore(el_topLinkDiv.cloneNode(true), el_current)
+          }
+        }
+                    // add linkto TOC element                                   *
+        let   el_tocLinkItem            = document.createElement('li');
+              el_tocLinkItem.id         = 'jumpto'+el_current.id;
+        let   el_tocLinkA               = document.createElement('a');
+              el_tocLinkA.setAttribute('href', '#'+el_current.id);
+              el_tocLinkA.innerText     = el_current.textContent;
+              el_tocLinkItem.appendChild(el_tocLinkA);
+              el_tocLinkList.appendChild(el_tocLinkItem);
+                    // add links for tier 2 elements                            *
 // *** TO HERE *** TO HERE *** TO HERE *** TO HERE *** TO HERE *** TO HERE ***  *
-          // mpv_toc_menuList += '<li id="jumpto-'+mpv_toc_this.attr('id')+'"><a href="#'+mpv_toc_this.attr('id')+'">'+mpv_toc_thisText+'</a>';
       }
     });
-  //                   // add links for tier 2 elements                            *
   //         if (mpv_toc_skipFirst) { mpv_toc_skipFirst = false; } else { mpv_toc_this.before(mpv_toc_returnto); }
   //         var mpv_toc_flList = mpv_toc_this.nextUntil(mpv_toc_tier1,mpv_toc_tier2);
   //         var mpv_toc_flLength = mpv_toc_flList.length;
@@ -157,7 +172,7 @@ function mpf_toc_generator() {
   //     }
   //   }
                     // *** write the menu ------------------------------------- *
-    el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
+    // el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
     // $('#toc-links').after('<ul id="jumpto" />');
     // $('#jumpto').append(mpv_toc_menuList);
   }
