@@ -1,5 +1,9 @@
-/* --- Page layout scripts --------------------------- ECMAScript 6 version --- *
+/* --- Page layout scripts ------------------------------ Legacy JS version --- *
  * Scripts for script-managed page layout features.
+ * This legacy code is for the benefit if MSIE.
+ * - const and let reverted to to var
+ * - node list walks changed to array walks
+ * - array.includes changed to array.indexof
  * ---------------------------------------------------------------------------- *
  * Available Functions:
  * ** Fix position on scroll (stickybar)
@@ -63,7 +67,7 @@ function mpf_stickybar() {
 // * - If a listed element does not have an ID, it assigns one.
 function mpf_toc_generator() {
                     // check for a TOC element, otherwise do nothing            *
-  const el_tocTarget = document.getElementById('toc-links');
+  var el_tocTarget = document.getElementById('toc-links');
   if (el_tocTarget) {
                     // *** populate or configuration variables ---------------- *
                     // Unhide TOC - TOC hidden in case script doesn't load      *
@@ -73,66 +77,56 @@ function mpf_toc_generator() {
                                 ? toc_tier1       : 'h2';
                     // And also includes these elements
     const c_toc_tier2         = (typeof toc_tier2       !== 'undefined')
-                                ? toc_tier2.split(/,\s?/)
-                                : ['h3', 'dt'];
-    const c_toc_includes      = c_toc_tier1+', '+c_toc_tier2.toString();
+                                ? toc_tier2
+                                : 'h3, dt';
+    const c_toc_includes      = c_toc_tier1+', '+c_toc_tier2;
                     // Array of content section IDs to use                      *
-    const c_toc_container     = (typeof toc_container   !== 'undefined')
-                                ? toc_container.split(/,\s?/)
-                                : ['page-body'];
+    var c_toc_container       = (typeof toc_container   !== 'undefined')
+                              ? toc_container.split(/,\s/)
+                              : ['page-body'];
                     // Array of headings to exclude                             *
-    const c_toc_system        = (typeof toc_system      !== 'undefined')
-                                ? (el_tocTarget.innerText + ',' + toc_system).split(/,\s/)
-                                : [el_tocTarget.innerText];
+    var c_toc_system          = (typeof toc_system      !== 'undefined')
+                              ? (el_tocTarget.innerText + ',' + toc_system).split(/,\s/)
+                              : [el_tocTarget.innerText];
                     // Variables to generate links back to the top of the page  *
-    const c_toc_skipAll       = (typeof toc_skipAll     !== 'undefined')
-                                ? toc_skipAll
-                                : false;
-    let   v_toc_skipFirst     = (typeof toc_skipFirst   !== 'undefined')
-                                ? toc_skipFirst
-                                : true;
-    const c_toc_skipNested    = (typeof toc_skipNested  !== 'undefined')
-                                ? toc_skipNested
-                                : true;
+    var c_toc_skipAll         = (typeof toc_skipAll     !== 'undefined')
+                              ? toc_skipAll
+                              : false;
+    var v_toc_skipFirst       = (typeof toc_skipFirst   !== 'undefined')
+                              ? toc_skipFirst
+                              : true;
+    var c_toc_skipNested      = (typeof toc_skipNested  !== 'undefined')
+                              ? toc_skipNested
+                              : true;
                     // *** Create our back to top link ------------------------ *
                     // If no body ID, return to top at TOC instead.             *
-    const c_toc_topID         = (document.body.id) ? document.body.id : 'toc-link' ;
-    let   el_topLinkDiv       =  document.createElement('div');
-          el_topLinkDiv.className = 'top-link';
-    let   el_topLinkA         =  document.createElement('a');
-          el_topLinkA.title   = 'Back to Top';
-          el_topLinkA.href    = '#'+c_toc_topID;
-          el_topLinkA.innerHTML = '<span>[top]</span>';
-          el_topLinkDiv.appendChild(el_topLinkA);
+    var c_toc_topID           = (document.body.id) ? document.body.id : 'toc-link' ;
+    var el_topLinkDiv         =  document.createElement('div');
+        el_topLinkDiv.className = 'top-link';
+    var el_topLinkA           =  document.createElement('a');
+        el_topLinkA.title     = 'Back to Top';
+        el_topLinkA.href      = '#'+c_toc_topID;
+        el_topLinkA.innerHTML = '<span>[top]</span>';
+        el_topLinkDiv.appendChild(el_topLinkA);
                     // *** Generate our TOC block ----------------------------- *
                     // place the container and repurpose the element            *
-    let   el_tocLinkList      = document.createElement('ul');
-    let   el_tocLinkSubList   = document.createElement('ul');
-          el_tocLinkList.id   = 'jumpto';
-          el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
-          el_tocLinkList      = document.getElementById('jumpto');
+    var el_tocLinkList        = document.createElement('ul');
+        el_tocLinkList.id     = 'jumpto';
+        el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
+        el_tocLinkList        = document.getElementById('jumpto');
                     // *** ---------------------------------------------------- *
                     // *** Begin our element loop ----------------------------- *
-                    // *** Remember to match case on string tests               *
-    let   nlist_includes      = document.querySelectorAll(c_toc_includes);
-    nlist_includes.forEach ((el_current) => {
-      let v_linkText        = el_current.textContent;
+    var nlist_toc_includes    = document.querySelectorAll(c_toc_includes);
+    var a_toc_includes        = Array.prototype.slice.apply(nlist_toc_includes);
+    a_toc_includes.forEach(function (el_current) {
+      if ((c_toc_system.indexOf(el_current.textContent) == -1) &&
+        !(el_current.classList && el_current.classList.contains('toc-skip'))) {
+        var v_linkText        = el_current.textContent;
                     // add id attribute to target if none                       *
-                    // doing it once outside of tests to simplify               *
-      if (!(el_current.hasAttribute('id'))) {
-        el_current.id = 'goto-'+v_linkText
-        .replace(/[`~!@#$%^&*()|+=?;'",.<>\{\}\[\]\\\/]/gi,'')
-        .trim().replace(/ /g,'-');
-      }
-      if ((el_current.tagName.toLowerCase() == c_toc_tier1.toLowerCase()) &&
-          (c_toc_system.indexOf(el_current.textContent) == -1) &&
-         !(el_current.classList && el_current.classList.contains('toc-skip'))) {
-                    // write out chidlren if we have them                       *
-        if (el_tocLinkSubList.childElementCount && el_tocLinkList.childElementCount) {
-          el_tocLinkList.lastElementChild.appendChild(el_tocLinkSubList.cloneNode(true));
-          while (el_tocLinkSubList.firstChild) {
-            el_tocLinkSubList.removeChild(el_tocLinkSubList.firstChild);
-          }
+        if (!(el_current.hasAttribute('id'))) {
+          el_current.id = 'goto-'+v_linkText
+          .replace(/[`~!@#$%^&*()|+=?;'",.<>\{\}\[\]\\\/]/gi,'')
+          .trim().replace(/ /g,'-');
         }
                     // add link to toc - note clone call                        *
                     // check whether to skip first or skip all                  *
@@ -144,25 +138,53 @@ function mpf_toc_generator() {
           }
         }
                     // add linkto TOC element                                   *
-        let   el_tocLinkItem            = document.createElement('li');
-              el_tocLinkItem.id         = 'jumpto'+el_current.id;
-        let   el_tocLinkA               = document.createElement('a');
-              el_tocLinkA.setAttribute('href', '#'+el_current.id);
-              el_tocLinkA.innerText     = el_current.textContent;
-              el_tocLinkItem.appendChild(el_tocLinkA);
-              el_tocLinkList.appendChild(el_tocLinkItem);
+        var el_tocLinkItem              = document.createElement('li');
+            el_tocLinkItem.id           = 'jumpto'+el_current.id;
+        var el_tocLinkA                 = document.createElement('a');
+            el_tocLinkA.setAttribute('href', '#'+el_current.id);
+            el_tocLinkA.innerText       = el_current.textContent;
+            el_tocLinkItem.appendChild(el_tocLinkA);
+            el_tocLinkList.appendChild(el_tocLinkItem);
+                    // add links for tier 2 elements                            *
+// *** TO HERE *** TO HERE *** TO HERE *** TO HERE *** TO HERE *** TO HERE ***  *
       }
-      if (el_current.classList && el_current.classList.contains('add-toc')) {
-        // add linkto TOC element                                   *
-        let   el_tocLinkSubItem         = document.createElement('li');
-              el_tocLinkSubItem.id      = 'jumpto'+el_current.id;
-        let   el_tocLinkSubA            = document.createElement('a');
-              el_tocLinkSubA.setAttribute('href', '#'+el_current.id);
-              el_tocLinkSubA.innerText  = el_current.textContent;
-              el_tocLinkSubItem.appendChild(el_tocLinkSubA);
-              el_tocLinkSubList.appendChild(el_tocLinkSubItem);
-      }
+    // }
     });
+  //         if (mpv_toc_skipFirst) { mpv_toc_skipFirst = false; } else { mpv_toc_this.before(mpv_toc_returnto); }
+  //         var mpv_toc_flList = mpv_toc_this.nextUntil(mpv_toc_tier1,mpv_toc_tier2);
+  //         var mpv_toc_flLength = mpv_toc_flList.length;
+  //         for (var j=0; j<mpv_toc_flLength; j++) {
+  //                   // this will only catch siblings                            *
+  //           var mpv_toc_flThis = mpv_toc_flList.eq(j);
+  //           if (mpv_toc_flThis.hasClass('add-toc')) {
+  //             if (!(mpv_toc_flThis.is('[id]'))) {
+  //               mpv_toc_flThis.attr('id', 't2-'+mpv_toc_flThis.text().replace(/ /g,'-'));
+  //             }
+  //             if (!mpv_toc_skipNested) { mpv_toc_flThis.before(mpv_toc_returnto); }
+  //             subMenuList += '<li><a href="#'+mpv_toc_flThis.attr('id')+'">'+mpv_toc_flThis.text()+'</a></li>';
+  //           }
+  //                   // this will catch DTs                                      *
+  //           var mpv_toc_fl2List = mpv_toc_flThis.children('.add-toc');
+  //           var mpv_toc_fl2Length = mpv_toc_fl2List.length;
+  //           for (var k=0; k<mpv_toc_fl2Length; k++) {
+  //             var mpv_toc_fl2This = mpv_toc_fl2List.eq(k);
+  //             if (!(mpv_toc_fl2This.is('[id]'))) {
+  //               mpv_toc_fl2This.attr('id', 'dl-'+mpv_toc_fl2This.text().replace(/ /g,'-'));
+  //             }
+  //             subMenuList += '<li><a href="#'+mpv_toc_fl2This.attr('id')+'">'+mpv_toc_fl2This.text()+'</a></li>';
+  //           }
+  //         }
+  //                   // if submenu, nest in menu                                 *
+  //         if (subMenuList) { subMenuList = '<ul>'+subMenuList+'</ul>'; }
+  //         mpv_toc_menuList += subMenuList;
+  //         mpv_toc_menuList += '</li>';
+  //       }
+  //     }
+  //   }
+                    // *** write the menu ------------------------------------- *
+    // el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
+    // $('#toc-links').after('<ul id="jumpto" />');
+    // $('#jumpto').append(mpv_toc_menuList);
   }
 }
 // *** ------------------------------------------------------------------------ *

@@ -34,6 +34,7 @@
   require_once( MP_CLASSLIB . 'mpc_parts.php');
   if (!isset($mpo_parts)) $mpo_parts = new mpc_parts();
   $mpo_parts->page_path     = dirname($_SERVER['SCRIPT_NAME']);
+  $mpo_parts->user_agent    = dirname($_SERVER['HTTP_USER_AGENT']);
 //  if (!isset($mpo_menus)) $mpo_menus = new mpc_parts(true);
                     # Set default paths for assets                              *
   require_once( MP_CLASSLIB . 'mpc_paths.php' );
