@@ -39,7 +39,7 @@
  *      Script will change this to display: block;
  * ---------------------------------------------------------------------------- *
  * --- Revision History ------------------------------------------------------- *
- * 2019-09-21 | Createe
+ * 2019-11-26 | ES6 TOC generator completed
  * ---------------------------------------------------------------------------- */
 // *** Show Element Size ------------------------------------------------------ *
 function mpf_stickybar() {
@@ -88,7 +88,7 @@ function mpf_toc_generator() {
     const c_toc_skipAll       = (typeof toc_skipAll     !== 'undefined')
                                 ? toc_skipAll
                                 : false;
-    let   v_toc_skipFirst     = (typeof toc_skipFirst   !== 'undefined')
+    let   f_toc_skipFirst     = (typeof toc_skipFirst   !== 'undefined')
                                 ? toc_skipFirst
                                 : true;
     const c_toc_skipNested    = (typeof toc_skipNested  !== 'undefined')
@@ -97,9 +97,9 @@ function mpf_toc_generator() {
                     // *** Create our back to top link ------------------------ *
                     // If no body ID, return to top at TOC instead.             *
     const c_toc_topID         = (document.body.id) ? document.body.id : 'toc-link' ;
-    let   el_topLinkDiv       =  document.createElement('div');
+    let   el_topLinkDiv       = document.createElement('div');
           el_topLinkDiv.className = 'top-link';
-    let   el_topLinkA         =  document.createElement('a');
+    let   el_topLinkA         = document.createElement('a');
           el_topLinkA.title   = 'Back to Top';
           el_topLinkA.href    = '#'+c_toc_topID;
           el_topLinkA.innerHTML = '<span>[top]</span>';
@@ -116,11 +116,11 @@ function mpf_toc_generator() {
                     // *** Remember to match case on string tests               *
     let   nlist_includes      = document.querySelectorAll(c_toc_includes);
     nlist_includes.forEach ((el_current) => {
-      let v_linkText        = el_current.textContent;
+      let b_linkText        = el_current.textContent;
                     // add id attribute to target if none                       *
                     // doing it once outside of tests to simplify               *
       if (!(el_current.hasAttribute('id'))) {
-        el_current.id = 'goto-'+v_linkText
+        el_current.id = 'goto-'+b_linkText
         .replace(/[`~!@#$%^&*()|+=?;'",.<>\{\}\[\]\\\/]/gi,'')
         .trim().replace(/ /g,'-');
       }
@@ -137,8 +137,8 @@ function mpf_toc_generator() {
                     // add link to toc - note clone call                        *
                     // check whether to skip first or skip all                  *
         if (!c_toc_skipAll) {
-          if (v_toc_skipFirst) {
-            v_toc_skipFirst = false;
+          if (f_toc_skipFirst) {
+            f_toc_skipFirst = false;
           } else {
             el_current.parentNode.insertBefore(el_topLinkDiv.cloneNode(true), el_current)
           }
@@ -174,7 +174,7 @@ window.addEventListener('load', mpf_toc_generator);
 // window.addEventListener('scroll', mpf_);
 
 /*! --- Copyright (c) 2019 Mootly Obviate -- See /LICENSE.md ------------------ */
-
+// some development notes to me
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 //  https://jsfiddle.net/ghctkLgg/
 //  https://html-online.com/articles/javascript-stick-html-top-scroll/

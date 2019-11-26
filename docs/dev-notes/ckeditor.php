@@ -1,6 +1,6 @@
 <?php
-/* === Developer Notes ======================================================== *
- * Copyright (c) 2017-2018 Mootly Obviate - See /LICENSE.md
+/* === Developer Notes -CKEditor Configuration ================================ *
+ * Copyright (c) 2017-2019 Mootly Obviate - See /LICENSE.md
  * --- Revision History ------------------------------------------------------- *
  * 2018-05-09 | Copied over from test page.
  * ---------------------------------------------------------------------------- */

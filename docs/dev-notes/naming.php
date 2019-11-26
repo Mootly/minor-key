@@ -27,7 +27,8 @@ ob_start();
 
 <p>MoosePress uses prefixes to designate namespaces reserved for use by core and to designate certain categories of variables. These prefexes are broken out by what they label.</p>
 
-<p>Reserved prefixes:</p>
+<p>You are encouraged to maintain these patterns when adding to the code base.</p>
+
 <dl class="inline-terms">
   <dt id="dfn-prefix-usc">_ <small>(underscore)</small></dt><dd>System folders begin with an underscore to float them to the top. These are <b>_assets</b>, <b>_core</b>, and <b>_vendors</b>. Remember: <b>/_assets/</b> are template assets, while <b>/assets/</b> are content assets.</dd>
   <dt id="dfn-prefix-mpdef">DEF_</dt><dd>Site specific default constants. These should only be set in <b>init.php</b> or the template-specific equivalent.</dd>
@@ -45,14 +46,19 @@ ob_start();
   <dt id="dfn-prefix-mptpo">tpo_</dt><dd>Object instances. All instantiated objects from a template library should be prefixed with <b>mpo_</b>.</dd>
 </dl>
 
-<p>Some extra recommended ones for client-side scripts.</p>
+<p>Some recommended ones for client-side scripts.</p>
+
+<p>Using a prefix to spell out scope is epsecially useful when altering the code for backward compatability. It makes the former <code>let</code> and <code>const</code> calls easier to identify when they are all now <code>var</code>.</p>
 
 <dl class="inline-terms">
-  <dt id="dfn-prefix-mpsf">g_</dt><dd>Variables with global scope.</dd>
-  <dt id="dfn-prefix-mpsf">p_</dt><dd>Parameters with function scope.</dd>
-  <dt id="dfn-prefix-mpsf">f_</dt><dd>Variables with function scope.</dd>
   <dt id="dfn-prefix-mptsb">b_</dt><dd>Variables with block scope.</dd>
-  <dt id="dfn-prefix-mptsc">CL_</dt><dd>Constants with function/block scope.</dd>
+  <dt id="dfn-prefix-mptsc">c_</dt><dd>Constants with function/block scope.</dd>
+  <dt id="dfn-prefix-mptsc">el_</dt><dd>Element nodes.</dd>
+  <dt id="dfn-prefix-mpsf">f_</dt><dd>Variables with function scope.</dd>
+  <dt id="dfn-prefix-mpsf">g_</dt><dd>Variables with global scope.</dd>
+  <dt id="dfn-prefix-mptsc">nlist_</dt><dd>Node lists.</dd>
+  <dt id="dfn-prefix-mpsf">p_</dt><dd>Parameters with function scope.</dd>
+  <dt id="dfn-prefix-mpsf">v_</dt><dd>Just a prefix to keep those nonspecific variables from feeling left out.</dd>
 </dl>
 <!-- *** end contents ********************************************************* -->
 <?php

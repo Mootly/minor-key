@@ -35,7 +35,7 @@ ob_start();
 
 <p>All core code has been written with the unidirectional flow described below. You can iterate, but not move backwards.</p>
 
-<p>Direction of flow is enforced by encapsulation and an expectation that a particular type of object will be passed each step of the way. Core files will include the following strings to indicate what part of the process they are involved with.</p>
+<p>Direction of flow is enforced by encapsulation and an expectation that a particular data set or type of object will be passed each step of the way. Core files will include the following strings to indicate what part of the process they are involved with.</p>
 
 <p>Request evaluation and computation:</p>
 <dl class="inline-terms">
