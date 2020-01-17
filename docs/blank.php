@@ -1,8 +1,6 @@
 <?php
 /* === Blank Page Template ==================================================== *
- * Copyright (c) 2019 Mootly Obviate - See /LICENSE.md
- * --- Revision History ------------------------------------------------------- *
- * 2019-11-08 | Created.
+ * Copyright (c) 2020 Mootly Obviate - See /LICENSE.md
  * ---------------------------------------------------------------------------- */
                     # Call config to init the application
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
