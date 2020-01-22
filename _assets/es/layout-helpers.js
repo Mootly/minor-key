@@ -41,17 +41,23 @@
  * --- Revision History ------------------------------------------------------- *
  * 2019-11-26 | ES6 TOC generator completed
  * ---------------------------------------------------------------------------- */
-// *** Show Element Size ------------------------------------------------------ *
+// *** Stickybar ------------------------------------------------------ *
 function mpf_stickybar() {
-  // f_vT            = Math.round(p_box.getBoundingClientRect().top)
-  // f_vL            = Math.round(p_box.getBoundingClientRect().left)
-  // if (f_vL < 1) {
-      // $('#stickThis').addClass('stick');
-      // $('#stick-here').height($('#stickThis').outerHeight());
-  // } else {
-      // $('#stickThis').removeClass('stick');
-      // $('#stick-here').height(0);
-  // }
+  const f_fbox      = document.getElementById('title-box');
+  let f_vT          = Math.round(f_fbox.getBoundingClientRect().top);
+  let f_vL          = Math.round(f_fbox.getBoundingClientRect().left);
+  document.getElementById('title-main').innerHTML = 'Top: '+f_vT+' -- Left: '+f_vL;
+  if (f_vT < 1) {
+    $('#title-main').addClass('fixed-top');
+    $('#sidebar-left').addClass('fixed-above');
+    $('#content-main').addClass('fixed-above');
+    $('.fixed-above').css('margin-top', $('#title-main').outerHeight());
+  } else {
+    $('#title-main').removeClass('fixed-top');
+    $('.fixed-above').removeAttr('style');
+    $('#sidebar-left').removeClass('fixed-above');
+    $('#content-main').removeClass('fixed-above');
+  }
 }
 // *** ------------------------------------------------------------------------ *
 // *** TOC Generator ---------------------------------------------------------- *
@@ -171,7 +177,8 @@ window.addEventListener('load', mpf_toc_generator);
 // *** onresize operations ---------------------------------------------------- *
 // window.addEventListener('resize', mpf_);
 // *** onscroll operations ---------------------------------------------------- *
-// window.addEventListener('scroll', mpf_);
+const stickybox = 'title-box';
+window.addEventListener('scroll', mpf_stickybar);
 
 /*! --- Copyright (c) 2019 Mootly Obviate -- See /LICENSE.md ------------------ */
 // some development notes to me
