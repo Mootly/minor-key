@@ -57,7 +57,7 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 $mpo_parts->h1_title          = 'Blank Page';
 $mpo_parts->link_title        = 'Blank Page'; # Used by breadcrumb bar
 $mpo_parts->page_name         = $mpo_parts->h1_title;
-$mpo_parts->section_name      = 'Documentation';
+$mpo_parts->section_name      = 'Docs';
 $mpo_parts->section_base      = $mpo_paths->docs;
 // $mpo_parts->section_base      = $mpo_parts->site_base .'/path from root';
                     # array of menu names ------------------------------------- *

@@ -4,6 +4,8 @@ Copyright (c) 2017-2018 Mootly Obviate
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
+The Software shall be defined as the contents of the folder containing this document and all subfolders except as noted below.
+
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -36,4 +38,6 @@ Templates are licensed as per the license provided with that template. Template 
 
 ## Site content
 
-No assumption is made that the **moosepress** license or copyright is in effect for any content posted to the Web using **moosepress** as a platform. All content posted to the Web using **moosepress** as a platform is licensed and copyrighted by the creators or owners of that content as per their copyright and licensing terms.
+No assumption is made that the **moosepress** license or copyright is in effect for any content posted to the Web using **moosepress** as a platform. All content posted to the Web using **moosepress** as a platform is licensed and copyrighted by the creators or owners of that content as per their copyright and licensing terms. If content has no license, locally or remotely, no assumption is made that the **moosepress** license or copyright is in effect for that content.
+
+Content included with **moosepress** should be in the `/_pages` or `/_sites` folder of **moosepress** or its individual templates. Content included with **moosepress** is licensed as per the license provided with that content. Content licenses will take precedence over the **moosepress** license.

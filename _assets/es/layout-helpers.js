@@ -1,52 +1,63 @@
 /* --- Page layout scripts --------------------------- ECMAScript 6 version --- *
  * Scripts for script-managed page layout features.
  * ---------------------------------------------------------------------------- *
- * Available Functions:
  * ** Fix position on scroll (stickybar)
  *    Locks the title bar or other element to the top of the screen on scroll.
  *    Invokes on: onload, onscroll
  *    Calls:
- *      class="stickybar-parent" : parent of element to lock
- *      class="stickybar"        : element to lock
+ *      class="stickybox"     : parent of element to lock
+ *      class="stickybar"     : element to lock
+ *      class="stickyclear"   : anything after the sticky that may need tweaking
  *    Notes:
  *      The parent is what tracks the position, the child is what gets locked.
- *      The layout is CSS drive, aside from locking the height of the parent
+ *      The layout is CSS driven, aside from locking the height of the parent
  *      this only generates classes.
  * ---------------------------------------------------------------------------- *
  * ** Table of Contents Generator
- *    Automates jump link menu based on headings the current page.
- *    Invokes on: onload
- *    Calls:
- *      id="toc-links"    : the header for the TOC itself, appends below it
- *      class="add-toc"   : specifies second tier listings to add
- *    Assumptions:
- *    - Only uses IDs. (Do not use embedded anchors.)
- *    - Only checks for targets in specified divs by ID.
- *    - Tier 2 elements are siblings of tier 1 elements.
- *    - If DL is listed for tier 2, targets child DT elements.
- *    User set flags - Most of these are best declared at the template level
- *    Flag              | Default       |
- *    toc_container     | 'page-body'   | the element to search for headings
- *    toc_system        | ''            | comma separated list of headings to exclude
- *                      |               | script automaticaly excludes id="toc-links"
- *    toc_tier1         | 'h2'          | the heading to use to generate the TOC
- *    toc_tier2         | 'h3,dl'       | comma separated list of elements to check for add-toc
- *    toc_skipAll       | false         | do not insert links back to the top
- *    toc_skipFirst     | true          | skip top link on first heading
- *    toc_skipNested    | true          | only add links to top level headings
- *    Notes:
- *      Set the TOC header to display: none; in case script fails to fire.
- *      Script will change this to display: block;
+ *  Automates jump link menu based on headings the current page.
+ *  Invokes on: onload
+ * -----
+ *  Tasks:
+ *  - A menu is inserted after element with id="toc-links":
+ *    Example: <h2 id="toc-links">Contents</h2>
+ *  - The menu includes all tier 1 elements (var: mpv_toc_tier1).
+ *  - Checks for '.add-toc" to include tier 2 elements (var: mpv_toc_tier2).
+ *  - If a listed element does not have an ID, it assigns one.
+ * -----
+ *  Calls:
+ *    id="toc-links"    : the header for the TOC itself, appends below it
+ *    class="add-toc"   : specifies second tier listings to add
+ * -----
+ *  Assumptions:
+ *  - Only uses IDs. (Do not use embedded anchors.)
+ *  - Only checks for targets in specified divs by ID.
+ *  - Tier 2 elements are siblings of tier 1 elements.
+ *  - If DL is listed for tier 2, targets child DT elements.
+ * -----
+ *  User set flags - Most of these are best declared at the template level
+ *  Flag            | Default         |
+ *  toc_container   | 'page-body'     | the element to search for headings
+ *  toc_system      | ''              | comma separated list of headings to exclude
+ *                  |                 | script automaticaly excludes id="toc-links"
+ *  toc_tier1       | 'h2'            | the heading to use to generate the TOC
+ *  toc_tier2       | 'h3,dl'         | somma separated list of elements to check for add-toc
+ *  toc_skipAll     | false           | do not insert links back to the top
+ *  toc_skipFirst   | true            | skip top link on first heading
+ *  toc_skipNested  | true            | only add links to top level headings
+ * -----
+ *  Notes:
+ *    Set the TOC header to display: none; in case script fails to fire.
+ *    Script will change this to display: block;
  * ---------------------------------------------------------------------------- *
  * --- Revision History ------------------------------------------------------- *
  * 2019-11-26 | ES6 TOC generator completed
  * ---------------------------------------------------------------------------- */
-// *** Stickybar ------------------------------------------------------ *
+// *** Stickybar -------------------------------------------------------------- *
 function mpf_stickybar() {
-  const f_fbox      = document.getElementById('title-box');
+  const f_fbox      = document.getElementById(mpv_stickybar_box);
   let f_vT          = Math.round(f_fbox.getBoundingClientRect().top);
   let f_vL          = Math.round(f_fbox.getBoundingClientRect().left);
-  document.getElementById('title-main').innerHTML = 'Top: '+f_vT+' -- Left: '+f_vL;
+  document.getElementById(mpv_stickybar_box).innerHTML = 'Top: '+f_vT+' -- Left: '+f_vL;
   if (f_vT < 1) {
     $('#title-main').addClass('fixed-top');
     $('#sidebar-left').addClass('fixed-above');
@@ -59,6 +70,10 @@ function mpf_stickybar() {
     $('#content-main').removeClass('fixed-above');
   }
 }
+// https://www.javascripttutorial.net/es6/javascript-const/
+// https://medium.com/@MentallyFriendly/es6-an-idiots-guide-to-let-and-const-70be9691c389
+// https://2ality.com/2015/02/es6-scoping.html
+// https://blog.pragmatists.com/let-your-javascript-variables-be-constant-1633e56a948d
 // *** ------------------------------------------------------------------------ *
 // *** TOC Generator ---------------------------------------------------------- *
 // * Tasks:
@@ -177,9 +192,10 @@ window.addEventListener('load', mpf_toc_generator);
 // *** onresize operations ---------------------------------------------------- *
 // window.addEventListener('resize', mpf_);
 // *** onscroll operations ---------------------------------------------------- *
-const stickybox = 'title-box';
-window.addEventListener('scroll', mpf_stickybar);
-
+const mpv_stickybar_box   = 'title-box';
+const mpv_stickybar_thing = 'title-main';
+const mpv_stickybar_tweak = 'sidebar-left, content-main';
+if (document.getElementById(mpv_stickybar_box)) window.addEventListener('scroll', mpf_stickybar);
 /*! --- Copyright (c) 2019 Mootly Obviate -- See /LICENSE.md ------------------ */
 // some development notes to me
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener

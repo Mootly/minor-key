@@ -1,7 +1,6 @@
 /* --- Stickybar ------------------------------------- ECMAScript 6 version --- *
  * Lock the title or other element to the top of the page on scroll.
  * ---------------------------------------------------------------------------- *
- * Available Functions:
  * ** Fix position on scroll (stickybar)
  *    Locks the title bar or other element to the top of the screen on scroll.
  *    Invokes on: onload, onscroll

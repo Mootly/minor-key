@@ -10,43 +10,44 @@ ob_start();
   </div>
   <div id="page-nav-body" class="mobile-hidden">
     <ul id="page-nav-list">
-      <li class="top-page"><a href="<?= $mpo_parts->section_base; ?>">Documentation Home</a></li>
+      <li class="top-page"><a href="/docs/">Documentation Home</a></li>
       <li class="collapse-header closed"><a href="#">Style Guide</a>
         <ul class="page-nav-sublist collapse-list hidden">
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/">Style Guide Home</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/callouts.php">Text Elements &amp; Callouts</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/headings.php">Headings</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/links.php">Links &amp; Images</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/lists.php">Lists</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/tables.php">Tables</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/styles/forms.php">Forms</a></li>
+          <li><a href="/docs/styles/">Style Guide Home</a></li>
+          <li><a href="/docs/styles/callouts.php">Text Elements &amp; Callouts</a></li>
+          <li><a href="/docs/styles/headings.php">Headings</a></li>
+          <li><a href="/docs/styles/links.php">Links &amp; Images</a></li>
+          <li><a href="/docs/styles/lists.php">Lists</a></li>
+          <li><a href="/docs/styles/tables.php">Tables</a></li>
+          <li><a href="/docs/styles/forms.php">Forms</a></li>
         </ul>
       </li>
       <li class="collapse-header closed"><a href="#">CMS Developer Notes</a>
         <ul class="page-nav-sublist collapse-list hidden">
-          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/">CMS Dev Notes Home</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/organization.php">Code Organization</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/comments.php">Comments</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/constants.php">Constants</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/dev-notes/naming.php">Naming Conventions</a></li>
+          <li><a href="/docs/dev-notes/">CMS Dev Notes Home</a></li>
+          <li><a href="/docs/dev-notes/organization.php">Code Organization</a></li>
+          <li><a href="/docs/dev-notes/widget-template.php">Twig Widgets</a></li>
+          <li><a href="/docs/dev-notes/comments.php">Comments</a></li>
+          <li><a href="/docs/dev-notes/constants.php">Constants</a></li>
+          <li><a href="/docs/dev-notes/naming.php">Naming Conventions</a></li>
         </ul>
       </li>
       <li class="collapse-header closed"><a href="#">Class Library</a>
         <ul class="page-nav-sublist collapse-list hidden">
-          <li><a href="<?= $mpo_parts->section_base; ?>/classes/">Class List</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_cookies.php">mpc_cookies</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_db.php">mpc_db</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_db.php">mpc_db</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_menus.php">mpc_menus</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_parts.php">mpc_parts</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_paths.php">mpc_paths</a></li>
-          <li><a href="<?= $mpo_parts->section_base; ?>/classes/mpc_sessions.php">mpc_sessions</a></li>
+          <li><a href="/docs/classes/">Class List</a></li>
+          <li><a href="/docs/classes/mpc_cookies.php">mpc_cookies</a></li>
+          <li><a href="/docs/classes/mpc_db.php">mpc_db</a></li>
+          <li><a href="/docs/classes/mpc_db.php">mpc_db</a></li>
+          <li><a href="/docs/classes/mpc_menus.php">mpc_menus</a></li>
+          <li><a href="/docs/classes/mpc_parts.php">mpc_parts</a></li>
+          <li><a href="/docs/classes/mpc_paths.php">mpc_paths</a></li>
+          <li><a href="/docs/classes/mpc_sessions.php">mpc_sessions</a></li>
         </ul>
       </li>
     </ul>
   </div>
 </nav>
 <?php
-$mpo_parts->page_menu = ob_get_clean();
+$mpo_parts->menu_left_content = ob_get_clean();
 ob_end_clean();
 ?>
