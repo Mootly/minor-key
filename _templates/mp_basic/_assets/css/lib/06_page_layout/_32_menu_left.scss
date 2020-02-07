@@ -54,7 +54,7 @@
       background-color: $c-banner-bg;
       background    : linear-gradient(to right, rgba($c-banner-bg, 0.75) 25%, $c-banner-bg 100%);
 
-      color         : $c-link-header-txt;
+      color         : $c-plum-border;
       &:hover,
       &:focus {
         @include set-blended-background-simple($c-banner-bg, 0.85, $c-base-bg);

@@ -62,15 +62,21 @@ $mpo_parts->section_base      = $mpo_paths->docs;
 // $mpo_parts->section_base      = $mpo_parts->site_base .'/path from root';
                     # array of menu names ------------------------------------- *
                     # will stack in order listed                                *
-                    # if none listed, defaults to documentation menu            *
-// $mpo_parts->pagemenu          = ['menu, menu'];
+                    # if menu_left not set, use placeholder from template       *
+                    # reserved values                                           *
+                    # perm            - explicit default (currently docs)       *
+                    # placeholder     - placeholder in template                 *
+                    #                   same function as not setting menu_left  *
+                    # import          - for nonstandard pathing - example below *
+// $mpo_parts->menu_left         = ['menu, menu'];
                     # *** OR ***                                                *
                     # embed directly, note using string, not array              *
-// $mpo_parts->pagemenu = 'import';
+// $mpo_parts->menu_left = 'import';
 // ob_start();
-// include('menu path or replace with code');
-// $mpo_parts->page_menu         = ob_get_clean();
+// include('menu path');
+// $mpo_parts->menu_left_content         = ob_get_clean();
 // ob_end_clean();
+                    # rules the same for menu_right and menu_right_content      *
                     # Add custom style sheets that are not in the template ---- *
                     # paths object uses magick functinos to dynamically create
                     # properties - use meaningful names

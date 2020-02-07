@@ -79,11 +79,11 @@
   <div id="sidebar-left">
     {% block body_menu_left %}
     <div id="menu-left">
-      {% if (not page['pagemenu'] is defined) or (page.pagemenu == 'standard') %}
+      {% if (not page['menu_left'] is defined) or (page.menu_left == 'placeholder') %}
       <p>Side menu goes here.</p>
-      {% elseif (page.pagemenu == 'import') %}
-      {{ page.page_menu | raw }}
-      {% elseif (page.pagemenu == 'perm') %}
+      {% elseif (page.menu_left == 'import') %}
+      {{ page.menu_left_content | raw }}
+      {% elseif (page.menu_left == 'perm') %}
       {% include page.perm_template ~ "_assets/includes/menus/docs.html.twig" %}
       {% else %}
       {% include page.template ~ "_assets/includes/menus/docs.html.twig" %}

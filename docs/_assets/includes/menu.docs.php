@@ -2,7 +2,6 @@
 /**
   * Documentation Menu.
   * --------------------------------------------------------------------------- */
-ob_start();
 ?>
 <nav class="page-nav">
   <div id="page-nav-toggle" class="mobile-only">
@@ -47,7 +46,3 @@ ob_start();
     </ul>
   </div>
 </nav>
-<?php
-$mpo_parts->menu_left_content = ob_get_clean();
-ob_end_clean();
-?>
