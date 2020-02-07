@@ -54,22 +54,30 @@
  * ---------------------------------------------------------------------------- */
 // *** Stickybar -------------------------------------------------------------- *
 function mpf_stickybar() {
-  const f_fbox      = document.getElementById(mpv_stickybar_box);
-  let f_vT          = Math.round(f_fbox.getBoundingClientRect().top);
-  let f_vL          = Math.round(f_fbox.getBoundingClientRect().left);
-  document.getElementById(mpv_stickybar_box).innerHTML = 'Top: '+f_vT+' -- Left: '+f_vL;
+  const f_box       = document.querySelector(mpv_stickybar_box);
+  const f_thing     = document.querySelector(mpv_stickybar_thing);
+  const f_tweak     = document.querySelectorAll(mpv_stickybar_tweak);
+  let f_vT          = Math.round(f_box.getBoundingClientRect().top);
+  let f_vL          = Math.round(f_box.getBoundingClientRect().left);
+  f_thing.innerHTML = 'Top: '+f_vT+' -- Left: '+f_vL + '--'+f_thing.offsetHeight;
   if (f_vT < 1) {
-    $('#title-main').addClass('fixed-top');
-    $('#sidebar-left').addClass('fixed-above');
-    $('#content-main').addClass('fixed-above');
-    $('.fixed-above').css('margin-top', $('#title-main').outerHeight());
+    f_thing.classList.add('fixed-top'); ;
+    f_tweak.forEach ((el_current) => {
+      el_current.classList.add('fixed-above');
+      // el_current.css('margin-top', f_thing.offsetHeight);
+    });
   } else {
-    $('#title-main').removeClass('fixed-top');
-    $('.fixed-above').removeAttr('style');
-    $('#sidebar-left').removeClass('fixed-above');
-    $('#content-main').removeClass('fixed-above');
+    f_thing.classList.remove('fixed-top');
+    f_tweak.forEach ((el_current) => {
+      el_current.classList.remove('fixed-above');
+      // el_current.removeAttr('style');
+    });
   }
 }
+// const mpv_stickybar_box   = 'title-box';
+// const mpv_stickybar_thing = 'title-main';
+// const mpv_stickybar_tweak = 'sidebar-left, content-main';
+
 // https://www.javascripttutorial.net/es6/javascript-const/
 // https://medium.com/@MentallyFriendly/es6-an-idiots-guide-to-let-and-const-70be9691c389
 // https://2ality.com/2015/02/es6-scoping.html
@@ -192,10 +200,10 @@ window.addEventListener('load', mpf_toc_generator);
 // *** onresize operations ---------------------------------------------------- *
 // window.addEventListener('resize', mpf_);
 // *** onscroll operations ---------------------------------------------------- *
-const mpv_stickybar_box   = 'title-box';
-const mpv_stickybar_thing = 'title-main';
-const mpv_stickybar_tweak = 'sidebar-left, content-main';
-if (document.getElementById(mpv_stickybar_box)) window.addEventListener('scroll', mpf_stickybar);
+const mpv_stickybar_box   = '#title-box';
+const mpv_stickybar_thing = '.page_title';
+const mpv_stickybar_tweak = '#sidebar-left, #content-main';
+if (document.getElementById('title-box')) window.addEventListener('scroll', mpf_stickybar);
 /*! --- Copyright (c) 2019 Mootly Obviate -- See /LICENSE.md ------------------ */
 // some development notes to me
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
