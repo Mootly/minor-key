@@ -6,9 +6,9 @@
   * Note that case insensitive servers will produce an all lower-case list
   * <div id="breadcrumb-box">
   *   <a href="link">label</a>
-  *   <i class="fa fa-iconname"></i>
+  *   <span class="fa fa-iconname"></span>
   *   ...
-  *   <i class="fa fa-iconname"></i>
+  *   <span class="fa fa-iconname"></span>
   *   <span class="position">Current Page</span>
   * </div>
   *
@@ -22,7 +22,7 @@
                     # array of overrides inserteed between this page and auto   *
   if (isset($t_crumbs_parent)) {
     foreach ($t_crumbs_parent as $t_link) {
-      $crumbstring = '<a href="' . $t_link['url'] . '">' . $t_link['name'] . '</a> <i class="fa fa-angle-double-right"></i> ' .$crumbstring;
+      $crumbstring = '<a href="' . $t_link['url'] . '">' . $t_link['name'] . '</a> <span class="fa fa-angle-double-right"></span> ' .$crumbstring;
     }
   }
                     # --------------------------------------------------------- *
@@ -60,7 +60,7 @@
         $t_currel = preg_replace('/\-([^\-])/', ' ${1}', $t_currel);
         $t_currel = preg_replace('/\- /', '-', $t_currel);
         $t_currel = preg_replace('/_/', ' ', $t_currel);
-        $crumbstring = '<a href="' . $t_currpath . '">' . $t_currel . '</a> <i class="fa fa-angle-double-right"></i> ' .$crumbstring;
+        $crumbstring = '<a href="' . $t_currpath . '">' . $t_currel . '</a> <span class="fa fa-angle-double-right"></span> ' .$crumbstring;
       }
     }
   }
