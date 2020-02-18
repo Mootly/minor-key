@@ -50,7 +50,7 @@ $(window).on( 'load', function () {
                     // add id attribute to h2 if none                           *
           if (!(mpv_toc_this.is('[id]'))) { mpv_toc_this.attr('id', 't1-'+mpv_toc_thisText.replace(/ /g,'-')); }
                     // add link to toc                                          *
-          mpv_toc_menuList += '<li id="jumpto-'+mpv_toc_this.attr('id')+'"><a href="#'+mpv_toc_this.attr('id')+'">'+mpv_toc_thisText+'</a>';
+          mpv_toc_menuList += '<li id="jumpto-'+mpv_toc_this.attr('id')+'"><a href="#'+mpv_toc_this.attr('id')+'"><span class="reader-only">Skip to </span>'+mpv_toc_thisText+'</a>';
                     // add links for tier 2 elements                            *
           if (mpv_toc_skipFirst) { mpv_toc_skipFirst = false; } else { mpv_toc_this.before(mpv_toc_returnto); }
           var mpv_toc_flList = mpv_toc_this.nextUntil(mpv_toc_tier1,mpv_toc_tier2);
@@ -63,7 +63,7 @@ $(window).on( 'load', function () {
                 mpv_toc_flThis.attr('id', 't2-'+mpv_toc_flThis.text().replace(/ /g,'-'));
               }
               if (!mpv_toc_skipNested) { mpv_toc_flThis.before(mpv_toc_returnto); }
-              subMenuList += '<li><a href="#'+mpv_toc_flThis.attr('id')+'">'+mpv_toc_flThis.text()+'</a></li>';
+              subMenuList += '<li><a href="#'+mpv_toc_flThis.attr('id')+'"><span class="reader-only">Skip to </span>'+mpv_toc_flThis.text()+'</a></li>';
             }
                     // this will catch DTs                                      *
             var mpv_toc_fl2List = mpv_toc_flThis.children('.add-toc');
@@ -73,7 +73,7 @@ $(window).on( 'load', function () {
               if (!(mpv_toc_fl2This.is('[id]'))) {
                 mpv_toc_fl2This.attr('id', 'dl-'+mpv_toc_fl2This.text().replace(/ /g,'-'));
               }
-              subMenuList += '<li><a href="#'+mpv_toc_fl2This.attr('id')+'">'+mpv_toc_fl2This.text()+'</a></li>';
+              subMenuList += '<li><a href="#'+mpv_toc_fl2This.attr('id')+'"><span class="reader-only">Skip to </span>'+mpv_toc_fl2This.text()+'</a></li>';
             }
           }
                     // if submenu, nest in menu                                 *
