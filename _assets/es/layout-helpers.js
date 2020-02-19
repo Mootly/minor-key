@@ -55,33 +55,32 @@
 // *** Stickybar -------------------------------------------------------------- *
 function mpf_stickybar() {
   const f_box       = document.querySelector(mpv_stickybar_box);
-  const f_thing     = document.querySelector(mpv_stickybar_thing);
   const f_tweak     = document.querySelectorAll(mpv_stickybar_tweak);
-  let f_vT          = Math.round(f_box.getBoundingClientRect().top);
-  let f_vL          = Math.round(f_box.getBoundingClientRect().left);
-  f_thing.innerHTML = 'Top: '+f_vT+' -- Left: '+f_vL + '--'+f_thing.offsetHeight;
-  if (f_vT < 1) {
-    f_thing.classList.add('fixed-top'); ;
+  const f_position  = mpv_stickybar_pos;
+  const f_offset    = f_box.offsetHeight;
+  if (window.innerWidth > 800) {
+    let f_vT        = Math.round(f_position - window.pageYOffset);
+    if (f_vT < 1) {
+      f_box.classList.add('fixed-top');
+      f_tweak.forEach ((el_current) => {
+        el_current.setAttribute('style', 'margin-top: '+f_offset+'px;');
+      });
+    } else {
+      f_box.classList.remove('fixed-top');
+      f_tweak.forEach ((el_current) => {
+        el_current.setAttribute('style', '');
+      });
+    }
+    f_firstpass     = true;
+  } else if (f_firstpass)  {
+    f_box.classList.remove('fixed-top');
     f_tweak.forEach ((el_current) => {
-      el_current.classList.add('fixed-above');
-      // el_current.css('margin-top', f_thing.offsetHeight);
+      el_current.setAttribute('style', '');
     });
-  } else {
-    f_thing.classList.remove('fixed-top');
-    f_tweak.forEach ((el_current) => {
-      el_current.classList.remove('fixed-above');
-      // el_current.removeAttr('style');
-    });
+    f_firstpass     = false;
   }
 }
-// const mpv_stickybar_box   = 'title-box';
-// const mpv_stickybar_thing = 'title-main';
-// const mpv_stickybar_tweak = 'sidebar-left, content-main';
 
-// https://www.javascripttutorial.net/es6/javascript-const/
-// https://medium.com/@MentallyFriendly/es6-an-idiots-guide-to-let-and-const-70be9691c389
-// https://2ality.com/2015/02/es6-scoping.html
-// https://blog.pragmatists.com/let-your-javascript-variables-be-constant-1633e56a948d
 // *** ------------------------------------------------------------------------ *
 // *** TOC Generator ---------------------------------------------------------- *
 // * Tasks:
@@ -195,17 +194,30 @@ function mpf_toc_generator() {
   }
 }
 // *** ------------------------------------------------------------------------ *
+// *** variable presets for listeners ----------------------------------------- *
+const mpv_toc_header      = '#toc-links';
+const mpv_stickybar_box   = '#title-box';
+const mpv_stickybar_tweak = '#content-main';
+const mpv_stickybar_pos   = document.querySelector(mpv_stickybar_box).offsetTop;
 // *** onload operations ------------------------------------------------------ *
-window.addEventListener('load', mpf_toc_generator);
+if (document.querySelector(mpv_toc_header)) {
+  window.addEventListener('load', mpf_toc_generator);
+}
+if (document.querySelector(mpv_stickybar_box)) {
+  window.addEventListener('load', mpf_stickybar);
+}
+// *** onscroll operations ---------------------------------------------------- *
+if (document.querySelector(mpv_stickybar_box)) {
+  window.addEventListener('scroll', mpf_stickybar);
+}
 // *** onresize operations ---------------------------------------------------- *
 // window.addEventListener('resize', mpf_);
-// *** onscroll operations ---------------------------------------------------- *
-const mpv_stickybar_box   = '#title-box';
-const mpv_stickybar_thing = '.page_title';
-const mpv_stickybar_tweak = '#sidebar-left, #content-main';
-if (document.getElementById('title-box')) window.addEventListener('scroll', mpf_stickybar);
 /*! --- Copyright (c) 2019 Mootly Obviate -- See /LICENSE.md ------------------ */
 // some development notes to me
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 //  https://jsfiddle.net/ghctkLgg/
 //  https://html-online.com/articles/javascript-stick-html-top-scroll/
+// https://www.javascripttutorial.net/es6/javascript-const/
+// https://medium.com/@MentallyFriendly/es6-an-idiots-guide-to-let-and-const-70be9691c389
+// https://2ality.com/2015/02/es6-scoping.html
+// https://blog.pragmatists.com/let-your-javascript-variables-be-constant-1633e56a948d
