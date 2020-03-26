@@ -15,6 +15,10 @@
   * @method int     getqueryidx()
   *   Return the index position of the last query.
   *   Return -1 if no queries run
+  * @method string  getdate(date,format)
+  *   Return the date formatted for print as a string.
+  * @method string  prepdate(date)
+  *   Return the date formatted for storage in the database.
   * @method bool    close()
   *   Close the current database connection.
   * @method mixed   runquery(string, array, array)
@@ -27,6 +31,7 @@
   * --------------------------------------------------------------------------- */
 class mpc_db {
   protected         $mp_conn;
+  protected         $mp_callby          = '';
   protected         $_status            = '';
   protected         $querynum           = -1;
   protected         $querylist          = array();
@@ -39,8 +44,9 @@ class mpc_db {
     'current'       => 'none',
     'connected'     => 'Connected.',
     'noerrors'      => 'No errors reported.',
-    'conn01'        => 'Connection type not valid or not specified. Currently supported: sqlsrv',
+    'conn01'        => 'Connection type not valid or not specified. Currently supported: sqlsrv, mysql',
     'conn02'        => 'Missing arguments: ',
+    'conn03'        => 'The database name was not valid: ',
     'result1'       => 'No results returned for ',
   );
   protected         $feedback           = array(
@@ -66,15 +72,16 @@ class mpc_db {
   */
   public function __construct($callby, $args) {
     // http://php.net/manual/en/book.sqlsrv.php
-    $this->_status  = '';
+    $this->mp_callby = $callby;
+    $this->_status   = '';
     $this->_status  .= array_key_exists('host', $args)   ? '' : ' host';
     $this->_status  .= array_key_exists('dbname', $args) ? '' : ' dbname';
     $this->_status  .= array_key_exists('user', $args)   ? '' : ' user';
     $this->_status  .= array_key_exists('pwd', $args)    ? '' : ' pass';
     if ($this->_status != '') {
-      $this->_status= $error['conn02'].$this->_status;
+      $this->_status= $this->error['conn02'].$this->_status;
     } else {
-      switch ($callby) {
+      switch ($this->mp_callby) {
       case 'sqlsrv':
         $this->mp_conn = sqlsrv_connect( $args['host'], array(
           "Database"     => $args['dbname'],
@@ -87,6 +94,14 @@ class mpc_db {
           $this->_status = $this->error['connected'];
         } else {
           $this->_status = sqlsrv_errors();
+        }
+      break;
+      case 'mysql':
+        $this->mp_conn = new mysqli($args['host'], $args['user'], $args['pwd'], $args['dbname']);
+        if( $this->mp_conn ) {
+          $this->_status = $this->error['connected'];
+        } else {
+          $this->_status = 'Connection failed: ' . mysqli_connect_error();
         }
         break;
       default:
@@ -121,13 +136,44 @@ class mpc_db {
   }
 # *** END - getqueryidx ------------------------------------------------------- *
 #
+# *** BEGIN getdate ----------------------------------------------------------- *
+/**
+  * Format a date for printing.
+  * @return bool
+  */
+  public function getdate($date, $format) {
+    switch ($this->mp_callby) {
+    case 'sqlsrv':
+      return date_format($date, $format);
+      break;
+    case 'mysql':
+      return date($format, strtotime($date));
+      break;
+    default:
+      return date($format, strtotime($date));
+      break;
+    }
+    return true;
+  }
+# *** END - getdate ----------------------------------------------------------- *
+#
 # *** BEGIN close ------------------------------------------------------------- *
 /**
   * Close this database connection.
   * @return bool
   */
   public function close() {
-    sqlsrv_close( $this->mp_conn );
+    switch ($this->mp_callby) {
+    case 'sqlsrv':
+      sqlsrv_close( $this->mp_conn );
+      break;
+    case 'mysql':
+      mysqli_close( $this->mp_conn );
+      break;
+    default:
+      $this->_status = $this->error['conn01'];
+      break;
+    }
     return true;
   }
 # *** END - close ------------------------------------------------------------- *
@@ -146,31 +192,52 @@ class mpc_db {
     $this->result                      = '';
     $this->querynum                   += 1;
     $this->querylist[$this->querynum]  = $query;
-    $this->paramlist[$this->querynum]  = $params;
-    $this->optionlist[$this->querynum] = $options;
-    $this->errorlist[$this->querynum]  = '';
-    $this->resultset[$this->querynum]  = sqlsrv_query(
-      $this->mp_conn,
-      $this->querylist[$this->querynum],
-      $this->paramlist[$this->querynum],
-      $this->optionlist[$this->querynum]
-    );
-    if ($this->resultset[$this->querynum] === false ) {
-      if ( sqlsrv_errors() != null ) {
-        $this->_status = sqlsrv_errors();
-      } else {
-        $this->_status = $this->error['result1'] . $query;
-      }
-    } else {
-      if (sqlsrv_has_rows($this->resultset[$this->querynum])) {
-        $this->_status = $this->error['noerrors'];
-        while( $row = sqlsrv_fetch_array($this->resultset[$this->querynum], SQLSRV_FETCH_ASSOC)) {
-          $this->result[] = $row;
+    switch ($this->mp_callby) {
+    case 'sqlsrv':
+      $this->optionlist[$this->querynum] = $options;
+      $this->paramlist[$this->querynum]  = $params;
+      $this->errorlist[$this->querynum]  = '';
+      $this->resultset[$this->querynum]  = sqlsrv_query(
+        $this->mp_conn,
+        $this->querylist[$this->querynum],
+        $this->paramlist[$this->querynum],
+        $this->optionlist[$this->querynum]
+      );
+      if ($this->resultset[$this->querynum] === false ) {
+        if ( sqlsrv_errors() != null ) {
+          $this->_status = sqlsrv_errors();
+        } else {
+          $this->_status = $this->error['result1'] . $query;
         }
-        return $this->result;
       } else {
-        $this->_status = $this->error['result1'] . $query;
+        if (sqlsrv_has_rows($this->resultset[$this->querynum])) {
+          $this->_status = $this->error['noerrors'];
+          while( $row = sqlsrv_fetch_array($this->resultset[$this->querynum], SQLSRV_FETCH_ASSOC)) {
+            $this->result[] = $row;
+          }
+          return $this->result;
+        } else {
+          $this->_status = $this->error['result1'] . $query;
+        }
       }
+      break;
+    case 'mysql':
+      $this->typelist[$this->querynum]   = array_shift($params);
+      foreach($params as $key=>$val) {
+        $this->paramlist[$this->querynum][$key] = $val;
+      }
+      $t_conn       = $this->mp_conn;
+      $t_query      = $t_conn->prepare($this->querylist[$this->querynum]);
+      $t_query->bind_param($this->typelist[$this->querynum], ...$this->paramlist[$this->querynum]);
+      $t_query->execute();
+      $this->resultset[$this->querynum] = $t_query->get_result();
+      $this->result = $this->resultset[$this->querynum]->fetch_all(MYSQLI_ASSOC);
+      return $this->result;
+      return $this->result;
+      break;
+    default:
+      $this->_status = $this->error['conn01'].$this->_status;
+      break;
     }
     $this->errorlist[$this->querynum] = $this->_status;
     return $this->_status;

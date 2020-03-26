@@ -2,7 +2,7 @@
 /**
   * Configuration script.
   *
-  * Set all your system varaibles here.
+  * Set all your system variables here.
   *
   * @copyright 2017 Mootly Obviate
   * @package   moosepress
