@@ -301,6 +301,7 @@ $('#fld_submit_btn').click(function(e) {
 // *** End Error Checking ----------------------------------------------------- *
 // *** ------------------------------------------------------------------------ *
 // *** BEGIN Submit the form data --------------------------------------------- *
+
   if ( isOkay )  {
     var json_fData  = $(form_ID).serializeArray();
 // var tSubmits      = JSON.stringify( $(form_ID).serializeArray(), null, 2 );
@@ -328,4 +329,4 @@ $('#fld_submit_btn').click(function(e) {
 
 });
 // *** END MAIN FUNCTION ------------------------------------------------------ *
-/*! -- Copyright (c) 2017-2019 Mootly Obviate -- See /LICENSE.md -------------- */
+/*! -- Copyright (c) 2017-2020 Mootly Obviate -- See /LICENSE.md -------------- */

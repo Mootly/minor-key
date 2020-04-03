@@ -19,7 +19,7 @@
   * --------------------------------------------------------------------------- */
   $t_path = explode('/',$_SERVER['SCRIPT_NAME']);
   $crumbstring = '<span class="position">' . $mpo_parts->link_title . '</span>';
-                    # array of overrides inserteed between this page and auto   *
+                    # array of overrides inserted between this page and auto    *
   if (isset($t_crumbs_parent)) {
     foreach ($t_crumbs_parent as $t_link) {
       $crumbstring = '<a href="' . $t_link['url'] . '">' . $t_link['name'] . '</a> <span class="fa fa-angle-double-right"></span> ' .$crumbstring;
@@ -35,10 +35,12 @@
     }
     while (count($t_path) > 0) {
       $_include_this= true;
-      $t_currpath   = implode('/',$t_path);
+                    # don't need to test for file paths before adding slash     *
+                    # because only directories are linked in the breadcrumbs    *
+      $t_currpath   = implode('/',$t_path).'/';
       $t_currel     = array_pop($t_path);
                     # root will come up empty. point to home page w DEF_HOME    *
-      if ($t_currpath == '') {
+      if ($t_currpath == '/') {
         $t_currel   = 'home';
         $t_currpath = defined('DEF_HOME') ? DEF_HOME : '/';
                     # hide directories on path with no default index file       *
