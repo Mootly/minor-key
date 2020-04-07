@@ -231,8 +231,11 @@ class mpc_db {
       $t_query->bind_param($this->typelist[$this->querynum], ...$this->paramlist[$this->querynum]);
       $t_query->execute();
       $this->resultset[$this->querynum] = $t_query->get_result();
-      $this->result = $this->resultset[$this->querynum]->fetch_all(MYSQLI_ASSOC);
-      return $this->result;
+      if (gettype($this->resultset[$this->querynum]) == 'boolean') {
+        $this->result = $this->resultset[$this->querynum];
+      } else {
+        $this->result = $this->resultset[$this->querynum]->fetch_all(MYSQLI_ASSOC);
+      }
       return $this->result;
       break;
     default:
