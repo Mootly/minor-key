@@ -24,9 +24,10 @@
   * @method mixed   runquery(string, array, array)
   *   The database will return a results array.
   *   The object will return an error string if there is no db return,
-  * @copyright 2017 Mootly Obviate
+  * @copyright 2017-2020 Mootly Obviate
   * @package   moosepress
   * --- Revision History ------------------------------------------------------ *
+  * 2020-04-07 | Added MySQL handling
   * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
 class mpc_db {
@@ -157,6 +158,28 @@ class mpc_db {
   }
 # *** END - getdate ----------------------------------------------------------- *
 #
+# *** BEGIN prepdate ---------------------------------------------------------- *
+# *** Yes, it does nothing worthwhile. Just here for completeness.
+/**
+  * Format a date for the database.
+  * @return bool
+  */
+  public function prepdate($date, $format) {
+    switch ($this->mp_callby) {
+    case 'sqlsrv':
+      return date($format, strtotime($date));
+      break;
+    case 'mysql':
+      return date($format, strtotime($date));
+      break;
+    default:
+      return date($format, strtotime($date));
+      break;
+    }
+    return true;
+  }
+# *** END - getdate ----------------------------------------------------------- *
+#
 # *** BEGIN close ------------------------------------------------------------- *
 /**
   * Close this database connection.
@@ -215,6 +238,7 @@ class mpc_db {
           while( $row = sqlsrv_fetch_array($this->resultset[$this->querynum], SQLSRV_FETCH_ASSOC)) {
             $this->result[] = $row;
           }
+          $this->_status = $this->error['noerrors'];
           return $this->result;
         } else {
           $this->_status = $this->error['result1'] . $query;
@@ -228,7 +252,9 @@ class mpc_db {
       }
       $t_conn       = $this->mp_conn;
       $t_query      = $t_conn->prepare($this->querylist[$this->querynum]);
-      $t_query->bind_param($this->typelist[$this->querynum], ...$this->paramlist[$this->querynum]);
+      if ($this->typelist[$this->querynum]) {
+        $t_query->bind_param($this->typelist[$this->querynum], ...$this->paramlist[$this->querynum]);
+      }
       $t_query->execute();
       $this->resultset[$this->querynum] = $t_query->get_result();
       if (gettype($this->resultset[$this->querynum]) == 'boolean') {
@@ -236,6 +262,7 @@ class mpc_db {
       } else {
         $this->result = $this->resultset[$this->querynum]->fetch_all(MYSQLI_ASSOC);
       }
+      $this->_status = $this->error['noerrors'];
       return $this->result;
       break;
     default:

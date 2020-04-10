@@ -20,7 +20,7 @@
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
 $mp_edit_rights     = 'CMS';
 require_once( $mpo_paths->template.$mpo_parts->template.'/db_config.php' );
-$mpo_404 = new ocfs_filefinder(true);
+$mpo_404 = new mpc_filefinder(true);
                     # Check 1 - check database -------------------------------- *
                     # if you have a database, check for a redirect record first *
 if ($mpo_404->status == 'not found') {

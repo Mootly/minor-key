@@ -10,21 +10,24 @@
   * @method bool    __construct(hash)
   *   On instantiation, passed an associative array of values to be sanitized.
   *   If the array is omitted, use __set to populate.
-  * @method string  __get(string)
-  *   Return default sanitized values from an array of pseudoproperties.
+  * @method mixed   __get(mixed)
+  *   Return sanitized values from pseudoproperties from string or array.
   * @method bool    __set(string, string)
   *   Add pseudo-properties to array with assigned values.
-  * @method string    get_as(string, string [, string])
-  *   Returns values sanitized as specified.
   * @method string    clean_url(string, string [, string])
   *   Returns a santized copy of the current URL.
+  * @method strings   cleaner(string)
+  *   Sanitized values. Broken out to standard process across all methods
+  * @method mixed     get_as(mixed)
+  *   Returns values sanitized as specified from string or array.
   * @method string    lock()
   *   Locks existing values from being overwritten. Lock is on by default.
   * @method string    unlock()
   *   Unlocks existing values so they can be being overwritten.
-  * @copyright 2019 Mootly Obviate
+  * @copyright 2019-2020 Mootly Obviate
   * @package   moosepress
   * --- Revision History ------------------------------------------------------ *
+  * 2020-04-08 | Added ability to handle arrays.
   * 2019-08-02 | Created.
   * --------------------------------------------------------------------------- */
 class mpc_datacleaner {
@@ -48,14 +51,32 @@ class mpc_datacleaner {
   }
 # *** END - constructor ------------------------------------------------------- *
 #
+# *** BEGIN clean ------------------------------------------------------------- *
+/**
+  * Lock our existing values from overwriting.
+  * @return bool
+  */
+  public function cleaner($fname) {
+    return htmlspecialchars(strip_tags($fname), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+  }
+# *** END - clean ------------------------------------------------------------- *
+#
 # *** BEGIN __get ------------------------------------------------------------- *
 /**
   * Return the default sanitized version of the value.
+  * Currently only works on strings and arrays, which is all the data we should
+  * be getting from user forms anyway.
   * @param  string  $fname              The variable name.
   * @return string
   */
   public function __get($fname) {
-    return htmlspecialchars(strip_tags($this->value[$fname]), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    if (gettype($this->value[$fname]) == 'array') {
+      $this->clean[$fname] = $this->value[$fname];
+      array_walk_recursive($this->clean[$fname], array($this, 'cleaner'));
+    } else {
+      $this->clean[$fname] = $this->cleaner($this->value[$fname]);
+    }
+    return $this->clean[$fname];
   }
 # *** END - __get ------------------------------------------------------------- *
 #
@@ -113,11 +134,12 @@ class mpc_datacleaner {
         $this->clean[$fname] = (float) $this->value[$fname];
         break;
       default:      # same as __GET                                             *
-        $this->clean[$fname] = htmlspecialchars(strip_tags($this->value[$fname]), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $this->clean[$fname] = $this->cleaner($this->value[$fname]);
     }
     return $this->clean[$fname];
   }
 # *** END - get_as ------------------------------------------------------------ *
+#
 # *** BEGIN clean_url --------------------------------------------------------- *
 /**
   * Returns a sanatized URl.
