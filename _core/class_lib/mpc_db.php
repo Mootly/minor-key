@@ -34,6 +34,7 @@ class mpc_db {
   protected         $mp_conn;
   protected         $mp_callby          = '';
   protected         $_status            = '';
+  protected         $_namespace         = 'dbo';
   protected         $querynum           = -1;
   protected         $querylist          = array();
   protected         $paramlist          = array();
@@ -74,6 +75,7 @@ class mpc_db {
   public function __construct($callby, $args) {
     // http://php.net/manual/en/book.sqlsrv.php
     $this->mp_callby = $callby;
+    $this->namespace = array_key_exists('namespace', $args) ? $args['namespace'] : 'dbo';
     $this->_status   = '';
     $this->_status  .= array_key_exists('host', $args)   ? '' : ' host';
     $this->_status  .= array_key_exists('dbname', $args) ? '' : ' dbname';
@@ -254,7 +256,7 @@ class mpc_db {
       $t_query      = $t_conn->prepare($this->querylist[$this->querynum]);
       if ($this->typelist[$this->querynum]) {
         $t_query->bind_param($this->typelist[$this->querynum], ...$this->paramlist[$this->querynum]);
-      }
+      } 
       $t_query->execute();
       $this->resultset[$this->querynum] = $t_query->get_result();
       if (gettype($this->resultset[$this->querynum]) == 'boolean') {
