@@ -19,6 +19,8 @@
 # Constants ------------------------------------------------------------------- *
 # Values are repeated in case there was no config file.                         *
                     # Core file paths                                           *
+                    # Use constants to force any overrides to be manually coded *
+                    # below                                                     *
   if (!defined('MP_PSEP'))       define( 'MP_PSEP', '/' );
   if (!defined('MP_ROOT'))       define( 'MP_ROOT', $_SERVER['DOCUMENT_ROOT'].'/' );
   if (!defined('MP_CLASSLIB'))   define( 'MP_CLASSLIB', MP_ROOT.'_core/class_lib/' );
@@ -42,6 +44,21 @@
   $mpo_paths->mp_classlib   = MP_CLASSLIB;
   $mpo_paths->core          = MP_ROOT . '_core/';
   $mpo_paths->vendor        = MP_ROOT . '_vendors/';
+# Locate our templates and class library -------------------------------------- *
+                    # If we are in a test copy of pages,                        *
+                    # set site base path accordingly                            *
+  if (strpos($mpo_parts->page_path,'_templates') !== false) {
+    $mpo_parts->site_base     = MP_PSEP . '_templates/'.$mpo_parts->template.'pages';
+  } elseif (strpos($mpo_parts->page_path,'/sites/') !== false) {
+    $temp_array = explode('/', preg_replace('/.*sites\//','',$mpo_parts->page_path));
+    $temp_string = $temp_array[0];
+    $mpo_parts->site_base     = MP_PSEP . 'sites' . MP_PSEP . $temp_string;
+                    # check for site specific overrides                         *
+                    # currently only supports template overrides                *
+   include_once( MP_ROOT . $mpo_parts->site_base . '/config.php' );
+  } else {
+    $mpo_parts->site_base     = '';
+  }
                     # If we are in a template folder, use that template         *
                     # Otherwise define our template name from config            *
                     # If none defined, use default                              *
@@ -49,13 +66,14 @@
     $temp_array = explode('/', preg_replace('/.*_templates\//','',$mpo_parts->page_path));
     $temp_string = $temp_array[0].'/';
   } else {
-    if(defined('DEF_TEMPLATE')) {
+    if (defined('DEF_TEMPLATE_OVERRIDE')) {
+      $temp_string = DEF_TEMPLATE_OVERRIDE . MP_PSEP;
+    } elseif(defined('DEF_TEMPLATE')) {
       if (defined('DEF_PREFIX')) {
         $temp_string        = DEF_PREFIX . '_' . DEF_TEMPLATE . MP_PSEP;
       } else { $temp_string = DEF_TEMPLATE . MP_PSEP; }
     } else { $temp_string   = "mp_basic/"; }
   }
-# Locate our templates and class library -------------------------------------- *
                     # If the template contains classlib, declare in config.php  *
                     # Otherwise it will assume:                                 *
                     # /_templates/template_name/classlib                        *
@@ -70,15 +88,6 @@
   $mpo_paths->images          = '/_templates/' . $mpo_parts->template . '_assets/images/';
   $mpo_paths->tp_widgets      = '/_templates/' . $mpo_parts->template . '_assets/widgets/';
   $mpo_paths->tp_php_widgets  = '/_templates/' . $mpo_parts->template . '_assets/php_widgets/';
-                    # If we are in a test copy of pages,                        *
-                    # set site base path accordingly                            *
-  if (strpos($mpo_parts->page_path,'_templates') !== false) {
-    $mpo_parts->site_base     = MP_PSEP . '_templates/'.$mpo_parts->template.'pages';
-  } elseif (strpos($mpo_parts->page_path,'/sites/') !== false) {
-    $mpo_parts->site_base     = MP_PSEP . 'sites';
-  } else {
-    $mpo_parts->site_base     = '';
-  }
                     # Specify preset paths for standard resources               *
   $mpo_paths->docs          = $mpo_parts->site_base .'/docs';
   $mpo_parts->docs          = $mpo_paths->docs;
@@ -87,10 +96,10 @@
   $mpo_paths->search        = $mpo_parts->site_base .'/search';
   $mpo_parts->search        = $mpo_paths->search;
                     # path to template class libs
-  if (defined('DEF_CLASSLIB')) {
+  if (!(defined('DEF_TEMPLATE_OVERRIDE')) && defined('DEF_CLASSLIB')) {
     $mpo_paths->tp_classlib = MP_ROOT . DEF_CLASSLIB;
   } else {
-    $mpo_paths->tp_classlib = MP_ROOT . '_templates/' . $temp_string .'classlib/';
+    $mpo_paths->tp_classlib = MP_ROOT . '_templates/' . $temp_string .'class_lib/';
   }
                     # init autoloader                                           *
   spl_autoload_register(function ($classname) {
