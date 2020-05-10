@@ -55,7 +55,7 @@
     $mpo_parts->site_base     = MP_PSEP . 'sites' . MP_PSEP . $temp_string;
                     # check for site specific overrides                         *
                     # currently only supports template overrides                *
-   include_once( MP_ROOT . $mpo_parts->site_base . '/config.php' );
+    include_once( MP_ROOT . $mpo_parts->site_base . '/config.php' );
   } else {
     $mpo_parts->site_base     = '';
   }
@@ -84,6 +84,7 @@
   $mpo_paths->widgets         = MP_ROOT . '_assets/widgets/';
   $mpo_paths->php_widgets     = MP_ROOT . '_assets/php_widgets/';
                     # template assets - server or client - root not included    *
+  $mpo_paths->tp_root         = '/_templates/' . $mpo_parts->template;
   $mpo_paths->assets          = '/_templates/' . $mpo_parts->template . '_assets/';
   $mpo_paths->images          = '/_templates/' . $mpo_parts->template . '_assets/images/';
   $mpo_paths->tp_widgets      = '/_templates/' . $mpo_parts->template . '_assets/widgets/';
