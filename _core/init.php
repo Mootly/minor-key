@@ -42,11 +42,13 @@
   } elseif (strpos($mpo_parts->page_path,'/sites/') !== false) {
     $temp_array = explode('/', preg_replace('/.*sites\//','',$mpo_parts->page_path));
     $temp_string = $temp_array[0];
-    $mpo_parts->site_base     = MP_PSEP . 'sites' . MP_PSEP . $temp_string;
+    $mpo_parts->site_base     = 'sites' . MP_PSEP . $temp_string . MP_PSEP;
                     # check for site specific overrides                         *
-    include_once( MP_ROOT . $mpo_parts->site_base . '/config.local.php' );
+    if (file_exists(MP_ROOT . $mpo_parts->site_base . 'config.local.php')) {
+      include_once( MP_ROOT . $mpo_parts->site_base . 'config.local.php' );
+    }
   } else {
-    $mpo_parts->site_base     = '';
+    $mpo_parts->site_base     = '/';
   }
 # Locate our templates -------------------------------------------------------- *
                     # If we are in a template folder, use that template         *
@@ -76,11 +78,11 @@
   $mpo_paths->widgets         = MP_ROOT . '_assets/widgets/';
   $mpo_paths->php_widgets     = MP_ROOT . '_assets/php_widgets/';
 # local paths to template and site components --------------------------------- *
-  $mpo_paths->tp_root         = '/_templates/' . $mpo_parts->template;
-  $mpo_paths->assets          = '/_templates/' . $mpo_parts->template . '_assets/';
-  $mpo_paths->images          = '/_templates/' . $mpo_parts->template . '_assets/images/';
-  $mpo_paths->tp_widgets      = '/_templates/' . $mpo_parts->template . '_assets/widgets/';
-  $mpo_paths->tp_php_widgets  = '/_templates/' . $mpo_parts->template . '_assets/php_widgets/';
+  $mpo_paths->tp_root         = '_templates/' . $mpo_parts->template;
+  $mpo_paths->assets          = '_templates/' . $mpo_parts->template . '_assets/';
+  $mpo_paths->images          = '_templates/' . $mpo_parts->template . '_assets/images/';
+  $mpo_paths->tp_widgets      = '_templates/' . $mpo_parts->template . '_assets/widgets/';
+  $mpo_paths->tp_php_widgets  = '_templates/' . $mpo_parts->template . '_assets/php_widgets/';
   # If the template contains classlib, declare in config.php  *
   # Otherwise it will assume:                                 *
   # /_templates/template_name/classlib                        *

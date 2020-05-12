@@ -18,6 +18,7 @@
   * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
   $t_path = explode('/',$_SERVER['SCRIPT_NAME']);
+  $t_home = SITE_HOME ? SITE_HOME : '/';
   $crumbstring = '<span class="position">' . $mpo_parts->link_title . '</span>';
                     # array of overrides inserted between this page and auto    *
   if (isset($t_crumbs_parent)) {
@@ -42,19 +43,24 @@
                     # root will come up empty. point to home page w DEF_HOME    *
       if ($t_currpath == '/') {
         $t_currel   = 'home';
-        $t_currpath = defined('DEF_HOME') ? DEF_HOME : '/';
+        $t_currpath = '/'.$t_home;
+                    # stop at top of site if not shared                         *
+      } elseif ((SITE_SHARED !== true) && ($t_currpath == MP_PSEP.$mpo_parts->site_base)) {
+        $t_currel   = 'home';
+        $t_currpath = '/'.$mpo_parts->site_base . $t_home;
+        $t_path = array();
                     # hide directories on path with no default index file       *
                     # it should be an else after all over overrides             *
       } else {
         $tf_dirpath = MP_ROOT.$t_currpath;
-        $tf_phppath = MP_ROOT.$t_currpath.'/index.php';
-        $tf_vbspath = MP_ROOT.$t_currpath.'/default.asp';
-        $tf_htmpath = MP_ROOT.$t_currpath.'/index.html';
+        $tf_phppath = MP_ROOT.$t_currpath.'index.php';
+        $tf_vbspath = MP_ROOT.$t_currpath.'default.asp';
+        $tf_htmpath = MP_ROOT.$t_currpath.'index.html';
         if ((is_dir( $tf_dirpath )) and
         (!(file_exists($tf_phppath) or file_exists($tf_vbspath) or file_exists($tf_htmpath)))) {
           $_include_this = false;
         }
-        if (($t_currpath == DEF_HOME) OR ($t_currpath.'/' == DEF_HOME))
+        if (($t_currpath == $t_home) OR ($t_currpath.'/' == $t_home))
         { $_include_this = false; }
       }
       # clean up garbage characters in display string             *
