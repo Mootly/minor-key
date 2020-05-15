@@ -45,7 +45,7 @@
         $t_currel   = 'home';
         $t_currpath = '/'.$t_home;
                     # stop at top of site if not shared                         *
-      } elseif ((SITE_SHARED !== true) && ($t_currpath == MP_PSEP.$mpo_parts->site_base)) {
+      } elseif ((defined('SITE_SHARED')) && (SITE_SHARED !== true) && ($t_currpath == MP_PSEP.$mpo_parts->site_base)) {
         $t_currel   = 'home';
         $t_currpath = '/'.$mpo_parts->site_base . $t_home;
         $t_path = array();
