@@ -48,7 +48,7 @@
       include_once( MP_ROOT . $mpo_parts->site_base . '/config.local.php' );
     }
   } else {
-    $mpo_parts->site_base     = '/';
+    $mpo_parts->site_base     = '';
   }
 # Locate our templates -------------------------------------------------------- *
                     # If we are in a template folder, use that template         *
