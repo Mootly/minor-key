@@ -35,7 +35,7 @@
         <ul class="page-nav-sublist collapse-list hidden">
           <li><a href="/docs/classes/">Class List</a></li>
           <li><a href="/docs/classes/mpc_cookies.php">mpc_cookies</a></li>
-          <li><a href="/docs/classes/mpc_db.php">mpc_db</a></li>
+          <li><a href="/docs/classes/mpc_datacleaner.php">mpc_datacleaner</a></li>
           <li><a href="/docs/classes/mpc_db.php">mpc_db</a></li>
           <li><a href="/docs/classes/mpc_menus.php">mpc_menus</a></li>
           <li><a href="/docs/classes/mpc_parts.php">mpc_parts</a></li>

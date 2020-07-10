@@ -74,7 +74,7 @@ $mpo_parts->section_base      = $mpo_paths->docs;
 // $mpo_parts->menu_left = 'import';
 // ob_start();
 // include('menu path');
-// $mpo_parts->menu_left_content         = ob_get_clean();
+// $mpo_parts->page_menu         = ob_get_clean();
 // ob_end_clean();
                     # rules the same for menu_right and menu_right_content      *
                     # Add custom style sheets that are not in the template ---- *
