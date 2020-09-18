@@ -38,10 +38,11 @@ if (mpv_clam_block.length > 0) {
       mpv_clam_head = mpv_clam_head+', '
       + mpv_clam_block.attr('class').substring(mpv_tvar+4, mpv_tvar+6);
 }
+
 /* --- EVENT Actions - user and synthetic ------------------------------------- */
                     //  Open target fold                                        *
 $(window).on('hashchange', function(e){
-  if (($(mpv_clam_list)) && (location.hash!='')) {
+  if (($(mpv_clam_list).length) && (location.hash!='')) {
     var mpv_clam_target = location.hash;
     if ($(mpv_clam_target).length) {
       $(mpv_clam_target).find('.more-link').find('i')
