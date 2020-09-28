@@ -14,14 +14,15 @@
  *      .fixed-top { position: fixed; top: 0; left: 0; z-index: <var>; width: 100%; }
  * --- Revision History ------------------------------------------------------- *
  * 2020-01-17 | Script breakout
+ * REDO FOR MULTIPLE AND ON ASSUMPTION WE DON'T KNOW STARTING POS OF STICKY
  * ---------------------------------------------------------------------------- */
  function mpf_stickybar() {
-   const f_box       = document.querySelector(mpv_stickybar_box);
-   const f_tweak     = document.querySelectorAll(mpv_stickybar_tweak);
-   const f_position  = mpv_stickybar_pos;
-   const f_offset    = f_box.offsetHeight;
+   const f_box      = document.querySelector(mpv_stickybar_box);
+   const f_tweak    = document.querySelectorAll(mpv_stickybar_tweak);
+   const f_position = mpv_stickybar_pos;
+   const f_offset   = f_box.offsetHeight;
    if (window.innerWidth > 800) {
-     let f_vT        = Math.round(f_position - window.pageYOffset);
+     let f_vT       = Math.round(f_position - window.pageYOffset);
      if (f_vT < 1) {
        f_box.classList.add('fixed-top');
        f_tweak.forEach ((el_current) => {
@@ -33,14 +34,13 @@
          el_current.setAttribute('style', '');
        });
      }
-     f_firstpass     = true;
+     f_firstpass    = true;
    } else if (f_firstpass)  {
      f_box.classList.remove('fixed-top');
      f_tweak.forEach ((el_current) => {
        el_current.setAttribute('style', '');
      });
-     f_firstpass     = false;
+     f_firstpass    = false;
    }
  }
-
 /*! --- Copyright (c) 2020 Mootly Obviate -- See /LICENSE.md ------------------ */
