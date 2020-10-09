@@ -41,12 +41,45 @@ require_once( $mpo_paths->php_widgets.'/video_components.php' );
                     # Each part must be defined in the receiving template       *
                     # to be used.                                               *
 ob_start();
+?>
+This is a <b>Test</b>!
+This is only a <b>Test</b>!
+<?php echo('<'.'?php echo("wombat!!!"); ?'.'>'); ?>
+This is still a <b>Test</b>!
+<script>window.alert('boo!');</script>
+<?php
+$regex_test = ob_get_clean();
+ob_end_clean();
+$passRaw    = false;
+$keepCR     = true;
+$keepHTML   = true;
+if (!$keepCR) { $regex_test  = preg_replace('~[[:cntrl:]]~', ' ', $regex_test); }
+if ($keepHTML) {
+  $regex_test  = preg_replace(array('~<(\?|\%)\=?(php)?~', '~(\%|\?)>~'), array('',''), $regex_test );
+} else {
+  $regex_test  = strip_tags($regex_test );
+}
+if ($passRaw) {
+  $t_domObj = new DOMDocument();
+  $t_domObj->loadHTML($regex_test);
+  $t_scriptTags = $t_domObj->getElementsByTagName('script');
+  for ($i = 0; $i < $t_scriptTags->length; $i++) {
+    $t_scriptTags->item($i)->parentNode->removeChild($t_scriptTags->item($i));
+  }
+  $regex_test = $t_domObj->saveHTML();
+} else {
+  $regex_test     = htmlspecialchars($regex_test, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}
+ob_start();
                     # ↓↓↓ EDIT CONTENT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ ***
 ?>
 
 <div class="sunset"></div>
 
   <pre>
+    -- <?= $t_scriptTags->length; ?> --
+    <?php echo($regex_test); ?>
+    <br />
     <?php var_dump(htmlspecialchars(strip_tags("https://ocfs.ny.gov/main/childcare/news/index.php?\"><script>_q_q=')('</script>&page=7"), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
     <?php var_dump(htmlspecialchars(strip_tags("https://ocfs.ny.gov/main/childcare/news/index.php?\"><script>_q_q=')('</script>&page=7"), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
     <?php var_dump(htmlspecialchars(strip_tags('https://ocfs.ny.gov/main/childcare/news/index.php?%22%3e%3cqss%3e=&page=7'), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
@@ -86,6 +119,7 @@ let   el_tocLinkList       =  document.createElement('ul');
                     # Content developers shouldn't touch anything below here.
 $mpo_parts->main_content = ob_get_clean();
 ob_end_clean();
+
                       // Submit to template generator --------------------------- *
 mpf_renderPage($mpo_parts->template.$mpt_['default'].$mpt_['suffix'], $mpo_parts);
 ?>

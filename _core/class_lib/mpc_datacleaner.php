@@ -16,7 +16,7 @@
   *   Add pseudo-properties to array with assigned values.
   * @method string    clean_url(string, string [, string])
   *   Returns a santized copy of the current URL.
-  * @method strings   cleaner(string)
+  * @method strings   cleaner(string [,bool [,bool [,bool]]])
   *   Sanitized values. Broken out to standard process across all methods
   * @method mixed     get_as(mixed)
   *   Returns values sanitized as specified from string or array.
@@ -53,11 +53,47 @@ class mpc_datacleaner {
 #
 # *** BEGIN clean ------------------------------------------------------------- *
 /**
-  * Lock our existing values from overwriting.
+  * Clean up our any input data.
+  * Two override flags:
+  * - $keepCR       - set to true for textarea fields
+  * - $keepHTML     - set to true for code entry fields
+  * - $useRaw       - set to true for WYSIWYG fields
+  * Each flag set to true is more of a potential security threat
+  * Method prevents any scripts from being submitted. This cannot be overridden.
+  * No flags should be set to true for anything to be returned as a query param
+  *
   * @return bool
   */
-  public function cleaner($fname) {
-    return htmlspecialchars(strip_tags($fname), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+  public function cleaner($fVal, $keepCR = false, $keepHTML = false, $useRaw = false) {
+    $workingStr     = $fVal;
+                    // set to $keepCR to true to preserve special characters
+                    // we should only keep carriage returns for textarea fields
+                    // and should only be used with post
+    if (!$keepCR) { $workingStr = preg_replace('~[[:cntrl:]]~', ' ', $workingStr); }
+                    // set $keepHTML to true not strip HTML tags.
+                    // server side scripting tags will stipp be stripped
+                    // special characters will still be escaped unless
+                    // $useRaw == true
+    if ($keepHTML) {
+      $workingStr   = preg_replace(
+        array('~<(\?|\%)\=?(php)?~', '~(\%|\?)>~'),
+        array('',''),
+        $workingStr
+      );
+    } else { $workingStr = strip_tags($workingStr); }
+                    // raw strings should only be for WYSIWYG entry fields
+                    // will still strip out script tags
+                    // don't want to clean up, don't use this method.
+    if ($useRaw) {
+      $t_domObj     = new DOMDocument();
+      $t_domObj->loadHTML($workingStr);
+      $t_scrList    = $t_domObj->getElementsByTagName('script');
+      for ($i = 0; $i < $t_scrList->length; $i++) {
+        $t_scrList->item($i)->parentNode->removeChild($t_scrList->item($i));
+      }
+      $workingStr   = $t_domObj->saveHTML();
+    } else { $workingStr = htmlspecialchars($workingStr, ENT_QUOTES | ENT_HTML5, 'UTF-8'); }
+    return $workingStr;
   }
 # *** END - clean ------------------------------------------------------------- *
 #
