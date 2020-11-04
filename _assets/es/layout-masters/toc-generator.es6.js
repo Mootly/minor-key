@@ -22,7 +22,7 @@
  *  User set flags - Most of these are best declared at the template level
  *  Flag            | Default         |
  *  toc_container   | 'page-body'     | the element to search for headings
- *  toc_system      | ''              | comma separated list of headings to exclude
+ *  toc_exclude      | ''              | comma separated list of headings to exclude
  *                  |                 | script automaticaly excludes id="toc-links"
  *  toc_tier1       | 'h2'            | the heading to use to generate the TOC
  *  toc_tier2       | 'h3,dl'         | somma separated list of elements to check for add-toc
@@ -37,47 +37,37 @@
  * 2020-01-17 | Script breakout
  * 2019-11-26 | ES6 TOC generator completed
  * ---------------------------------------------------------------------------- */
- function mpf_toc_generator() {
-                    // check for a TOC element, otherwise do nothing            *
+function mpf_toc_generator() {
+                    // *** check for a TOC element, otherwise do nothing        *
   const el_tocTarget = document.getElementById('toc-links');
   if (el_tocTarget) {
                     // *** populate or configuration variables ---------------- *
                     // Unhide TOC - TOC hidden in case script doesn't load      *
     el_tocTarget.style.display = 'block';
                     // TOC starts with this heading                             *
-    const c_toc_tier1         = (typeof toc_tier1       !== 'undefined')
-                                ? toc_tier1       : 'h2';
-                    // And also includes these elements
-    const c_toc_tier2         = (typeof toc_tier2       !== 'undefined')
-                                ? toc_tier2.split(/,\s?/)
-                                : ['h3', 'dt'];
-    const c_toc_includes      = c_toc_tier1+', '+c_toc_tier2.toString();
-                    // Array of content section IDs to use                      *
-    const c_toc_container     = (typeof toc_container   !== 'undefined')
-                                ? toc_container.split(/,\s?/)
-                                : ['page-body'];
-                    // Array of headings to exclude                             *
-    const c_toc_system        = (typeof toc_system      !== 'undefined')
-                                ? (el_tocTarget.innerText + ',' + toc_system).split(/,\s/)
+    var   toc_tier1           = toc_tier1 || 'h2';
+                    // Limit TOC to these additional elements                   *
+    var   toc_tier2           = (toc_tier2) ? toc_tier2.split(/,\s?/) : ['h3', 'dt'];
+    var   toc_includes        = toc_tier1+', '+toc_tier2.toString();
+                    // ID of content section to use                              *
+    var   toc_container       = toc_container || 'page-body';
+                    // Array of headings to exclude by text value               *
+                    // Can also use the class of 'toc-skip' within a page       *
+    var   toc_exclude         = (toc_exclude)
+                                ? (el_tocTarget.innerText + ',' + toc_exclude).split(/,\s/)
                                 : [el_tocTarget.innerText];
                     // Variables to generate links back to the top of the page  *
-    const c_toc_skipAll       = (typeof toc_skipAll     !== 'undefined')
-                                ? toc_skipAll
-                                : false;
-    let   f_toc_skipFirst     = (typeof toc_skipFirst   !== 'undefined')
-                                ? toc_skipFirst
-                                : true;
-    const c_toc_skipNested    = (typeof toc_skipNested  !== 'undefined')
-                                ? toc_skipNested
-                                : true;
+    var   toc_skipAll         = toc_skipAll || false;
+    var   toc_skipFirst       = toc_skipFirst || true;
+    var   toc_skipNested      = toc_skipNested || true;
                     // *** Create our back to top link ------------------------ *
                     // If no body ID, return to top at TOC instead.             *
-    const c_toc_topID         = (document.body.id) ? document.body.id : 'toc-link' ;
+    const toc_topID           = (document.body.id) ? document.body.id : 'toc-link' ;
     let   el_topLinkDiv       = document.createElement('div');
           el_topLinkDiv.className = 'top-link';
     let   el_topLinkA         = document.createElement('a');
           el_topLinkA.title   = 'Back to Top';
-          el_topLinkA.href    = '#'+c_toc_topID;
+          el_topLinkA.href    = '#'+toc_topID;
           el_topLinkA.innerHTML = '<span>[top]</span>';
           el_topLinkDiv.appendChild(el_topLinkA);
                     // *** Generate our TOC block ----------------------------- *
@@ -87,21 +77,20 @@
           el_tocLinkList.id   = 'jumpto';
           el_tocTarget.parentNode.insertBefore(el_tocLinkList, el_tocTarget.nextSibling);
           el_tocLinkList      = document.getElementById('jumpto');
-                    // *** ---------------------------------------------------- *
                     // *** Begin our element loop ----------------------------- *
-                    // *** Remember to match case on string tests               *
-    let   nlist_includes      = document.querySelectorAll(c_toc_includes);
+                    // Remember to match case on string tests                   *
+    let   nlist_includes = document.getElementById(toc_container).querySelectorAll(toc_includes);
+    let   el_id_tie = 0;
     nlist_includes.forEach ((el_current) => {
       let b_linkText        = el_current.textContent;
                     // add id attribute to target if none                       *
-                    // doing it once outside of tests to simplify               *
       if (!(el_current.hasAttribute('id'))) {
-        el_current.id = 'goto-'+b_linkText
+        el_current.id = 'goto-'+(el_id_tie++)+'-'+(b_linkText
         .replace(/[`~!@#$%^&*()|+=?;'",.<>\{\}\[\]\\\/]/gi,'')
-        .trim().replace(/ /g,'-');
+        .trim().replace(/ /g,'-')).substring(0,32);
       }
-      if ((el_current.tagName.toLowerCase() == c_toc_tier1.toLowerCase()) &&
-          (c_toc_system.indexOf(el_current.textContent) == -1) &&
+      if ((el_current.tagName.toLowerCase() == toc_tier1.toLowerCase()) &&
+          (toc_exclude.indexOf(el_current.textContent) == -1) &&
          !(el_current.classList && el_current.classList.contains('toc-skip'))) {
                     // write out chidlren if we have them                       *
         if (el_tocLinkSubList.childElementCount && el_tocLinkList.childElementCount) {
@@ -112,9 +101,9 @@
         }
                     // add link to toc - note clone call                        *
                     // check whether to skip first or skip all                  *
-        if (!c_toc_skipAll) {
-          if (f_toc_skipFirst) {
-            f_toc_skipFirst = false;
+        if (!toc_skipAll) {
+          if (toc_skipFirst) {
+            toc_skipFirst = false;
           } else {
             el_current.parentNode.insertBefore(el_topLinkDiv.cloneNode(true), el_current)
           }

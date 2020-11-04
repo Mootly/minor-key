@@ -6,25 +6,28 @@
   * Note that case insensitive servers will produce an all lower-case list
   * <div id="breadcrumb-box">
   *   <a href="link">label</a>
-  *   <span class="fa fa-iconname"></span>
+  *   <span class="spacer [fa-classes]"></span>
   *   ...
-  *   <span class="fa fa-iconname"></span>
+  *   <span class="spacer [fa-classes]"></span>
   *   <span class="position">Current Page</span>
   * </div>
   *
-  * @copyright 2018 Mootly Obviate - See /LICENSE.md
+  * @copyright 2018-2020 Mootly Obviate - See /LICENSE.md
   * @package   moosepress
   * --- Revision History ------------------------------------------------------ *
+  * 2020-10-02 | Added code to cover all pssobile default files
   * 2019-07-09 | Added revision log, cleaned code
   * --------------------------------------------------------------------------- */
   $t_path = explode('/',$_SERVER['SCRIPT_NAME']);
-  $t_home = SITE_HOME ? SITE_HOME : '/';
+  if (!defined('SITE_HOME')) define( 'SITE_HOME', '' );
   $crumbstring = '<span class="position">' . mb_strtolower($mpo_parts->link_title) . '</span>';
                     # array of overrides inserted between this page and auto    *
+                    # currently defaulting to FontAwesome 4 because that is     *
+                    # what was used during the first iteration of this widget   *
   $t_crumbclass = ($mpo_parts->crumb_classes) ? $mpo_parts->crumb_classes : 'fa fa-angle-double-right';
   if (isset($t_crumbs_parent)) {
     foreach ($t_crumbs_parent as $t_link) {
-      $crumbstring = '<a href="' . $t_link['url'] . '">' . $t_link['name'] . '</a> <span class="fa fa-angle-double-right"></span> ' .$crumbstring;
+      $crumbstring = '<a href="' . $t_link['url'] . '">' . $t_link['name'] . '</a> <span class="spacer '.$t_crumbclass.'"></span> ' .$crumbstring;
     }
   }
                     # --------------------------------------------------------- *
@@ -32,12 +35,16 @@
                     # parent crumb list in the array above                      *
   if (!isset($t_crumbs_auto_off)) {
     $t_currel = array_pop($t_path);
-                    # test for default /index files, which would just duplicate *
+                    # test for default/index files, which would just duplicate  *
                     # the immediate parent directory link                       *
                     # the regex requires this be the end of the path            *
                     # the 7 character suffix allows for suffix and language     *
                     # e.g. - default.es.aspx                                    *
-                    # if you don't use lang sufiix, bump it down to 4 or 3      *
+                    # if you don't use language suffixes, bump it down          *
+                    # if you use output type infixes, bump it up                *
+                    # e.g. - default.html.apsx                                  *
+                    # if using dot separators in path names this can lead to    *
+                    # more false positives as the suffix allowance is increased *
     $tf_regex   = '~(default|index)\..{2,7}$~i';
     if (preg_match($tf_regex, $t_currel)) {
       $t_skip = array_pop($t_path);
@@ -48,32 +55,35 @@
                     # because only directories are linked in the breadcrumbs    *
       $t_currpath   = implode('/',$t_path).'/';
       $t_currel     = array_pop($t_path);
-                    # root will come up empty. point to home page w DEF_HOME    *
+                    # root will come up empty. point to home page w SITE_HOME   *
       if (($t_currpath == '/') || ($t_currpath == '')) {
         $t_currel   = 'home';
-        $t_currpath = '/'.$t_home;
+        $t_currpath = MP_PSEP.SITE_HOME;
                     # stop at top of site if not shared                         *
-      } elseif ((defined('SITE_SHARED')) && (SITE_SHARED !== true) && ($t_currpath == MP_PSEP.$mpo_parts->site_base)) {
+                    # otherwise path back to root                               *
+                    # only relevant for subsite arrangements                    *
+      } elseif ((defined('SITE_SHARED')) && (SITE_SHARED !== true) && ($t_currpath == $mpo_parts->site_base.MP_PSEP)) {
         $t_currel   = 'home';
-        $t_currpath = '/'.$mpo_parts->site_base . $t_home;
+        $t_currpath = $mpo_parts->site_base.MP_PSEP.SITE_HOME;
         $t_path = array();
                     # hide directories on path with no default index file       *
-                    # it should be an else after all over overrides             *
+                    # using glob to address all suffix cases                    *
+                    # if using dot separators in path names this can lead to    *
+                    # false positives
       } else {
-        // $tf_dirpath = MP_ROOT.$t_currpath;
-        // $tf_mppath = MP_ROOT.$t_currpath.'index.mp';
-        // $tf_phppath = MP_ROOT.$t_currpath.'index.php';
-        // $tf_vbspath = MP_ROOT.$t_currpath.'default.asp';
-        // $tf_htmpath = MP_ROOT.$t_currpath.'index.html';
-        // if ((is_dir( $tf_dirpath )) and
-        // (!(file_exists($tf_mppath) or file_exists($tf_phppath) or file_exists($tf_vbspath) or file_exists($tf_htmpath)))) {
-        //   $_include_this = false;
-        // }
-        if (($t_currpath == $t_home) OR ($t_currpath.'/' == $t_home)) {
+        $tf_dirpath = MP_ROOT.$t_currpath;
+        $tf_idxlist = glob($tf_dirpath.'index.*');
+        $tf_deflist = glob($tf_dirpath.'default.*');
+        if ((is_dir( $tf_dirpath )) and (!(count($tf_idxlist) or count($tf_deflist)))) {
+          $_include_this = false;
+        }
+        if (($t_currpath == SITE_HOME) OR ($t_currpath.'/' == SITE_HOME)) {
           $_include_this = false;
         }
       }
-      # clean up garbage characters in display string             *
+                    # clean up garbage characters in display string             *
+                    # and force to lower case because IIS is always lowercase   *
+                    # while most others are mixed case                          *
       if ($_include_this) {
         $t_currel = preg_replace('/\-([^\-])/', ' ${1}', $t_currel);
         $t_currel = preg_replace('/\- /', '-', $t_currel);
