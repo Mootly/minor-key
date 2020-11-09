@@ -55,17 +55,21 @@
                     # because only directories are linked in the breadcrumbs    *
       $t_currpath   = implode('/',$t_path).'/';
       $t_currel     = array_pop($t_path);
-                    # root will come up empty. point to home page w SITE_HOME   *
-      if (($t_currpath == '/') || ($t_currpath == '')) {
-        $t_currel   = 'home';
-        $t_currpath = MP_PSEP.SITE_HOME;
                     # stop at top of site if not shared                         *
                     # otherwise path back to root                               *
                     # only relevant for subsite arrangements                    *
-      } elseif ((defined('SITE_SHARED')) && (SITE_SHARED !== true) && ($t_currpath == $mpo_parts->site_base.MP_PSEP)) {
+      if ((defined('SITE_SHARED')) && (SITE_SHARED !== true)) {
+        if (strlen($t_currpath) < strlen($mpo_parts->site_base.MP_PSEP)) {
+          $_include_this = false;
+        } elseif ($t_currpath == $mpo_parts->site_base.MP_PSEP) {
+          $t_currel   = 'home';
+          $t_currpath = $mpo_parts->site_base.MP_PSEP;
+          $t_path = array();
+        }
+                    # root will come up empty. point to home page w SITE_HOME   *
+      } elseif (($t_currpath == '/') || ($t_currpath == '')) {
         $t_currel   = 'home';
-        $t_currpath = $mpo_parts->site_base.MP_PSEP.SITE_HOME;
-        $t_path = array();
+        $t_currpath = SITE_HOME ?: '/';
                     # hide directories on path with no default index file       *
                     # using glob to address all suffix cases                    *
                     # if using dot separators in path names this can lead to    *
@@ -81,6 +85,7 @@
           $_include_this = false;
         }
       }
+
                     # clean up garbage characters in display string             *
                     # and force to lower case because IIS is always lowercase   *
                     # while most others are mixed case                          *
