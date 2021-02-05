@@ -27,7 +27,9 @@ if ($mpo_404->status == 'not found') {
   $t_matchedURIList = $mpo_404->try_redirects();
 }
                     # no redirect in the database. Flag it.                     *
-if (empty($t_matchedURIList)) { $t_updatecheck = $mpo_404->flag_brokenlink(); }
+if (empty($t_matchedURIList)) {
+  $t_updatecheck = $mpo_404->flag_brokenlink();
+}
                     # Check 2 - simple name mismatch -------------------------- *
 if (empty($t_matchedURIList)) {
   $t_matchedURIList = $mpo_404->try_nameMismatch('suffix spaces');
