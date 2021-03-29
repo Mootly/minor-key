@@ -7,7 +7,7 @@
   * --------------------------------------------------------------------------- */
                     # Call config to inti the application --------------------- *
 require_once( $_SERVER['DOCUMENT_ROOT'].'/config.php' );
-$mpo_paginator = new mpc_paginate_bar();
+// $mpo_paginator = new mpc_paginate_bar();
 $t_count = 700;
 $t_params['type']       = 'get';
 $t_params['per_page']   = 32;
@@ -17,9 +17,9 @@ $t_params['max_run']    = 5;
 $t_params['firstlast']  = true;
 $t_params['overlap']    = true;
 $t_params['compress']   = true;
-$t_result = $mpo_paginator->setposition($t_count, $t_params);
-$t_result = $mpo_paginator->makebar();
-$t_result = $mpo_paginator->getbar();
+// $t_result = $mpo_paginator->setposition($t_count, $t_params);
+// $t_result = $mpo_paginator->makebar();
+// $t_result = $mpo_paginator->getbar();
                     # Build the page ------------------------------------------ *
                     # Content developers shouldn't touch anything above here.
                     # ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ EDIT VARIABLES BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -34,7 +34,7 @@ $mpo_parts->accessibility = 'standard';
 $mpo_parts->bodyclasses   = 'final';
 // $mpo_parts->pagemenu = 'docs.general';
 require_once( $mpo_paths->php_widgets.'menus/simple_crumbs.php' );
-require_once( $mpo_paths->php_widgets.'/video_components.php' );
+// require_once( $mpo_paths->php_widgets.'/video_components.php' );
                     # The main content body of the page is developed here.      *
                     # You can iterate across the two ob_ functions to create    *
                     # more page parts.                                          *
@@ -48,7 +48,7 @@ This is only a <b>Test</b>!
 This is still a <b>Test</b>!
 <script>window.alert('boo!');</script>
 <?php
-$regex_test = ob_get_clean();
+$regex_test = ob_get_contents();
 ob_end_clean();
 $passRaw    = false;
 $keepCR     = true;
@@ -76,23 +76,6 @@ ob_start();
 
 <div class="sunset"></div>
 
-  <pre>
-    -- <?= $t_scriptTags->length; ?> --
-    <?php echo($regex_test); ?>
-    <br />
-    <?php var_dump(htmlspecialchars(strip_tags("https://ocfs.ny.gov/main/childcare/news/index.php?\"><script>_q_q=')('</script>&page=7"), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
-    <?php var_dump(htmlspecialchars(strip_tags("https://ocfs.ny.gov/main/childcare/news/index.php?\"><script>_q_q=')('</script>&page=7"), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
-    <?php var_dump(htmlspecialchars(strip_tags('https://ocfs.ny.gov/main/childcare/news/index.php?%22%3e%3cqss%3e=&page=7'), ENT_QUOTES | ENT_HTML5, 'UTF-8')); ?>
-    <?php var_dump($_SERVER['ORIG_PATH_INFO']); ?>
-    <?php var_dump($_SERVER['PATH_INFO']); ?>
-    <?php var_dump($_SERVER['PHP_SELF']); ?>
-    <?php var_dump($_SERVER['SCRIPT_NAME']); ?>
-    <?php var_dump($_SERVER['URL']); ?>
-    <?php var_dump(htmlspecialchars($t_result)); ?>
-  </pre>
-
-<?php echo($t_result); ?>
-
 <script type="text/javascript">
 // *** BRAIN CLEANING EXERCISES
 // *** FIZZBUZZ
@@ -117,7 +100,7 @@ let   el_tocLinkList       =  document.createElement('ul');
 <?php
                     # ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ EDIT ABOVE ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
                     # Content developers shouldn't touch anything below here.
-$mpo_parts->main_content = ob_get_clean();
+$mpo_parts->main_content = ob_get_contents();
 ob_end_clean();
 
                       // Submit to template generator --------------------------- *

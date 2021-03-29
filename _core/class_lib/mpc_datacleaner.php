@@ -106,13 +106,17 @@ class mpc_datacleaner {
   * @return string
   */
   public function __get($fname) {
-    if (gettype($this->value[$fname]) == 'array') {
-      $this->clean[$fname] = $this->value[$fname];
-      array_walk_recursive($this->clean[$fname], array($this, 'cleaner'));
+    if (isset($this->value[$fname])) {
+      if (gettype($this->value[$fname]) == 'array') {
+        $this->clean[$fname] = $this->value[$fname];
+        array_walk_recursive($this->clean[$fname], array($this, 'cleaner'));
+      } else {
+        $this->clean[$fname] = $this->cleaner($this->value[$fname]);
+      }
+      return $this->clean[$fname];
     } else {
-      $this->clean[$fname] = $this->cleaner($this->value[$fname]);
+      return false;
     }
-    return $this->clean[$fname];
   }
 # *** END - __get ------------------------------------------------------------- *
 #

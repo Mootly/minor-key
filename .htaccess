@@ -4,9 +4,19 @@ AddType application/x-httpd-php .mp .menu
 DirectoryIndex index.mp index.php index.html index.htm
 # --- Avoid Scripting language suffixes --------------------------------------- #
 # --- Using the mp suffix to avoid overwriting PHP                              #
+# Multiviews may not be required in all environments
+                    # Multiviews may not be required in all environments.       #
+Options +MultiViews
+RewriteCond %{REQUEST_FILENAME} !-f
+                    # .mp rewrites first                                        #
+RewriteRule ^([^/]+)/$ $1.mp
+RewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.mp
+RewriteRule ^([^/]+)/$ $1.php
+RewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.php
+                    # some hoop jumping to deal with trailing slashes           #
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.mp -f
-RewriteRule ^(.*)$ $1.mp
-RewriteRule ^(.*)$ $1.php
+RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
+RewriteRule (.*)$ /$1/ [R=301,L]
 # --- Set our error pages ----------------------------------------------------- *
 ErrorDocument 404 /errors/404

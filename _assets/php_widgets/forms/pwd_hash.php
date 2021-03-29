@@ -1,7 +1,14 @@
 <?php
-/* === Password Hash Generator ================================================ *
- * copyright 2018 - Mootly Obviate
- * --- Revision History ------------------------------------------------------- *
+/**
+  * Password Hash Generator.
+  *
+  * @copyright      2018-2020 Mootly Obviate
+  * @license        Creative Commons BY-NC-SA 4.0 International License
+  * @license        http://creativecommons.org/licenses/by-nc-sa/4.0/ CC BY-NC-SA 4.0
+  * @package        moosepress
+  * @version        0.1
+  */
+/* --- Revision History ------------------------------------------------------- *
  * 2018-05-01 | First build.
  * ---------------------------------------------------------------------------- */
                     # Kick out the unbelievers

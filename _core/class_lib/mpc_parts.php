@@ -85,7 +85,7 @@ class mpc_parts {
   *         content         string  - results or error message.
   */
   public function __get($property) {
-    return $this->component[$property];
+    return (array_key_exists($property, $this->component)) ? $this->component[$property] : false;
   }
 # *** END - __get ------------------------------------------------------------- *
 #
