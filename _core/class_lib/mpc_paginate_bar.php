@@ -230,7 +230,7 @@ class mpc_paginate_bar {
     </div>
 <?php
                     # === END BAR ============================================= #
-    $this->bar      = ob_get_clean();
+    $this->bar      = ob_get_contents();
     ob_end_clean();
 
                   # return success
