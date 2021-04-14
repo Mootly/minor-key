@@ -163,7 +163,7 @@ class mpc_filefinder {
     } else {
       $this->status                     = $this->statusTypes['no search'][0];
     }
-                    # return array of URL components                            *
+                      # return array of URL components                            *
                     # scheme, host, port, path                                  *
     $this->uriArray                     = parse_url($this->targetURI);
                     # return array of filename components                       *

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target"    : "ES6",
+    "module"    : "System",
+    "sourceMap" : true,
+    "outFile"   : "../es/page-lib.js"
+  },
+  "include"       : [
+    "layout-lib/*"
+  ]
+}
