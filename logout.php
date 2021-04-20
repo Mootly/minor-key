@@ -28,7 +28,7 @@ ob_start();
 ?>
 
 <?php
-$mpo_parts->notices = ob_get_clean();
+$mpo_parts->notices = ob_get_contents();
 ob_end_clean();
                     # The main content body of the page goes here. ------------ *
 ob_start();
@@ -75,7 +75,7 @@ if ($mpo_parts->status == 'public') {
   </fieldset>
 </form>
 <?php
-$mpo_parts->main_content = ob_get_clean();
+$mpo_parts->main_content = ob_get_contents();
 ob_end_clean();
 $page_elements = $mpo_parts->build_page();
 echo ($twig->render($mpo_parts->template.$mpt_form_template, array('page'=>$page_elements['content'])));

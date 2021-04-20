@@ -42,37 +42,27 @@ require_once( $mpo_paths->php_widgets.'menus/simple_crumbs.php' );
                     # to be used.                                               *
 ob_start();
 ?>
-This is a <b>Test</b>!
-This is only a <b>Test</b>!
-<?php echo('<'.'?php echo("wombat!!!"); ?'.'>'); ?>
-This is still a <b>Test</b>!
-<script>window.alert('boo!');</script>
+<p class="para">This is a <b>Test</b>!</p>
+<p class="para">This is only a <b>Test</b>!</p>
+<p class="para">This is still a <b>Test</b>!</p>
+<p class="para2">This is still a <b>Test</b>!</p>
 <?php
-$regex_test = ob_get_contents();
-ob_end_clean();
 $passRaw    = false;
 $keepCR     = true;
 $keepHTML   = true;
-if (!$keepCR) { $regex_test  = preg_replace('~[[:cntrl:]]~', ' ', $regex_test); }
-if ($keepHTML) {
-  $regex_test  = preg_replace(array('~<(\?|\%)\=?(php)?~', '~(\%|\?)>~'), array('',''), $regex_test );
-} else {
-  $regex_test  = strip_tags($regex_test );
-}
-if ($passRaw) {
-  $t_domObj = new DOMDocument();
-  $t_domObj->loadHTML($regex_test);
-  $t_scriptTags = $t_domObj->getElementsByTagName('script');
-  for ($i = 0; $i < $t_scriptTags->length; $i++) {
-    $t_scriptTags->item($i)->parentNode->removeChild($t_scriptTags->item($i));
-  }
-  $regex_test = $t_domObj->saveHTML();
-} else {
-  $regex_test     = htmlspecialchars($regex_test, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-}
-ob_start();
-                    # ↓↓↓ EDIT CONTENT BELOW ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ ***
 ?>
+<pre>
+<script>
+z = document.querySelectorAll('.para2')
+console.log(z);
+x = document.querySelectorAll('.para')
+console.log(x);
+y = [];
+x.forEach ((ElC, key) => { y[key]  = ElC.getBoundingClientRect().top; });
+console.log(y);
+
+</script>
+</pre>
 
 <div class="sunset"></div>
 

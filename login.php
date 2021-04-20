@@ -28,13 +28,13 @@ ob_start();
                     # The notices in the left bar go here.--------------------- *
 ?>
 <?php
-$mpo_parts->notices = ob_get_clean();
+$mpo_parts->notices = ob_get_contents();
 ob_end_clean();
 ob_start();
                     # The main content body of the page goes here. ------------ *
 ?>
 <?php
-$mpo_parts->main_content = ob_get_clean();
+$mpo_parts->main_content = ob_get_contents();
 ob_end_clean();
 
 $page_elements = $mpo_parts->build_page();

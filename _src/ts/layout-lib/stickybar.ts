@@ -13,48 +13,60 @@
  *      this only generates styles and classes.
  *      .fixed-top  : our fixed elements
  * --- Revision History ------------------------------------------------------- *
- * 2021-04-13 | Startign a TS version
+ * 2021-04-13 | Starting a TS version
  * REDO FOR MULTIPLE AND ON ASSUMPTION WE DON'T KNOW STARTING POS OF STICKY
  * ---------------------------------------------------------------------------- */
-// *** variables we need ------------------------------------------------------ *
-// *** initialize ------------------------------------------------------------- *
-// * we want both load and scroll listeners on this                             *
-var box      = (box === undefined)  ? '#content-main' : box;
-var next     = (next === undefined) ? '#content-main' : next;
-var position = document.querySelector(box).getBoundingClientRect().top;
-function init() {
-  if (document.querySelector(box)) {
-    window.addEventListener('load', stickybar);
-    window.addEventListener('scroll', stickybar);
-  }
-}
-// *** our sticky function ---------------------------------------------------- *
-function stickybar() {
-  let   f_firstpass = false;
-  const f_box       = document.querySelector(box);
-  const f_tweak     = document.querySelectorAll(next);
-  const f_position  = position;
-  const f_offset    = f_box.getBoundingClientRect().top;
-  if (window.innerWidth > 800) {
-    let f_vT        = Math.round(f_position - window.pageYOffset);
-    if (f_vT < 1) {
-     f_box.classList.add('fixed-top');
-     f_tweak.forEach ((el_current) => {
-       el_current.setAttribute('style', 'margin-top: '+f_offset+'px;');
-     });
-    } else {
-     f_box.classList.remove('fixed-top');
-     f_tweak.forEach ((el_current) => {
-       el_current.setAttribute('style', '');
-     });
-    }
-    f_firstpass     = true;
-  } else if (f_firstpass)  {
-    f_box.classList.remove('fixed-top');
-    f_tweak.forEach ((el_current) => {
-      el_current.setAttribute('style', '');
+class mpc_sticky {
+  box               : NodeList;
+  next              : NodeList;
+  position          : number[];
+  offset            : number[];
+  eHandle           : object;
+  firstpass         : boolean;
+  elTop             : number;
+  constructor(
+    box   : string  = '.sticky',
+    next? : string
+  ) {
+    this.box        = document.querySelectorAll(box);
+    this.next       = document.querySelectorAll(next);
+    this.box.forEach ((el : HTMLElement, key : number) => {
+      this.position[key] = el.getBoundingClientRect().top
+      this.offset[key]   = el.offsetHeight;
     });
-    f_firstpass     = false;
+  }
+  stickybar() {
+    // this.firstpass  = false;
+    // if (window.innerWidth > 800) {
+    //   this.elTop    = Math.round(this.position - window.pageYOffset);
+    //   if (this.elTop < 1) {
+    //     this.box.forEach ((el_current) => {
+    //       el_current.classList.add('fixed-top');
+    //      }
+    //    this.next.forEach ((el_current) => {
+    //      el_current.setAttribute('style', 'margin-top: '+this.offset+'px;');
+    //    });
+    //   } else {
+    //     this.box.classList.remove('fixed-top');
+    //     this.next.forEach ((el_current) => {
+    //       el_current.setAttribute('style', '');
+    //     });
+    //   }
+    //   this.firstpass     = true;
+    // } else if (this.firstpass)  {
+    //   this.box.classList.remove('fixed-top');
+    //   this.next.forEach ((el_current) => {
+    //     el_current.setAttribute('style', '');
+    //   });
+    //   this.firstpass= false;
+    // }
   }
 }
+                    // *** initialize ----------------------------------------- *
+                    // * we want both load and scroll listeners on this         *
+var mpn = mpn || {};
+mpn.sticky = new mpc_sticky();
+window.addEventListener('load', mpn.stickybar.eHandle);
+window.addEventListener('scroll', mpn.stickybar.eHandle);
+
 /*! --- Copyright (c) 2020 Mootly Obviate -- See /LICENSE.md ------------------ */
