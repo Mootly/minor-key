@@ -8,10 +8,10 @@ As soon as someone ports the Deep Space syntax theme to VS Code, I will consider
 
 Don't forget to navigate first.
 
-- ES5 - `tsc -p tsconfig.js.json` - config save to `_src/es`
-- ES6 - `tsc -p tsconfig.es.json` - config to save to `_src/es`
+- ES6 - `tsc -p tsconfig.[library].es.json` - config to save to `_src/es`
+- ES5 - `tsc -p tsconfig.[library].js.json` - config to save to `_src/js`
 
-Technically, you could just convert to ES6 and let the minifier convert that to ES5, and then wouldn't need multiple tsconfig files. On the other hand, this allows you to read the source code as it is about to be compressed to unreadability for both versions of JS. Think of it as documentation.
+Technically, you could just convert to ES6 and let the minifier convert that to ES5. On the other hand, this allows you to read the source code as it is about to be compressed to unreadability for both versions of JS. Think of it as documentation. Or just skip it and go the ES6 route.
 
 ## Minify
 
@@ -39,16 +39,33 @@ The Atom uglify module uses Uglify-JS@3. This minifies while preserving ES6 synt
 
 ## Config files
 
+Our config files concatenate library file sets into on single file for compressing and inclusion.
+
+### Current Configs
+
+For easy cutting and pasting.
+
+- `./layout-lib`
+  - ES6: `tsc -p tsconfig.layout.es.json`
+  - ES5: `tsc -p tsconfig.layout.js.json`
+
+
 ### tsconfig · ES6
 
 ```
 {
   "compilerOptions": {
-    "target"    : "es6",
-    "module"    : "commonjs",
-    "sourceMap" : true,
-    "outDir"    : "../es"
-  }
+    "target"    : "ES6",
+    "module"    : "System",
+    "sourceMap" : false,
+    "outFile"   : "../es/[library name].js"
+  },
+  "include"       : [
+    "./[library path]/[file].ts",
+    .
+    .
+    .
+  ]
 }
 ```
 
@@ -57,10 +74,16 @@ The Atom uglify module uses Uglify-JS@3. This minifies while preserving ES6 synt
 ```
 {
   "compilerOptions": {
-    "target"    : "es5",
-    "module"    : "commonjs",
-    "sourceMap" : true,
-    "outDir"    : "../js"
-  }
+    "target"    : "ES5",
+    "module"    : "System",
+    "sourceMap" : false,
+    "outFile"   : "../js/[library name].js"
+  },
+  "include"       : [
+    "./[library path]/[file].ts",
+    .
+    .
+    .
+  ]
 }
 ```

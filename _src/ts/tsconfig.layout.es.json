@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target"    : "ES6",
+    "module"    : "System",
+    "sourceMap" : false,
+    "outFile"   : "../es/layout-lib.js"
+  },
+  "include"       : [
+    "./layout-lib/globals.ts",
+    "./layout-lib/stickybar.ts",
+    "./layout-lib/invoke.ts",
+  ]
+}

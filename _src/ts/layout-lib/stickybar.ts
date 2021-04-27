@@ -6,67 +6,60 @@
  * Locks the title bar or other element to the top of the screen on scroll.
  * Invokes on: onload, onscroll
  * Calls:
- *   mpv_sticky_box : class   : element(s) to lock
- *   mpv_sticky_next: id      : first element following first sticky
+ *   box  : class   : element(s) to lock
+ *   next : class   : first element following first sticky
+ *                  : will autograb if not provided
  *    Notes:
  *      The layout is CSS driven, aside from locking the height of the parent
  *      this only generates styles and classes.
  *      .fixed-top  : our fixed elements
+ *      Althoguh it appears to support name, it only supports one at present.
  * --- Revision History ------------------------------------------------------- *
  * 2021-04-13 | Starting a TS version
- * REDO FOR MULTIPLE AND ON ASSUMPTION WE DON'T KNOW STARTING POS OF STICKY
  * ---------------------------------------------------------------------------- */
 class mpc_sticky {
-  box               : NodeList;
-  next              : NodeList;
+  box               : NodeListOf<HTMLElement>;
+  next              : NodeListOf<HTMLElement>;
   position          : number[];
   offset            : number[];
   eHandle           : object;
   firstpass         : boolean;
-  elTop             : number;
+  elTop             : number[];
   constructor(
-    box   : string  = '.sticky',
+    box   : string        = '.sticky',
     next? : string
   ) {
-    this.box        = document.querySelectorAll(box);
-    this.next       = document.querySelectorAll(next);
+    this.firstpass        = false;
+    this.box              = document.querySelectorAll(box);
+    this.next             = document.querySelectorAll(next);
     this.box.forEach ((el : HTMLElement, key : number) => {
-      this.position[key] = el.getBoundingClientRect().top
-      this.offset[key]   = el.offsetHeight;
+      this.position[key]  = el.getBoundingClientRect().top
+      this.offset[key]    = el.offsetHeight;
     });
   }
-  stickybar() {
-    // this.firstpass  = false;
-    // if (window.innerWidth > 800) {
-    //   this.elTop    = Math.round(this.position - window.pageYOffset);
-    //   if (this.elTop < 1) {
-    //     this.box.forEach ((el_current) => {
-    //       el_current.classList.add('fixed-top');
-    //      }
-    //    this.next.forEach ((el_current) => {
-    //      el_current.setAttribute('style', 'margin-top: '+this.offset+'px;');
-    //    });
-    //   } else {
-    //     this.box.classList.remove('fixed-top');
-    //     this.next.forEach ((el_current) => {
-    //       el_current.setAttribute('style', '');
-    //     });
-    //   }
-    //   this.firstpass     = true;
-    // } else if (this.firstpass)  {
-    //   this.box.classList.remove('fixed-top');
-    //   this.next.forEach ((el_current) => {
-    //     el_current.setAttribute('style', '');
-    //   });
-    //   this.firstpass= false;
-    // }
+  stickybox() {
+    if (window.innerWidth > 800) {
+      this.position.forEach ((curr_pos : number, key : number) => {
+        this.elTop[key]   = Math.round(curr_pos - window.pageYOffset);
+        if (this.elTop[key] < 1) {
+          this.box[key].classList.add('fixed-top');
+          this.next[key].setAttribute('style', 'margin-top: ${this.offset}px;');
+        } else {
+          this.box[key].classList.remove('fixed-top');
+          this.next[key].setAttribute('style', '');
+        }
+      });
+      this.firstpass      = true;
+    } else if (this.firstpass)  {
+      this.box.forEach ((el : HTMLElement, key : number) => { el.classList.remove('fixed-top'); });
+      this.next.forEach ((el : HTMLElement, key : number) => { el.setAttribute('style', ''); });
+      this.firstpass      = false;
+    }
   }
 }
-                    // *** initialize ----------------------------------------- *
+                    // *** Initialize - Example ------------------------------- *
                     // * we want both load and scroll listeners on this         *
-var mpn = mpn || {};
-mpn.sticky = new mpc_sticky();
-window.addEventListener('load', mpn.stickybar.eHandle);
-window.addEventListener('scroll', mpn.stickybar.eHandle);
-
+// [namespace].sticky = new mpc_sticky();
+// window.addEventListener('load', mpn.sticky.stickybox.eHandle);
+// window.addEventListener('scroll', mpn.sticky.sitckybox.eHandle);
 /*! --- Copyright (c) 2020 Mootly Obviate -- See /LICENSE.md ------------------ */
