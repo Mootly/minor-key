@@ -9,11 +9,12 @@
  *   box  : class   : element(s) to lock
  *   next : class   : first element following first sticky
  *                  : will autograb if not provided
- *    Notes:
- *      The layout is CSS driven, aside from locking the height of the parent
- *      this only generates styles and classes.
- *      .fixed-top  : our fixed elements
- *      Althoguh it appears to support name, it only supports one at present.
+ * Notes:
+ *   The layout is CSS driven, aside from locking the height of the parent
+ *   the script only generates a class for our fixed elements
+ *   and styles for elements that need to clear them.
+ *   .fixed-top     : our fixed elements
+ *   Although it appears to support many, it only supports one at present.
  * --- Revision History ------------------------------------------------------- *
  * 2021-04-13 | Starting a TS version
  * ---------------------------------------------------------------------------- */

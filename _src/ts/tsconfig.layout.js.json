@@ -6,8 +6,8 @@
     "outFile"   : "../js/layout-lib.js"
   },
   "include"       : [
-    "./layout-lib/globals.ts",
+    "./layout-lib/_globals.ts",
     "./layout-lib/stickybar.ts",
-    "./layout-lib/invoke.ts",
+    "./layout-lib/_invoke.ts",
   ]
 }
