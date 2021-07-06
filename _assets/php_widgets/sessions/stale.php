@@ -41,7 +41,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
     </div>
   </div>
   <?php
-  $msgStaleForm     = ob_get_clean();
+  $msgStaleForm     = ob_get_contents();
   ob_end_clean();
                     # --------------------------------------------------------- *
                     # Stale session notice ------------------------------------ *
@@ -62,7 +62,7 @@ function stale_session($status, $reason = 'form', $session = NULL) {
     </div>
   </div>
   <?php
-  $msgStaleSession  = ob_get_clean();
+  $msgStaleSession  = ob_get_contents();
   ob_end_clean();
                     # --------------------------------------------------------- *
                     # replies for stale sessions                                *

@@ -18,10 +18,12 @@
                     # These aren't always meant to be particularly robust,
                     # just good enough.
   $regextocheck = array();
+  $regextocheck['not_num'] = '[^0-9]+';
                     # Yes, I had to code a form where it could be either
                     # allows number, yyyy-mm-dd, mm-dd-yyyy, dd-mm-yyyy
   $regextocheck['age_or_bday'] = '(\d{1,4}[\/|\-]\d{1,2}[\/|\-])?\d{1,4}';
                     # Checks for valid emails, should be run with /iD
+  $regextocheck['basic_email'] = '.*@.*\..*';
   $regextocheck['email'] = '^(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)'.
   '|(?:\x22?[^\x5C\x22]\x22?)){255,})(?!(?:(?:\x22?\x5C[\x00-\x7E]\x22?)'.
   '|(?:\x22?[^\x5C\x22]\x22?)){65,}@)(?:(?:[\x21\x23-\x27\x2A\x2B\x2D\x2F-\x39\x3D\x3F\x5E-\x7E]+)'.
@@ -95,5 +97,5 @@
   ']+';
                     # US phone is (xxx) xxx-xxx, ext xxx or xxx-xxx-xxx, ext xxx
                     # extention is just .*
-  $regextocheck['US_phone'] = '[\(]?\d{3}[\)]?[- ]?\d{3}[\-]\d{4}.*';
+  $regextocheck['US_phone'] = '(1[- ])?((\(\d{3}\))|\d{3})?[- ]\d{3}[- ]\d{4}.*';
 ?>
